@@ -55,21 +55,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-     <Compile Include="Assets\Script\sjh\wjsxn.cs" />
-     <None Include="Assets\Script\sjh\sjh.txt" />
-     <None Include="Assets\Sprite\kdj\kdj.txt" />
-     <None Include="Assets\Script\pbk\pbk.txt" />
-     <None Include="Assets\Sprite\jyg\jyg.txt" />
-=======
      <Compile Include="Assets\Script\sjh\UI Scriots\Dungeon\Scr_DungeonBtn.cs" />
-     <Compile Include="Assets\Script\sjh\Scene Script\Scr_SceneMgr.cs" />
      <Compile Include="Assets\Script\sjh\Quest Scripts\Scr_QuestScript.cs" />
+     <Compile Include="Assets\Script\sjh\Scene Script\Scr_SceneMgr.cs" />
+     <None Include="Assets\Script\sjh\sjh.txt" />
      <None Include="Assets\Sprite\kdj\kdj.txt" />
      <None Include="Assets\Script\pbk\pbk.txt" />
      <None Include="Assets\Sprite\jyg\jyg.txt" />
-     <None Include="Assets\Script\sjh\sjh.txt" />
->>>>>>> feature/DungeonButton
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/TiPiRu/Documents/TU-Final-Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
