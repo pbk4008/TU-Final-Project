@@ -25,11 +25,12 @@ public class Player : Character
         m_iMoney = 0;
         m_Animator = GetComponent<Animator>();//플레이어 Animator 셋팅
         m_sprRender = GetComponent<SpriteRenderer>();//플레이어 SpriteRenderer셋팅
+        StartCoroutine(FSM(m_AnimTrigger));
     }
     // Update is called once per frame
     void Update()
     {
-        FSM(m_AnimTrigger);
+        
     }
     private void statSetting()
     {

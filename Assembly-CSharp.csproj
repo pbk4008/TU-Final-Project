@@ -63,6 +63,7 @@
      <Compile Include="Assets\Script\pbk\System_LevelUp.cs" />
      <Compile Include="Assets\Script\sjh\Scene Script\Scr_SceneMgr.cs" />
      <Compile Include="Assets\Script\pbk\BtnManager.cs" />
+     <Compile Include="Assets\Script\pbk\enums.cs" />
      <None Include="Assets\Script\sjh\sjh.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/park byeong kyu/Desktop/개인포폴/포토폴리오/Unity2D/2DRPG/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
