@@ -14,4 +14,5 @@ public class BtnManager : MonoBehaviour
     {
         Application.Quit();
     }
+
 }
