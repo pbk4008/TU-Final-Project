@@ -94,7 +94,14 @@ public class Scr_Gamble : MonoBehaviour
 
     private void GambleResult()
     {
-        if (m_iPay > m_iGamblePlayerMoney)
+        if(m_iPay <0)
+        {
+            T_GambleResult.GetComponent<Text>().text = "음수를 넣을 수는 없습니다!!\n"
+               + "건 돈을 음수가 되지않게 걸어주세요!!\n\n"
+               + "조건\n"
+               + "건 돈은 양수가 되어야합니다.";
+        }
+        else if (m_iPay > m_iGamblePlayerMoney)
             T_GambleResult.GetComponent<Text>().text = "소지금이 건 돈보다 적습니다!!\n"
                 + "건 돈을 소지금 보다 적게 적어주세요!!\n\n" 
                 + "조건\n"
