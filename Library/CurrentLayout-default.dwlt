@@ -39,6 +39,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 710
     y: 0
     width: 829
@@ -46,6 +47,15 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
+=======
+    x: 621
+    y: 0
+    width: 906
+    height: 497
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 18}
+>>>>>>> feature/gambling
   m_Panes:
   - {fileID: 20}
   m_Selected: 0
@@ -69,12 +79,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1539
     height: 552
   m_MinSize: {x: 401, y: 221}
   m_MaxSize: {x: 8001, y: 4021}
   vertical: 0
   controlID: 72
+=======
+    width: 1527
+    height: 497
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
+  vertical: 0
+  controlID: 17
+>>>>>>> feature/gambling
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -92,8 +111,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 513
     height: 379
+=======
+    width: 332
+    height: 450
+>>>>>>> feature/gambling
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
@@ -119,6 +143,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 552
     width: 1539
     height: 379
@@ -126,6 +151,15 @@ MonoBehaviour:
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
   controlID: 115
+=======
+    y: 497
+    width: 1527
+    height: 450
+  m_MinSize: {x: 303, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
+  vertical: 0
+  controlID: 95
+>>>>>>> feature/gambling
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,12 +179,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
+<<<<<<< HEAD
     width: 1904
     height: 931
   m_MinSize: {x: 676, y: 442}
   m_MaxSize: {x: 12003, y: 8042}
   vertical: 0
   controlID: 42
+=======
+    width: 1920
+    height: 947
+  m_MinSize: {x: 679, y: 442}
+  m_MaxSize: {x: 12004, y: 8042}
+  vertical: 0
+  controlID: 15
+>>>>>>> feature/gambling
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,6 +209,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1539
     y: 0
     width: 365
@@ -173,6 +217,15 @@ MonoBehaviour:
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
+=======
+    x: 1527
+    y: 0
+    width: 393
+    height: 947
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 15}
+>>>>>>> feature/gambling
   m_Panes:
   - {fileID: 17}
   m_Selected: 0
@@ -192,6 +245,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 513
     y: 0
     width: 1026
@@ -199,11 +253,24 @@ MonoBehaviour:
   m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 21}
+=======
+    x: 332
+    y: 0
+    width: 1195
+    height: 450
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 19}
+>>>>>>> feature/gambling
   m_Panes:
   - {fileID: 16}
   - {fileID: 21}
   - {fileID: 15}
   - {fileID: 14}
+<<<<<<< HEAD
+=======
+  - {fileID: 19}
+>>>>>>> feature/gambling
   m_Selected: 1
   m_LastSelected: 0
 --- !u!114 &9
@@ -256,8 +323,13 @@ MonoBehaviour:
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
   m_LoadedToolbars:
+<<<<<<< HEAD
   - {fileID: 22}
   m_MainToolbar: {fileID: 22}
+=======
+  - {fileID: 20}
+  m_MainToolbar: {fileID: 20}
+>>>>>>> feature/gambling
   m_LastLoadedLayoutName: 
 --- !u!114 &11
 MonoBehaviour:
@@ -299,12 +371,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1539
     height: 931
   m_MinSize: {x: 401, y: 442}
   m_MaxSize: {x: 8003, y: 8042}
   vertical: 1
   controlID: 114
+=======
+    width: 1527
+    height: 947
+  m_MinSize: {x: 403, y: 442}
+  m_MaxSize: {x: 8003, y: 8042}
+  vertical: 1
+  controlID: 16
+>>>>>>> feature/gambling
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -322,11 +403,19 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 710
     height: 552
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
+=======
+    width: 621
+    height: 497
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 17}
+>>>>>>> feature/gambling
   m_Panes:
   - {fileID: 19}
   m_Selected: 0
@@ -440,10 +529,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 521
     y: 633
     width: 1024
     height: 358
+=======
+    x: 332
+    y: 576
+    width: 1015
+    height: 404
+>>>>>>> feature/gambling
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -458,21 +554,35 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/Script/pbk
+=======
+    - Assets/Script/sjh/Gamble Script
+>>>>>>> feature/gambling
     m_Globs: []
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< HEAD
   - Assets/Script/pbk
+=======
+  - Assets/Script/sjh/Gamble Script
+>>>>>>> feature/gambling
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\Users\\park byeong kyu\\Desktop\\\uAC1C\uC778\uD3EC\uD3F4\\\uD3EC\uD1A0\uD3F4\uB9AC\uC624\\Unity2D\\2DRPG"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 683c0000
     m_LastClickedID: 15464
     m_ExpandedIDs: 00000000583c00005c3c0000643c00008641000000ca9a3b
+=======
+    m_SelectedIDs: 863f0000
+    m_LastClickedID: 16262
+    m_ExpandedIDs: 00000000783f00007a3f00007c3f0000843f000000ca9a3b
+>>>>>>> feature/gambling
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: sjh
@@ -500,7 +610,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000583c00005a3c00005c3c0000
+=======
+    m_ExpandedIDs: 00000000783f00007a3f00007c3f0000
+>>>>>>> feature/gambling
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -525,8 +639,13 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
+<<<<<<< HEAD
     m_SelectedInstanceIDs: 3e420000
     m_LastClickedInstanceID: 16958
+=======
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+>>>>>>> feature/gambling
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -555,8 +674,13 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
+<<<<<<< HEAD
   m_DirectoriesAreaWidth: 207
 --- !u!114 &17
+=======
+  m_DirectoriesAreaWidth: 220
+--- !u!114 &15
+>>>>>>> feature/gambling
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -576,10 +700,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1547
     y: 81
     width: 364
     height: 910
+=======
+    x: 1527
+    y: 73
+    width: 392
+    height: 926
+>>>>>>> feature/gambling
   m_ViewDataDictionary: {fileID: 0}
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
@@ -614,17 +745,30 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 8
     y: 633
     width: 512
     height: 358
+=======
+    x: 0
+    y: 570
+    width: 331
+    height: 429
+>>>>>>> feature/gambling
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 10f7ffff
       m_LastClickedID: -2288
       m_ExpandedIDs: 5ef7ffff68faffff7cfaffff90faffff9efaffff5afbffff54410000
+=======
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 44fbffff
+>>>>>>> feature/gambling
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -668,10 +812,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 8
     y: 81
     width: 709
     height: 531
+=======
+    x: 0
+    y: 73
+    width: 620
+    height: 476
+>>>>>>> feature/gambling
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
@@ -684,9 +835,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: -3.179715, y: -2.2901912, z: -10.915909}
     speed: 2
     m_Value: {x: -3.179715, y: -2.2901912, z: -10.915909}
+=======
+    m_Target: {x: 0, y: 0, z: 0}
+    speed: 2
+    m_Value: {x: 0, y: 0, z: 0}
+>>>>>>> feature/gambling
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -737,9 +894,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 4.943551
     speed: 2
     m_Value: 4.943551
+=======
+    m_Target: 10
+    speed: 2
+    m_Value: 10
+>>>>>>> feature/gambling
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -784,10 +947,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 718
     y: 81
     width: 827
     height: 531
+=======
+    x: 621
+    y: 73
+    width: 904
+    height: 476
+>>>>>>> feature/gambling
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
   m_SerializedViewValues: []
@@ -831,16 +1001,24 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
+<<<<<<< HEAD
       width: 827
       height: 510
     m_Scale: {x: 0.43072918, y: 0.43072918}
     m_Translation: {x: 413.49997, y: 255.00002}
+=======
+      width: 904
+      height: 455
+    m_Scale: {x: 0.4212963, y: 0.4212963}
+    m_Translation: {x: 452, y: 227.5}
+>>>>>>> feature/gambling
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -959.9999
       y: -592.01935
       width: 1919.9999
@@ -848,6 +1026,15 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 0.43072918
   m_LastWindowPixelSize: {x: 827, y: 531}
+=======
+      x: -1072.8792
+      y: -540
+      width: 2145.7583
+      height: 1080
+    m_MinimalGUI: 1
+  m_defaultScale: 0.4212963
+  m_LastWindowPixelSize: {x: 904, y: 476}
+>>>>>>> feature/gambling
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -873,10 +1060,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 521
     y: 633
     width: 1024
     height: 358
+=======
+    x: 332
+    y: 570
+    width: 1193
+    height: 429
+>>>>>>> feature/gambling
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &22
 MonoBehaviour:

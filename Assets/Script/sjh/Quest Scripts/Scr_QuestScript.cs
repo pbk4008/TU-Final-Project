@@ -65,29 +65,30 @@ public class Scr_QuestScript : MonoBehaviour
 
     private void SettingQuest() //퀘스트 셋팅
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) //3번 반복
         {
-            if (m_bLockQuest[i] == true)
+            if (m_bLockQuest[i] == true) //퀘스트를 수락 안했다면
             {
-                m_iRandomNum = Random.Range(1, 101);
-                if (m_iRandomNum > 1 && m_iRandomNum <= 60)
+                m_iRandomNum = Random.Range(1, 101); //1~100까지 랜덤 값 부여
+                if (m_iRandomNum > 1 && m_iRandomNum <= 60)             //확률에 따라 등급 지정
                     m_iGrade = "Normal";
                 else if (m_iRandomNum > 60 && m_iRandomNum <= 90)
                     m_iGrade = "Special";
                 else if (m_iRandomNum > 90 && m_iRandomNum <= 100)
                     m_iGrade = "Epic";
 
-                m_iQuest[i] = Random.Range(1, 4);
+                m_iQuest[i] = Random.Range(1, 4);  //1~3 랜덤값 부여로 퀘스트 종류 정하기
+                                                                   //1 = 보스 몬스터, //2 = 일반 몬스터, //3 = 기타 아이템
 
-                switch (m_iQuest[i])
+                switch (m_iQuest[i]) //퀘스트 종류 값에 따라
                 {
                     case 1:
-                        if (m_iGrade == "Normal")
+                        if (m_iGrade == "Normal")   //등급에 따라 목표 값 설정
                             m_iGoalCount[i] = 1;
                         else if (m_iGrade == "Special")
                             m_iGoalCount[i] = 3;
                         else if (m_iGrade == "Epic")
-                            m_iGoalCount[i] = 5;
+                            m_iGoalCount[i] = 5;       //퀘스트 텍스트 
                         T_Q[i].GetComponent<Text>().text = "[" + m_iGrade + "]" + "보스 몬스터 " + m_iGoalCount[i] + "마리 잡아오기\n"
                             + "진행도 : ( " + m_iCurrentBossCount[i] + " / " + m_iGoalCount[i] + ")";
                         break;

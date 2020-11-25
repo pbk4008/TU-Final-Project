@@ -55,9 +55,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
      <Compile Include="Assets\Script\pbk\Player.cs" />
      <Compile Include="Assets\Script\pbk\Character.cs" />
      <Compile Include="Assets\Script\pbk\structs.cs" />
+=======
+     <Compile Include="Assets\Script\sjh\Gamble Script\Scr_Gamble.cs" />
+>>>>>>> feature/gambling
      <Compile Include="Assets\Script\sjh\UI Scriots\Dungeon\Scr_DungeonBtn.cs" />
      <Compile Include="Assets\Script\sjh\Quest Scripts\Scr_QuestScript.cs" />
      <Compile Include="Assets\Script\pbk\System_LevelUp.cs" />
