@@ -11,7 +11,6 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private GameObject Cvs_StageDungeon; //던전 스테이지 캔버스  ex) 6-1, 1-5
     [SerializeField] private GameObject Cvs_StageDungeon6_7; //던전 스테이지 캔버스  ex) 6-6, 4-7
     [SerializeField] private GameObject Cvs_StageDungeon8_10; //던전 스테이지 캔버스  ex) 6-10, 5-8
-    //[SerializeField] private GameObject Cvs_DungeonUIImage; //던전 스테이지 캔버스  ex) 6-10, 5-8
     [SerializeField] private Text[] T_Stg = new Text[10];      //N-1 텍스트          ex) 6-1
 
     private int m_iFloor;
@@ -20,7 +19,6 @@ public class Scr_DungeonBtn : MonoBehaviour
     {
         Cvs_DungeonNPC.SetActive(false);  //던전 NPC 캔버스 비활성화
         Cvs_EnterDungeon.SetActive(true); //던전 메뉴 캔버스 활성화
-        //Cvs_DungeonUIImage.SetActive(true);
     }
 
     public void Click_EnterDungeon() //던전 참가 버튼을 클릭 시
@@ -33,7 +31,6 @@ public class Scr_DungeonBtn : MonoBehaviour
     {
         Cvs_EnterDungeon.SetActive(false); //던전 참메뉴 캔버스 비활성화
         Cvs_DungeonNPC.SetActive(true);   //던전 NPC 캔버스 활성화
-      //  Cvs_DungeonUIImage.SetActive(false);
     }
 
     public void Click_ExitFloorDungeon() //던전 종류 캔버스에서 이전으로 버튼을 클릭 시
