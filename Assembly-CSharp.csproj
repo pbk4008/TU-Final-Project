@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
      <Compile Include="Assets\Script\pbk\Player.cs" />
      <Compile Include="Assets\Script\pbk\Character.cs" />
      <Compile Include="Assets\Script\pbk\structs.cs" />
@@ -69,6 +70,15 @@
      <Compile Include="Assets\Script\pbk\BtnManager.cs" />
      <Compile Include="Assets\Script\pbk\enums.cs" />
      <None Include="Assets\Script\sjh\sjh.txt" />
+=======
+     <Compile Include="Assets\Script\sjh\UI Scriots\Dungeon\Scr_DungeonBtn.cs" />
+     <Compile Include="Assets\Script\sjh\Quest Scripts\Scr_QuestScript.cs" />
+     <Compile Include="Assets\Script\sjh\Scene Script\Scr_SceneMgr.cs" />
+     <None Include="Assets\Script\sjh\sjh.txt" />
+     <None Include="Assets\Sprite\kdj\kdj.txt" />
+     <None Include="Assets\Script\pbk\pbk.txt" />
+     <None Include="Assets\Sprite\jyg\jyg.txt" />
+>>>>>>> feature/QuestSign
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/park byeong kyu/Desktop/개인포폴/포토폴리오/Unity2D/2DRPG/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
