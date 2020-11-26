@@ -9,62 +9,61 @@ public class Scr_Gamble : MonoBehaviour
     [SerializeField] private GameObject Cvs_GambleMenu;
     [SerializeField] private GameObject Cvs_GambleReady;
     [SerializeField] private GameObject Cvs_GambleResult;
+    [SerializeField] private Player m_Player;
     [SerializeField] private Text T_GamblePlayerMoney;
     [SerializeField] private Text T_GambleReady;
     [SerializeField] private Text T_GambleResult;
     [SerializeField] private InputField Input_Money;
     private string m_sPlayerSelect;
 
-    private int m_iGamblePlayerMoney;
     private int m_iPlayerSelect;
     private int m_iPay;
 
-    public void Click_GambleNPC()
+    private void Click_GambleNPC()
     {
-        m_iGamblePlayerMoney = 25000;
-        Cvs_GambleMenu.SetActive(true); 
-        T_GamblePlayerMoney.GetComponent<Text>().text = "소지금 : " + m_iGamblePlayerMoney.ToString();
+        Cvs_GambleMenu.SetActive(true);
+        T_GamblePlayerMoney.GetComponent<Text>().text = "소지금 : " + m_Player.IMoney.ToString();
         m_iPay = 0;
     }
 
-    public void Click_ExitGamble()
+    private void Click_ExitGamble()
     {
         Cvs_GambleMenu.SetActive(false);
     }
 
-    public void Click_GambleRight()
+    private void Click_GambleRight()
     {
         Cvs_GambleReady.SetActive(true);
         m_iPlayerSelect = 1;
         GambleReady();
     }
 
-    public void Click_GambleLeft()
+    private void Click_GambleLeft()
     {
         Cvs_GambleReady.SetActive(true);
         m_iPlayerSelect = 2;
         GambleReady();
     }
 
-    public void Click_GambleReadyExit()
+    private void Click_GambleReadyExit()
     {
         Cvs_GambleReady.SetActive(false);
     }
 
-    public void Click_GambleSelect()
+    private void Click_GambleSelect()
     {
         Cvs_GambleResult.SetActive(true);
         GambleResult();
     }
 
-    public void Click_GambleResult()
+    private void Click_GambleResult()
     {
         Cvs_GambleResult.SetActive(false);
         Cvs_GambleReady.SetActive(false);
         Cvs_GambleMenu.SetActive(false);
     }
 
-    public void SettingMoney()
+    private void SettingMoney()
     {
         string sMoney = Input_Money.text;
         m_iPay = int.Parse(sMoney);
@@ -83,7 +82,7 @@ public class Scr_Gamble : MonoBehaviour
         }
        
 
-        T_GambleReady.GetComponent<Text>().text = "소지금 : " + m_iGamblePlayerMoney.ToString() + "\n"
+        T_GambleReady.GetComponent<Text>().text = "소지금 : " + m_Player.IMoney.ToString() + "\n"
             + "거신 돈 : " + m_iPay + "\n"
             + "선택한 곳 : " + m_sPlayerSelect + "\n\n"
             + "오른쪽과 왼쪽 중 하나를 선택해 고르면 건 돈의 2배!!\n"
@@ -91,7 +90,7 @@ public class Scr_Gamble : MonoBehaviour
             + "진행하시겠습니까?";
     }
 
-
+    
     private void GambleResult()
     {
         if(m_iPay <0)
@@ -101,7 +100,7 @@ public class Scr_Gamble : MonoBehaviour
                + "조건\n"
                + "건 돈은 양수가 되어야합니다.";
         }
-        else if (m_iPay > m_iGamblePlayerMoney)
+        else if (m_iPay > m_Player.IMoney)
             T_GambleResult.GetComponent<Text>().text = "소지금이 건 돈보다 적습니다!!\n"
                 + "건 돈을 소지금 보다 적게 적어주세요!!\n\n" 
                 + "조건\n"
@@ -111,17 +110,17 @@ public class Scr_Gamble : MonoBehaviour
             int RandomNum = Random.Range(1, 3);
             if(RandomNum == m_iPlayerSelect)
             {
-                m_iGamblePlayerMoney += m_iPay * 2;
+                m_Player.IMoney += m_iPay;
                 T_GambleResult.GetComponent<Text>().text = "축하합니다!!\n"
                     + m_iPay + "원을 걸어" + m_iPay * 2 + "원을 얻었습니다.\n\n"
-                    + "도박 후 소지금 : " + m_iGamblePlayerMoney;
+                    + "도박 후 소지금 : " + m_Player.IMoney;
             }
             else
             {
-                m_iGamblePlayerMoney -= m_iPay;
+                m_Player.IMoney -= m_iPay;
                 T_GambleResult.GetComponent<Text>().text = "실패!!\n"
                     + m_iPay + "원 전부 잃었습니다.\n\n"
-                    + "도박 후 소지금 : " + m_iGamblePlayerMoney;
+                    + "도박 후 소지금 : " + m_Player.IMoney;
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-   
+    
     // Start is called before the first frame update
     protected structs.tagInfo m_Info;//기본 정보 구조체
     protected SpriteRenderer m_sprRender;//기본 SpriteRenderer

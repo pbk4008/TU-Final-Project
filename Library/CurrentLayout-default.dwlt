@@ -14,25 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 8
-    y: 51
-    width: 1904
-    height: 981
+    x: 575
+    y: 495
+    width: 1255
+    height: 977
   m_ShowMode: 4
   m_Title: Game
-  m_RootView: {fileID: 9}
-  m_MinSize: {x: 875, y: 492}
-=======
-    x: 16
-    y: 51
-    width: 1545
-    height: 981
-  m_ShowMode: 4
-  m_Title: Project
-  m_RootView: {fileID: 9}
-  m_MinSize: {x: 875, y: 542}
->>>>>>> feature/QuestSign
+  m_RootView: {fileID: 6}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 0
 --- !u!114 &2
@@ -43,43 +32,23 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
   m_EditorClassIdentifier: 
-  m_Children: []
+  m_Children:
+  - {fileID: 9}
+  - {fileID: 3}
   m_Position:
     serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-    x: 710
-    y: 0
-    width: 829
-    height: 552
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 20}
-=======
-    x: 621
-    y: 0
-    width: 906
-    height: 497
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-=======
-    x: 552
-    y: 0
-    width: 717
-    height: 552
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
->>>>>>> feature/QuestSign
-  m_ActualView: {fileID: 18}
->>>>>>> feature/gambling
-  m_Panes:
-  - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 0
+    x: 0
+    y: 30
+    width: 1255
+    height: 927
+  m_MinSize: {x: 679, y: 342}
+  m_MaxSize: {x: 12004, y: 8042}
+  vertical: 0
+  controlID: 76
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -88,40 +57,24 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 13}
-  - {fileID: 2}
+  m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 0
+    x: 959
     y: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
-    width: 1539
-=======
-    width: 1269
->>>>>>> feature/QuestSign
-    height: 552
-  m_MinSize: {x: 401, y: 221}
-  m_MaxSize: {x: 8001, y: 4021}
-  vertical: 0
-<<<<<<< HEAD
-  controlID: 72
-=======
-    width: 1527
-    height: 497
-  m_MinSize: {x: 403, y: 221}
-  m_MaxSize: {x: 8003, y: 4021}
-  vertical: 0
-  controlID: 17
->>>>>>> feature/gambling
-=======
-  controlID: 88
->>>>>>> feature/QuestSign
+    width: 296
+    height: 927
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 13}
+  m_Panes:
+  - {fileID: 13}
+  m_Selected: 0
+  m_LastSelected: 0
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -130,162 +83,25 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneHierarchyWindow
+  m_Name: 
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
-    width: 513
-    height: 379
-=======
-    width: 332
-    height: 450
->>>>>>> feature/gambling
-=======
-    width: 423
-    height: 379
->>>>>>> feature/QuestSign
+    width: 232
+    height: 555
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 18}
+  m_ActualView: {fileID: 14}
   m_Panes:
-  - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: -1
---- !u!114 &5
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 4}
-  - {fileID: 8}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 552
-<<<<<<< HEAD
-    width: 1539
-=======
-    width: 1269
->>>>>>> feature/QuestSign
-    height: 379
-  m_MinSize: {x: 303, y: 221}
-  m_MaxSize: {x: 8003, y: 4021}
-  vertical: 0
-<<<<<<< HEAD
-  controlID: 115
-=======
-    y: 497
-    width: 1527
-    height: 450
-  m_MinSize: {x: 303, y: 221}
-  m_MaxSize: {x: 8003, y: 4021}
-  vertical: 0
-  controlID: 95
->>>>>>> feature/gambling
-=======
-  controlID: 162
->>>>>>> feature/QuestSign
---- !u!114 &6
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 12}
-  - {fileID: 7}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 30
-<<<<<<< HEAD
-<<<<<<< HEAD
-    width: 1904
-=======
-    width: 1545
->>>>>>> feature/QuestSign
-    height: 931
-  m_MinSize: {x: 676, y: 442}
-  m_MaxSize: {x: 12003, y: 8042}
-  vertical: 0
-<<<<<<< HEAD
-  controlID: 42
-=======
-    width: 1920
-    height: 947
-  m_MinSize: {x: 679, y: 442}
-  m_MaxSize: {x: 12004, y: 8042}
-  vertical: 0
-  controlID: 15
->>>>>>> feature/gambling
-=======
-  controlID: 86
->>>>>>> feature/QuestSign
---- !u!114 &7
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-    x: 1539
-=======
-    x: 1269
->>>>>>> feature/QuestSign
-    y: 0
-    width: 365
-    height: 931
-<<<<<<< HEAD
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 17}
-=======
-    x: 1527
-    y: 0
-    width: 393
-    height: 947
-=======
->>>>>>> feature/QuestSign
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 15}
->>>>>>> feature/gambling
-  m_Panes:
-  - {fileID: 17}
+  - {fileID: 14}
   m_Selected: 0
   m_LastSelected: 0
---- !u!114 &8
+--- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -300,45 +116,19 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-    x: 513
-    y: 0
-    width: 1026
-    height: 379
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 21}
-=======
-    x: 332
-    y: 0
-    width: 1195
-    height: 450
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 19}
->>>>>>> feature/gambling
-=======
-    x: 423
-    y: 0
-    width: 846
-    height: 379
-  m_MinSize: {x: 232, y: 271}
-  m_MaxSize: {x: 10002, y: 10021}
-  m_ActualView: {fileID: 14}
->>>>>>> feature/QuestSign
+    x: 0
+    y: 555
+    width: 959
+    height: 372
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 17}
   m_Panes:
-  - {fileID: 16}
-  - {fileID: 21}
-  - {fileID: 15}
-  - {fileID: 14}
-<<<<<<< HEAD
-=======
-  - {fileID: 19}
->>>>>>> feature/gambling
+  - {fileID: 12}
+  - {fileID: 17}
   m_Selected: 1
   m_LastSelected: 0
---- !u!114 &9
+--- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -351,28 +141,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 10}
-  - {fileID: 6}
-  - {fileID: 11}
+  - {fileID: 7}
+  - {fileID: 2}
+  - {fileID: 8}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-<<<<<<< HEAD
-    width: 1904
-    height: 981
+    width: 1255
+    height: 977
   m_MinSize: {x: 875, y: 300}
-=======
-    width: 1545
-    height: 981
-  m_MinSize: {x: 875, y: 542}
->>>>>>> feature/QuestSign
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
   m_UseBottomView: 1
   m_BottomViewHeight: 20
---- !u!114 &10
+--- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,24 +173,15 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-<<<<<<< HEAD
-    width: 1904
-=======
-    width: 1545
->>>>>>> feature/QuestSign
+    width: 1255
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
   m_LoadedToolbars:
-<<<<<<< HEAD
-  - {fileID: 22}
-  m_MainToolbar: {fileID: 22}
-=======
-  - {fileID: 20}
-  m_MainToolbar: {fileID: 20}
->>>>>>> feature/gambling
+  - {fileID: 18}
+  m_MainToolbar: {fileID: 18}
   m_LastLoadedLayoutName: 
---- !u!114 &11
+--- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -422,16 +197,12 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 961
-<<<<<<< HEAD
-    width: 1904
-=======
-    width: 1545
->>>>>>> feature/QuestSign
+    y: 957
+    width: 1255
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
---- !u!114 &12
+--- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -444,36 +215,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 3}
+  - {fileID: 10}
   - {fileID: 5}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
-    width: 1539
-=======
-    width: 1269
->>>>>>> feature/QuestSign
-    height: 931
-  m_MinSize: {x: 401, y: 442}
+    width: 959
+    height: 927
+  m_MinSize: {x: 403, y: 342}
   m_MaxSize: {x: 8003, y: 8042}
   vertical: 1
-<<<<<<< HEAD
-  controlID: 114
-=======
-    width: 1527
-    height: 947
-  m_MinSize: {x: 403, y: 442}
-  m_MaxSize: {x: 8003, y: 8042}
-  vertical: 1
-  controlID: 16
->>>>>>> feature/gambling
-=======
-  controlID: 87
->>>>>>> feature/QuestSign
---- !u!114 &13
+  controlID: 81
+--- !u!114 &10
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 4}
+  - {fileID: 11}
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 959
+    height: 555
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
+  vertical: 0
+  controlID: 82
+--- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -483,139 +262,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
-<<<<<<< HEAD
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 0
+    x: 232
     y: 0
-<<<<<<< HEAD
-    width: 710
-    height: 552
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 19}
-=======
-    width: 621
-    height: 497
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
->>>>>>> feature/gambling
+    width: 727
+    height: 555
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 16}
   m_Panes:
-  - {fileID: 19}
-  m_Selected: 0
+  - {fileID: 15}
+  - {fileID: 16}
+  m_Selected: 1
   m_LastSelected: 0
---- !u!114 &14
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12914, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Animator
-    m_Image: {fileID: -1673928668082335149, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 521
-    y: 633
-    width: 1024
-    height: 358
-  m_ViewDataDictionary: {fileID: 0}
-  m_ViewTransforms:
-    m_KeySerializationHelper:
-    - {fileID: 6020648816665967504, guid: 8dd9b479c836db345a0b6bd9a00d56f5, type: 2}
-    m_ValueSerializationHelper:
-    - e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-  m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 8dd9b479c836db345a0b6bd9a00d56f5, type: 2}
-  m_BreadCrumbs:
-  - m_Target: {fileID: 6020648816665967504, guid: 8dd9b479c836db345a0b6bd9a00d56f5, type: 2}
-    m_ScrollPosition: {x: 0, y: 0}
-  stateMachineGraph: {fileID: 0}
-  stateMachineGraphGUI: {fileID: 0}
-  blendTreeGraph: {fileID: 0}
-  blendTreeGraphGUI: {fileID: 0}
-  m_AutoLiveLink: 1
-  m_MiniTool: 0
-  m_LockTracker:
-    m_IsLocked: 0
-  m_CurrentEditor: 0
-  m_LayerEditor:
-    m_SelectedLayerIndex: 0
---- !u!114 &15
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12071, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Animation
-    m_Image: {fileID: -8166618308981325432, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 521
-    y: 633
-    width: 1024
-    height: 358
-  m_ViewDataDictionary: {fileID: 0}
-  m_LockTracker:
-    m_IsLocked: 0
-  m_LastSelectedObjectID: -2288
---- !u!114 &16
-=======
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 552
-    height: 552
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
-  m_Panes:
-  - {fileID: 17}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &14
->>>>>>> feature/QuestSign
+--- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -635,24 +299,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-    x: 521
-    y: 633
-    width: 1024
-    height: 358
-=======
-    x: 332
-    y: 576
-    width: 1015
-    height: 404
->>>>>>> feature/gambling
-=======
-    x: 439
-    y: 633
-    width: 844
-    height: 358
->>>>>>> feature/QuestSign
+    x: 8
+    y: 636
+    width: 1280
+    height: 351
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -667,73 +317,37 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-<<<<<<< HEAD
-<<<<<<< HEAD
-    - Assets/Script/pbk
-=======
-    - Assets/Script/sjh/Gamble Script
->>>>>>> feature/gambling
-=======
     - Assets/Scenes
->>>>>>> feature/QuestSign
     m_Globs: []
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-<<<<<<< HEAD
-<<<<<<< HEAD
-  - Assets/Script/pbk
-=======
-  - Assets/Script/sjh/Gamble Script
->>>>>>> feature/gambling
-=======
   - Assets/Scenes
->>>>>>> feature/QuestSign
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: "C:\\Users\\park byeong kyu\\Desktop\\\uAC1C\uC778\uD3EC\uD3F4\\\uD3EC\uD1A0\uD3F4\uB9AC\uC624\\Unity2D\\2DRPG"
+  m_LastProjectPath: C:\Users\TiPiRu\Documents\TU-Final-Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-    m_SelectedIDs: 683c0000
-    m_LastClickedID: 15464
-    m_ExpandedIDs: 00000000583c00005c3c0000643c00008641000000ca9a3b
-=======
-    m_SelectedIDs: 863f0000
-    m_LastClickedID: 16262
-    m_ExpandedIDs: 00000000783f00007a3f00007c3f0000843f000000ca9a3b
->>>>>>> feature/gambling
+    m_SelectedIDs: 54400000
+    m_LastClickedID: 16468
+    m_ExpandedIDs: 000000003e40000040400000424000004e40000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: sjh
-      m_OriginalName: sjh
-=======
-    m_SelectedIDs: 603e0000
-    m_LastClickedID: 15968
-    m_ExpandedIDs: 0000000000ca9a3b
-    m_RenameOverlay:
-      m_UserAcceptedRename: 0
-      m_Name: jyg
-      m_OriginalName: jyg
->>>>>>> feature/QuestSign
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-<<<<<<< HEAD
-      m_UserData: 15450
-=======
-      m_UserData: 15974
->>>>>>> feature/QuestSign
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 8}
+      m_ClientGUIView: {fileID: 0}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -745,15 +359,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
-    m_ExpandedIDs: 00000000583c00005a3c00005c3c0000
-=======
-    m_ExpandedIDs: 00000000783f00007a3f00007c3f0000
->>>>>>> feature/gambling
-=======
-    m_ExpandedIDs: 00000000523e0000543e0000563e0000
->>>>>>> feature/QuestSign
+    m_ExpandedIDs: 000000003e4000004040000042400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -778,18 +384,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-<<<<<<< HEAD
-<<<<<<< HEAD
-    m_SelectedInstanceIDs: 3e420000
-    m_LastClickedInstanceID: 16958
-=======
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
->>>>>>> feature/gambling
-=======
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
->>>>>>> feature/QuestSign
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -807,7 +403,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 5}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -819,14 +415,7 @@ MonoBehaviour:
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
-<<<<<<< HEAD
---- !u!114 &17
-=======
-  m_DirectoriesAreaWidth: 220
-=======
->>>>>>> feature/QuestSign
---- !u!114 &15
->>>>>>> feature/gambling
+--- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -846,24 +435,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-    x: 1547
-=======
-    x: 1285
->>>>>>> feature/QuestSign
-    y: 81
-    width: 364
-    height: 910
-<<<<<<< HEAD
-=======
-    x: 1527
-    y: 73
-    width: 392
-    height: 926
->>>>>>> feature/gambling
-=======
->>>>>>> feature/QuestSign
+    x: 960
+    y: 19
+    width: 295
+    height: 906
   m_ViewDataDictionary: {fileID: 0}
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
@@ -878,7 +453,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
---- !u!114 &18
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -898,40 +473,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 16
-    y: 633
-<<<<<<< HEAD
-    width: 512
-    height: 358
-=======
     x: 0
-    y: 570
-    width: 331
-    height: 429
->>>>>>> feature/gambling
-=======
-    width: 422
-    height: 358
->>>>>>> feature/QuestSign
+    y: 19
+    width: 231
+    height: 534
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-      m_SelectedIDs: 10f7ffff
-      m_LastClickedID: -2288
-      m_ExpandedIDs: 5ef7ffff68faffff7cfaffff90faffff9efaffff5afbffff54410000
-=======
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 44fbffff
->>>>>>> feature/gambling
-=======
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 3cfbffff
->>>>>>> feature/QuestSign
+      scrollPos: {x: 0, y: 15}
+      m_SelectedIDs: a4410000
+      m_LastClickedID: 16804
+      m_ExpandedIDs: b8f9ffff00faffff5afbffff12410000e44200006e440000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -955,11 +507,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
-<<<<<<< HEAD
---- !u!114 &19
-=======
---- !u!114 &17
->>>>>>> feature/QuestSign
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -979,24 +527,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-    x: 8
-    y: 81
-    width: 709
-    height: 531
-=======
-    x: 0
-    y: 73
-    width: 620
-    height: 476
->>>>>>> feature/gambling
-=======
-    x: 16
-    y: 81
-    width: 551
-    height: 531
->>>>>>> feature/QuestSign
+    x: 598
+    y: 98
+    width: 938
+    height: 509
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
@@ -1009,21 +543,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-<<<<<<< HEAD
-<<<<<<< HEAD
-    m_Target: {x: -3.179715, y: -2.2901912, z: -10.915909}
+    m_Target: {x: 43306.08, y: -2424.6777, z: -19464.33}
     speed: 2
-    m_Value: {x: -3.179715, y: -2.2901912, z: -10.915909}
-=======
-    m_Target: {x: 0, y: 0, z: 0}
-    speed: 2
-    m_Value: {x: 0, y: 0, z: 0}
->>>>>>> feature/gambling
-=======
-    m_Target: {x: 869.2123, y: 678.1461, z: -90.7686}
-    speed: 2
-    m_Value: {x: 869.2123, y: 678.1461, z: -90.7686}
->>>>>>> feature/QuestSign
+    m_Value: {x: 43306.08, y: -2424.6777, z: -19464.33}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1074,21 +596,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-<<<<<<< HEAD
-<<<<<<< HEAD
-    m_Target: 4.943551
+    m_Target: 55307.707
     speed: 2
-    m_Value: 4.943551
-=======
-    m_Target: 10
-    speed: 2
-    m_Value: 10
->>>>>>> feature/gambling
-=======
-    m_Target: 855.3623
-    speed: 2
-    m_Value: 855.3623
->>>>>>> feature/QuestSign
+    m_Value: 55307.707
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1113,7 +623,7 @@ MonoBehaviour:
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &20
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1133,24 +643,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-    x: 718
-    y: 81
-    width: 827
-    height: 531
-=======
-    x: 621
-    y: 73
-    width: 904
-    height: 476
->>>>>>> feature/gambling
-=======
-    x: 568
-    y: 81
-    width: 715
-    height: 531
->>>>>>> feature/QuestSign
+    x: 233
+    y: 19
+    width: 725
+    height: 534
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
   m_SerializedViewValues: []
@@ -1182,7 +678,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMin: 1
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
-    m_HSlider: 1
+    m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
@@ -1194,63 +690,29 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-<<<<<<< HEAD
-<<<<<<< HEAD
-      width: 827
-      height: 510
-    m_Scale: {x: 0.43072918, y: 0.43072918}
-    m_Translation: {x: 413.49997, y: 255.00002}
-=======
-      width: 904
-      height: 455
-    m_Scale: {x: 0.4212963, y: 0.4212963}
-    m_Translation: {x: 452, y: 227.5}
->>>>>>> feature/gambling
-=======
-      width: 715
-      height: 510
-    m_Scale: {x: 0.37239584, y: 0.37239584}
-    m_Translation: {x: 357.5, y: 255.00002}
->>>>>>> feature/QuestSign
+      width: 725
+      height: 513
+    m_Scale: {x: 0.37760416, y: 0.37760416}
+    m_Translation: {x: 362.5, y: 256.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-      x: -959.9999
-      y: -592.01935
-      width: 1919.9999
-      height: 1184.0387
-    m_MinimalGUI: 1
-  m_defaultScale: 0.43072918
-  m_LastWindowPixelSize: {x: 827, y: 531}
-=======
-      x: -1072.8792
-      y: -540
-      width: 2145.7583
-      height: 1080
-    m_MinimalGUI: 1
-  m_defaultScale: 0.4212963
-  m_LastWindowPixelSize: {x: 904, y: 476}
->>>>>>> feature/gambling
-=======
       x: -960
-      y: -684.75525
+      y: -679.2828
       width: 1920
-      height: 1369.5105
+      height: 1358.5656
     m_MinimalGUI: 1
-  m_defaultScale: 0.37239584
-  m_LastWindowPixelSize: {x: 715, y: 531}
->>>>>>> feature/QuestSign
+  m_defaultScale: 0.37760416
+  m_LastWindowPixelSize: {x: 725, y: 534}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &21
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1270,26 +732,12 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-    x: 521
-    y: 633
-    width: 1024
-    height: 358
-=======
-    x: 332
-    y: 570
-    width: 1193
-    height: 429
->>>>>>> feature/gambling
-=======
-    x: 439
-    y: 633
-    width: 844
-    height: 358
->>>>>>> feature/QuestSign
+    x: 0
+    y: 574
+    width: 958
+    height: 351
   m_ViewDataDictionary: {fileID: 0}
---- !u!114 &22
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

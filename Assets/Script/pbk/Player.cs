@@ -15,14 +15,17 @@ public class Player : Character
     public structs.tagInfo Info { get => m_Info; set => m_Info = value; }
 
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
+   //Hp 수정하기 - 손준호
+    public int IHp { get => m_Info.ICurrentHp; set => m_Info.ICurrentHp = value; }
     public int IExp { get => m_iExp; set => m_iExp = value; }
 
     void Start()
     {
+        
         tagSetting("곰돌이", 1, 3, 3, 50, 1, 5, 1.1f);//플레이어 셋팅
         statSetting();
-        m_AnimTrigger = ANIMTRIGGER.IDLE;
-        m_iMoney = 0;
+        m_AnimTrigger = enums.ANIMTRIGGER.IDLE;  //오류터져서 임시로 막음.   고치기 전 : m_AnimTrigger = ANIMTRIGGER.IDLE;
+        m_iMoney = 11110;
         m_Animator = GetComponent<Animator>();//플레이어 Animator 셋팅
         m_sprRender = GetComponent<SpriteRenderer>();//플레이어 SpriteRenderer셋팅
         StartCoroutine(FSM(m_AnimTrigger));
