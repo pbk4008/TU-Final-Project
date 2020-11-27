@@ -27,19 +27,21 @@ public class Character : MonoBehaviour
         m_Info.FCri = 0.15f;
         m_Info.FCriDmg = argCriDmg;     
     }
-    protected IEnumerator FSM(enums.ANIMTRIGGER argAnimTrigger)
+    protected IEnumerator FSM()
     {
         m_Animator = gameObject.GetComponent<Animator>();
         while (true)
         {
-            switch (argAnimTrigger)
+            switch (m_AnimTrigger)
             {
                 case enums.ANIMTRIGGER.IDLE:
                     m_Animator.SetBool("Anim_Idle", false);
                     m_Animator.SetBool("Anim_Attack", false);
+                    m_Animator.SetBool("Anim_Hit", false);
                     break;
                 case enums.ANIMTRIGGER.HIT:
                     m_Animator.SetBool("Anim_Idle", true);
+                    m_Animator.SetBool("Anim_Hit", true);
                     break;
                 case enums.ANIMTRIGGER.ATTACK:
                     m_Animator.SetBool("Anim_Idle", true);

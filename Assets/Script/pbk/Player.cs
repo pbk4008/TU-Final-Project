@@ -21,11 +21,11 @@ public class Player : Character
     {
         tagSetting("곰돌이", 1, 3, 3, 50, 1, 5, 1.1f);//플레이어 셋팅
         statSetting();
-        m_AnimTrigger = ANIMTRIGGER.IDLE;
+        m_AnimTrigger = enums.ANIMTRIGGER.IDLE;
         m_iMoney = 0;
         m_Animator = GetComponent<Animator>();//플레이어 Animator 셋팅
         m_sprRender = GetComponent<SpriteRenderer>();//플레이어 SpriteRenderer셋팅
-        StartCoroutine(FSM(m_AnimTrigger));
+        StartCoroutine(FSM());
     }
     // Update is called once per frame
     void Update()
