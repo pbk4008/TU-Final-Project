@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BtnManager
+public class BtnManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public void GameStart()//게임시작 버튼 클릭
@@ -18,5 +18,10 @@ public class BtnManager
     {
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
         m_Player.AnimTrigger = enums.ANIMTRIGGER.ATTACK;
+    }
+    public void HitBtn()
+    {
+        Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        m_Player.AnimTrigger = enums.ANIMTRIGGER.HIT;
     }
 }
