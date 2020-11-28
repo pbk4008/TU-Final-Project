@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\pbk\Player.cs" />
+    <Compile Include="Assets\Script\sjh\UI Scriots\Player\Scr_PlayerUI.cs" />
     <Compile Include="Assets\Script\pbk\Character.cs" />
     <Compile Include="Assets\Script\pbk\structs.cs" />
     <Compile Include="Assets\Script\sjh\Gamble Script\Scr_Gamble.cs" />
@@ -73,7 +74,7 @@
     <Compile Include="Assets\Script\pbk\System_LevelUp.cs" />
     <Compile Include="Assets\Script\sjh\House Script\Scr_House.cs" />
     <Compile Include="Assets\Script\pbk\enums.cs" />
-    <Compile Include="Assets\Script\sjh\Scene Script\Scr_SceneMgr.cs" />
+    <Compile Include="Assets\Script\sjh\UI Scriots\Dungeon\Scr_ButtonName.cs" />
     <Compile Include="Assets\Script\pbk\BtnManager.cs" />
     <None Include="Assets\Script\sjh\sjh.txt" />
     <Reference Include="Unity.Timeline.Editor">
