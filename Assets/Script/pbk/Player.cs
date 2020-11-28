@@ -24,13 +24,8 @@ public class Player : Character
         
         tagSetting("곰돌이", 1, 3, 3, 50, 1, 5, 1.1f);//플레이어 셋팅
         statSetting();
-<<<<<<< HEAD
-        m_AnimTrigger = enums.ANIMTRIGGER.IDLE;  //오류터져서 임시로 막음.   고치기 전 : m_AnimTrigger = ANIMTRIGGER.IDLE;
-        m_iMoney = 11110;
-=======
         m_AnimTrigger = enums.ANIMTRIGGER.IDLE;
         m_iMoney = 0;
->>>>>>> feature/Player
         m_Animator = GetComponent<Animator>();//플레이어 Animator 셋팅
         m_sprRender = GetComponent<SpriteRenderer>();//플레이어 SpriteRenderer셋팅
         StartCoroutine(FSM());

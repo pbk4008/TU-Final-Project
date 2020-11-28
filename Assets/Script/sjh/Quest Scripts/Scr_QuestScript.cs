@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Scr_QuestScript : MonoBehaviour
 {
     private string m_iGrade;     //퀘스트 등급
-
     private int m_iRandomNum;//확률지정
 
     private int[] m_iCurrentMonsterCount = new int[3]; //퀘스트 받고 나서의 플레이어의 현재 잡은 몬스터 값
@@ -17,7 +16,6 @@ public class Scr_QuestScript : MonoBehaviour
 
     private bool[] m_bLockQuest = new bool[3]; //퀘스트 선택하면 다시 돌리지 못하게 하는 변수
 
-    [SerializeField] private GameObject Cvs_QuestText;   //퀘스트 표지판 UI
     [SerializeField] private Text[] T_Q = new Text[3];       //퀘스트 텍스트
     [SerializeField] private Text[] T_Select = new Text[3]; //퀘스트 수락 버튼 텍스트 
 
@@ -30,15 +28,6 @@ public class Scr_QuestScript : MonoBehaviour
         SettingQuest(); //퀘스트 셋팅
     }
 
-    public void Click_QuestSign() //퀘스트 표지판 누르면
-    {
-        Cvs_QuestText.SetActive(true); //퀘스트 표지판 UI 띄우기
-    }
-
-    public void Click_ExitText() //퀘스트 표지판 닫기를 누르면
-    {
-        Cvs_QuestText.SetActive(false); //퀘스트 표지판 UI 접기
-    }
 
     public void Click_Q1Select() //첫번 째 퀘스트를 수락하면
     {
