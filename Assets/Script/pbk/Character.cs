@@ -38,6 +38,9 @@ public class Character : MonoBehaviour
                     m_Animator.SetBool("Anim_Idle", false);
                     m_Animator.SetBool("Anim_Attack", false);
                     m_Animator.SetBool("Anim_Hit", false);
+                    m_Animator.SetBool("Anim_Buff", false);
+                    m_Animator.SetBool("Anim_Win", false);
+                    m_Animator.SetBool("Anim_Fail", false);
                     break;
                 case enums.ANIMTRIGGER.HIT:
                     m_Animator.SetBool("Anim_Idle", true);
@@ -50,11 +53,17 @@ public class Character : MonoBehaviour
                 case enums.ANIMTRIGGER.SKILL:
                     m_Animator.SetBool("Anim_Idle", true);
                     break;
+                case enums.ANIMTRIGGER.BUFF:
+                    m_Animator.SetBool("Anim_Buff", true);
+                    m_Animator.SetBool("Anim_Idle", true);
+                    break;
                 case enums.ANIMTRIGGER.DIE:
                     m_Animator.SetBool("Anim_Idle", true);
+                    m_Animator.SetBool("Anim_Fail", true);
                     break;
                 case enums.ANIMTRIGGER.WIN:
                     m_Animator.SetBool("Anim_Idle", true);
+                    m_Animator.SetBool("Anim_Win", true);
                     break;
             }
             yield return new WaitForSeconds(0.1f);
