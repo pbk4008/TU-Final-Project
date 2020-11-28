@@ -24,4 +24,19 @@ public class BtnManager : MonoBehaviour
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
         m_Player.AnimTrigger = enums.ANIMTRIGGER.HIT;
     }
+    public void BuffBtn()
+    {
+        Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        m_Player.AnimTrigger = enums.ANIMTRIGGER.BUFF;
+    }
+    public void WinBtn()
+    {
+        Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        m_Player.AnimTrigger = enums.ANIMTRIGGER.WIN;
+    }
+    public void FailBtn()
+    {
+        Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        m_Player.AnimTrigger = enums.ANIMTRIGGER.DIE;
+    }
 }
