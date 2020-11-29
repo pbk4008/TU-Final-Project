@@ -25,7 +25,7 @@ public class Player : Character
         tagSetting("곰돌이", 1, 3, 3, 50, 1, 5, 1.1f);//플레이어 셋팅
         statSetting();
         m_AnimTrigger = enums.ANIMTRIGGER.IDLE;
-        m_iMoney = 0;
+        m_iMoney = 10000;
         m_Animator = GetComponent<Animator>();//플레이어 Animator 셋팅
         m_sprRender = GetComponent<SpriteRenderer>();//플레이어 SpriteRenderer셋팅
         StartCoroutine(FSM());
