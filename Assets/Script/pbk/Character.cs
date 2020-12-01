@@ -12,9 +12,9 @@ public class Character : MonoBehaviour
     protected Animator m_Animator;//기본 Animator
     protected AudioSource m_Audio;//기본 Audio;
     protected enums.ANIMTRIGGER m_AnimTrigger;
-
+    protected bool m_bLive;//목숨
     public enums.ANIMTRIGGER AnimTrigger { get => m_AnimTrigger; set => m_AnimTrigger = value; }
-
+    public bool BLive { get => m_bLive; set => m_bLive = value; }
     protected void tagSetting(string argName, int argLevel, int argAtk, int argMatk, int argMaxHp, int argAtkSpeed, int argDef, float argCriDmg)//기본정보 셋팅
     {
         m_Info.SName = argName;
