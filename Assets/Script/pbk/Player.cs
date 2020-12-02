@@ -19,8 +19,6 @@ public class Player : Character
     public structs.tagInfo Info { get => m_Info; set => m_Info = value; }
 
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
-    //Hp 수정하기 - 손준호
-    public int IHp { get => m_Info.ICurrentHp; set => m_Info.ICurrentHp = value; }
     public int IExp { get => m_iExp; set => m_iExp = value; }
 
     private void Awake() //싱글톤 DontDestroy시 원래 씬으로 돌아왔을때 오브젝트 중복 피하기
@@ -47,6 +45,7 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(m_Info.ILevel);
         if (bOnClick)
         {
             switch (sButtonName)
