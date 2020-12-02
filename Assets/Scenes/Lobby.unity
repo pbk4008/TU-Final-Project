@@ -1268,7 +1268,7 @@ GameObject:
   - component: {fileID: 162962424}
   m_Layer: 0
   m_Name: Obj_UIMgr
-  m_TagString: Untagged
+  m_TagString: GameMgr
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1318,6 +1318,8 @@ MonoBehaviour:
   - {fileID: 1216366386}
   - {fileID: 1044838604}
   - {fileID: 1079255931}
+  m_iFloor: 0
+  m_iStage: 3
   QuestButton:
   - {fileID: 1185646275}
   - {fileID: 1214350305}

@@ -10,7 +10,9 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private Button[] DungeonButton = new Button[21];
     [SerializeField] private Text[] T_DungeonText = new Text[10];
 
+    [SerializeField]
     private int m_iFloor;
+    [SerializeField]
     private int m_iStage;
     private string m_sButtonName;
     private bool m_bOnClick;
@@ -18,6 +20,8 @@ public class Scr_DungeonBtn : MonoBehaviour
 
     public string sButtonName { get => m_sButtonName; set => m_sButtonName = value; }
     public bool sOnClick { get => m_bOnClick; set => m_bOnClick = value; }
+    public int IFloor { get => m_iFloor; set => m_iFloor = value; }//Floor변수 가져오기(by.pbk)
+    public int IStage { get => m_iStage; set => m_iStage = value; }//Stage변수 가져오기(by.pbk)
 
     //----------------------퀘스트 부분
     [SerializeField] private Button[] QuestButton = new Button[5];   //퀘스트 표지판 UI
@@ -71,6 +75,7 @@ public class Scr_DungeonBtn : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         //던전 스테이지 막기
         m_bStage[0] = new bool[] { true, false, false, false, false };
         m_bStage[1] = new bool[] { false, false, false, false, false };
@@ -356,7 +361,9 @@ public class Scr_DungeonBtn : MonoBehaviour
         }
 
         if (m_bStage[m_iFloor][m_iStage] == true)
+        {
             SceneManager.LoadScene("Duengeon"); //Scene2로 이동한다.
+        }
         else
             Debug.Log("잠겨있음");
     }

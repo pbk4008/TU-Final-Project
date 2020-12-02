@@ -27,6 +27,18 @@ public class structs
         public int IDef { get => m_iDef; set => m_iDef = value; }
         public float FCri { get => m_fCri; set => m_fCri = value; }
         public float FCriDmg { get => m_fCriDmg; set => m_fCriDmg = value; }
+
+        public void setName(string argName) { m_sName = argName; }
+        public void setLevel(int argLevel) { m_iLevel = argLevel; }
+        public void setAtk(int argAtk) { m_iAtk = argAtk; }
+        public void setMatk(int argMatk) { m_iMatk = argMatk; }
+        public void setMaxHp(int argMaxHp) { m_iMaxHp = argMaxHp; }
+        public void setCurrentHp(int argCurrentHp) { m_iCurrentHp = argCurrentHp; }
+        public void setAtkSpeed(int argAtkSpeed) { m_iAtkSpeed = argAtkSpeed; }
+        public void setDef(int argDef) { m_iDef = argDef; }
+        public void setCri(float argCri) { m_fCri = argCri; }
+        public void setCriDmg(float argCriDmg) { m_fCriDmg = argCriDmg; }
+        
     }
     [System.Serializable]
     public struct tagStat
@@ -44,5 +56,12 @@ public class structs
         public int IDex { get => m_iDex; set => m_iDex = value; }
         public int IInt { get => m_iInt; set => m_iInt = value; }
         public int IStat { get => m_iStat; set => m_iStat = value; }
+
+        public void setPow(int argPow) { m_iPow = argPow; }
+        public void setDex(int argDex) { m_iDex = argDex; }
+        public void setInt(int argInt) { m_iInt = argInt; }
+        public void setStat(int argStat) { m_iStat = argStat; }
+        
+        
     }
 }
