@@ -12,6 +12,7 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
     public void CalculStat()//스텟 계산
     {
         structs.tagInfo argInfo = new structs.tagInfo();
+        argInfo.ILevel = m_Player.Info.ILevel; //손준호 - 이 부분 없어서 레벨이 계속 0으로 초기화됨
         argInfo.IMaxHp = m_Player.Stat.IPow * 3 + 50;
         argInfo.ICurrentHp = argInfo.IMaxHp;
         argInfo.IAtkSpeed = m_Player.Stat.IDex/15+1;

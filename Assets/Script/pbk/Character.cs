@@ -17,7 +17,9 @@ public class Character : MonoBehaviour
 
     protected void tagSetting(string argName, int argLevel, int argAtk, int argMatk, int argMaxHp, int argAtkSpeed, int argDef, float argCriDmg)//기본정보 셋팅
     {
+        
         m_Info.SName = argName;
+        m_Info.ILevel = argLevel;
         m_Info.IAtk = argAtk;
         m_Info.IMatk = argMatk;
         m_Info.IMaxHp = argMaxHp;

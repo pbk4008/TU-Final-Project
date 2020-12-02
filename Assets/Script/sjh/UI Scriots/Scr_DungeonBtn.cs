@@ -60,9 +60,12 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private Button[] PlayerButton = new Button[2];
     [SerializeField] private Image Img_PlayerStat;
     [SerializeField] private Text T_PlayerUI;
+    GameObject PlayerMgr;
 
     private void Update()
     {
+        PlayerMgr = GameObject.Find("Player");
+        m_Player = PlayerMgr.GetComponent<Player>();
         SetDungeonButton();
     }
 
