@@ -6,7 +6,7 @@ using System.IO;
 public class Monster : Character
 {
     private enums.GRADE_MON m_eType;
-    public structs.tagInfo Info { get => m_Info; set => m_Info = value; }
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +16,7 @@ public class Monster : Character
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(m_Info.IAtk);
     }
     public void SetInfo(int argIndex)
     {
@@ -29,7 +29,6 @@ public class Monster : Character
         }
         m_Info.SName = sr.ReadLine();
         SetTypeStatus(sr.ReadLine());
-        
         //아이템 이름
         
     }
@@ -69,6 +68,7 @@ public class Monster : Character
         m_Info.IAtkSpeed = argAtkSpeed;
 
         //레벨당 능력치 추가 셋팅
+       
         m_Info.IAtk += m_Info.ILevel * 2;
         m_Info.IMatk += m_Info.ILevel * 2;
 

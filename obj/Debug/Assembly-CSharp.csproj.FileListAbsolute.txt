@@ -1,0 +1,2 @@
+C:\Users\park byeong kyu\Desktop\개인포폴\포토폴리오\Unity2D\2DRPG\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\park byeong kyu\Desktop\개인포폴\포토폴리오\Unity2D\2DRPG\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
