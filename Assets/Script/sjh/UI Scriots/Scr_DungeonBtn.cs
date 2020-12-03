@@ -10,7 +10,9 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private Button[] DungeonButton = new Button[21];
     [SerializeField] private Text[] T_DungeonText = new Text[10];
 
+    [SerializeField]
     private int m_iFloor;
+    [SerializeField]
     private int m_iStage;
     private string m_sButtonName;
     private bool m_bOnClick;
@@ -18,6 +20,8 @@ public class Scr_DungeonBtn : MonoBehaviour
 
     public string sButtonName { get => m_sButtonName; set => m_sButtonName = value; }
     public bool sOnClick { get => m_bOnClick; set => m_bOnClick = value; }
+    public int IFloor { get => m_iFloor; set => m_iFloor = value; }//Floor변수 가져오기(by.pbk)
+    public int IStage { get => m_iStage; set => m_iStage = value; }//Stage변수 가져오기(by.pbk)
 
     //----------------------퀘스트 부분
     [SerializeField] private Button[] QuestButton = new Button[5];   //퀘스트 표지판 UI
@@ -71,6 +75,7 @@ public class Scr_DungeonBtn : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         //던전 스테이지 막기
         m_bStage[0] = new bool[] { true, false, false, false, false };
         m_bStage[1] = new bool[] { false, false, false, false, false };
@@ -356,7 +361,9 @@ public class Scr_DungeonBtn : MonoBehaviour
         }
 
         if (m_bStage[m_iFloor][m_iStage] == true)
+        {
             SceneManager.LoadScene("Duengeon"); //Scene2로 이동한다.
+        }
         else
             Debug.Log("잠겨있음");
     }
@@ -480,23 +487,23 @@ public class Scr_DungeonBtn : MonoBehaviour
     //집 스크립트
     private void Heal()
     {
-        int iBeforeHp =m_Player.IHp;  //이전 채력 = 플레이어 현재 채력
-        m_Player.IHp = m_Player.Info.IMaxHp;       //플레이어 체력을 최대 채력으로 올림
+        int iBeforeHp =m_Player.getInfo().ICurrentHp;  //이전 채력 = 플레이어 현재 채력
+        m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp);       //플레이어 체력을 최대 채력으로 올림
         T_HouseHeal.GetComponent<Text>().text = "회복 전 채력 : " + iBeforeHp.ToString() + "\n\n"
-            + "회복 후 채력 : " + m_Player.IHp;
+            + "회복 후 채력 : " + m_Player.getInfo().ICurrentHp;
     }
 
     //플레이어UI 스크립트
     private void PrintPlayerInfo()
     {
-        T_PlayerUI.GetComponent<Text>().text = "이름 : " + m_Player.Info.SName + "\n"
-            + "레벨 : " + m_Player.Info.ILevel.ToString() + "\n"
-            + "물리 공격력 : " + m_Player.Info.IAtk.ToString() + "\n"
-            + "마법 공격력 : " + m_Player.Info.IMatk.ToString() + "\n"
-            + "체력 / 최대체력 : " + m_Player.Info.ICurrentHp.ToString() + " / " + m_Player.Info.IMaxHp.ToString() + "\n"
-            + "공격 속도 : " + m_Player.Info.IAtkSpeed.ToString() + "\n"
-            + "방어력 : " + m_Player.Info.IDef.ToString() + "\n"
-            + "크리티컬 데미지 : " + m_Player.Info.FCriDmg.ToString() + "\n"
+        T_PlayerUI.GetComponent<Text>().text = "이름 : " + m_Player.getInfo().SName + "\n"
+            + "레벨 : " + m_Player.getInfo().ILevel.ToString() + "\n"
+            + "물리 공격력 : " + m_Player.getInfo().IAtk.ToString() + "\n"
+            + "마법 공격력 : " + m_Player.getInfo().IMatk.ToString() + "\n"
+            + "체력 / 최대체력 : " + m_Player.getInfo().ICurrentHp.ToString() + " / " + m_Player.getInfo().IMaxHp.ToString() + "\n"
+            + "공격 속도 : " + m_Player.getInfo().IAtkSpeed.ToString() + "\n"
+            + "방어력 : " + m_Player.getInfo().IDef.ToString() + "\n"
+            + "크리티컬 데미지 : " + m_Player.getInfo().FCriDmg.ToString() + "\n"
             + "--------------플레이어 스텟--------------\n"
             + "힘 : " + m_Player.Stat.IPow.ToString() + "\n"
             + "민첩 : " + m_Player.Stat.IDex.ToString() + "\n"

@@ -411,7 +411,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212003840}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 --- !u!1 &657544733
+=======
+--- !u!1 &305801581
+>>>>>>> feature/monster
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -419,6 +423,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 657544734}
   - component: {fileID: 657544737}
   - component: {fileID: 657544736}
@@ -426,10 +431,17 @@ GameObject:
   - component: {fileID: 657544738}
   m_Layer: 5
   m_Name: Btn_Pow
+=======
+  - component: {fileID: 305801583}
+  - component: {fileID: 305801582}
+  m_Layer: 0
+  m_Name: Monster
+>>>>>>> feature/monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 0
 --- !u!224 &657544734
 RectTransform:
@@ -507,11 +519,16 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &657544736
+=======
+  m_IsActive: 1
+--- !u!114 &305801582
+>>>>>>> feature/monster
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 657544733}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -546,10 +563,21 @@ CanvasRenderer:
   m_CullTransparentMesh: 0
 --- !u!114 &657544738
 MonoBehaviour:
+=======
+  m_GameObject: {fileID: 305801581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42143661a3f383947be743f4312ae261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &305801583
+Transform:
+>>>>>>> feature/monster
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 657544733}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -558,6 +586,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 0}
   m_Player: {fileID: 5641187880203320683, guid: 73c3d017d8f7d9d4990c41bf14c29d7e, type: 3}
+=======
+  m_GameObject: {fileID: 305801581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.284668, y: 3.7781198, z: -3.2634525}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> feature/monster
 --- !u!1 &717403340
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +661,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &733915793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 733915795}
+  - component: {fileID: 733915794}
+  m_Layer: 0
+  m_Name: Battle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &733915794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733915793}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b38ab42636dd74595af7934e7a8659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Monster: {fileID: 305801582}
+--- !u!4 &733915795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733915793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.949995, y: 0.21753624, z: -0.82398534}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &744137733
 GameObject:

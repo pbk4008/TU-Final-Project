@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
-public class structs
-{
+namespace Structs
+{ 
     [System.Serializable]
     public struct tagInfo
     {
@@ -27,6 +26,18 @@ public class structs
         public int IDef { get => m_iDef; set => m_iDef = value; }
         public float FCri { get => m_fCri; set => m_fCri = value; }
         public float FCriDmg { get => m_fCriDmg; set => m_fCriDmg = value; }
+
+        public void setName(string argName) { m_sName = argName; }
+        public void setLevel(ref tagInfo argInfo, int argLevel) {  argInfo.m_iLevel = argLevel; }
+        public void setAtk(ref tagInfo argInfo, int argAtk) { argInfo.m_iAtk = argAtk; }
+        public void setMatk(ref tagInfo argInfo, int argMatk) { argInfo.m_iMatk = argMatk; }
+        public void setMaxHp(ref tagInfo argInfo, int argMaxHp) { argInfo.m_iMaxHp = argMaxHp; }
+        public void setCurrentHp(ref tagInfo argInfo, int argCurrentHp) { argInfo.m_iCurrentHp = argCurrentHp; }
+        public void setAtkSpeed(ref tagInfo argInfo, int argAtkSpeed) { argInfo.m_iAtkSpeed = argAtkSpeed; }
+        public void setDef(ref tagInfo argInfo, int argDef) { argInfo.m_iDef = argDef; }
+        public void setCri(ref tagInfo argInfo, float argCri) { argInfo.m_fCri = argCri; }
+        public void setCriDmg(ref tagInfo argInfo, float argCriDmg) { argInfo.m_fCriDmg = argCriDmg; }
+        
     }
     [System.Serializable]
     public struct tagStat
@@ -44,5 +55,12 @@ public class structs
         public int IDex { get => m_iDex; set => m_iDex = value; }
         public int IInt { get => m_iInt; set => m_iInt = value; }
         public int IStat { get => m_iStat; set => m_iStat = value; }
+
+        public void setPow(ref tagStat argStat, int argPow) { argStat.m_iPow = argPow; }
+        public void setDex(ref tagStat argStat, int argDex) { argStat.m_iDex = argDex; }
+        public void setInt(ref tagStat argStat, int argInt) { argStat.m_iInt = argInt; }
+        public void setStat(ref tagStat argStat, int argStatPoint) { argStat.m_iStat = argStatPoint; }
+        
+        
     }
 }
