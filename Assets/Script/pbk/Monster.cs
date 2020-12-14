@@ -16,7 +16,7 @@ public class Monster : Character
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(m_Info.IAtk);
+
     }
     public void SetInfo(int argIndex)
     {

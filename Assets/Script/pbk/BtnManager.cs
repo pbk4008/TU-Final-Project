@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using enums;
 
 public class BtnManager : MonoBehaviour
 {
@@ -17,26 +18,29 @@ public class BtnManager : MonoBehaviour
     public void AttackBtn()//공격버튼
     {
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        m_Player.AnimTrigger = enums.ANIMTRIGGER.ATTACK;
+        m_Player.AnimTrigger = ANIMTRIGGER.ATTACK;
+        m_Player.BButtonClick = true;
+        GameObject tmpCanvas = gameObject.transform.parent.gameObject;
+        tmpCanvas.SetActive(false);
     }
     public void HitBtn()
     {
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        m_Player.AnimTrigger = enums.ANIMTRIGGER.HIT;
+        m_Player.AnimTrigger = ANIMTRIGGER.HIT;
     }
     public void BuffBtn()
     {
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        m_Player.AnimTrigger = enums.ANIMTRIGGER.BUFF;
+        m_Player.AnimTrigger = ANIMTRIGGER.BUFF;
     }
     public void WinBtn()
     {
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        m_Player.AnimTrigger = enums.ANIMTRIGGER.WIN;
+        m_Player.AnimTrigger = ANIMTRIGGER.WIN;
     }
     public void FailBtn()
     {
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        m_Player.AnimTrigger = enums.ANIMTRIGGER.DIE;
+        m_Player.AnimTrigger = ANIMTRIGGER.DIE;
     }
 }

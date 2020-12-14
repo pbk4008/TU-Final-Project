@@ -55,13 +55,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\pbk\functions.cs" />
      <Compile Include="Assets\Script\pbk\Player.cs" />
      <Compile Include="Assets\Script\pbk\Monster.cs" />
+     <Compile Include="Assets\Script\pbk\Delegates.cs" />
      <Compile Include="Assets\Script\pbk\Character.cs" />
      <Compile Include="Assets\Script\pbk\structs.cs" />
      <Compile Include="Assets\Script\sjh\UI Scriots\Scr_DungeonBtn.cs" />
      <Compile Include="Assets\Script\pbk\System_Spawn.cs" />
      <Compile Include="Assets\Script\pbk\System_LevelUp.cs" />
+     <Compile Include="Assets\Script\pbk\System_Battle.cs" />
      <Compile Include="Assets\Script\pbk\enums.cs" />
      <Compile Include="Assets\Script\sjh\UI Scriots\Scr_ButtonName.cs" />
      <Compile Include="Assets\Script\pbk\BtnManager.cs" />

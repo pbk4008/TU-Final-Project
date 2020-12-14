@@ -10,6 +10,9 @@ public class System_Spawn : MonoBehaviour
     private Monster m_Monster;
     private bool m_bMonSpawnCheck;//몬스터 스폰됐는지 안됐는지 체크변수
     private int m_MonNum;//몬스터 번호
+
+    public bool BMonSpawnCheck { get => m_bMonSpawnCheck; set => m_bMonSpawnCheck = value; }
+
     // Start is called before the first frame update
     void Start()
     {
