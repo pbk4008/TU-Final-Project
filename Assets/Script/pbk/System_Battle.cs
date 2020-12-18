@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Delegats;
+using enums;
 public class System_Battle : MonoBehaviour
 {
-    public static event BattleHandler attack;
-    public static event BattleHandler hit;
 
     private Player m_Player;//플레이어 정보
     private Monster m_Monster;//몬스터 정보
@@ -29,7 +28,8 @@ public class System_Battle : MonoBehaviour
     private int m_iPlayerTurn;
     private int m_iMonsterTurn;
     private int m_iDmg;
-    private bool m_bBattleDuring;
+    private BATTLE_PROCESS m_eBattleProcess;//배틀 처리 변수
+    private bool m_bBattle;//배틀 중 판단
 
     public int IDmg { get => m_iDmg; set => m_iDmg = value; }
 
@@ -39,16 +39,16 @@ public class System_Battle : MonoBehaviour
         m_Player = GameObject.Find("Player").GetComponent<Player>();
         m_Monster = GameObject.Find("Monster").GetComponent<Monster>();
         m_spSystem = GetComponent<System_Spawn>();
-        m_iRound = 0;
+        m_iRound = 1;
         m_iDmg = -1;//전투 시작 시 UI셋팅을 위한 -1
-        m_bBattleDuring = false;
+        m_eBattleProcess = BATTLE_PROCESS.BEFORE;
         StartCoroutine(BattleProcess());
-        attack += AttackToHit;
-        attack += UISetting;
+        BtnManager.attack += AttackToHit;
+        m_bBattle = false;
     }
 
     // Update is called once per frame
-    private void BattleBefore()//전투 전
+    private void BattleSetting()//전투 전
     {
         //UISetting
         UISetting();
@@ -65,38 +65,42 @@ public class System_Battle : MonoBehaviour
         MonSpeedpos.y += m_Monster.gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y/2+0.5f;
         m_tPlayerSpeed.transform.position = PlayerSpeedpos;
         m_tMonSpeed.transform.position = MonSpeedpos;
+        m_eBattleProcess = BATTLE_PROCESS.DURING;
+        m_bBattle = false;
     }
     private void Battle()//전투중
     {
-        m_bBattleDuring = true;
-        m_tPlayerSpeed.gameObject.SetActive(false);
-        m_tMonSpeed.gameObject.SetActive(false);
-        //공격
-        if (m_iMonsterTurn < m_iPlayerTurn)//플레이어 공격
+        if (!m_bBattle)
         {
-            
-            m_BattleUI.SetActive(true);
-            if (m_Player.BButtonClick)
+            m_bBattle = true;
+            m_RoundCount.text = m_iRound.ToString();
+            m_tPlayerSpeed.gameObject.SetActive(false);
+            m_tMonSpeed.gameObject.SetActive(false);
+            //공격
+            if (m_iMonsterTurn < m_iPlayerTurn)//플레이어 공격
+                m_BattleUI.SetActive(true);
+            else if (m_iMonsterTurn > m_iPlayerTurn)//몬스터 공격
             {
-                attack();
-                m_bBattleDuring = false;
+
             }
-            Debug.Log(m_bBattleDuring);
+            else//공격속도 같을 시
+                m_eBattleProcess = BATTLE_PROCESS.BEFORE;
         }
-        else if (m_iMonsterTurn > m_iPlayerTurn)//몬스터 공격
-        {
-            hit();
-            m_bBattleDuring = false;
-        }
-        else
-        {
-            TurnSelect();
-            m_bBattleDuring = false;
-        }
-        m_iRound++;
     }
     private void BattleAfter()//전투 후
     {
+        //플레이어가 죽었는지 혹은 몬스터가 죽었는지 판단
+        if (!m_Player.BLive)
+        {
+            m_Player.AnimTrigger = ANIMTRIGGER.DIE;
+            m_iRound = 0;
+        }
+        if (!m_Monster.BLive)
+        {
+            m_Monster.AnimTrigger = ANIMTRIGGER.DIE;
+            m_Monster.gameObject.SetActive(false);
+            m_iRound = 0;
+        }
         //경험치 분배
         //레벨업
         //퀘스트 완료 판단
@@ -107,46 +111,70 @@ public class System_Battle : MonoBehaviour
         //체력바 셋팅
         m_MonHp.value = m_Monster.getInfo().IMaxHp / m_Monster.getInfo().IMaxHp;
         m_PlayerHp.value = m_Player.getInfo().IMaxHp / m_Player.getInfo().IMaxHp;
+        GameObject tmpMonFill, tmpPlayerFill;
+        tmpMonFill = GameObject.Find("MonFill");
+        tmpPlayerFill = GameObject.Find("PlayerFill");
 
-        if (m_iDmg == -1)
+        if (m_iDmg == -1)//초기화
         {
+            tmpMonFill.SetActive(true);
+            tmpPlayerFill.SetActive(true);
             m_MonHp.size = m_MonHp.value;
             m_PlayerHp.size = m_PlayerHp.value;
         }
         else
         {
-            if (m_iMonsterTurn < m_iPlayerTurn)
-                m_MonHp.size -= m_iDmg / m_MonHp.value;
-            else
-                m_PlayerHp.size -= m_iDmg / m_MonHp.value;
+            if (m_iMonsterTurn < m_iPlayerTurn)//플레이어가 공격시
+            {
+                m_MonHp.size -= (float)m_iDmg / m_Monster.getInfo().IMaxHp;
+                if (m_MonHp.size <= 0)
+                {
+                    tmpMonFill.SetActive(false);
+                    m_Monster.BLive = false;
+                    m_eBattleProcess = BATTLE_PROCESS.END;
+                }
+            }
+            else if(m_iMonsterTurn> m_iPlayerTurn)// 몬스터가 공격시
+            {
+                m_PlayerHp.size -= m_iDmg / m_Player.getInfo().IMaxHp;
+                if (m_PlayerHp.size <= 0)
+                {
+                    m_Player.BLive = false;
+                    tmpPlayerFill.SetActive(false);
+                    m_eBattleProcess = BATTLE_PROCESS.END;
+                }
+            }
         }
-        //라운드 셋팅
-        m_RoundCount.text = m_iRound.ToString();
+        m_iRound++;
 
     }
-    private void TurnSelect()
+    private void TurnSelect()//턴 속도 랜덤 표시
     {
         m_iPlayerTurn=Random.Range(m_Player.getInfo().IAtkSpeed,10);
-        //m_iMonsterTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
-        m_iMonsterTurn = 0;
+        m_iMonsterTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
+        //m_iPlayerTurn = 0;
+        //m_iMonsterTurn = 0;
         m_tPlayerSpeed.gameObject.SetActive(true);
         m_tMonSpeed.gameObject.SetActive(true);
-        
     }
-    IEnumerator BattleProcess()
+    IEnumerator BattleProcess()//배틀 과정 before->battle->before  //공격 시 체력 판단후 after로 이동 
     {
         while (true)
         {
-            if(!m_bBattleDuring)
-                BattleBefore();
-            yield return new WaitForSeconds(2.0f);
-            Battle();
-            
-            yield return new WaitWhile(()=>!m_bBattleDuring);
-            BattleAfter();
+            switch(m_eBattleProcess)
+            {
+                case BATTLE_PROCESS.BEFORE:
+                    BattleSetting();
+                    break;
+                case BATTLE_PROCESS.DURING:
+                    Battle();
+                    break;
+                case BATTLE_PROCESS.END:
+                    BattleAfter();
+                    break;
+            }
+                yield return new WaitForSeconds(2.0f);
         }
-        
-
     }
     private void AttackToHit()
     {
@@ -154,6 +182,7 @@ public class System_Battle : MonoBehaviour
             CalculDmg(m_Player, m_Monster);
         else
             CalculDmg(m_Monster, m_Player);
+        m_eBattleProcess = BATTLE_PROCESS.BEFORE;
     }
     private void CalculDmg(Character Attacker, Character Hitter)
     {

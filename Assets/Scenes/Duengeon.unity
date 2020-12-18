@@ -440,7 +440,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1293440565}
+  m_TargetGraphic: {fileID: 630861683}
   m_HandleRect: {fileID: 1293440564}
   m_Direction: 0
   m_Value: 1
@@ -1035,7 +1035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 876262872}
   m_Layer: 5
-  m_Name: Sliding Area
+  m_Name: MonFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1296,7 +1296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1750723995}
   m_Layer: 5
-  m_Name: Sliding Area
+  m_Name: PlayerFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1717,7 +1717,7 @@ MonoBehaviour:
     m_iDex: 0
     m_iInt: 0
     m_iStat: 0
-  m_iMoney: 0
+  tr: {fileID: 0}
   m_sprRend: {fileID: 0}
 --- !u!212 &2090934501
 SpriteRenderer:
