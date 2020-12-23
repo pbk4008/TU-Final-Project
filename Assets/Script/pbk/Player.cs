@@ -1,55 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< HEAD
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-=======
 using Structs;
 using enums;
->>>>>>> feature/monster
 
 public class Player : Character
 {
-    
     // Start is called before the first frame update
     [SerializeField]
     private tagStat m_Stat;
     [SerializeField]
+    private Transform tr;
 
     private int m_iMoney;
     private int m_iExp;
-
+    private bool m_bButtonClick;//버튼 클릭했는지 안했는지 판단
     public tagStat Stat { get => m_Stat; set => m_Stat = value; }
 
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
     public int IExp { get => m_iExp; set => m_iExp = value; }
+    public bool BButtonClick { get => m_bButtonClick; set => m_bButtonClick = value; }
 
     private void Awake() //싱글톤 DontDestroy시 원래 씬으로 돌아왔을때 오브젝트 중복 피하기
     {
-        if(m_Instance != null)
+        if (m_Instance != null)
         {
             Destroy(gameObject);
             return;
         }
         m_Instance = this;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(m_Instance);
     }
 
     void Start()
     {
+        m_bButtonClick = false;
+        m_bLive = true;
         tagSetting("곰돌이", 1, 3, 3, 50, 1, 5, 1.1f);//플레이어 셋팅
         statSetting();
         m_AnimTrigger = ANIMTRIGGER.IDLE;
         m_iMoney = 10000;
         m_Animator = GetComponent<Animator>();//플레이어 Animator 셋팅
         m_sprRender = GetComponent<SpriteRenderer>();//플레이어 SpriteRenderer셋팅
-        StartCoroutine(FSM());
+        m_vfirstZone = gameObject.transform.localPosition;
+        tr = m_Instance.GetComponent<Transform>();
+        StartCoroutine(this.FSM());
+       
     }
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(m_Info.ILevel);
+        //Debug.Log(m_AnimTrigger);
         if (bOnClick)
         {
             switch (sButtonName)
@@ -91,7 +94,26 @@ public class Player : Character
         m_Stat.IInt = 5;
         m_Stat.IStat = 3;
     }
-
+    protected override IEnumerator FSM() 
+    {
+        while (true)
+        {
+            switch (m_AnimTrigger)
+            {
+                case ANIMTRIGGER.IDLE:
+                    tr.position = m_vfirstZone;
+                    break;
+                case ANIMTRIGGER.ATTACK:
+                    GameObject target = GameObject.FindWithTag("Monster");
+                    tr.position = target.transform.position;
+                    break;    
+                case ANIMTRIGGER.SKILL:
+                    break;
+            }
+            StartCoroutine(base.FSM());
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
     //손준호 작업
     //레벨업
     private static Player m_Instance;
@@ -103,6 +125,8 @@ public class Player : Character
     private bool m_bOnClick;
     public string sButtonName { get => m_sButtonName; set => m_sButtonName = value; }
     public bool bOnClick { get => m_bOnClick; set => m_bOnClick = value; }
+    
+
     private void LevelUp(int iStat)
     {
         switch (iStat)

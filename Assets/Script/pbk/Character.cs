@@ -16,10 +16,10 @@ public class Character : MonoBehaviour
     public ANIMTRIGGER AnimTrigger { get => m_AnimTrigger; set => m_AnimTrigger = value; }
     public bool BLive { get => m_bLive; set => m_bLive = value; }
     public ref tagInfo getInfo(){ return ref m_Info; }
+    protected Vector2 m_vfirstZone;
 
     protected void tagSetting(string argName, int argLevel, int argAtk, int argMatk, int argMaxHp, int argAtkSpeed, int argDef, float argCriDmg)//기본정보 셋팅
     {
-        
         m_Info.SName = argName;
         m_Info.ILevel = argLevel;
         m_Info.IAtk = argAtk;
@@ -31,46 +31,44 @@ public class Character : MonoBehaviour
         m_Info.FCri = 0.15f;
         m_Info.FCriDmg = argCriDmg;     
     }
-    protected IEnumerator FSM()
+    virtual protected IEnumerator FSM()
     {
         m_Animator = gameObject.GetComponent<Animator>();
-        while (true)
+        m_Animator.enabled = true;
+        switch (m_AnimTrigger)
         {
-            switch (m_AnimTrigger)
-            {
-                case ANIMTRIGGER.IDLE:
-                    m_Animator.SetBool("Anim_Idle", false);
-                    m_Animator.SetBool("Anim_Attack", false);
-                    m_Animator.SetBool("Anim_Hit", false);
-                    m_Animator.SetBool("Anim_Buff", false);
-                    m_Animator.SetBool("Anim_Win", false);
-                    m_Animator.SetBool("Anim_Fail", false);
-                    break;
-                case ANIMTRIGGER.HIT:
-                    m_Animator.SetBool("Anim_Idle", true);
-                    m_Animator.SetBool("Anim_Hit", true);
-                    break;
-                case ANIMTRIGGER.ATTACK:
-                    m_Animator.SetBool("Anim_Idle", true);
-                    m_Animator.SetBool("Anim_Attack", true);
-                    break;
-                case ANIMTRIGGER.SKILL:
-                    m_Animator.SetBool("Anim_Idle", true);
-                    break;
-                case ANIMTRIGGER.BUFF:
-                    m_Animator.SetBool("Anim_Buff", true);
-                    m_Animator.SetBool("Anim_Idle", true);
-                    break;
-                case ANIMTRIGGER.DIE:
-                    m_Animator.SetBool("Anim_Idle", true);
-                    m_Animator.SetBool("Anim_Fail", true);
-                    break;
-                case ANIMTRIGGER.WIN:
-                    m_Animator.SetBool("Anim_Idle", true);
-                    m_Animator.SetBool("Anim_Win", true);
-                    break;
-            }
-            yield return new WaitForSeconds(0.1f);
+            case ANIMTRIGGER.IDLE:
+                m_Animator.SetBool("Anim_Idle", false);
+                m_Animator.SetBool("Anim_Attack", false);
+                m_Animator.SetBool("Anim_Hit", false);
+                m_Animator.SetBool("Anim_Buff", false);
+                m_Animator.SetBool("Anim_Win", false);
+                m_Animator.SetBool("Anim_Fail", false);
+                break;
+            case ANIMTRIGGER.HIT:
+                m_Animator.SetBool("Anim_Idle", true);
+                m_Animator.SetBool("Anim_Hit", true);
+                break;
+            case ANIMTRIGGER.ATTACK:
+                m_Animator.SetBool("Anim_Idle", true);
+                m_Animator.SetBool("Anim_Attack", true);
+                break;
+            case ANIMTRIGGER.SKILL:
+                m_Animator.SetBool("Anim_Idle", true);
+                break;
+            case ANIMTRIGGER.BUFF:
+                m_Animator.SetBool("Anim_Buff", true);
+                m_Animator.SetBool("Anim_Idle", true);
+                break;
+            case ANIMTRIGGER.DIE:
+                m_Animator.SetBool("Anim_Idle", true);
+                m_Animator.SetBool("Anim_Fail", true);
+                break;
+            case ANIMTRIGGER.WIN:
+                m_Animator.SetBool("Anim_Idle", true);
+                m_Animator.SetBool("Anim_Win", true);
+                break;
         }
+        yield return null;
     }
 }
