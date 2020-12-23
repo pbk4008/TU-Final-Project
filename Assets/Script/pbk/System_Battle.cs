@@ -50,6 +50,7 @@ public class System_Battle : MonoBehaviour
     // Update is called once per frame
     private void BattleSetting()//전투 전
     {
+        m_Monster.AnimTrigger = ANIMTRIGGER.IDLE;
         //UISetting
         UISetting();
         //공격 차례 정하기
@@ -67,6 +68,7 @@ public class System_Battle : MonoBehaviour
         m_tMonSpeed.transform.position = MonSpeedpos;
         m_eBattleProcess = BATTLE_PROCESS.DURING;
         m_bBattle = false;
+        
     }
     private void Battle()//전투중
     {
@@ -81,7 +83,10 @@ public class System_Battle : MonoBehaviour
                 m_BattleUI.SetActive(true);
             else if (m_iMonsterTurn > m_iPlayerTurn)//몬스터 공격
             {
-
+                m_Player.AnimTrigger = ANIMTRIGGER.HIT;
+                m_Monster.AnimTrigger = ANIMTRIGGER.ATTACK;
+                m_eBattleProcess = BATTLE_PROCESS.BEFORE;
+                AttackToHit();
             }
             else//공격속도 같을 시
                 m_eBattleProcess = BATTLE_PROCESS.BEFORE;
@@ -136,7 +141,8 @@ public class System_Battle : MonoBehaviour
             }
             else if(m_iMonsterTurn> m_iPlayerTurn)// 몬스터가 공격시
             {
-                m_PlayerHp.size -= m_iDmg / m_Player.getInfo().IMaxHp;
+                
+                m_PlayerHp.size -= (float)m_iDmg / m_Player.getInfo().IMaxHp;
                 if (m_PlayerHp.size <= 0)
                 {
                     m_Player.BLive = false;
@@ -150,9 +156,9 @@ public class System_Battle : MonoBehaviour
     }
     private void TurnSelect()//턴 속도 랜덤 표시
     {
-        m_iPlayerTurn=Random.Range(m_Player.getInfo().IAtkSpeed,10);
+        //m_iPlayerTurn=Random.Range(m_Player.getInfo().IAtkSpeed,10);
         m_iMonsterTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
-        //m_iPlayerTurn = 0;
+        m_iPlayerTurn = 0;
         //m_iMonsterTurn = 0;
         m_tPlayerSpeed.gameObject.SetActive(true);
         m_tMonSpeed.gameObject.SetActive(true);
@@ -194,5 +200,6 @@ public class System_Battle : MonoBehaviour
         int DefNum = Hitter.getInfo().IDef;
 
         m_iDmg = AtkDmg - DefNum;
+        Hitter.getInfo().ICurrentHp -= m_iDmg;
     }
 }

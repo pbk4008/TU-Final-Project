@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using enums;
 
 public class Monster : Character
 {
-    private enums.GRADE_MON m_eType;
- 
+    private GRADE_MON m_eType;
+    private Transform tr;
     // Start is called before the first frame update
     void Start()
     {
         m_bLive = false;
+        tr = GetComponent<Transform>();
+        m_vfirstZone = gameObject.transform.position;
+        StartCoroutine(this.FSM());
     }
 
     // Update is called once per frame
@@ -73,5 +77,25 @@ public class Monster : Character
         m_Info.IMatk += m_Info.ILevel * 2;
 
         m_Info.IDef = m_Info.IAtk / 2;
+    }
+    protected override IEnumerator FSM()
+    {
+        while (true)
+        {
+            switch (m_AnimTrigger)
+            {
+                case ANIMTRIGGER.IDLE:
+                    tr.position = m_vfirstZone;
+                    break;
+                case ANIMTRIGGER.ATTACK:
+                    GameObject target = GameObject.FindWithTag("Player");
+                    tr.position = target.transform.position;
+                    break;
+                case ANIMTRIGGER.SKILL:
+                    break;
+            }
+            //StartCoroutine(base.FSM());
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

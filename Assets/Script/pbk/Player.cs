@@ -106,7 +106,7 @@ public class Player : Character
                 case ANIMTRIGGER.ATTACK:
                     GameObject target = GameObject.FindWithTag("Monster");
                     tr.position = target.transform.position;
-                    break;
+                    break;    
                 case ANIMTRIGGER.SKILL:
                     break;
             }

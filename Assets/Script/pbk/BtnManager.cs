@@ -8,7 +8,6 @@ using Delegats;
 public class BtnManager : MonoBehaviour
 {
     public static event BattleHandler attack;
-    public static event BattleHandler hit;
 
     // Start is called before the first frame update
     public void GameStart()//게임시작 버튼 클릭
