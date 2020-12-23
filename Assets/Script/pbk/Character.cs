@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Structs;
 
 public class Character : MonoBehaviour
 {
-    
+
     // Start is called before the first frame update
-    protected structs.tagInfo m_Info;//기본 정보 구조체
+    protected tagInfo m_Info = new tagInfo();
     protected SpriteRenderer m_sprRender;//기본 SpriteRenderer
     protected Sprite m_Sprite;//기본 Sprite
     protected Animator m_Animator;//기본 Animator
     protected AudioSource m_Audio;//기본 Audio;
     protected enums.ANIMTRIGGER m_AnimTrigger;
+    public ref tagInfo getInfo() { return ref m_Info; }
     protected bool m_bLive;//목숨
     public enums.ANIMTRIGGER AnimTrigger { get => m_AnimTrigger; set => m_AnimTrigger = value; }
     public bool BLive { get => m_bLive; set => m_bLive = value; }

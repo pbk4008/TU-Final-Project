@@ -7,16 +7,16 @@ using UnityEngine.SceneManagement;
 public class Scr_DungeonBtn : MonoBehaviour
 {
     //----------------------던전 부분
-    [SerializeField] private Button[] DungeonButton = new Button[21];
-    [SerializeField] private Text[] T_DungeonText = new Text[10];
+    [SerializeField] private Button[] DungeonButton = new Button[21]; //버튼들
+    [SerializeField] private Text[] T_DungeonText = new Text[10]; //텍스트들
 
     [SerializeField]
-    private int m_iFloor;
+    private int m_iFloor; //층 수 ex) 숲, 마을
     [SerializeField]
-    private int m_iStage;
-    private string m_sButtonName;
-    private bool m_bOnClick;
-    private bool[][] m_bStage = new bool[6][];
+    private int m_iStage;//스테이지 ex) 숲-1, 마을-3
+    private string m_sButtonName; //버튼이름
+    private bool m_bOnClick; //버튼을 클릭했는지
+    private bool[][] m_bStage = new bool[6][]; //스테이지 배열
 
     public string sButtonName { get => m_sButtonName; set => m_sButtonName = value; }
     public bool sOnClick { get => m_bOnClick; set => m_bOnClick = value; }
@@ -66,15 +66,11 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private Text T_PlayerUI;
     GameObject PlayerMgr;
 
-    private void Update()
-    {
-        PlayerMgr = GameObject.Find("Player");
-        m_Player = PlayerMgr.GetComponent<Player>();
-        SetDungeonButton();
-    }
-
     private void Start()
     {
+        StartCoroutine(ButtonCoroutine());
+        m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+
         DontDestroyOnLoad(gameObject);
         //던전 스테이지 막기
         m_bStage[0] = new bool[] { true, false, false, false, false };
@@ -92,187 +88,192 @@ public class Scr_DungeonBtn : MonoBehaviour
         SettingQuest();
     }
 
-    private void SetDungeonButton()
+    IEnumerator ButtonCoroutine()
     {
-        if (sOnClick)
+        var ftimer = new WaitForSeconds(0.1f);
+        while (true)
         {
-            switch (m_sButtonName)
+            if (sOnClick)
             {
-                case "Btn_DungeonNPC": //던전 시작
-                    SetActive(0, 1, 2, 0, 0);
-                    ActiveButton(0);
-                    break;
-                case "Btn_DungeonEnter":
-                    SetActive(0, 3, 9, 1, 2);
-                    break;
-                case "Btn_DungeonExit":
-                    SetActive(0, 0, 0, 1, 2);
-                    ActiveButton(1);
-                    break;
-                case "Btn_DungeonFloor1":
-                    m_iFloor = 0;
-                    SetActive(0, 10, 15, 3, 9);
-                    StageText();
-                    break;
-                case "Btn_DungeonFloor2":
-                    m_iFloor = 1;
-                    SetActive(0, 10, 15, 3, 9);
-                    StageText();
-                    break;
-                case "Btn_DungeonFloor3":
-                    m_iFloor = 2;
-                    SetActive(0, 10, 17, 3, 9);
-                    StageText();
-                    break;
-                case "Btn_DungeonFloor4":
-                    m_iFloor = 3;
-                    SetActive(0, 10, 17, 3, 9);
-                    StageText();
-                    break;
-                case "Btn_DungeonFloor5":
-                    m_iFloor = 4;
-                    SetActive(0, 10, 20, 3, 9);
-                    StageText();
-                    break;
-                case "Btn_DungeonFloor6":
-                    m_iFloor = 5;
-                    SetActive(0, 10, 20, 3, 9);
-                    StageText();
-                    break;
-                case "Btn_DungeonExitFloor":
-                    SetActive(0, 1, 2, 3, 9);
-                    break;
-                case "Btn_DungeonExitStage": //던전 끝
-                    SetActive(0, 3, 9, 10, 20);
-                    break;
-                case "Btn_QuestSign"://퀘스트 시작
-                    SetActive(1, 1, 4, 0, 0);
-                    T_QuestText[0].gameObject.SetActive(true);
-                    T_QuestText[1].gameObject.SetActive(true);
-                    T_QuestText[2].gameObject.SetActive(true);
-                    T_QuestSelect[0].gameObject.SetActive(true);
-                    T_QuestSelect[1].gameObject.SetActive(true);
-                    T_QuestSelect[2].gameObject.SetActive(true);
-                    Img_Quest.gameObject.SetActive(true);
-                    ActiveButton(0);
-                    break;
-                case "Btn_Quest1Select":
-                    m_bLockQuest[0] = false; //퀘스트가 다시 지정되지 못하게 하기
-                    T_QuestSelect[0].GetComponent<Text>().text = " 진 행 중 ";
-                    break;
-                case "Btn_Quest2Select":
-                    m_bLockQuest[1] = false; //퀘스트가 다시 지정되지 못하게 하기
-                    T_QuestSelect[1].GetComponent<Text>().text = " 진 행 중 ";
-                    break;
-                case "Btn_Quest3Select":
-                    m_bLockQuest[2] = false; //퀘스트가 다시 지정되지 못하게 하기
-                    T_QuestSelect[2].GetComponent<Text>().text = " 진 행 중 ";
-                    break;
-                case "Btn_QuestExit": //퀘스트 끝
-                    SetActive(1, 0, 0, 1, 4);
-                    T_QuestText[0].gameObject.SetActive(false);
-                    T_QuestText[1].gameObject.SetActive(false);
-                    T_QuestText[2].gameObject.SetActive(false);
-                    T_QuestSelect[0].gameObject.SetActive(false);
-                    T_QuestSelect[1].gameObject.SetActive(false);
-                    T_QuestSelect[2].gameObject.SetActive(false);
-                    Img_Quest.gameObject.SetActive(false);
-                    ActiveButton(1);
-                    break;
-                case "Btn_GambleNPC": //도박장 시작
-                    SetActive(2, 1, 3, 0, 0);
-                    Img_GambleEnter.gameObject.SetActive(true);
-                    Input_GambleMoney.gameObject.SetActive(true);
-                    T_GamblePlayerMoney.gameObject.SetActive(true);
-                    T_GamblePlayerMoney.GetComponent<Text>().text = "소지금 : " + m_Player.IMoney.ToString();
-                    m_iPay = 0;
-                    ActiveButton(0);
-                    break;
-                case "Btn_ExitGamble":
-                    SetActive(2, 0, 0, 1, 3);
-                    Img_GambleEnter.gameObject.SetActive(false);
-                    Input_GambleMoney.gameObject.SetActive(false);
-                    T_GamblePlayerMoney.gameObject.SetActive(false);
-                    ActiveButton(1);
-                    break;
-                case "Btn_GambleRight":
-                    SetActive(2, 4, 5, 1, 3);
-                    Img_GambleMenu.gameObject.SetActive(true);
-                    T_GambleReady.gameObject.SetActive(true);
-                    m_iPlayerSelect = 1;
-                    GambleReady();
-                    break;
-                case "Btn_GambleLeft":
-                    SetActive(2, 4, 5, 1, 3);
-                    Img_GambleMenu.gameObject.SetActive(true);
-                    T_GambleReady.gameObject.SetActive(true);
-                    m_iPlayerSelect = 2;
-                    GambleReady();
-                    break;
-                case "Btn_GambleSelect":
-                    SetActive(2, 6, 6, 4, 5);
-                    Img_GambleResult.gameObject.SetActive(true);
-                    T_GambleResult.gameObject.SetActive(true);
-                    GambleResult();
-                    break;
-                case "Btn_GambleReadyExit":
-                    SetActive(2, 1, 3, 4, 5);
-                    Img_GambleMenu.gameObject.SetActive(false);
-                    T_GambleReady.gameObject.SetActive(false);
-                    break;
-                case "Btn_GambleResult": //도박장 끝
-                    SetActive(2, 0, 0, 6, 6);
-                    Img_GambleEnter.gameObject.SetActive(false);
-                    Img_GambleMenu.gameObject.SetActive(false);
-                    Img_GambleResult.gameObject.SetActive(false);
-                    Input_GambleMoney.gameObject.SetActive(false);
-                    T_GamblePlayerMoney.gameObject.SetActive(false);
-                    T_GambleReady.gameObject.SetActive(false);
-                    T_GambleResult.gameObject.SetActive(false);
-                    ActiveButton(1);
-                    break;
-                case "Btn_EnterHouse": //집 시작
-                    SetActive(3, 1, 4, 0, 0);
-                    Img_HouseMenu.gameObject.SetActive(true);
-                    ActiveButton(0);
-                    break;
-                case "Btn_HouseHeal":
-                    SetActive(3, 5, 5, 1, 4);
-                    Img_HouseMenu.gameObject.SetActive(false);
-                    Img_HouseHeal.gameObject.SetActive(true);
-                    T_HouseHeal.gameObject.SetActive(true);
-                    Heal();
-                    break;
-                case "Btn_HouseReinforce":
-                    break;
-                case "Btn_HouseWereHouse":
-                    break;
-                case "Btn_HouseMenuExit":
-                    SetActive(3, 0, 0, 1, 4);
-                    Img_HouseMenu.gameObject.SetActive(false);
-                    ActiveButton(1);
-                    break;
-                case "Btn_HouseHealExit": //집 끝
-                    SetActive(3, 0, 0, 5, 5);
-                    Img_HouseHeal.gameObject.SetActive(false);
-                    T_HouseHeal.gameObject.SetActive(false);
-                    ActiveButton(1);
-                    break;
-                case "Btn_PlayerUI":
-                    SetActive(4, 1, 1, 0, 0);
-                    Img_PlayerStat.gameObject.SetActive(true);
-                    T_PlayerUI.gameObject.SetActive(true);
-                    PrintPlayerInfo();
-                    ActiveButton(0);
-                    break;
-                case "Btn_PlayerUIExit":
-                    SetActive(4, 0, 0, 1, 1);
-                    Img_PlayerStat.gameObject.SetActive(false);
-                    T_PlayerUI.gameObject.SetActive(false);
-                    ActiveButton(1);
-                    break;
+                switch (m_sButtonName)
+                {
+                    case "Btn_DungeonNPC": //던전 시작
+                        SetActive(0, 1, 2, 0, 0);
+                        ActiveButton(0);
+                        break;
+                    case "Btn_DungeonEnter":
+                        SetActive(0, 3, 9, 1, 2);
+                        break;
+                    case "Btn_DungeonExit":
+                        SetActive(0, 0, 0, 1, 2);
+                        ActiveButton(1);
+                        break;
+                    case "Btn_DungeonFloor1":
+                        m_iFloor = 0;
+                        SetActive(0, 10, 15, 3, 9);
+                        StageText();
+                        break;
+                    case "Btn_DungeonFloor2":
+                        m_iFloor = 1;
+                        SetActive(0, 10, 15, 3, 9);
+                        StageText();
+                        break;
+                    case "Btn_DungeonFloor3":
+                        m_iFloor = 2;
+                        SetActive(0, 10, 17, 3, 9);
+                        StageText();
+                        break;
+                    case "Btn_DungeonFloor4":
+                        m_iFloor = 3;
+                        SetActive(0, 10, 17, 3, 9);
+                        StageText();
+                        break;
+                    case "Btn_DungeonFloor5":
+                        m_iFloor = 4;
+                        SetActive(0, 10, 20, 3, 9);
+                        StageText();
+                        break;
+                    case "Btn_DungeonFloor6":
+                        m_iFloor = 5;
+                        SetActive(0, 10, 20, 3, 9);
+                        StageText();
+                        break;
+                    case "Btn_DungeonExitFloor":
+                        SetActive(0, 1, 2, 3, 9);
+                        break;
+                    case "Btn_DungeonExitStage": //던전 끝
+                        SetActive(0, 3, 9, 10, 20);
+                        break;
+                    case "Btn_QuestSign"://퀘스트 시작
+                        SetActive(1, 1, 4, 0, 0);
+                        T_QuestText[0].gameObject.SetActive(true);
+                        T_QuestText[1].gameObject.SetActive(true);
+                        T_QuestText[2].gameObject.SetActive(true);
+                        T_QuestSelect[0].gameObject.SetActive(true);
+                        T_QuestSelect[1].gameObject.SetActive(true);
+                        T_QuestSelect[2].gameObject.SetActive(true);
+                        Img_Quest.gameObject.SetActive(true);
+                        ActiveButton(0);
+                        break;
+                    case "Btn_Quest1Select":
+                        m_bLockQuest[0] = false; //퀘스트가 다시 지정되지 못하게 하기
+                        T_QuestSelect[0].GetComponent<Text>().text = " 진 행 중 ";
+                        break;
+                    case "Btn_Quest2Select":
+                        m_bLockQuest[1] = false; //퀘스트가 다시 지정되지 못하게 하기
+                        T_QuestSelect[1].GetComponent<Text>().text = " 진 행 중 ";
+                        break;
+                    case "Btn_Quest3Select":
+                        m_bLockQuest[2] = false; //퀘스트가 다시 지정되지 못하게 하기
+                        T_QuestSelect[2].GetComponent<Text>().text = " 진 행 중 ";
+                        break;
+                    case "Btn_QuestExit": //퀘스트 끝
+                        SetActive(1, 0, 0, 1, 4);
+                        T_QuestText[0].gameObject.SetActive(false);
+                        T_QuestText[1].gameObject.SetActive(false);
+                        T_QuestText[2].gameObject.SetActive(false);
+                        T_QuestSelect[0].gameObject.SetActive(false);
+                        T_QuestSelect[1].gameObject.SetActive(false);
+                        T_QuestSelect[2].gameObject.SetActive(false);
+                        Img_Quest.gameObject.SetActive(false);
+                        ActiveButton(1);
+                        break;
+                    case "Btn_GambleNPC": //도박장 시작
+                        SetActive(2, 1, 3, 0, 0);
+                        Img_GambleEnter.gameObject.SetActive(true);
+                        Input_GambleMoney.gameObject.SetActive(true);
+                        T_GamblePlayerMoney.gameObject.SetActive(true);
+                        T_GamblePlayerMoney.GetComponent<Text>().text = "소지금 : " + m_Player.IMoney.ToString();
+                        m_iPay = 0;
+                        ActiveButton(0);
+                        break;
+                    case "Btn_ExitGamble":
+                        SetActive(2, 0, 0, 1, 3);
+                        Img_GambleEnter.gameObject.SetActive(false);
+                        Input_GambleMoney.gameObject.SetActive(false);
+                        T_GamblePlayerMoney.gameObject.SetActive(false);
+                        ActiveButton(1);
+                        break;
+                    case "Btn_GambleRight":
+                        SetActive(2, 4, 5, 1, 3);
+                        Img_GambleMenu.gameObject.SetActive(true);
+                        T_GambleReady.gameObject.SetActive(true);
+                        m_iPlayerSelect = 1;
+                        GambleReady();
+                        break;
+                    case "Btn_GambleLeft":
+                        SetActive(2, 4, 5, 1, 3);
+                        Img_GambleMenu.gameObject.SetActive(true);
+                        T_GambleReady.gameObject.SetActive(true);
+                        m_iPlayerSelect = 2;
+                        GambleReady();
+                        break;
+                    case "Btn_GambleSelect":
+                        SetActive(2, 6, 6, 4, 5);
+                        Img_GambleResult.gameObject.SetActive(true);
+                        T_GambleResult.gameObject.SetActive(true);
+                        GambleResult();
+                        break;
+                    case "Btn_GambleReadyExit":
+                        SetActive(2, 1, 3, 4, 5);
+                        Img_GambleMenu.gameObject.SetActive(false);
+                        T_GambleReady.gameObject.SetActive(false);
+                        break;
+                    case "Btn_GambleResult": //도박장 끝
+                        SetActive(2, 0, 0, 6, 6);
+                        Img_GambleEnter.gameObject.SetActive(false);
+                        Img_GambleMenu.gameObject.SetActive(false);
+                        Img_GambleResult.gameObject.SetActive(false);
+                        Input_GambleMoney.gameObject.SetActive(false);
+                        T_GamblePlayerMoney.gameObject.SetActive(false);
+                        T_GambleReady.gameObject.SetActive(false);
+                        T_GambleResult.gameObject.SetActive(false);
+                        ActiveButton(1);
+                        break;
+                    case "Btn_EnterHouse": //집 시작
+                        SetActive(3, 1, 4, 0, 0);
+                        Img_HouseMenu.gameObject.SetActive(true);
+                        ActiveButton(0);
+                        break;
+                    case "Btn_HouseHeal":
+                        SetActive(3, 5, 5, 1, 4);
+                        Img_HouseMenu.gameObject.SetActive(false);
+                        Img_HouseHeal.gameObject.SetActive(true);
+                        T_HouseHeal.gameObject.SetActive(true);
+                        Heal();
+                        break;
+                    case "Btn_HouseReinforce":
+                        break;
+                    case "Btn_HouseWereHouse":
+                        break;
+                    case "Btn_HouseMenuExit":
+                        SetActive(3, 0, 0, 1, 4);
+                        Img_HouseMenu.gameObject.SetActive(false);
+                        ActiveButton(1);
+                        break;
+                    case "Btn_HouseHealExit": //집 끝
+                        SetActive(3, 0, 0, 5, 5);
+                        Img_HouseHeal.gameObject.SetActive(false);
+                        T_HouseHeal.gameObject.SetActive(false);
+                        ActiveButton(1);
+                        break;
+                    case "Btn_PlayerUI":
+                        SetActive(4, 1, 1, 0, 0);
+                        Img_PlayerStat.gameObject.SetActive(true);
+                        T_PlayerUI.gameObject.SetActive(true);
+                        PrintPlayerInfo();
+                        ActiveButton(0);
+                        break;
+                    case "Btn_PlayerUIExit":
+                        SetActive(4, 0, 0, 1, 1);
+                        Img_PlayerStat.gameObject.SetActive(false);
+                        T_PlayerUI.gameObject.SetActive(false);
+                        ActiveButton(1);
+                        break;
+                }
             }
             sOnClick = false;
+            yield return ftimer;
         }
     }
 
@@ -487,10 +488,10 @@ public class Scr_DungeonBtn : MonoBehaviour
     //집 스크립트
     private void Heal()
     {
-        int iBeforeHp =m_Player.IHp;  //이전 채력 = 플레이어 현재 채력
-        m_Player.IHp = m_Player.Info.IMaxHp;       //플레이어 체력을 최대 채력으로 올림
+        int iBeforeHp = m_Player.Info.ICurrentHp;  //이전 채력 = 플레이어 현재 채력
+        m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.Info.IMaxHp);
         T_HouseHeal.GetComponent<Text>().text = "회복 전 채력 : " + iBeforeHp.ToString() + "\n\n"
-            + "회복 후 채력 : " + m_Player.IHp;
+            + "회복 후 채력 : " + m_Player.Info.ICurrentHp;
     }
 
     //플레이어UI 스크립트
@@ -506,7 +507,7 @@ public class Scr_DungeonBtn : MonoBehaviour
             + "크리티컬 데미지 : " + m_Player.Info.FCriDmg.ToString() + "\n"
             + "--------------플레이어 스텟--------------\n"
             + "힘 : " + m_Player.Stat.IPow.ToString() + "\n"
-            + "민첩 : " + m_Player.Stat.IDex.ToString() + "\n"
-            + "지능 : " + m_Player.Stat.IInt.ToString();
+            + "지능 : " + m_Player.Stat.IInt.ToString() + "\n"
+            + "민첩 : " + m_Player.Stat.IDex.ToString();
     }
 }

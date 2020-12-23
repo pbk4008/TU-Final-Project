@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-public class structs
+namespace Structs
 {
     [System.Serializable]
     public struct tagInfo
@@ -29,39 +29,37 @@ public class structs
         public float FCriDmg { get => m_fCriDmg; set => m_fCriDmg = value; }
 
         public void setName(string argName) { m_sName = argName; }
-        public void setLevel(int argLevel) { m_iLevel = argLevel; }
-        public void setAtk(int argAtk) { m_iAtk = argAtk; }
-        public void setMatk(int argMatk) { m_iMatk = argMatk; }
-        public void setMaxHp(int argMaxHp) { m_iMaxHp = argMaxHp; }
-        public void setCurrentHp(int argCurrentHp) { m_iCurrentHp = argCurrentHp; }
-        public void setAtkSpeed(int argAtkSpeed) { m_iAtkSpeed = argAtkSpeed; }
-        public void setDef(int argDef) { m_iDef = argDef; }
-        public void setCri(float argCri) { m_fCri = argCri; }
-        public void setCriDmg(float argCriDmg) { m_fCriDmg = argCriDmg; }
+        public void setLevel(ref tagInfo argInfo, int argLevel) { argInfo.m_iLevel = argLevel; }
+        public void setAtk(ref tagInfo argInfo, int argAtk) { argInfo.m_iAtk = argAtk; }
+        public void setMatk(ref tagInfo argInfo, int argMatk) { argInfo.m_iMatk = argMatk; }
+        public void setMaxHp(ref tagInfo argInfo, int argMaxHp) { argInfo.m_iMaxHp = argMaxHp; }
+        public void setCurrentHp(ref tagInfo argInfo, int argCurrentHp) { argInfo.m_iCurrentHp = argCurrentHp; }
+        public void setAtkSpeed(ref tagInfo argInfo, int argAtkSpeed) { argInfo.m_iAtkSpeed = argAtkSpeed; }
+        public void setDef(ref tagInfo argInfo, int argDef) { argInfo.m_iDef = argDef; }
+        public void setCri(ref tagInfo argInfo, float argCri) { argInfo.m_fCri = argCri; }
+        public void setCriDmg(ref tagInfo argInfo, float argCriDmg) { argInfo.m_fCriDmg = argCriDmg; }
         
     }
     [System.Serializable]
     public struct tagStat
     { 
         [UnityEngine.SerializeField]
-        private int m_iPow;
+        public int m_iPow;
         [UnityEngine.SerializeField]
-        private int m_iDex;
+        public int m_iDex;
         [UnityEngine.SerializeField]
-        private int m_iInt;
+        public int m_iInt;
         [UnityEngine.SerializeField]
-        private int m_iStat;
+        public int m_iStat;
 
         public int IPow { get => m_iPow; set => m_iPow = value; }
         public int IDex { get => m_iDex; set => m_iDex = value; }
         public int IInt { get => m_iInt; set => m_iInt = value; }
         public int IStat { get => m_iStat; set => m_iStat = value; }
 
-        public void setPow(int argPow) { m_iPow = argPow; }
-        public void setDex(int argDex) { m_iDex = argDex; }
-        public void setInt(int argInt) { m_iInt = argInt; }
-        public void setStat(int argStat) { m_iStat = argStat; }
-        
-        
+        public void setPow(ref tagStat argInfo, int argPow) { argInfo.m_iPow = argPow; }
+        public void setDex(ref tagStat argInfo, int argDex) { argInfo.m_iDex = argDex; }
+        public void setInt(ref tagStat argInfo, int argInt) { argInfo.m_iInt = argInt; }
+        public void setStat(ref tagStat argInfo, int argStat) { argInfo.m_iStat = argStat; }
     }
 }

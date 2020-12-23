@@ -37,35 +37,35 @@ public class System_Spawn : MonoBehaviour
                     case 0://층에 따라 몬스터 Num설정
                         m_MonNum = Random.RandomRange(0, 4);
                         //레벨
-                        m_Monster.Info.setLevel(Random.RandomRange(1, 10));
+                        m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(1, 10));
                         m_Monster.setStatus(5, 10, 1.1f, 1);
                         break;
                     case 1:
                         m_MonNum = Random.RandomRange(5, 9);
-                        m_Monster.Info.setLevel(Random.RandomRange(11, 20));
+                        m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(11, 20));
                         m_Monster.setStatus(15, 30, 1.2f, 3);
                         break;
                     case 2:
                         m_MonNum = Random.RandomRange(10, 14);
-                        m_Monster.Info.setLevel(Random.RandomRange(21, 30));
+                        m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(21, 30));
                         m_Monster.setStatus(30, 60, 1.3f, 3);
                    
                         break;
                     case 3:
                         m_MonNum = Random.RandomRange(15, 19);
-                        m_Monster.Info.setLevel(Random.RandomRange(31, 40));
+                        m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(31, 40));
                         m_Monster.setStatus(45, 90, 1.4f, 5);
 
                         break;
                     case 4:
                         m_MonNum = Random.RandomRange(20, 24);
-                        m_Monster.Info.setLevel(Random.RandomRange(41, 50));
+                        m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(41, 50));
                         m_Monster.setStatus(60, 120, 1.5f, 5);
 
                         break;
                     case 5:
                         m_MonNum = Random.RandomRange(25, 29);
-                        m_Monster.Info.setLevel(Random.RandomRange(51, 60));
+                        m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(51, 70));
                         m_Monster.setStatus(75, 150, 1.6f, 7);
                         break;
                 }

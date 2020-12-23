@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Structs;
 
 public class Monster : Character
 {
     private enums.GRADE_MON m_eType;
-    public structs.tagInfo Info { get => m_Info; set => m_Info = value; }
+    public tagInfo Info { get => m_Info; set => m_Info = value; }
     // Start is called before the first frame update
     void Start()
     {

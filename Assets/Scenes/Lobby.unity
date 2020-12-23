@@ -427,7 +427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &37654216
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +804,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &97906597
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +952,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &98118175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,7 +1179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &121283260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1270,8 @@ GameObject:
   m_Component:
   - component: {fileID: 162962425}
   - component: {fileID: 162962424}
+  - component: {fileID: 162962426}
+  - component: {fileID: 162962427}
   m_Layer: 0
   m_Name: Obj_UIMgr
   m_TagString: GameMgr
@@ -1380,6 +1386,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &162962426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162962423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b213c4d5aaa0184788c7a6f74934882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &162962427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162962423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd8d21583b0f6449836fbb5d3c759af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &172872340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,7 +1730,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &264308896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,7 +1878,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &292485582
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,7 +2038,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &301679041
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,7 +2186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &308635144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,7 +2346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &309081122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,7 +2494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &344451255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,7 +2552,6 @@ MonoBehaviour:
     m_iInt: 0
     m_iStat: 0
   m_iMoney: 0
-  m_sprRend: {fileID: 344451258}
 --- !u!212 &344451258
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2965,7 +3000,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &478723031
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,7 +3464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &580761599
 GameObject:
   m_ObjectHideFlags: 0
@@ -4123,7 +4160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &710444622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4282,7 +4320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &742526559
 GameObject:
   m_ObjectHideFlags: 0
@@ -4508,7 +4547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &807314291
 GameObject:
   m_ObjectHideFlags: 0
@@ -4734,7 +4774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &861972745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4881,7 +4922,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1008194656
 GameObject:
   m_ObjectHideFlags: 0
@@ -5186,7 +5228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1044838601
 GameObject:
   m_ObjectHideFlags: 0
@@ -6052,6 +6095,7 @@ RectTransform:
   - {fileID: 39483934}
   - {fileID: 542516671}
   - {fileID: 1044791693}
+  - {fileID: 1234460008}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6285,7 +6329,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 0}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1181323452
 GameObject:
   m_ObjectHideFlags: 0
@@ -6511,7 +6556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1194397891
 GameObject:
   m_ObjectHideFlags: 0
@@ -6658,7 +6704,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1197941844
 GameObject:
   m_ObjectHideFlags: 0
@@ -6880,7 +6927,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1214814689
 GameObject:
   m_ObjectHideFlags: 0
@@ -7185,7 +7233,140 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
+--- !u!1 &1234460007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1234460008}
+  - component: {fileID: 1234460011}
+  - component: {fileID: 1234460010}
+  - component: {fileID: 1234460009}
+  m_Layer: 5
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1234460008
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234460007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1962054379}
+  m_Father: {fileID: 1119030926}
+  m_RootOrder: 57
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1234460009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234460007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1234460010}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 162962426}
+        m_TargetAssemblyTypeName: System_DataMgr, Assembly-CSharp
+        m_MethodName: Click_ON
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1234460010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234460007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1234460011
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234460007}
+  m_CullTransparentMesh: 0
 --- !u!1 &1277418744
 GameObject:
   m_ObjectHideFlags: 0
@@ -7498,7 +7679,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1303995448
 GameObject:
   m_ObjectHideFlags: 0
@@ -7961,7 +8143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1461009778
 GameObject:
   m_ObjectHideFlags: 0
@@ -8120,7 +8303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1469844169
 GameObject:
   m_ObjectHideFlags: 0
@@ -8345,7 +8529,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1515638904
 GameObject:
   m_ObjectHideFlags: 0
@@ -8492,7 +8677,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1525693209
 GameObject:
   m_ObjectHideFlags: 0
@@ -8639,7 +8825,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1541315118
 GameObject:
   m_ObjectHideFlags: 0
@@ -9102,7 +9289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1630424620
 GameObject:
   m_ObjectHideFlags: 0
@@ -9328,7 +9516,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1719643840
 GameObject:
   m_ObjectHideFlags: 0
@@ -9475,7 +9664,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1725164473
 GameObject:
   m_ObjectHideFlags: 0
@@ -9622,7 +9812,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1768397656
 GameObject:
   m_ObjectHideFlags: 0
@@ -9848,7 +10039,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1821519370
 GameObject:
   m_ObjectHideFlags: 0
@@ -10074,7 +10266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1860628393
 GameObject:
   m_ObjectHideFlags: 0
@@ -10221,7 +10414,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1861249952
 GameObject:
   m_ObjectHideFlags: 0
@@ -10459,7 +10653,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1916817510
 GameObject:
   m_ObjectHideFlags: 0
@@ -10613,6 +10808,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960262465}
+  m_CullTransparentMesh: 0
+--- !u!1 &1962054378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1962054379}
+  - component: {fileID: 1962054381}
+  - component: {fileID: 1962054380}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1962054379
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962054378}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1234460008}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1962054380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962054378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 45
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 45
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\uBD88\uB7EC\uC624\uAE30"
+--- !u!222 &1962054381
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962054378}
   m_CullTransparentMesh: 0
 --- !u!1 &1969234099
 GameObject:
@@ -10926,7 +11200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &1993873241
 GameObject:
   m_ObjectHideFlags: 0
@@ -11152,7 +11427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &2085908153
 GameObject:
   m_ObjectHideFlags: 0
@@ -11299,7 +11575,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
 --- !u!1 &2128452572
 GameObject:
   m_ObjectHideFlags: 0
@@ -11446,4 +11723,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_Dungeon: {fileID: 162962424}
-  m_Player: {fileID: 344451257}
+  m_PlayerLevelUp: {fileID: 0}
+  m_PlayerSkill: {fileID: 0}
