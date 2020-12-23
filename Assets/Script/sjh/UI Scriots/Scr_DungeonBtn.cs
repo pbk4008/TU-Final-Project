@@ -488,23 +488,30 @@ public class Scr_DungeonBtn : MonoBehaviour
     //집 스크립트
     private void Heal()
     {
+<<<<<<< HEAD
         int iBeforeHp = m_Player.Info.ICurrentHp;  //이전 채력 = 플레이어 현재 채력
         m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.Info.IMaxHp);
         T_HouseHeal.GetComponent<Text>().text = "회복 전 채력 : " + iBeforeHp.ToString() + "\n\n"
             + "회복 후 채력 : " + m_Player.Info.ICurrentHp;
+=======
+        int iBeforeHp =m_Player.getInfo().ICurrentHp;  //이전 채력 = 플레이어 현재 채력
+        m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp);       //플레이어 체력을 최대 채력으로 올림
+        T_HouseHeal.GetComponent<Text>().text = "회복 전 채력 : " + iBeforeHp.ToString() + "\n\n"
+            + "회복 후 채력 : " + m_Player.getInfo().ICurrentHp;
+>>>>>>> dba6358622c7a6b50998ea3d29bd580bc774db9a
     }
 
     //플레이어UI 스크립트
     private void PrintPlayerInfo()
     {
-        T_PlayerUI.GetComponent<Text>().text = "이름 : " + m_Player.Info.SName + "\n"
-            + "레벨 : " + m_Player.Info.ILevel.ToString() + "\n"
-            + "물리 공격력 : " + m_Player.Info.IAtk.ToString() + "\n"
-            + "마법 공격력 : " + m_Player.Info.IMatk.ToString() + "\n"
-            + "체력 / 최대체력 : " + m_Player.Info.ICurrentHp.ToString() + " / " + m_Player.Info.IMaxHp.ToString() + "\n"
-            + "공격 속도 : " + m_Player.Info.IAtkSpeed.ToString() + "\n"
-            + "방어력 : " + m_Player.Info.IDef.ToString() + "\n"
-            + "크리티컬 데미지 : " + m_Player.Info.FCriDmg.ToString() + "\n"
+        T_PlayerUI.GetComponent<Text>().text = "이름 : " + m_Player.getInfo().SName + "\n"
+            + "레벨 : " + m_Player.getInfo().ILevel.ToString() + "\n"
+            + "물리 공격력 : " + m_Player.getInfo().IAtk.ToString() + "\n"
+            + "마법 공격력 : " + m_Player.getInfo().IMatk.ToString() + "\n"
+            + "체력 / 최대체력 : " + m_Player.getInfo().ICurrentHp.ToString() + " / " + m_Player.getInfo().IMaxHp.ToString() + "\n"
+            + "공격 속도 : " + m_Player.getInfo().IAtkSpeed.ToString() + "\n"
+            + "방어력 : " + m_Player.getInfo().IDef.ToString() + "\n"
+            + "크리티컬 데미지 : " + m_Player.getInfo().FCriDmg.ToString() + "\n"
             + "--------------플레이어 스텟--------------\n"
             + "힘 : " + m_Player.Stat.IPow.ToString() + "\n"
             + "지능 : " + m_Player.Stat.IInt.ToString() + "\n"
