@@ -505,8 +505,8 @@ public class Scr_DungeonBtn : MonoBehaviour
             + "방어력 : " + m_Player.getInfo().IDef.ToString() + "\n"
             + "크리티컬 데미지 : " + m_Player.getInfo().FCriDmg.ToString() + "\n"
             + "--------------플레이어 스텟--------------\n"
-            + "힘 : " + m_Player.Stat.IPow.ToString() + "\n"
-            + "민첩 : " + m_Player.Stat.IDex.ToString() + "\n"
-            + "지능 : " + m_Player.Stat.IInt.ToString();
+            + "힘 : " + m_Player.getStat().IPow.ToString() + "\n"
+            + "민첩 : " + m_Player.getStat().IDex.ToString() + "\n"
+            + "지능 : " + m_Player.getStat().IInt.ToString();
     }
 }

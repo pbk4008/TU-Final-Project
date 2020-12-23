@@ -17,8 +17,8 @@ public class Player : Character
     private int m_iMoney;
     private int m_iExp;
     private bool m_bButtonClick;//버튼 클릭했는지 안했는지 판단
-    public tagStat Stat { get => m_Stat; set => m_Stat = value; }
-
+    public ref tagStat getStat() { return ref m_Stat;}
+    
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
     public int IExp { get => m_iExp; set => m_iExp = value; }
     public bool BButtonClick { get => m_bButtonClick; set => m_bButtonClick = value; }

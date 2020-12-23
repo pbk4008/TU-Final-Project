@@ -64,9 +64,12 @@
      <Compile Include="Assets\Script\sjh\UI Scriots\Scr_DungeonBtn.cs" />
      <Compile Include="Assets\Script\pbk\System_Spawn.cs" />
      <Compile Include="Assets\Script\pbk\System_LevelUp.cs" />
+     <Compile Include="Assets\Script\sjh\System\System_GameData.cs" />
+     <Compile Include="Assets\Script\sjh\System\System_PlayerSkill.cs" />
      <Compile Include="Assets\Script\pbk\System_Battle.cs" />
      <Compile Include="Assets\Script\pbk\enums.cs" />
      <Compile Include="Assets\Script\sjh\UI Scriots\Scr_ButtonName.cs" />
+     <Compile Include="Assets\Script\sjh\System\System_DataMgr.cs" />
      <Compile Include="Assets\Script\pbk\BtnManager.cs" />
      <None Include="Assets\Script\sjh\sjh.txt" />
  <Reference Include="Unity.Timeline.Editor">
