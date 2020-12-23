@@ -1,13 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-<<<<<<< HEAD
 
 namespace Structs
-{
-=======
-namespace Structs
 { 
->>>>>>> dba6358622c7a6b50998ea3d29bd580bc774db9a
     [System.Serializable]
     public struct tagInfo
     {
@@ -34,11 +29,7 @@ namespace Structs
         public float FCriDmg { get => m_fCriDmg; set => m_fCriDmg = value; }
 
         public void setName(string argName) { m_sName = argName; }
-<<<<<<< HEAD
         public void setLevel(ref tagInfo argInfo, int argLevel) { argInfo.m_iLevel = argLevel; }
-=======
-        public void setLevel(ref tagInfo argInfo, int argLevel) {  argInfo.m_iLevel = argLevel; }
->>>>>>> dba6358622c7a6b50998ea3d29bd580bc774db9a
         public void setAtk(ref tagInfo argInfo, int argAtk) { argInfo.m_iAtk = argAtk; }
         public void setMatk(ref tagInfo argInfo, int argMatk) { argInfo.m_iMatk = argMatk; }
         public void setMaxHp(ref tagInfo argInfo, int argMaxHp) { argInfo.m_iMaxHp = argMaxHp; }
@@ -66,18 +57,9 @@ namespace Structs
         public int IInt { get => m_iInt; set => m_iInt = value; }
         public int IStat { get => m_iStat; set => m_iStat = value; }
 
-<<<<<<< HEAD
         public void setPow(ref tagStat argInfo, int argPow) { argInfo.m_iPow = argPow; }
         public void setDex(ref tagStat argInfo, int argDex) { argInfo.m_iDex = argDex; }
         public void setInt(ref tagStat argInfo, int argInt) { argInfo.m_iInt = argInt; }
         public void setStat(ref tagStat argInfo, int argStat) { argInfo.m_iStat = argStat; }
-=======
-        public void setPow(ref tagStat argStat, int argPow) { argStat.m_iPow = argPow; }
-        public void setDex(ref tagStat argStat, int argDex) { argStat.m_iDex = argDex; }
-        public void setInt(ref tagStat argStat, int argInt) { argStat.m_iInt = argInt; }
-        public void setStat(ref tagStat argStat, int argStatPoint) { argStat.m_iStat = argStatPoint; }
-        
-        
->>>>>>> dba6358622c7a6b50998ea3d29bd580bc774db9a
     }
 }

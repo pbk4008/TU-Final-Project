@@ -488,17 +488,14 @@ public class Scr_DungeonBtn : MonoBehaviour
     //집 스크립트
     private void Heal()
     {
-<<<<<<< HEAD
-        int iBeforeHp = m_Player.Info.ICurrentHp;  //이전 채력 = 플레이어 현재 채력
-        m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.Info.IMaxHp);
-        T_HouseHeal.GetComponent<Text>().text = "회복 전 채력 : " + iBeforeHp.ToString() + "\n\n"
-            + "회복 후 채력 : " + m_Player.Info.ICurrentHp;
-=======
-        int iBeforeHp =m_Player.getInfo().ICurrentHp;  //이전 채력 = 플레이어 현재 채력
-        m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp);       //플레이어 체력을 최대 채력으로 올림
+
+        int iBeforeHp = m_Player.getInfo().ICurrentHp;  //이전 채력 = 플레이어 현재 채력
+        m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp);
         T_HouseHeal.GetComponent<Text>().text = "회복 전 채력 : " + iBeforeHp.ToString() + "\n\n"
             + "회복 후 채력 : " + m_Player.getInfo().ICurrentHp;
->>>>>>> dba6358622c7a6b50998ea3d29bd580bc774db9a
+
+   
+
     }
 
     //플레이어UI 스크립트
@@ -513,14 +510,8 @@ public class Scr_DungeonBtn : MonoBehaviour
             + "방어력 : " + m_Player.getInfo().IDef.ToString() + "\n"
             + "크리티컬 데미지 : " + m_Player.getInfo().FCriDmg.ToString() + "\n"
             + "--------------플레이어 스텟--------------\n"
-<<<<<<< HEAD
             + "힘 : " + m_Player.getStat().IPow.ToString() + "\n"
             + "민첩 : " + m_Player.getStat().IDex.ToString() + "\n"
             + "지능 : " + m_Player.getStat().IInt.ToString();
-=======
-            + "힘 : " + m_Player.Stat.IPow.ToString() + "\n"
-            + "지능 : " + m_Player.Stat.IInt.ToString() + "\n"
-            + "민첩 : " + m_Player.Stat.IDex.ToString();
->>>>>>> 4db89e11781eea41b3b39dc0ae779c1a64e1d179
     }
 }

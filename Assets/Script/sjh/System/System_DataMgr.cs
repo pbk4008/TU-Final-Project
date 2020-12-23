@@ -30,19 +30,11 @@ public class System_DataMgr : MonoBehaviour
 
             //파일에 저장할 클래스에 데이터 할당
             GameData data = new GameData(); 
-<<<<<<< HEAD
             data.IPow = m_Player.getStat().IPow;
             data.IInt = m_Player.getStat().IInt;
             data.IDex = m_Player.getStat().IDex;
             data.IMoney = m_Player.IMoney;
             data.ILevel = m_Player.getInfo().ILevel;
-=======
-            data.IPow = m_Player.Stat.IPow;
-            data.IInt = m_Player.Stat.IInt;
-            data.IDex = m_Player.Stat.IDex;
-            data.IMoney = m_Player.IMoney;
-            data.ILevel = m_Player.Info.ILevel;
->>>>>>> 4db89e11781eea41b3b39dc0ae779c1a64e1d179
 
             //BinaryFormatter를 사용해 파일에 데이터 기록
             bf.Serialize(file, data);
