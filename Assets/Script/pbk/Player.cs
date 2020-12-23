@@ -3,22 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+<<<<<<< HEAD
+using System.IO; // 파일 입출력
+using System.Runtime.Serialization.Formatters.Binary; //바이너리 파일 포멧
+using DataInfo;
+using Structs;
+=======
 using Structs;
 using enums;
+>>>>>>> dba6358622c7a6b50998ea3d29bd580bc774db9a
 
 public class Player : Character
 {
     // Start is called before the first frame update
     [SerializeField]
+<<<<<<< HEAD
+    private tagStat m_Stat = new tagStat();
+=======
     private tagStat m_Stat;
+>>>>>>> dba6358622c7a6b50998ea3d29bd580bc774db9a
     [SerializeField]
     private Transform tr;
 
     private int m_iMoney;
     private int m_iExp;
+<<<<<<< HEAD
+    public ref tagStat getStat() { return ref m_Stat; }
+    public tagStat Stat { get => m_Stat;}
+    public tagInfo Info { get => m_Info;}
+=======
     private bool m_bButtonClick;//버튼 클릭했는지 안했는지 판단
+<<<<<<< HEAD
     public ref tagStat getStat() { return ref m_Stat;}
     
+=======
+    public tagStat Stat { get => m_Stat; set => m_Stat = value; }
+>>>>>>> dba6358622c7a6b50998ea3d29bd580bc774db9a
+
+>>>>>>> 4db89e11781eea41b3b39dc0ae779c1a64e1d179
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
     public int IExp { get => m_iExp; set => m_iExp = value; }
     public bool BButtonClick { get => m_bButtonClick; set => m_bButtonClick = value; }
@@ -42,6 +64,7 @@ public class Player : Character
         statSetting();
         m_AnimTrigger = ANIMTRIGGER.IDLE;
         m_iMoney = 10000;
+        BLive = true;
         m_Animator = GetComponent<Animator>();//플레이어 Animator 셋팅
         m_sprRender = GetComponent<SpriteRenderer>();//플레이어 SpriteRenderer셋팅
         m_vfirstZone = gameObject.transform.localPosition;
@@ -52,6 +75,8 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
+=======
         //Debug.Log(m_AnimTrigger);
         if (bOnClick)
         {
@@ -76,14 +101,15 @@ public class Player : Character
             LevelUp(0);
 
 
+>>>>>>> dba6358622c7a6b50998ea3d29bd580bc774db9a
         m_Scene = SceneManager.GetActiveScene();
         switch (m_Scene.name)
         {
             case "Lobby":
-                m_sprRend.enabled = false;
+                m_sprRender.enabled = false;
                 break;
             case "Duengeon":
-                m_sprRend.enabled = true;
+                m_sprRender.enabled = true;
                 break;
         }
     }
@@ -115,12 +141,12 @@ public class Player : Character
         }
     }
     //손준호 작업
-    //레벨업
     private static Player m_Instance;
     private Scene m_Scene;
-    [SerializeField] private SpriteRenderer m_sprRend;
-    GameObject[] LevelUpMgr = new GameObject[2];
 
+<<<<<<< HEAD
+}
+=======
     private string m_sButtonName;
     private bool m_bOnClick;
     public string sButtonName { get => m_sButtonName; set => m_sButtonName = value; }
@@ -172,3 +198,4 @@ public class Player : Character
         }
     }
 }
+>>>>>>> dba6358622c7a6b50998ea3d29bd580bc774db9a
