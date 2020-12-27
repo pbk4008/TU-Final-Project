@@ -34,7 +34,8 @@ public class System_Spawn : MonoBehaviour
         {
             if (m_bMonSpawnCheck&&!m_Monster.BLive)
             {
-                m_Monster.BLive = true;
+                if(!GetComponent<System_Battle>().BBattle)
+                    m_Monster.BLive = true;
                 switch (m_iFloor)
                 {
                     case 0://층에 따라 몬스터 Num설정

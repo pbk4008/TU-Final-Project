@@ -9,6 +9,9 @@ public class Monster : Character
 {
     private GRADE_MON m_eType;
     private Transform tr;
+
+    public GRADE_MON EType { get => m_eType; set => m_eType = value; }
+
     // Start is called before the first frame update
     void Start()
     {

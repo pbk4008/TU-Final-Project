@@ -15,6 +15,8 @@ public class System_Battle : MonoBehaviour
     [SerializeField]
     private Scrollbar m_PlayerHp;//플레이어 체력바
     [SerializeField]
+    private Scrollbar m_PlayerExp;//플레이어 경험치바
+    [SerializeField]
     private Image m_MonImg;//몬스터 이미지
     [SerializeField]
     private Text m_RoundCount;//라운드 카운트 Text
@@ -32,6 +34,7 @@ public class System_Battle : MonoBehaviour
     private bool m_bBattle;//배틀 중 판단
 
     public int IDmg { get => m_iDmg; set => m_iDmg = value; }
+    public bool BBattle { get => m_bBattle; set => m_bBattle = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +56,8 @@ public class System_Battle : MonoBehaviour
         m_Monster.AnimTrigger = ANIMTRIGGER.IDLE;
         //UISetting
         UISetting();
+        if(!m_Monster.BLive||!m_Player.BLive)
+            return;
         //공격 차례 정하기
         TurnSelect();
         //공격속도 UI표시
@@ -68,7 +73,6 @@ public class System_Battle : MonoBehaviour
         m_tMonSpeed.transform.position = MonSpeedpos;
         m_eBattleProcess = BATTLE_PROCESS.DURING;
         m_bBattle = false;
-        
     }
     private void Battle()//전투중
     {
@@ -94,20 +98,26 @@ public class System_Battle : MonoBehaviour
     }
     private void BattleAfter()//전투 후
     {
+        Debug.Log(m_Monster.BLive);
+        Debug.Log(m_Player.BLive);
+        //StopCoroutine(BattleProcess());
         //플레이어가 죽었는지 혹은 몬스터가 죽었는지 판단
-        if (!m_Player.BLive)
+        if (!m_Player.BLive)//플레이어 죽음
         {
+            Debug.Log("확인");
             m_Player.AnimTrigger = ANIMTRIGGER.DIE;
             m_iRound = 0;
         }
-        if (!m_Monster.BLive)
+        if (!m_Monster.BLive)//몬스터 죽음
         {
             m_Monster.AnimTrigger = ANIMTRIGGER.DIE;
+            m_Player.AnimTrigger = ANIMTRIGGER.WIN;
+            //경험치 분배
+            plusExp();
+            //레벨업 판단
             m_Monster.gameObject.SetActive(false);
             m_iRound = 0;
         }
-        //경험치 분배
-        //레벨업
         //퀘스트 완료 판단
         //맵으로 돌아기
     }
@@ -116,14 +126,25 @@ public class System_Battle : MonoBehaviour
         //체력바 셋팅
         m_MonHp.value = m_Monster.getInfo().IMaxHp / m_Monster.getInfo().IMaxHp;
         m_PlayerHp.value = m_Player.getInfo().IMaxHp / m_Player.getInfo().IMaxHp;
-        GameObject tmpMonFill, tmpPlayerFill;
+        m_PlayerExp.value = 1;
+        GameObject tmpMonFill, tmpPlayerFill, tmpExpFill;
         tmpMonFill = GameObject.Find("MonFill");
         tmpPlayerFill = GameObject.Find("PlayerFill");
-
         if (m_iDmg == -1)//초기화
         {
+            tmpExpFill = GameObject.Find("ExpFill");
             tmpMonFill.SetActive(true);
             tmpPlayerFill.SetActive(true);
+            tmpExpFill.SetActive(true);
+            if (m_Player.FExp != 0)
+            {
+                m_PlayerExp.size = m_Player.FExp / 100.0f;
+            }
+            else
+            {
+                tmpExpFill.SetActive(false);
+                m_PlayerExp.size = 0;
+            }
             m_MonHp.size = m_MonHp.value;
             m_PlayerHp.size = m_PlayerHp.value;
         }
@@ -141,7 +162,6 @@ public class System_Battle : MonoBehaviour
             }
             else if(m_iMonsterTurn> m_iPlayerTurn)// 몬스터가 공격시
             {
-                
                 m_PlayerHp.size -= (float)m_iDmg / m_Player.getInfo().IMaxHp;
                 if (m_PlayerHp.size <= 0)
                 {
@@ -156,9 +176,9 @@ public class System_Battle : MonoBehaviour
     }
     private void TurnSelect()//턴 속도 랜덤 표시
     {
-        //m_iPlayerTurn=Random.Range(m_Player.getInfo().IAtkSpeed,10);
+        m_iPlayerTurn=Random.Range(m_Player.getInfo().IAtkSpeed,10);
         m_iMonsterTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
-        m_iPlayerTurn = 0;
+        //m_iPlayerTurn = 0;
         //m_iMonsterTurn = 0;
         m_tPlayerSpeed.gameObject.SetActive(true);
         m_tMonSpeed.gameObject.SetActive(true);
@@ -198,8 +218,23 @@ public class System_Battle : MonoBehaviour
             AtkDmg += (int)(AtkDmg * Attacker.getInfo().FCriDmg);
         }
         int DefNum = Hitter.getInfo().IDef;
-
         m_iDmg = AtkDmg - DefNum;
         Hitter.getInfo().ICurrentHp -= m_iDmg;
+    }
+    private void plusExp()
+    {
+        float tmpExp = 0;
+        if (m_Monster.EType == GRADE_MON.RARE)
+            tmpExp = 8;
+        else
+            tmpExp = 5;
+        if (Mathf.Abs(m_Monster.getInfo().ILevel - m_Player.getInfo().ILevel) > 10)
+            tmpExp *= 0.1f;
+        else if (Mathf.Abs(m_Monster.getInfo().ILevel - m_Player.getInfo().ILevel) > 5)
+            tmpExp *= 0.5f;
+        m_Player.FExp += tmpExp;
+        m_PlayerExp.size = m_Player.FExp / 100.0f;
+        Debug.Log(tmpExp);
+        Debug.Log(m_PlayerExp.size);
     }
 }

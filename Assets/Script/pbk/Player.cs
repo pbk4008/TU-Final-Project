@@ -17,13 +17,16 @@ public class Player : Character
     private Transform tr;
 
     private int m_iMoney;
-    private int m_iExp;
+    private float m_fExp;
     public ref tagStat getStat() { return ref m_Stat; }
     private bool m_bButtonClick;//버튼 클릭했는지 안했는지 판단
    
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
-    public int IExp { get => m_iExp; set => m_iExp = value; }
+    public float FExp { get => m_fExp; set => m_fExp = value; }
     public bool BButtonClick { get => m_bButtonClick; set => m_bButtonClick = value; }
+    public System_LevelUp LevelUp_System { get => m_LevelUp_System; set => m_LevelUp_System = value; }
+
+    private System_LevelUp m_LevelUp_System;
 
     private void Awake() //싱글톤 DontDestroy시 원래 씬으로 돌아왔을때 오브젝트 중복 피하기
     {
@@ -44,13 +47,12 @@ public class Player : Character
         statSetting();
         m_AnimTrigger = ANIMTRIGGER.IDLE;
         m_iMoney = 10000;
-        BLive = true;
         m_Animator = GetComponent<Animator>();//플레이어 Animator 셋팅
         m_sprRender = GetComponent<SpriteRenderer>();//플레이어 SpriteRenderer셋팅
         m_vfirstZone = gameObject.transform.localPosition;
         tr = m_Instance.GetComponent<Transform>();
         StartCoroutine(this.FSM());
-       
+        m_LevelUp_System = GetComponent<System_LevelUp>();
     }
     // Update is called once per frame
     void Update()
