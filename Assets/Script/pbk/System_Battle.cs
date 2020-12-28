@@ -32,7 +32,7 @@ public class System_Battle : MonoBehaviour
     private int m_iDmg;
     private BATTLE_PROCESS m_eBattleProcess;//배틀 처리 변수
     private bool m_bBattle;//배틀 중 판단
-
+    private GameObject m_MonFill, m_PlayerFill, m_ExpFill;//체력바 및 Exp바 채우기변수
     public int IDmg { get => m_iDmg; set => m_iDmg = value; }
     public bool BBattle { get => m_bBattle; set => m_bBattle = value; }
 
@@ -45,6 +45,9 @@ public class System_Battle : MonoBehaviour
         m_iRound = 1;
         m_iDmg = -1;//전투 시작 시 UI셋팅을 위한 -1
         m_eBattleProcess = BATTLE_PROCESS.BEFORE;
+        m_MonFill = GameObject.Find("MonFill");
+        m_PlayerFill = GameObject.Find("PlayerFill");
+        m_ExpFill = GameObject.Find("ExpFill");
         StartCoroutine(BattleProcess());
         BtnManager.attack += AttackToHit;
         m_bBattle = false;
@@ -63,8 +66,8 @@ public class System_Battle : MonoBehaviour
         //공격속도 UI표시
         m_tPlayerSpeed.text = m_iPlayerTurn.ToString();
         m_tMonSpeed.text = m_iMonsterTurn.ToString();
-        Vector3 PlayerSpeedpos = m_Player.transform.position;
-        Vector3 MonSpeedpos = m_Monster.transform.position;
+        Vector3 PlayerSpeedpos = m_Player.VfirstZone;
+        Vector3 MonSpeedpos = m_Monster.VfirstZone;
 
         //공격속도 플레이어 및 몬스터 머리위에 띄우기(몬스터의 크기가 다르기 때문)
         PlayerSpeedpos.y += m_Player.gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y/2+0.5f;
@@ -127,22 +130,22 @@ public class System_Battle : MonoBehaviour
         m_MonHp.value = m_Monster.getInfo().IMaxHp / m_Monster.getInfo().IMaxHp;
         m_PlayerHp.value = m_Player.getInfo().IMaxHp / m_Player.getInfo().IMaxHp;
         m_PlayerExp.value = 1;
-        GameObject tmpMonFill, tmpPlayerFill, tmpExpFill;
-        tmpMonFill = GameObject.Find("MonFill");
-        tmpPlayerFill = GameObject.Find("PlayerFill");
+        
+        
         if (m_iDmg == -1)//초기화
         {
-            tmpExpFill = GameObject.Find("ExpFill");
-            tmpMonFill.SetActive(true);
-            tmpPlayerFill.SetActive(true);
-            tmpExpFill.SetActive(true);
+            
+            m_MonFill.SetActive(true);
+            m_PlayerFill.SetActive(true);
+            
             if (m_Player.FExp != 0)
             {
+                m_ExpFill.SetActive(true);
                 m_PlayerExp.size = m_Player.FExp / 100.0f;
             }
             else
             {
-                tmpExpFill.SetActive(false);
+                m_ExpFill.SetActive(false);
                 m_PlayerExp.size = 0;
             }
             m_MonHp.size = m_MonHp.value;
@@ -155,7 +158,7 @@ public class System_Battle : MonoBehaviour
                 m_MonHp.size -= (float)m_iDmg / m_Monster.getInfo().IMaxHp;
                 if (m_MonHp.size <= 0)
                 {
-                    tmpMonFill.SetActive(false);
+                    m_MonFill.SetActive(false);
                     m_Monster.BLive = false;
                     m_eBattleProcess = BATTLE_PROCESS.END;
                 }
@@ -166,7 +169,7 @@ public class System_Battle : MonoBehaviour
                 if (m_PlayerHp.size <= 0)
                 {
                     m_Player.BLive = false;
-                    tmpPlayerFill.SetActive(false);
+                    m_PlayerFill.SetActive(false);
                     m_eBattleProcess = BATTLE_PROCESS.END;
                 }
             }

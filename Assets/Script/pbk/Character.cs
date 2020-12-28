@@ -17,7 +17,9 @@ public class Character : MonoBehaviour
     protected bool m_bLive;//목숨
     public ANIMTRIGGER AnimTrigger { get => m_AnimTrigger; set => m_AnimTrigger = value; }
     public bool BLive { get => m_bLive; set => m_bLive = value; }
-    protected Vector2 m_vfirstZone;
+    public Vector3 VfirstZone { get => m_vfirstZone; set => m_vfirstZone = value; }
+
+    protected Vector3 m_vfirstZone;
 
     protected void tagSetting(string argName, int argLevel, int argAtk, int argMatk, int argMaxHp, int argAtkSpeed, int argDef, float argCriDmg)//기본정보 셋팅
     {

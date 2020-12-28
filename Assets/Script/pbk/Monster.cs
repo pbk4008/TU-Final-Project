@@ -99,7 +99,7 @@ public class Monster : Character
                     break;
             }
             //StartCoroutine(base.FSM());
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.09f);
         }
     }
 }
