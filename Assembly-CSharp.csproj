@@ -59,6 +59,7 @@
      <Compile Include="Assets\Script\pbk\Player.cs" />
      <Compile Include="Assets\Script\pbk\Monster.cs" />
      <Compile Include="Assets\Script\pbk\Delegates.cs" />
+     <Compile Include="Assets\Script\pbk\System_BattleBegin.cs" />
      <Compile Include="Assets\Script\pbk\Character.cs" />
      <Compile Include="Assets\Script\pbk\structs.cs" />
      <Compile Include="Assets\Script\sjh\UI Scriots\Scr_DungeonBtn.cs" />
