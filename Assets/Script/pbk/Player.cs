@@ -70,7 +70,7 @@ public class Player : Character
     }
     private void statSetting()
     {
-        m_Stat.IPow = 5;
+        m_Stat.IPow = 1500;
         m_Stat.IDex = 5;
         m_Stat.IInt = 5;
         m_Stat.IStat = 3;

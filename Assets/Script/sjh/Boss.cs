@@ -7,61 +7,58 @@ using Structs;
 
 public class Boss : Monster
 {
-    private Player m_Player;
-    private int m_iFloor;
-    private int m_iStage;
-    private int[] m_iCurrentDurationtime = new int[7];
-    private int m_iDurationtime;
-    private int m_iOverlapping;
-    private int m_iCooltime;
-    private int[] m_iCurrentCooltime = new int[7];
-    private int m_idamage;
-    private string m_sBossSkillName;
-    private bool m_bSkillOn;
+    private Player m_Player; //플레이어 정보
+    private int m_iFloor; //던전 층
+    private int m_iStage; //던전 스테이지
+    private int[] m_iCurrentDurationtime = new int[7]; //현재 스킬 지속시간
+    private int[] m_iCurrentCooltime = new int[7]; //현재 스킬 쿨타임
+    private int m_iDurationtime; //스킬 지속시간
+    private int m_iOverlapping; //스킬 중첩
+    private int m_iCooltime; //스킬 쿨타임
+    private int m_idamage; //스킬 대미지
+    private string m_sBossSkillName; //보스 스킬 이름
+    private bool m_bSkillOn;//스킬 사용
     [SerializeField]
-    private System_Battle m_SB;
+    private System_Battle m_SB; //배틀 정보
     [SerializeField]
-    private GameObject m_BattleUI;
-    [SerializeField]
-    private Text m_tBossSKill;
-
+    private Text m_tBossSKill; //보스 스킬 Text UI
 
     public bool bSkillOn { get => m_bSkillOn; set => m_bSkillOn = value; }
     public int iSkillDmg { get => m_idamage; set => m_idamage = value; }
     public string sBossSkill { get => m_sBossSkillName; set => m_sBossSkillName = value; }
 
     // Start is called before the first frame update
-    public void BossSpawn()
+    public void BossSpawn() //보스 생성
     {
         Debug.Log("보스 생성");
         GameObject GM = GameObject.FindWithTag("GameMgr");
         m_Player = GameObject.Find("Player").GetComponent<Player>();
         m_iFloor = GM.GetComponent<Scr_DungeonBtn>().IFloor;
         m_iStage = GM.GetComponent<Scr_DungeonBtn>().IStage;
-        m_bLive = false;
+        m_bLive = true;
         SetInfo();
 
-        m_iCurrentCooltime[0] = 3;
+        m_iCurrentCooltime[0] = 3; //쿹라임 셋팅
         m_iCurrentCooltime[1] = 3;
         m_iCurrentCooltime[2] = 2;
         m_iCurrentCooltime[3] = 3;
         m_iCurrentCooltime[4] = 2;
         m_iCurrentCooltime[5] = 3;
         m_iCurrentCooltime[6] = 5;
-        StartCoroutine(BossSkill());
+        StartCoroutine(BossSkill()); //코르틴 시작
     }
 
     // Update is called once per frame
-    private void SetInfo()
+    private void SetInfo() //Info 설정
     {
-        switch(m_iFloor)
+        switch(m_iFloor)//층수에 따라
         {
             case 0:
-                if (m_iStage == 4)
+                if (m_iStage == 4) //스테이지에 따라
                 {
-                    m_Info.SName = "망*뇽 인형";
-                    setStatus(5, 30, 120, 3);
-                    m_Info.ILevel = 10;
+                    m_Info.SName = "망*뇽 인형"; //보스 이름
+                    setStatus(30, 30, 120, 3); //보스 공격력
+                    m_Info.ILevel = 10; //보스 레벨
                 }
                 break;
             case 1:
@@ -107,26 +104,27 @@ public class Boss : Monster
         }
     }
 
-    public void ActiveBossSkill(BOSSSKILL eBossSkill)
+    public void ActiveBossSkill(BOSSSKILL eBossSkill) // 보스 스킬
     {
-        switch (eBossSkill)
+        switch (eBossSkill) //스킬 이름에 따라
         {
             case enums.BOSSSKILL.FIRE: //화염 데미지 10%
                 Debug.Log("화염 사용");
                 m_sBossSkillName = "화염";
-                m_Player.bDeeffect = true;
+                m_Player.bDeeffect = true; //플레이어에게 지속 대미지를 넣음
                 m_iCooltime = 3;
-                m_iCurrentCooltime[0] = m_iCooltime;
+                m_iCurrentCooltime[0] = m_iCooltime; //현재 쿨타임 = 쿨타임
                 m_iDurationtime = 2; //지속시간
-                m_iCurrentDurationtime[0] += m_iDurationtime;
-                m_idamage = (int)(m_Info.IAtk * 0.2f); //대미지
+                m_iCurrentDurationtime[0] += m_iDurationtime; //현재 지속시간 = 지속시간
+                m_idamage = (int)(m_Info.IAtk * 0.2f); //화염 대미지
                 break;
             case enums.BOSSSKILL.STUN:
                 Debug.Log("스턴 사용");
                 m_sBossSkillName = "스턴";
+                m_Player.bDeeffect = true;
                 m_iCooltime = 3;
                 m_iCurrentCooltime[1] = m_iCooltime;
-                m_iDurationtime = 0; //지속시간
+                m_iDurationtime = 1; //지속시간
                 m_iCurrentDurationtime[1] += m_iDurationtime;
 
                 //스턴을 어떻게 할 것인가
@@ -135,27 +133,28 @@ public class Boss : Monster
             case enums.BOSSSKILL.BLEEDING:
                 Debug.Log("흡혈 사용");
                 m_sBossSkillName = "흡혈";
-                m_Player.bDeeffect = true;
+                m_Player.bDeeffect = true; //플레이어에게 지속 대미지를 넣음
                 m_iCooltime = 2;
                 m_iCurrentCooltime[2] = m_iCooltime;
                 m_iDurationtime = 3;
                 m_iCurrentDurationtime[2] += m_iDurationtime;
                 m_idamage = (int)(m_Info.IAtk * 0.2f); //지속시간
-                m_iOverlapping++;
-                if (m_iOverlapping > 1)
+                m_iOverlapping++; //중첩
+                if (m_iOverlapping > 1) //중첩이 1이 넘으면
                 {
-                    m_iOverlapping = 2;
+                    m_iOverlapping = 2; //중첩 2로 고정
                     m_idamage = (int)(m_Info.IAtk * 0.2f) * m_iOverlapping; //대미지
                 }
                 break;
             case enums.BOSSSKILL.SLOW:
                 Debug.Log("슬로우 사용");
                 m_sBossSkillName = "슬로우";
+                m_Player.bDeeffect = true;
                 m_iCooltime = 3;
                 m_iCurrentCooltime[3] = m_iCooltime;
                 m_iDurationtime = 2;
                 m_iCurrentDurationtime[3] += m_iDurationtime;
-                m_Player.getInfo().setAtkSpeed(ref m_Player.getInfo(), m_Player.getInfo().IAtkSpeed - 2);
+                m_Player.getInfo().setAtkSpeed(ref m_Player.getInfo(), m_Player.getInfo().IAtkSpeed - 2); //이동속도 느리게 함
                 break;
             case enums.BOSSSKILL.POISON:
                 Debug.Log("독 사용");
@@ -170,9 +169,10 @@ public class Boss : Monster
             case enums.BOSSSKILL.STONING:
                 Debug.Log("석화 사용");
                 m_sBossSkillName = "석화";
+                m_Player.bDeeffect = true;
                 m_iCooltime = 3;
                 m_iCurrentCooltime[5] = m_iCooltime;
-                m_iDurationtime = 0;
+                m_iDurationtime = 2;
                 m_iCurrentDurationtime[5] += m_iDurationtime;
                 m_idamage = (int)(m_Info.IAtk * 1);
                 break;
@@ -190,7 +190,7 @@ public class Boss : Monster
         m_SB.bBossSkillOn = true;
     }
 
-    private IEnumerator BossSkill()
+    private IEnumerator BossSkill() //보스 스킬
     {
         while (true)
         {
@@ -227,6 +227,7 @@ public class Boss : Monster
                     {
                         m_tBossSKill.gameObject.SetActive(false);
                         m_Player.bDeeffect = false;
+                        m_Player.getInfo().setAtkSpeed(ref m_Player.getInfo(), m_Player.getInfo().IAtkSpeed + 2); //이동속도 느리게 함
                     }
                     break;
                 case 4:
@@ -253,25 +254,24 @@ public class Boss : Monster
                     {
                         m_tBossSKill.gameObject.SetActive(false);
                         m_Player.bDeeffect = false;
+                        m_Player.getInfo().setAtkSpeed(ref m_Player.getInfo(), m_Player.getInfo().IAtkSpeed + 3); //이동속도 느리게 함
                     }
                     break;
             }
 
-            if (m_bSkillOn)
+            if (m_bSkillOn) //스킬이 사용 되었다면
             {
-                for (int i = 0; i < m_iCurrentCooltime.Length; i++)
+                for (int i = 0; i < m_iCurrentCooltime.Length; i++) 
                 {
-                    m_iCurrentCooltime[i]--;
-                    m_iCurrentDurationtime[i]--;
+                    m_iCurrentCooltime[i]--; //각 현재 스킬 쿨타임을 1씩 줄인다.
+                    m_iCurrentDurationtime[i]--; //각 현재 스킬 지속시간을 1씩 줄인다.
 
-                    if (m_iCurrentCooltime[i] < 0)
-                        m_iCurrentCooltime[i] = 0;
-                    else if (m_iCurrentDurationtime[i] < 0)
-                        m_iCurrentDurationtime[i] = 0;
+                    if (m_iCurrentCooltime[i] < 0) //각 스킬의 쿨타임이 0보다 작으면
+                        m_iCurrentCooltime[i] = 0; //0으로 고정한다.
+                    else if (m_iCurrentDurationtime[i] < 0) 
+                        m_iCurrentDurationtime[i] = 0; //현재 스킬 지속시간을 0으로 설정
                 }
-
-                m_bSkillOn = false;
-
+                m_bSkillOn = false; // 스킬 사용 할 수 있도록 함
             }
 
             yield return new WaitForSeconds(0.1f);

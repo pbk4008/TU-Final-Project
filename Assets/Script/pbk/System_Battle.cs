@@ -6,12 +6,9 @@ using Delegats;
 using enums;
 public class System_Battle : MonoBehaviour
 {
-
     private Player m_Player;//플레이어 정보
     [SerializeField]
     private Monster m_Monster;//몬스터 정보
-    [SerializeField]
-    private Boss m_Boss;
     private System_Spawn m_spSystem;
     [SerializeField]
     private Scrollbar m_MonHp;//몬스터 체력바
@@ -26,19 +23,22 @@ public class System_Battle : MonoBehaviour
     [SerializeField]
     private Text m_tMonSpeed;
     [SerializeField]
-    private Text m_tBossSKill;
-    [SerializeField]
     private GameObject m_BattleUI;
     private int m_iRound;
     private int m_iPlayerTurn;
     private int m_iMonsterTurn;
     private int m_iDmg;
-    private int m_iSkillDmg;
     private int m_iFloor;
     private int m_iStage;
     private BATTLE_PROCESS m_eBattleProcess;//배틀 처리 변수
     private bool m_bBattle;//배틀 중 판단
-    private bool m_bBossSkillOn;
+
+    [SerializeField]
+    private Boss m_Boss;// 보스 정보 가져오기 - 손준호
+    [SerializeField]
+    private Text m_tBossSKill; // 보스 스킬 UI 정보 가져오기 - 손준호
+    private int m_iSkillDmg; // 스킬 대미지 - 손준호
+    private bool m_bBossSkillOn; // 보스 스킬 사용하기 - 손준호
 
     public int IDmg { get => m_iDmg; set => m_iDmg = value; }
     public bool bBossSkillOn { get => m_bBossSkillOn; set => m_bBossSkillOn = value; }
@@ -51,30 +51,31 @@ public class System_Battle : MonoBehaviour
         m_iStage = GM.GetComponent<Scr_DungeonBtn>().IStage;
         m_spSystem = GetComponent<System_Spawn>();
         m_Player = GameObject.Find("Player").GetComponent<Player>();
-        if (m_iStage != 4)
-        {
+        if ((m_iFloor == 0 || m_iFloor == 1) && m_iStage != 4) //보스와 몬스터 구분하기 -  손준호
             m_Monster.gameObject.SetActive(true);
-        }
+        else if ((m_iFloor == 2 || m_iFloor == 3) && m_iStage != 6)
+            m_Monster.gameObject.SetActive(true);
+        else if ((m_iFloor == 4 || m_iFloor == 5) && m_iStage != 9)
+            m_Monster.gameObject.SetActive(true);
         else
         {
-            m_Monster = m_Boss;
+            m_Monster = m_Boss; //몬스터를 보스로 치환 - 손준호
             Debug.Log("몬스터 이름 : " + m_Monster.getInfo().SName);
+            m_Monster.eType = enums.GRADE_MON.BOSS; //몬스터 타임을 보스로 변경 - 손준호
         }
         m_iRound = 1;
         m_iDmg = -1;//전투 시작 시 UI셋팅을 위한 -1
         m_eBattleProcess = BATTLE_PROCESS.BEFORE;
         StartCoroutine(BattleProcess());
-        StartCoroutine(CalculSkillDmg(m_Player));
+        StartCoroutine(CalculSkillDmg(m_Player)); //스킬 대미지 계산하는 코루틴 시작 
         BtnManager.attack += AttackToHit;
         m_bBattle = false;
-        m_bBossSkillOn = false;
+        m_bBossSkillOn = false; //보스 스킬 사용하기 - 손준호
     }
 
     // Update is called once per frame
     private void BattleSetting()//전투 전
     {
-        if (m_iStage == 4)
-            m_Monster.eType = enums.GRADE_MON.BOSS;
         m_Monster.AnimTrigger = ANIMTRIGGER.IDLE;
         //UISetting
         UISetting();
@@ -112,10 +113,10 @@ public class System_Battle : MonoBehaviour
                 m_Player.AnimTrigger = ANIMTRIGGER.HIT;
                 m_Monster.AnimTrigger = ANIMTRIGGER.ATTACK;
                 m_eBattleProcess = BATTLE_PROCESS.BEFORE;
-                //보스 스킬 사용 손준호
+                //보스 스킬 사용 - 손준호
                 if(m_Monster.eType == enums.GRADE_MON.BOSS)
                 {
-                    //스킬
+                    //스킬 사용
                     m_Boss.bSkillOn = true;
                 }
 
@@ -241,24 +242,24 @@ public class System_Battle : MonoBehaviour
         Debug.Log("입은 대미지 : " + m_iDmg);
     }
 
-    IEnumerator CalculSkillDmg(Character Hitter)//스킬 대미지 계산
+    IEnumerator CalculSkillDmg(Character Hitter)//스킬 대미지 계산 - 손준호
     {
         while (true)
         {
-            m_iSkillDmg = m_Boss.iSkillDmg;
+            m_iSkillDmg = m_Boss.iSkillDmg; //스킬 대미지 = Boss에서 계산한 스킬 대미지
 
-            if (m_bBossSkillOn)
+            if (m_bBossSkillOn) //보스 스킬이 사용되었다면
             {
-                Hitter.getInfo().ICurrentHp -= m_iSkillDmg;
+                Hitter.getInfo().ICurrentHp -= m_iSkillDmg; //플레이어 체력을 깎음
                 Debug.Log("스킬 대미지 : " + m_iSkillDmg);
-                m_PlayerHp.size -= (float)m_iSkillDmg / m_Player.getInfo().IMaxHp;
+                m_PlayerHp.size -= (float)m_iSkillDmg / m_Player.getInfo().IMaxHp; //체력바 계산
 
-                m_tBossSKill.gameObject.SetActive(true);
-                m_tBossSKill.text = m_Boss.sBossSkill;
-                m_bBossSkillOn = false;
+                m_tBossSKill.gameObject.SetActive(true); //보스 스킬 UI 띄우기
+                m_tBossSKill.text = m_Boss.sBossSkill; //보스 스킬 텍스트 UI 이름 = 보스 스킬
+                m_bBossSkillOn = false; // 보스 스킬 사용할 수 있게 하기.
             }
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f); //0.1초마다 실행
         }
     }
 }
