@@ -7,6 +7,8 @@ TagManager:
   - Button
   - GameMgr
   - Monster
+  - Boss
+  - BattleMgr
   layers:
   - Default
   - TransparentFX
