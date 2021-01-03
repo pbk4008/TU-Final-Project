@@ -11,7 +11,7 @@ public class System_BattleBegin : MonoBehaviour
     [SerializeField]
     private GameObject m_ORoundUI;
     [SerializeField]
-    //private GameObject m_OCurrentRoundUI;
+    private GameObject m_OCurrentRoundUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,7 @@ public class System_BattleBegin : MonoBehaviour
         m_iRound = GM.GetComponent<Scr_DungeonBtn>().IRound;
         m_RoundUI = new List<GameObject>();
         InstantiateRoundUI();
+        m_OCurrentRoundUI.transform.position = m_RoundUI[0].transform.position;
     }
 
     // Update is called once per frame
