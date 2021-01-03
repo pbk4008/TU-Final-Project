@@ -20,10 +20,12 @@ public class Player : Character
     private int m_iExp;
     public ref tagStat getStat() { return ref m_Stat; }
     private bool m_bButtonClick;//버튼 클릭했는지 안했는지 판단
+    private bool m_bDeeffect;
    
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
     public int IExp { get => m_iExp; set => m_iExp = value; }
     public bool BButtonClick { get => m_bButtonClick; set => m_bButtonClick = value; }
+    public bool bDeeffect { get => m_bDeeffect; set => m_bDeeffect = value; }
 
     private void Awake() //싱글톤 DontDestroy시 원래 씬으로 돌아왔을때 오브젝트 중복 피하기
     {

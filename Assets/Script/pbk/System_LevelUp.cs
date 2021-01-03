@@ -14,6 +14,11 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
     public string sButtonName { get => m_sButtonName; set => m_sButtonName = value; }
     public bool bOnClick { get => m_bOnClick; set => m_bOnClick = value; }
 
+    private void Start()
+    {
+        m_Player = GameObject.FindWithTag("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
+    }
+
     public void CalculStat()//스텟 계산
     {
         m_Player.getInfo().setMaxHp(ref m_Player.getInfo(),m_Player.getStat().IPow * 3 + 50);
@@ -29,7 +34,7 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
     }
     void Update()
     {
-        m_Player = GameObject.FindWithTag("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
+        
 
         CalculStat(); //스텟 계산
 

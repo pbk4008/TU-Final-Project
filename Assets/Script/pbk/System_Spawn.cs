@@ -8,6 +8,8 @@ public class System_Spawn : MonoBehaviour
     private int m_iStage;
     [SerializeField]
     private Monster m_Monster;
+    [SerializeField]
+    private Boss m_Boss;
     private bool m_bMonSpawnCheck;//몬스터 스폰됐는지 안됐는지 체크변수
     private int m_MonNum;//몬스터 번호
 
@@ -38,10 +40,18 @@ public class System_Spawn : MonoBehaviour
                 switch (m_iFloor)
                 {
                     case 0://층에 따라 몬스터 Num설정
-                        m_MonNum = Random.RandomRange(0, 4);
-                        //레벨
-                        m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(1, 10));
-                        m_Monster.setStatus(5, 10, 1.1f, 1);
+                        if (m_iStage != 4)
+                        {
+                            m_MonNum = Random.RandomRange(0, 4);
+                            //레벨
+                            m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(1, 10));
+                            m_Monster.setStatus(5, 10, 1.1f, 1);
+                        }
+                        else
+                        {
+                            m_Boss.gameObject.SetActive(true);
+                            m_Boss.BossSpawn();
+                        }
                         break;
                     case 1:
                         m_MonNum = Random.RandomRange(5, 9);

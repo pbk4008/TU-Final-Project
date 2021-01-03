@@ -9,6 +9,12 @@ public class Monster : Character
 {
     private GRADE_MON m_eType;
     private Transform tr;
+    [SerializeField]
+    private Boss m_Boss;
+
+    //등급 가져오기 -손준호
+    public enums.GRADE_MON eType { get => m_eType; set => m_eType = value; }
+
     // Start is called before the first frame update
     void Start()
     {

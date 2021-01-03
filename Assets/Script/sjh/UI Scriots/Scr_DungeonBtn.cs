@@ -73,12 +73,12 @@ public class Scr_DungeonBtn : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         //던전 스테이지 막기
-        m_bStage[0] = new bool[] { true, false, false, false, false };
-        m_bStage[1] = new bool[] { false, false, false, false, false };
-        m_bStage[2] = new bool[] { false, false, false, false, false, false, false };
-        m_bStage[3] = new bool[] { false, false, false, false, false, false, false };
-        m_bStage[4] = new bool[] { false, false, false, false, false, false, false, false, false, false };
-        m_bStage[5] = new bool[] { false, false, false, false, false, false, false, false, false, false };
+        m_bStage[0] = new bool[] { true, false, false, false, true };
+        m_bStage[1] = new bool[] { false, false, false, false, true };
+        m_bStage[2] = new bool[] { false, false, false, false, false, false, true };
+        m_bStage[3] = new bool[] { false, false, false, false, false, false, true };
+        m_bStage[4] = new bool[] { false, false, false, false, false, false, false, false, false, true };
+        m_bStage[5] = new bool[] { false, false, false, false, false, false, false, false, false, true };
 
         //퀘스트
         for (int i = 0; i < 3; i++)
