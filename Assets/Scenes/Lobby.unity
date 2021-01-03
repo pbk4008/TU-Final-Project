@@ -1271,7 +1271,6 @@ GameObject:
   - component: {fileID: 162962425}
   - component: {fileID: 162962424}
   - component: {fileID: 162962426}
-  - component: {fileID: 162962427}
   m_Layer: 0
   m_Name: Obj_UIMgr
   m_TagString: GameMgr
@@ -1398,18 +1397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b213c4d5aaa0184788c7a6f74934882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &162962427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 162962423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fd8d21583b0f6449836fbb5d3c759af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Player: {fileID: 0}
+  m_StatCal: {fileID: 0}
 --- !u!1 &172872340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2508,6 +2497,7 @@ GameObject:
   - component: {fileID: 344451258}
   - component: {fileID: 344451257}
   - component: {fileID: 344451256}
+  - component: {fileID: 344451260}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2546,12 +2536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3539d9b008d9423459a7b51c1c49fb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Stat:
-    m_iPow: 0
-    m_iDex: 0
-    m_iInt: 0
-    m_iStat: 0
-  m_iMoney: 0
+  tr: {fileID: 0}
 --- !u!212 &344451258
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2617,6 +2602,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &344451260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344451255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd8d21583b0f6449836fbb5d3c759af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &363558711
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,19 +7,19 @@ using DataInfo;
 
 public class System_DataMgr : MonoBehaviour
 {
-    Player m_Player; //플레이어 
-    System_LevelUp m_StatCal; //스텟 계산 함수를 사용하기 위해
+    [SerializeField]
+    private Player m_Player; //플레이어
+    [SerializeField]
+    private System_LevelUp m_StatCal; //스텟 계산 함수를 사용하기 위해
     private string dataPath; //파일이 저장될 물리적인 경로 및 파일명을 저장할 변수
     void Start()
     {
         m_Player = GameObject.FindWithTag("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
-        m_StatCal = GameObject.FindWithTag("GameMgr").GetComponent<System_LevelUp>(); //플레이어 스크립트 가져오기
+        m_StatCal = GameObject.FindWithTag("Player").GetComponent<System_LevelUp>();//플레이어 클래스에서 객체를 가지고 있음(by. pbk)
     }
-
     public void Update()
     {
         m_StatCal.CalculStat(); //스텟계산
-
         if (m_Player.BLive == false) //플레이어가 죽으면
         {
             //persistentDataPath 속성은 파일을 읽고 쓸 수 있는 폴더의 경로를 반환
@@ -46,7 +46,7 @@ public class System_DataMgr : MonoBehaviour
             m_Player.getStat().setInt(ref m_Player.getStat(), 5);
             m_Player.getStat().setDex(ref m_Player.getStat(), 5);
             m_Player.IMoney = 10000;
-            m_Player.BLive = true;
+            //m_Player.BLive = true;
         }
     }
 

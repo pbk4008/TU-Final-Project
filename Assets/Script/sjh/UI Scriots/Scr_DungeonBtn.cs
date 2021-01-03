@@ -14,6 +14,7 @@ public class Scr_DungeonBtn : MonoBehaviour
     private int m_iFloor; //층 수 ex) 숲, 마을
     [SerializeField]
     private int m_iStage;//스테이지 ex) 숲-1, 마을-3
+    private int m_iRound;//라운드(by. pbk) 던전별 라운드 수
     private string m_sButtonName; //버튼이름
     private bool m_bOnClick; //버튼을 클릭했는지
     private bool[][] m_bStage = new bool[6][]; //스테이지 배열
@@ -22,6 +23,7 @@ public class Scr_DungeonBtn : MonoBehaviour
     public bool sOnClick { get => m_bOnClick; set => m_bOnClick = value; }
     public int IFloor { get => m_iFloor; set => m_iFloor = value; }//Floor변수 가져오기(by.pbk)
     public int IStage { get => m_iStage; set => m_iStage = value; }//Stage변수 가져오기(by.pbk)
+    public int IRound { get => m_iRound; set => m_iRound = value; }
 
     //----------------------퀘스트 부분
     [SerializeField] private Button[] QuestButton = new Button[5];   //퀘스트 표지판 UI
@@ -112,31 +114,37 @@ public class Scr_DungeonBtn : MonoBehaviour
                         m_iFloor = 0;
                         SetActive(0, 10, 15, 3, 9);
                         StageText();
+                        m_iRound = 3;
                         break;
                     case "Btn_DungeonFloor2":
                         m_iFloor = 1;
                         SetActive(0, 10, 15, 3, 9);
                         StageText();
+                        m_iRound = 5;
                         break;
                     case "Btn_DungeonFloor3":
                         m_iFloor = 2;
                         SetActive(0, 10, 17, 3, 9);
                         StageText();
+                        m_iRound = 5;
                         break;
                     case "Btn_DungeonFloor4":
                         m_iFloor = 3;
                         SetActive(0, 10, 17, 3, 9);
                         StageText();
+                        m_iRound = 7;
                         break;
                     case "Btn_DungeonFloor5":
                         m_iFloor = 4;
                         SetActive(0, 10, 20, 3, 9);
                         StageText();
+                        m_iRound = 7;
                         break;
                     case "Btn_DungeonFloor6":
                         m_iFloor = 5;
                         SetActive(0, 10, 20, 3, 9);
                         StageText();
+                        m_iRound = 10;
                         break;
                     case "Btn_DungeonExitFloor":
                         SetActive(0, 1, 2, 3, 9);

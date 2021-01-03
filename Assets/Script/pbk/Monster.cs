@@ -9,11 +9,16 @@ public class Monster : Character
 {
     private GRADE_MON m_eType;
     private Transform tr;
+<<<<<<< HEAD
     [SerializeField]
     private Boss m_Boss;
 
     //등급 가져오기 -손준호
     public enums.GRADE_MON eType { get => m_eType; set => m_eType = value; }
+=======
+
+    public GRADE_MON EType { get => m_eType; set => m_eType = value; }
+>>>>>>> feature/Battle
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +107,7 @@ public class Monster : Character
                     break;
             }
             //StartCoroutine(base.FSM());
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.09f);
         }
     }
 }
