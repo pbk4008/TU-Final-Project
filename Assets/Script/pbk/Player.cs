@@ -25,13 +25,10 @@ public class Player : Character
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
     public float FExp { get => m_fExp; set => m_fExp = value; }
     public bool BButtonClick { get => m_bButtonClick; set => m_bButtonClick = value; }
-<<<<<<< HEAD
     public bool bDeeffect { get => m_bDeeffect; set => m_bDeeffect = value; }
-=======
     public System_LevelUp LevelUp_System { get => m_LevelUp_System; set => m_LevelUp_System = value; }
 
     private System_LevelUp m_LevelUp_System;
->>>>>>> feature/Battle
 
     private void Awake() //싱글톤 DontDestroy시 원래 씬으로 돌아왔을때 오브젝트 중복 피하기
     {

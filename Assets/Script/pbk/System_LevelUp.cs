@@ -13,19 +13,11 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
     private bool m_bOnClick; //버튼을 클릭했는가
     public string sButtonName { get => m_sButtonName; set => m_sButtonName = value; }
     public bool bOnClick { get => m_bOnClick; set => m_bOnClick = value; }
-<<<<<<< HEAD
 
-    private void Start()
-    {
-        m_Player = GameObject.FindWithTag("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
-    }
-
-=======
     void Start()
     {
         m_Player = GetComponent<Player>();//has-a 관계로 인한 Player Object에 붙힘
     }
->>>>>>> feature/Battle
     public void CalculStat()//스텟 계산
     {
         m_Player.getInfo().setMaxHp(ref m_Player.getInfo(),m_Player.getStat().IPow * 3 + 50);
@@ -39,13 +31,8 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
         
         //argInfo.IDef = 방어구
     }
-    /*void Update()
+    void Update()
     {
-<<<<<<< HEAD
-        
-
-=======
->>>>>>> feature/Battle
         CalculStat(); //스텟 계산
         if (bOnClick) //버튼을 클릭했으면
         {
@@ -83,7 +70,7 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
         }
         if (m_Player.FExp >= 100) //경험치량이 100 이상이면
             LevelUp(0); // 레벨업 실행
-    }*/
+    }
     private void LevelUp(int iStat) //레벨업
     {
         switch (iStat) //iStat 값에 따라

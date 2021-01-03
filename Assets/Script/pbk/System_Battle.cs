@@ -34,7 +34,6 @@ public class System_Battle : MonoBehaviour
     private int m_iStage;
     private BATTLE_PROCESS m_eBattleProcess;//배틀 처리 변수
     private bool m_bBattle;//배틀 중 판단
-<<<<<<< HEAD
 
     [SerializeField]
     private Boss m_Boss;// 보스 정보 가져오기 - 손준호
@@ -45,11 +44,8 @@ public class System_Battle : MonoBehaviour
 
     public int IDmg { get => m_iDmg; set => m_iDmg = value; }
     public bool bBossSkillOn { get => m_bBossSkillOn; set => m_bBossSkillOn = value; }
-=======
     private GameObject m_MonFill, m_PlayerFill, m_ExpFill;//체력바 및 Exp바 채우기변수
-    public int IDmg { get => m_iDmg; set => m_iDmg = value; }
     public bool BBattle { get => m_bBattle; set => m_bBattle = value; }
->>>>>>> feature/Battle
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +65,7 @@ public class System_Battle : MonoBehaviour
         {
             m_Monster = m_Boss; //몬스터를 보스로 치환 - 손준호
             Debug.Log("몬스터 이름 : " + m_Monster.getInfo().SName);
-            m_Monster.eType = enums.GRADE_MON.BOSS; //몬스터 타임을 보스로 변경 - 손준호
+            m_Monster.EType = enums.GRADE_MON.BOSS; //몬스터 타임을 보스로 변경 - 손준호
         }
         m_iRound = 1;
         m_iDmg = -1;//전투 시작 시 UI셋팅을 위한 -1
@@ -107,11 +103,6 @@ public class System_Battle : MonoBehaviour
         m_tMonSpeed.transform.position = MonSpeedpos;
         m_eBattleProcess = BATTLE_PROCESS.DURING;
         m_bBattle = false;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> feature/Battle
     }
     private void Battle()//전투중
     {
@@ -130,7 +121,7 @@ public class System_Battle : MonoBehaviour
                 m_Monster.AnimTrigger = ANIMTRIGGER.ATTACK;
                 m_eBattleProcess = BATTLE_PROCESS.BEFORE;
                 //보스 스킬 사용 - 손준호
-                if(m_Monster.eType == enums.GRADE_MON.BOSS)
+                if(m_Monster.EType == enums.GRADE_MON.BOSS)
                 {
                     //스킬 사용
                     m_Boss.bSkillOn = true;
@@ -294,9 +285,6 @@ public class System_Battle : MonoBehaviour
             yield return new WaitForSeconds(0.1f); //0.1초마다 실행
         }
     }
-<<<<<<< HEAD
-}
-=======
     private void plusExp()
     {
         float tmpExp = 0;
@@ -314,4 +302,3 @@ public class System_Battle : MonoBehaviour
         Debug.Log(m_PlayerExp.size);
     }
 }
->>>>>>> feature/Battle
