@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: f7b26be959211254f86cdc1b9384c8bc
+=======
+guid: c63c3dc5d2463f449932e947e55858d7
+>>>>>>> feature/UIsetting
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
