@@ -14,4 +14,14 @@ public class functions : MonoBehaviour
             res = false;
         return res;
     }
+    public static void Singleton<T>(T argInstance)
+    {
+        if (argInstance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        argInstance = this;
+        DontDestroyOnLoad(argInstance);
+    }
 }

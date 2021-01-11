@@ -33,13 +33,7 @@ public class Player : Character
 
     private void Awake() //싱글톤 DontDestroy시 원래 씬으로 돌아왔을때 오브젝트 중복 피하기
     {
-        if (m_Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        m_Instance = this;
-        DontDestroyOnLoad(m_Instance);
+        functions.Singleton<Player>(m_Instance);
     }
 
     void Start()

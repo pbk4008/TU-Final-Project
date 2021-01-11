@@ -61,23 +61,8 @@ public class System_Battle : MonoBehaviour
         m_BattleMgr = gameObject.GetComponent<BattleManager>();
         m_spSystem = GetComponent<System_Spawn>();
         m_Player = GameObject.Find("Player").GetComponent<Player>();
-<<<<<<< HEAD
         m_iRound = 1;
-=======
-        if ((m_iFloor == 0 || m_iFloor == 1) && m_iStage != 4) //보스와 몬스터 구분하기 -  손준호
-            m_Monster.gameObject.SetActive(true);
-        else if ((m_iFloor == 2 || m_iFloor == 3) && m_iStage != 6)
-            m_Monster.gameObject.SetActive(true);
-        else if ((m_iFloor == 4 || m_iFloor == 5) && m_iStage != 9)
-            m_Monster.gameObject.SetActive(true);
-        else
-        {
-            m_Monster = m_Boss; //몬스터를 보스로 치환 - 손준호
-            Debug.Log("몬스터 이름 : " + m_Monster.getInfo().SName);
-            m_Monster.EType = enums.GRADE_MON.BOSS; //몬스터 타임을 보스로 변경 - 손준호
-        }
         m_iRound = 0; 
->>>>>>> feature/UIsetting
         m_iDmg = -1;//전투 시작 시 UI셋팅을 위한 -1
         m_eBattleProcess = BATTLE_PROCESS.BEFORE;
         m_MonFill = GameObject.Find("MonFill");
@@ -92,7 +77,6 @@ public class System_Battle : MonoBehaviour
     // Update is called once per frame
     private void BattleSetting()//전투 전
     {
-<<<<<<< HEAD
         if ((m_iFloor == 0 || m_iFloor == 1) && m_iStage != 4) //보스와 몬스터 구분하기 -  손준호
             m_Monster.gameObject.SetActive(true);
         else if ((m_iFloor == 2 || m_iFloor == 3) && m_iStage != 6)
@@ -105,10 +89,8 @@ public class System_Battle : MonoBehaviour
             Debug.Log("몬스터 이름 : " + m_Monster.getInfo().SName);
             m_Monster.EType = enums.GRADE_MON.BOSS; //몬스터 타임을 보스로 변경 - 손준호
         }
-=======
         m_Boss.bMinusTime = true;
         m_Boss.bSkillOn = false;
->>>>>>> feature/UIsetting
         m_Monster.AnimTrigger = ANIMTRIGGER.IDLE;
         m_Player.AnimTrigger = ANIMTRIGGER.IDLE;
         //UISetting
@@ -133,6 +115,8 @@ public class System_Battle : MonoBehaviour
     }
     private void Battle()//전투중
     {
+        for (int i = 0; i < 3; i++)
+            m_Boss.SetDmg(i, 0);
         m_RoundCount.text = m_iRound.ToString();
         m_tPlayerSpeed.gameObject.SetActive(false);
         m_tMonSpeed.gameObject.SetActive(false);
@@ -141,42 +125,15 @@ public class System_Battle : MonoBehaviour
             m_BattleUI.SetActive(true);
         else if (m_iMonsterTurn > m_iPlayerTurn)//몬스터 공격
         {
-<<<<<<< HEAD
             m_Player.AnimTrigger = ANIMTRIGGER.HIT;
             m_Monster.AnimTrigger = ANIMTRIGGER.ATTACK;
             m_eBattleProcess = BATTLE_PROCESS.BEFORE;
             //보스 스킬 사용 - 손준호
-            if(m_Monster.EType == enums.GRADE_MON.BOSS)
+            if (m_Monster.EType == enums.GRADE_MON.BOSS)
             {
                 //스킬 사용
                 m_Boss.bSkillOn = true;
-=======
-            for (int i = 0; i < 3; i++)
-                m_Boss.SetDmg(i, 0);
-            m_bBattle = true;
-            m_RoundCount.text = m_iRound.ToString();
-            m_tPlayerSpeed.gameObject.SetActive(false);
-            m_tMonSpeed.gameObject.SetActive(false);
-            //공격
-            if (m_iMonsterTurn < m_iPlayerTurn)//플레이어 공격
-            { 
-                m_BattleUI.SetActive(true);
             }
-            else if (m_iMonsterTurn > m_iPlayerTurn)//몬스터 공격
-            {
-                m_Player.AnimTrigger = ANIMTRIGGER.HIT;
-                m_Monster.AnimTrigger = ANIMTRIGGER.ATTACK;
-                m_eBattleProcess = BATTLE_PROCESS.BEFORE;
-                //보스 스킬 사용 - 손준호
-                if (m_Monster.EType == GRADE_MON.BOSS)
-                {
-                    //스킬 사용
-                    m_Boss.bSkillOn = true;
-                }
-                AttackToHit();
->>>>>>> feature/UIsetting
-            }
-
             AttackToHit();
         }
         else//공격속도 같을 시

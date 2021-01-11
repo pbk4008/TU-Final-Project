@@ -21,7 +21,7 @@ public class BtnManager : MonoBehaviour
     public void AttackBtn()//공격버튼
     {
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        System_Battle SB = GameObject.Find("Battle").GetComponent<System_Battle>();
+        System_Battle SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
         if (!m_Player.bStun)
         {
             m_Player.AnimTrigger = ANIMTRIGGER.ATTACK;
