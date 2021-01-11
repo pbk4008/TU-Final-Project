@@ -21,11 +21,23 @@ public class BtnManager : MonoBehaviour
     public void AttackBtn()//공격버튼
     {
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        m_Player.AnimTrigger = ANIMTRIGGER.ATTACK;
-        m_Player.BButtonClick = true;
-        attack();
-        GameObject tmpCanvas = gameObject.transform.parent.gameObject;
-        tmpCanvas.SetActive(false);
+        System_Battle SB = GameObject.Find("Battle").GetComponent<System_Battle>();
+        if (!m_Player.bStun)
+        {
+            m_Player.AnimTrigger = ANIMTRIGGER.ATTACK;
+            m_Player.BButtonClick = true;
+            attack();
+            GameObject tmpCanvas = gameObject.transform.parent.gameObject;
+            tmpCanvas.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("스턴 중에는 공격할 수 없습니다");
+            SB.eBattleProcess = BATTLE_PROCESS.BEFORE;
+            m_Player.BButtonClick = true;
+            GameObject tmpCanvas = gameObject.transform.parent.gameObject;
+            tmpCanvas.SetActive(false);
+        }
     }
     public void HitBtn()
     {

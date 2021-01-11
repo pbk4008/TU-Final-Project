@@ -9,6 +9,7 @@ public class Scr_DungeonBtn : MonoBehaviour
     //----------------------던전 부분
     [SerializeField] private Button[] DungeonButton = new Button[21]; //버튼들
     [SerializeField] private Text[] T_DungeonText = new Text[10]; //텍스트들
+    [SerializeField] private Image Img_Dungeon; //퀘스트 이미지
 
     [SerializeField]
     private int m_iFloor; //층 수 ex) 숲, 마을
@@ -68,6 +69,9 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private Text T_PlayerUI;
     GameObject PlayerMgr;
 
+    //---------------------불러오기 부분
+    [SerializeField] private Button LoadButton;
+
     private void Start()
     {
         StartCoroutine(ButtonCoroutine());
@@ -100,7 +104,8 @@ public class Scr_DungeonBtn : MonoBehaviour
                 switch (m_sButtonName)
                 {
                     case "Btn_DungeonNPC": //던전 시작
-                        SetActive(0, 1, 2, 0, 0);
+                        SetActive(0, 3, 9, 0, 0);
+                        Img_Dungeon.gameObject.SetActive(true);
                         ActiveButton(0);
                         break;
                     case "Btn_DungeonEnter":
@@ -108,6 +113,7 @@ public class Scr_DungeonBtn : MonoBehaviour
                         break;
                     case "Btn_DungeonExit":
                         SetActive(0, 0, 0, 1, 2);
+                        Img_Dungeon.gameObject.SetActive(false);
                         ActiveButton(1);
                         break;
                     case "Btn_DungeonFloor1":
@@ -147,7 +153,9 @@ public class Scr_DungeonBtn : MonoBehaviour
                         m_iRound = 10;
                         break;
                     case "Btn_DungeonExitFloor":
-                        SetActive(0, 1, 2, 3, 9);
+                        SetActive(0, 0, 0, 3, 9);
+                        Img_Dungeon.gameObject.SetActive(false);
+                        ActiveButton(1);
                         break;
                     case "Btn_DungeonExitStage": //던전 끝
                         SetActive(0, 3, 9, 10, 20);
@@ -333,6 +341,7 @@ public class Scr_DungeonBtn : MonoBehaviour
                 GambleButton[0].gameObject.SetActive(false);
                 HouseButton[0].gameObject.SetActive(false);
                 PlayerButton[0].gameObject.SetActive(false);
+                LoadButton.gameObject.SetActive(false);
                 break;
             case 1:
                 DungeonButton[0].gameObject.SetActive(true);
@@ -340,6 +349,7 @@ public class Scr_DungeonBtn : MonoBehaviour
                 GambleButton[0].gameObject.SetActive(true);
                 HouseButton[0].gameObject.SetActive(true);
                 PlayerButton[0].gameObject.SetActive(true);
+                LoadButton.gameObject.SetActive(true);
                 break;
         }
     }
@@ -501,9 +511,6 @@ public class Scr_DungeonBtn : MonoBehaviour
         m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp);
         T_HouseHeal.GetComponent<Text>().text = "회복 전 채력 : " + iBeforeHp.ToString() + "\n\n"
             + "회복 후 채력 : " + m_Player.getInfo().ICurrentHp;
-
-   
-
     }
 
     //플레이어UI 스크립트

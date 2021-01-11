@@ -20,12 +20,13 @@ public class Player : Character
     private float m_fExp;
     public ref tagStat getStat() { return ref m_Stat; }
     private bool m_bButtonClick;//버튼 클릭했는지 안했는지 판단
-    private bool m_bDeeffect;
+    private bool[] m_bDeeffect = new bool[3]; //지속딜 받기 - 손준호
+    private bool m_bStun; //스턴 - 손준호
    
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
     public float FExp { get => m_fExp; set => m_fExp = value; }
     public bool BButtonClick { get => m_bButtonClick; set => m_bButtonClick = value; }
-    public bool bDeeffect { get => m_bDeeffect; set => m_bDeeffect = value; }
+    public bool bStun { get => m_bStun; set => m_bStun = value; }
     public System_LevelUp LevelUp_System { get => m_LevelUp_System; set => m_LevelUp_System = value; }
 
     private System_LevelUp m_LevelUp_System;
@@ -72,7 +73,7 @@ public class Player : Character
     }
     private void statSetting()
     {
-        m_Stat.IPow = 1500;
+        m_Stat.IPow = 400;
         m_Stat.IDex = 5;
         m_Stat.IInt = 5;
         m_Stat.IStat = 3;
@@ -100,4 +101,13 @@ public class Player : Character
     //손준호 작업
     private static Player m_Instance;
     private Scene m_Scene;
+
+    public bool GetDeEffect(int argint)
+    {
+        return m_bDeeffect[argint];
+    }
+    public void SetDeEffect(int argint, bool argbool)
+    {
+        m_bDeeffect[argint] = argbool;
+    }
 }
