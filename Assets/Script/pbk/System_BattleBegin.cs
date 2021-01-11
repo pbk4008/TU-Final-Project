@@ -12,20 +12,34 @@ public class System_BattleBegin : MonoBehaviour
     private GameObject m_ORoundUI;
     [SerializeField]
     private GameObject m_OCurrentRoundUI;
+    private BattleManager m_BattleMgr;
+
+    public int IRound { get => m_iRound; set => m_iRound = value; }
+    public int ICurrentRound { get => m_iCurrentRound; set => m_iCurrentRound = value; }
+
     // Start is called before the first frame update
     void Start()
     {
         GameObject GM = GameObject.FindWithTag("GameMgr");
         m_iRound = GM.GetComponent<Scr_DungeonBtn>().IRound;
+        m_BattleMgr = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        m_iCurrentRound = 1;
         m_RoundUI = new List<GameObject>();
         InstantiateRoundUI();
         m_OCurrentRoundUI.transform.position = m_RoundUI[0].transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    public void moveCurrentRoundUI()
     {
-        
+        m_iCurrentRound++;
+        if (m_iCurrentRound == m_iRound+1)
+        {
+            m_BattleMgr.BClear = true;
+            return;
+        }
+        Debug.Log(m_iCurrentRound);
+        m_OCurrentRoundUI.transform.position = m_RoundUI[m_iCurrentRound-1].transform.position;
     }
     private void InstantiateRoundUI()
     {

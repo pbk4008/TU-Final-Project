@@ -16,7 +16,6 @@ public class Monster : Character
     // Start is called before the first frame update
     void Start()
     {
-        m_bLive = false;
         tr = GetComponent<Transform>();
         m_vfirstZone = gameObject.transform.position;
         StartCoroutine(this.FSM());

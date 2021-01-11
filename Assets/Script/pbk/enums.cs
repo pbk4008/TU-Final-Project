@@ -8,5 +8,5 @@ namespace enums
     // Start is called before the first frame update
     public enum BOSSSKILL { FIRE, STUN, BLEEDING, SLOW, POISON, STONING, FREEZE }
     public enum GRADE_MON { BASE, MASIC, DEF, RARE, BOSS}
-    public enum BATTLE_PROCESS { BEFORE, DURING ,END}
+    public enum BATTLE_PROCESS { BEFORE, DURING , END}
 }

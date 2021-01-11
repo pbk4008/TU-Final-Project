@@ -53,8 +53,11 @@ public class Player : Character
         m_sprRender = GetComponent<SpriteRenderer>();//플레이어 SpriteRenderer셋팅
         m_vfirstZone = gameObject.transform.localPosition;
         tr = m_Instance.GetComponent<Transform>();
-        StartCoroutine(this.FSM());
         m_LevelUp_System = GetComponent<System_LevelUp>();
+    }
+    public void PlayerActive()
+    {
+        StartCoroutine(this.FSM());
     }
     // Update is called once per frame
     void Update()
