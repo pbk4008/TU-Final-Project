@@ -110,5 +110,6 @@ public class System_Spawn : MonoBehaviour
                 break;
         }
         m_Monster.SetInfo(m_MonNum);
+        m_Monster.MonsterActive();
     }
 }

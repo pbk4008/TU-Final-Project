@@ -169,36 +169,38 @@ public class System_Battle : MonoBehaviour
         m_eBattleProcess = BATTLE_PROCESS.BEFORE;
         m_iDmg = -1;
     }
-    private void UISetting()
+    public void UIInitialize()
     {
-        //체력바 셋팅
         m_MonHp.value = m_Monster.getInfo().IMaxHp / m_Monster.getInfo().IMaxHp;
         m_PlayerHp.value = m_Player.getInfo().IMaxHp / m_Player.getInfo().IMaxHp;
         m_PlayerExp.value = 1;
-        
-        if (m_iDmg == -1)//초기화
+
+        m_MonFill.SetActive(true);
+        m_PlayerFill.SetActive(true);
+
+        if (m_Player.FExp != 0)
         {
-            m_MonFill.SetActive(true);
-            m_PlayerFill.SetActive(true);
-            
-            if (m_Player.FExp != 0)
-            {
-                m_ExpFill.SetActive(true);
-                m_PlayerExp.size = m_Player.FExp / 100.0f;
-            }
-            else
-            {
-                m_ExpFill.SetActive(false);
-                m_PlayerExp.size = 0;
-            }
-            m_MonHp.size = m_MonHp.value;
-            m_PlayerHp.size = m_PlayerHp.value;
+            m_ExpFill.SetActive(true);
+            m_PlayerExp.size = m_Player.FExp / 100.0f;
         }
+        else
+        {
+            m_ExpFill.SetActive(false);
+            m_PlayerExp.size = 0;
+        }
+        m_MonHp.size = m_MonHp.value;
+        m_PlayerHp.size = m_PlayerHp.value;
+    }
+    private void UISetting()
+    {
+        //체력바 셋팅
+        if (m_iDmg == -1)
+            UIInitialize();
         else
         {
             if (m_iMonsterTurn < m_iPlayerTurn)//플레이어가 공격시
             {
-                if(!m_Player.bStun)
+                if (!m_Player.bStun)
                     m_MonHp.size -= (float)m_iDmg / m_Monster.getInfo().IMaxHp;
                 if (m_MonHp.size <= 0)
                 {
@@ -227,7 +229,7 @@ public class System_Battle : MonoBehaviour
                     }
                 }
             }
-            else if(m_iMonsterTurn> m_iPlayerTurn)// 몬스터가 공격시
+            else if (m_iMonsterTurn > m_iPlayerTurn)// 몬스터가 공격시
             {
                 m_PlayerHp.size -= (float)m_iDmg / m_Player.getInfo().IMaxHp;
 

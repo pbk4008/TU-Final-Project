@@ -42,6 +42,7 @@ public class BattleManager : MonoBehaviour
         m_BattleBegin.gameObject.SetActive(false);
         m_SpawnSystem.enabled = true;
         m_SpawnSystem.MonsterSpawn();
+        m_BattleSystem.UIInitialize();
         yield return new WaitForSeconds(2.0f);
         m_BattleSystem.BBattle = true;
         yield return new WaitUntil(() => m_bRoundClear);

@@ -14,7 +14,7 @@ public class functions : MonoBehaviour
             res = false;
         return res;
     }
-    public static void Singleton<T>(T argInstance)
+    /*public static void Singleton<T>(T argInstance)
     {
         if (argInstance != null)
         {
@@ -23,5 +23,5 @@ public class functions : MonoBehaviour
         }
         argInstance = this;
         DontDestroyOnLoad(argInstance);
-    }
+    }*/
 }

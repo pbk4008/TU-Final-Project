@@ -18,14 +18,13 @@ public class Monster : Character
     {
         tr = GetComponent<Transform>();
         m_vfirstZone = gameObject.transform.position;
+        MonsterActive();
+    }
+    public void MonsterActive()
+    {
         StartCoroutine(this.FSM());
     }
-
     // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void SetInfo(int argIndex)
     {
         FileStream fs = new FileStream("Monster.txt", FileMode.Open, FileAccess.Read);
