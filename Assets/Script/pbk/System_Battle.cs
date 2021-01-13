@@ -35,6 +35,7 @@ public class System_Battle : MonoBehaviour
     private int m_iStage;
     private BATTLE_PROCESS m_eBattleProcess;//배틀 처리 변수
     private bool m_bBattle;//배틀 시작 판단
+    private bool m_bRunStage;
 
     [SerializeField]
     private Boss m_Boss;// 보스 정보 가져오기 - 손준호
@@ -69,6 +70,7 @@ public class System_Battle : MonoBehaviour
         m_PlayerFill = GameObject.Find("PlayerFill");
         m_ExpFill = GameObject.Find("ExpFill");
         BtnManager.attack += AttackToHit;
+        BtnManager.run += Run;
         m_bBossSkillOn = false; //보스 스킬 사용하기 - 손준호
         m_bBattle = false;
         StartCoroutine(BattleProcess());
@@ -112,6 +114,7 @@ public class System_Battle : MonoBehaviour
         m_tPlayerSpeed.transform.position = PlayerSpeedpos;
         m_tMonSpeed.transform.position = MonSpeedpos;
         m_eBattleProcess = BATTLE_PROCESS.DURING;
+        Debug.Log(m_Monster.getInfo().SName);
     }
     private void Battle()//전투중
     {
@@ -171,8 +174,8 @@ public class System_Battle : MonoBehaviour
     }
     public void UIInitialize()
     {
-        m_MonHp.value = m_Monster.getInfo().IMaxHp / m_Monster.getInfo().IMaxHp;
-        m_PlayerHp.value = m_Player.getInfo().IMaxHp / m_Player.getInfo().IMaxHp;
+        m_MonHp.value = m_Monster.getInfo().ICurrentHp / m_Monster.getInfo().IMaxHp;
+        m_PlayerHp.value = m_Player.getInfo().ICurrentHp / m_Player.getInfo().IMaxHp;
         m_PlayerExp.value = 1;
 
         m_MonFill.SetActive(true);
@@ -346,5 +349,24 @@ public class System_Battle : MonoBehaviour
             tmpExp *= 0.5f;
         m_Player.FExp += tmpExp;
         m_PlayerExp.size = m_Player.FExp / 100.0f;
+    }
+    private void Run()
+    {
+        bool Runres=functions.Percentage(100);
+        if(Runres)
+        {
+            m_Player.IRunCount++;
+            if (m_Player.IRunCount == 3)
+            {
+                m_Player.IRunCount = 0;
+                m_BattleMgr.EClear = BATTLE_CLEAR.RUN;
+                return;
+            }
+            m_BattleMgr.BRoundClear = true;
+            m_bBattle = false;
+            m_Monster.gameObject.SetActive(false);
+            BattleReset();
+        }
+
     }
 }

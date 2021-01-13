@@ -11,12 +11,11 @@ public class BattleManager : MonoBehaviour
     private System_Spawn m_SpawnSystem;
     [SerializeField]
     private System_BattleBegin m_BattleBegin;
-    private bool m_bClear;//던전클리어
+    private BATTLE_CLEAR m_eClear;//던전클리어
     private bool m_bRoundClear;
 
     public bool BRoundClear { get => m_bRoundClear; set => m_bRoundClear = value; }
-    public bool BClear { get => m_bClear; set => m_bClear = value; }
-
+    public BATTLE_CLEAR EClear { get => m_eClear; set => m_eClear = value; }
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +23,7 @@ public class BattleManager : MonoBehaviour
         m_SpawnSystem = GetComponent<System_Spawn>();
         m_Player = GameObject.FindWithTag("Player");
         m_bRoundClear = false;
+        m_eClear = BATTLE_CLEAR.END;
         BattleCreate();
     }
     private void BattleCreate()
@@ -47,9 +47,21 @@ public class BattleManager : MonoBehaviour
         m_BattleSystem.BBattle = true;
         yield return new WaitUntil(() => m_bRoundClear);
         yield return new WaitForSeconds(2.0f);
-        m_BattleBegin.moveCurrentRoundUI();
-        if (m_bClear)
-            SceneManager.LoadScene(1);
+        if (m_Player.GetComponent<Player>().IRunCount == 0)
+        {
+            m_BattleBegin.moveCurrentRoundUI();
+            switch (m_eClear)
+            {
+                case BATTLE_CLEAR.RUN:
+                    SceneManager.LoadScene(1);
+                    break;
+                case BATTLE_CLEAR.CLEAR:
+                    SceneManager.LoadScene(1);
+                    break;
+                case BATTLE_CLEAR.END:
+                    break;
+            }
+        }
         BattleCreate();
     }
 }

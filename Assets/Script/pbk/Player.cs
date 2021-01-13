@@ -18,6 +18,7 @@ public class Player : Character
 
     private int m_iMoney;
     private float m_fExp;
+    private int m_iRunCount;
     public ref tagStat getStat() { return ref m_Stat; }
     private bool m_bButtonClick;//버튼 클릭했는지 안했는지 판단
     private bool[] m_bDeeffect = new bool[3]; //지속딜 받기 - 손준호
@@ -28,6 +29,7 @@ public class Player : Character
     public bool BButtonClick { get => m_bButtonClick; set => m_bButtonClick = value; }
     public bool bStun { get => m_bStun; set => m_bStun = value; }
     public System_LevelUp LevelUp_System { get => m_LevelUp_System; set => m_LevelUp_System = value; }
+    public int IRunCount { get => m_iRunCount; set => m_iRunCount = value; }
 
     private System_LevelUp m_LevelUp_System;
 
@@ -47,6 +49,7 @@ public class Player : Character
     {
         m_bButtonClick = false;
         m_bLive = true;
+        m_iRunCount = 0;
         tagSetting("곰돌이", 1, 3, 3, 50, 1, 5, 1.1f);//플레이어 셋팅
         statSetting();
         m_AnimTrigger = ANIMTRIGGER.IDLE;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using enums;
 
 public class System_BattleBegin : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class System_BattleBegin : MonoBehaviour
         m_iCurrentRound++;
         if (m_iCurrentRound == m_iRound+1)
         {
-            m_BattleMgr.BClear = true;
+            m_BattleMgr.EClear = BATTLE_CLEAR.CLEAR;
             return;
         }
         Debug.Log(m_iCurrentRound);
