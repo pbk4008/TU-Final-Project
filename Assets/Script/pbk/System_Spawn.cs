@@ -26,6 +26,7 @@ public class System_Spawn : MonoBehaviour
     {
         m_Monster.gameObject.SetActive(true);
         m_Monster.BLive = true;
+        m_Boss.BLive = true;
 
         switch (m_iFloor)
         {

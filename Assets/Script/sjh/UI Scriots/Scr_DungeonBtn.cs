@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using enums;
 
 public class Scr_DungeonBtn : MonoBehaviour
 {
+    private Canvas Cvs_UI;
+
     //----------------------던전 부분
     [SerializeField] private Button[] DungeonButton = new Button[21]; //버튼들
     [SerializeField] private Text[] T_DungeonText = new Text[10]; //텍스트들
@@ -32,9 +35,10 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private Text[] T_QuestSelect = new Text[3]; //퀘스트 수락 버튼 텍스트
     [SerializeField] private Image Img_Quest; //퀘스트 이미지
 
-    private string m_iGrade;     //퀘스트 등급
+    private string[] m_iGrade = new string[3];     //퀘스트 등급
     private bool[] m_bLockQuest = new bool[3]; //퀘스트 선택하면 다시 돌리지 못하게 하는 변수
     private int m_iRandomNum;//확률지정
+    private QUEST_TYPE[] m_eQuestType = new QUEST_TYPE[3];
 
     private int[] m_iCurrentMonsterCount = new int[3]; //퀘스트 받고 나서의 플레이어의 현재 잡은 몬스터 값
     private int[] m_iCurrentBossCount = new int[3];      //퀘스트 받고 나서의 플레이어의 현재 잡은 보스 값
@@ -72,12 +76,26 @@ public class Scr_DungeonBtn : MonoBehaviour
     //---------------------불러오기 부분
     [SerializeField] private Button LoadButton;
 
+    private static Scr_DungeonBtn m_Instance;
+    private LobbyUI m_LUI;
+    private Scene m_Scene;
+
+    private void Awake() //싱글톤 DontDestroy시 원래 씬으로 돌아왔을때 오브젝트 중복 피하기
+    {
+       if (m_Instance != null)
+       {
+           Destroy(gameObject);
+           return;
+       }
+        m_Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
+        m_LUI = GameObject.Find("Cvs_UI").GetComponent<LobbyUI>();
         StartCoroutine(ButtonCoroutine());
         m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-
-        DontDestroyOnLoad(gameObject);
         //던전 스테이지 막기
         m_bStage[0] = new bool[] { true, false, false, false, true };
         m_bStage[1] = new bool[] { false, false, false, false, true };
@@ -289,6 +307,13 @@ public class Scr_DungeonBtn : MonoBehaviour
                 }
             }
             sOnClick = false;
+            m_Scene = SceneManager.GetActiveScene();
+
+            if (m_Scene.name == "Lobby")
+                m_LUI.gameObject.SetActive(true);
+            else
+                m_LUI.gameObject.SetActive(false);
+
             yield return ftimer;
         }
     }
@@ -381,6 +406,9 @@ public class Scr_DungeonBtn : MonoBehaviour
 
         if (m_bStage[m_iFloor][m_iStage] == true)
         {
+            SetActive(0, 0, 0, 10, 20);
+            Img_Dungeon.gameObject.SetActive(false);
+            ActiveButton(1);
             SceneManager.LoadScene("Duengeon"); //Scene2로 이동한다.
         }
         else
@@ -388,7 +416,7 @@ public class Scr_DungeonBtn : MonoBehaviour
     }
 
     //퀘스트 스크립트
-    private void SettingQuest() //퀘스트 셋팅
+    public void SettingQuest() //퀘스트 셋팅
     {
         for (int i = 0; i < 3; i++) //3번 반복
         {
@@ -396,11 +424,11 @@ public class Scr_DungeonBtn : MonoBehaviour
             {
                 m_iRandomNum = Random.Range(1, 101);                       //1~100의 랜덤 값 지정으로 등급 정하기
                 if (m_iRandomNum > 1 && m_iRandomNum <= 60)
-                    m_iGrade = "Normal";
+                    m_iGrade[i] = "Normal";
                 else if (m_iRandomNum > 60 && m_iRandomNum <= 90)
-                    m_iGrade = "Special";
+                    m_iGrade[i] = "Special";
                 else if (m_iRandomNum > 90 && m_iRandomNum <= 100)
-                    m_iGrade = "Epic";
+                    m_iGrade[i] = "Epic";
 
                 m_iQuest[i] = Random.Range(1, 4);  //1~3 랜덤값 부여로 퀘스트 종류 정하기
                                                    //1 = 보스 몬스터, //2 = 일반 몬스터, //3 = 기타 아이템
@@ -408,36 +436,137 @@ public class Scr_DungeonBtn : MonoBehaviour
                 switch (m_iQuest[i]) //퀘스트 종류에 따라
                 {
                     case 1: // 1 = 보스 몬스터
-                        if (m_iGrade == "Normal")         //등급에 따라 목표 달성량이 달라짐
+                        m_eQuestType[i] = QUEST_TYPE.BOSS;
+                        if (m_iGrade[i] == "Normal")         //등급에 따라 목표 달성량이 달라짐
                             m_iGoalCount[i] = 1;
-                        else if (m_iGrade == "Special")
+                        else if (m_iGrade[i] == "Special")
                             m_iGoalCount[i] = 3;
-                        else if (m_iGrade == "Epic")
+                        else if (m_iGrade[i] == "Epic")
                             m_iGoalCount[i] = 5;
-                        T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade + "]" + "보스 몬스터 " + m_iGoalCount[i] + "마리 잡아오기\n" //퀘스트 목표 텍스트
+                        T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade[i] + "]" + "보스 몬스터 " + m_iGoalCount[i] + "마리 잡아오기\n" //퀘스트 목표 텍스트
                             + "진행도 : ( " + m_iCurrentBossCount[i] + " / " + m_iGoalCount[i] + ")";
                         break;
                     case 2: // 2 = 일반 몬스터
-                        if (m_iGrade == "Normal")       //등급에 따라 목표 달성량이 달라짐
-                            m_iGoalCount[i] = 5;
-                        else if (m_iGrade == "Special")
-                            m_iGoalCount[i] = 15;
-                        else if (m_iGrade == "Epic")
-                            m_iGoalCount[i] = 30;
-                        T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade + "]" + "일반 몬스터 " + m_iGoalCount[i] + "마리 잡아오기\n" //퀘스트 목표 텍스트
+                        m_eQuestType[i] = QUEST_TYPE.MONSTER;
+                        if (m_iGrade[i] == "Normal")       //등급에 따라 목표 달성량이 달라짐
+                            m_iGoalCount[i] = 2;
+                        else if (m_iGrade[i] == "Special")
+                            m_iGoalCount[i] = 2;
+                        else if (m_iGrade[i] == "Epic")
+                            m_iGoalCount[i] = 2;
+                        T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade[i] + "]" + "일반 몬스터 " + m_iGoalCount[i] + "마리 잡아오기\n" //퀘스트 목표 텍스트
                             + "진행도 : ( " + m_iCurrentMonsterCount[i] + " / " + m_iGoalCount[i] + ")";
                         break;
                     case 3: // 3 = 기타 아이템
-                        if (m_iGrade == "Normal")       //등급에 따라 목표 달성량이 달라짐
+                        m_eQuestType[i] = QUEST_TYPE.ITEM;
+                        if (m_iGrade[i] == "Normal")       //등급에 따라 목표 달성량이 달라짐
                             m_iGoalCount[i] = 30;
-                        else if (m_iGrade == "Special")
+                        else if (m_iGrade[i] == "Special")
                             m_iGoalCount[i] = 50;
-                        else if (m_iGrade == "Epic")
+                        else if (m_iGrade[i] == "Epic")
                             m_iGoalCount[i] = 100;
-                        T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade + "]" + "기타 아이템 " + m_iGoalCount[i] + "개 모아오기\n" //퀘스트 목표 텍스트
+                        T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade[i] + "]" + "기타 아이템 " + m_iGoalCount[i] + "개 모아오기\n" //퀘스트 목표 텍스트
                             + "진행도 : ( " + m_iCurrentEtcItemCount[i] + " / " + m_iGoalCount[i] + ")";
                         break;
                 }
+            }
+        }
+    }
+    public void PlusQuestMonster()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (m_eQuestType[i] == QUEST_TYPE.MONSTER && m_bLockQuest[i] == false)
+                m_iCurrentMonsterCount[i]++;
+            Debug.Log(m_iCurrentMonsterCount[i]);
+        }
+    }
+    public void PlusQuestBoss()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if(m_eQuestType[i] == QUEST_TYPE.BOSS && m_bLockQuest[i] == false)
+                m_iCurrentBossCount[i]++;
+        }
+    }
+    public void PlusQuestEtcItem()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if(m_eQuestType[i] == QUEST_TYPE.ITEM && m_bLockQuest[i] == false)
+                m_iCurrentEtcItemCount[i]++;
+        }
+    }
+    public void RewardQuest()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            switch(m_eQuestType[i])
+            {
+                case QUEST_TYPE.BOSS:
+                    if (m_iCurrentBossCount[i] >= m_iGoalCount[i])
+                    {
+                        switch (m_iGrade[i])
+                        {
+                            case "Normal":
+                                m_Player.IMoney += 100;
+                                break;
+                            case "Special":
+                                m_Player.IMoney += 300;
+                                break;
+                            case "Epic":
+                                m_Player.IMoney += 700;
+                                break;
+                        }
+                        m_iCurrentBossCount[i] = 0;
+                        m_bLockQuest[i] = true;
+                        T_QuestSelect[i].GetComponent<Text>().text = "수락";
+                    }
+                    break;
+                case QUEST_TYPE.MONSTER:
+                    if (m_iCurrentMonsterCount[i] >= m_iGoalCount[i])
+                    {
+                        Debug.Log(m_Player.IMoney);
+                        switch (m_iGrade[i])
+                        {
+                            case "Normal":
+                                m_Player.IMoney += 50;
+
+                                break;
+                            case "Special":
+                                m_Player.IMoney += 100;
+                                break;
+                            case "Epic":
+                                m_Player.IMoney += 500;
+                                break;
+                        }
+                        Debug.Log(m_Player.IMoney);
+                        Debug.Log("보상 받음");
+                        m_iCurrentMonsterCount[i] = 0;
+                        m_bLockQuest[i] = true;
+                        T_QuestSelect[i].GetComponent<Text>().text = "수락";
+                    }
+                    break;
+                case QUEST_TYPE.ITEM:
+                    if (m_iCurrentEtcItemCount[i] >= m_iGoalCount[i])
+                    {
+                        switch (m_iGrade[i])
+                        {
+                            case "Normal":
+                                m_Player.IMoney += 300;
+                                break;
+                            case "Special":
+                                m_Player.IMoney += 500;
+                                break;
+                            case "Epic":
+                                m_Player.IMoney += 1000;
+                                break;
+                        }
+                        m_iCurrentEtcItemCount[i] = 0;
+                        m_bLockQuest[i] = true;
+                        T_QuestSelect[i].GetComponent<Text>().text = "수락";
+                    }
+                    break;
             }
         }
     }

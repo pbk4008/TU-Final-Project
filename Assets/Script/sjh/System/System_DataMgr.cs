@@ -19,7 +19,6 @@ public class System_DataMgr : MonoBehaviour
     }
     public void Update()
     {
-        m_StatCal.CalculStat(); //스텟계산
         if (m_Player.BLive == false) //플레이어가 죽으면
         {
             //persistentDataPath 속성은 파일을 읽고 쓸 수 있는 폴더의 경로를 반환
@@ -66,6 +65,7 @@ public class System_DataMgr : MonoBehaviour
             m_Player.getInfo().setLevel(ref m_Player.getInfo(), data.ILevel);
             m_Player.IMoney = data.IMoney;
             file.Close();
+            m_StatCal.CalculStat(); //스텟계산
 
             return data;
         }

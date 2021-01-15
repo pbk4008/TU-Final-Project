@@ -18,10 +18,10 @@ public class functions : MonoBehaviour
     {
         if (argInstance != null)
         {
-            Destroy(gameObject);
+         //   Destroy(gameObject);
             return;
         }
-        argInstance = this;
-        DontDestroyOnLoad(argInstance);
+        //argInstance = this;
+        //DontDestroyOnLoad(argInstance);
     }
 }
