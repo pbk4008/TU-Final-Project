@@ -109,8 +109,8 @@ public class System_Battle : MonoBehaviour
         Vector3 MonSpeedpos = m_Monster.VfirstZone;
 
         //공격속도 플레이어 및 몬스터 머리위에 띄우기(몬스터의 크기가 다르기 때문)
-        PlayerSpeedpos.y += m_Player.gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y/2+0.5f;
-        MonSpeedpos.y += m_Monster.gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y/2+0.5f;
+        PlayerSpeedpos.y += functions.CalculSpriteVerticalSize(m_Player.gameObject)/2 + 0.5f;
+        MonSpeedpos.y += functions.CalculSpriteVerticalSize(m_Monster.gameObject)/2+0.5f;
         m_tPlayerSpeed.transform.position = PlayerSpeedpos;
         m_tMonSpeed.transform.position = MonSpeedpos;
         m_eBattleProcess = BATTLE_PROCESS.DURING;
@@ -174,6 +174,9 @@ public class System_Battle : MonoBehaviour
     }
     public void UIInitialize()
     {
+        //m_MonImg.sprite = Resources.Load<Sprite>("Monster/monster "+ m_Monster.IMonNum+" Head");
+        m_MonImg.sprite = m_Monster.SprMain;
+        m_MonImg.color = new Color32(255, 255, 255, 255);
         m_MonHp.value = m_Monster.getInfo().ICurrentHp / m_Monster.getInfo().IMaxHp;
         m_PlayerHp.value = m_Player.getInfo().ICurrentHp / m_Player.getInfo().IMaxHp;
         m_PlayerExp.value = 1;
@@ -285,6 +288,7 @@ public class System_Battle : MonoBehaviour
         if (m_iMonsterTurn < m_iPlayerTurn)
         {
             CalculDmg(m_Player, m_Monster);
+            m_Monster.AnimTrigger = ANIMTRIGGER.HIT;
         }
         else
             CalculDmg(m_Monster, m_Player);

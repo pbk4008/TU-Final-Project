@@ -62,32 +62,32 @@ public class System_BattleBegin : MonoBehaviour
     {
         Transform argTr = argObj.GetComponent<Transform>();
         Vector3 argPosition = argTr.position;
-        argPosition.x -= CalculSpriteHorizontalSize(gameObject)/2;
-        argPosition.y -= CalculSpriteVerticalSize(gameObject)/2;
-        float hbor= CalculSpriteHorizontalSize(argObj) + CalculSpriteHorizontalSize(gameObject);
+        argPosition.x -= functions.CalculSpriteHorizontalSize(gameObject)/2;
+        argPosition.y -= functions.CalculSpriteVerticalSize(gameObject)/2;
+        float hbor= functions.CalculSpriteHorizontalSize(argObj) + functions.CalculSpriteHorizontalSize(gameObject);
         if (m_iRound < 6)
         {
             hbor /= m_iRound+1;
-            argPosition.x += (hbor * (argindex + 1)) - CalculSpriteHorizontalSize(argObj)/2;
-            argPosition.y += CalculSpriteVerticalSize(gameObject)/2;
+            argPosition.x += (hbor * (argindex + 1)) - functions.CalculSpriteHorizontalSize(argObj)/2;
+            argPosition.y += functions.CalculSpriteVerticalSize(gameObject)/2;
         }
         else
         {
-            float vbor = CalculSpriteVerticalSize(argObj) + CalculSpriteVerticalSize(gameObject);
+            float vbor = functions.CalculSpriteVerticalSize(argObj) + functions.CalculSpriteVerticalSize(gameObject);
             vbor /= 3;
             if (m_iRound==7)//x위치
             {
                 if (argindex<4)
                 {
                     hbor /= 5; 
-                    argPosition.x += (hbor * (argindex + 1)) - CalculSpriteHorizontalSize(argObj)/2;
-                    argPosition.y += vbor - CalculSpriteVerticalSize(argObj) / 2;
+                    argPosition.x += (hbor * (argindex + 1)) - functions.CalculSpriteHorizontalSize(argObj)/2;
+                    argPosition.y += vbor - functions.CalculSpriteVerticalSize(argObj) / 2;
                 }
                 else
                 {
                     hbor /= 4;
-                    argPosition.x += (hbor * (argindex-3)) - CalculSpriteHorizontalSize(argObj) / 2;
-                    argPosition.y += vbor * 2 - CalculSpriteVerticalSize(argObj) / 2;
+                    argPosition.x += (hbor * (argindex-3)) - functions.CalculSpriteHorizontalSize(argObj) / 2;
+                    argPosition.y += vbor * 2 - functions.CalculSpriteVerticalSize(argObj) / 2;
                 }
 
             }
@@ -96,24 +96,17 @@ public class System_BattleBegin : MonoBehaviour
                 hbor /= 6;
                 if (argindex < 5)
                 {
-                    argPosition.x += (hbor * (argindex + 1)) - CalculSpriteHorizontalSize(argObj) / 2;
-                    argPosition.y += vbor - CalculSpriteVerticalSize(argObj) / 2;
+                    argPosition.x += (hbor * (argindex + 1)) - functions.CalculSpriteHorizontalSize(argObj) / 2;
+                    argPosition.y += vbor - functions.CalculSpriteVerticalSize(argObj) / 2;
                 }
                 else
                 {
-                    argPosition.x += (hbor * (argindex - 5 + 1)) - CalculSpriteHorizontalSize(argObj) / 2;
-                    argPosition.y += vbor * 2 - CalculSpriteVerticalSize(argObj) / 2;
+                    argPosition.x += (hbor * (argindex - 5 + 1)) - functions.CalculSpriteHorizontalSize(argObj) / 2;
+                    argPosition.y += vbor * 2 - functions.CalculSpriteVerticalSize(argObj) / 2;
                 }
             }
         }
         argTr.position = argPosition;
     }
-    private float CalculSpriteHorizontalSize(GameObject argObj)
-    {
-        return argObj.GetComponent<SpriteRenderer>().sprite.bounds.size.x * argObj.GetComponent<Transform>().localScale.x;
-    }
-    private float CalculSpriteVerticalSize(GameObject argObj)
-    {
-        return argObj.GetComponent<SpriteRenderer>().sprite.bounds.size.y * argObj.GetComponent<Transform>().localScale.y;
-    }
+    
 }

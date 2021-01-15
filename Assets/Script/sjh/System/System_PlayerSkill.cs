@@ -23,10 +23,10 @@ public class System_PlayerSkill : MonoBehaviour
         DuengeonCvs[0] = GameObject.Find("Cvs_Button"); //캔버스 지정
         DuengeonCvs[1] = GameObject.Find("Cvs_LevelUpText"); //캔버스 지정
         m_iturn = 1; //전투가 일어나면 현재턴을 1로 함
+        m_Player = gameObject.GetComponent<Player>(); //플레이어 스크립트 가져오기
     }
     private void Update()
     {
-        m_Player = GameObject.FindWithTag("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
         if (bOnClick) //버튼을 클릭했으면
         {
             switch (sButtonName) //버튼 이름에 따라 실행문 실행
