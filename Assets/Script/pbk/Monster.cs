@@ -9,24 +9,25 @@ public class Monster : Character
 {
     private GRADE_MON m_eType;
     private Transform tr;
+    private Sprite m_HitSprite;
+    private int m_iMonNum;
     [SerializeField]
     private Boss m_Boss;
     public GRADE_MON EType { get => m_eType; set => m_eType = value; }
+    public Sprite SprMain { get => m_SprMain; set => m_SprMain = value; }
+    public int IMonNum { get => m_iMonNum; set => m_iMonNum = value; }
 
     // Start is called before the first frame update
-    void Start()
+    public void MonsterActive()
     {
         tr = GetComponent<Transform>();
         m_vfirstZone = gameObject.transform.position;
-        MonsterActive();
-    }
-    public void MonsterActive()
-    {
         StartCoroutine(this.FSM());
     }
     // Update is called once per frame
     public void SetInfo(int argIndex)
     {
+        m_iMonNum = argIndex;
         FileStream fs = new FileStream("Monster.txt", FileMode.Open, FileAccess.Read);
         StreamReader sr = new StreamReader(fs);
         string tmpString = sr.ReadLine();
@@ -37,7 +38,12 @@ public class Monster : Character
         m_Info.SName = sr.ReadLine();
         SetTypeStatus(sr.ReadLine());
         //아이템 이름
-        
+        Debug.Log(m_SprMain);
+        m_SprMain = Resources.Load<Sprite>("Monster/monster "+ argIndex);
+        Debug.Log(m_SprMain);
+        m_sprRender = GetComponent<SpriteRenderer>();
+        m_sprRender.sprite = m_SprMain;
+        m_HitSprite = Resources.Load<Sprite>("Monster/monster " + argIndex + " Hit");
     }
     private void SetTypeStatus(string argType)
     {
@@ -89,15 +95,18 @@ public class Monster : Character
             {
                 case ANIMTRIGGER.IDLE:
                     tr.position = m_vfirstZone;
+                    m_sprRender.sprite = m_SprMain;
                     break;
                 case ANIMTRIGGER.ATTACK:
                     GameObject target = GameObject.FindWithTag("Player");
                     tr.position = target.transform.position;
                     break;
+                case ANIMTRIGGER.HIT:
+                    m_sprRender.sprite = m_HitSprite;
+                    break;
                 case ANIMTRIGGER.SKILL:
                     break;
             }
-            //StartCoroutine(base.FSM());
             yield return new WaitForSeconds(0.09f);
         }
     }

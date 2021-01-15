@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     protected tagInfo m_Info = new tagInfo();//기본 정보 구조체
     protected SpriteRenderer m_sprRender;//기본 SpriteRenderer
-    protected Sprite m_Sprite;//기본 Sprite
+    protected Sprite m_SprMain;//기본 Sprite
     protected Animator m_Animator;//기본 Animator
     protected AudioSource m_Audio;//기본 Audio;
     public ref tagInfo getInfo() { return ref m_Info; }
@@ -18,6 +18,7 @@ public class Character : MonoBehaviour
     public ANIMTRIGGER AnimTrigger { get => m_AnimTrigger; set => m_AnimTrigger = value; }
     public bool BLive { get => m_bLive; set => m_bLive = value; }
     public Vector3 VfirstZone { get => m_vfirstZone; set => m_vfirstZone = value; }
+    
 
     protected Vector3 m_vfirstZone;
 

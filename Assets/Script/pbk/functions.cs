@@ -14,6 +14,14 @@ public class functions : MonoBehaviour
             res = false;
         return res;
     }
+    public static float CalculSpriteHorizontalSize(GameObject argObj)
+    {
+        return argObj.GetComponent<SpriteRenderer>().sprite.bounds.size.x * argObj.GetComponent<Transform>().localScale.x;
+    }
+    public static float CalculSpriteVerticalSize(GameObject argObj)
+    {
+        return argObj.GetComponent<SpriteRenderer>().sprite.bounds.size.y * argObj.GetComponent<Transform>().localScale.y;
+    }
     /*public static void Singleton<T>(T argInstance)
     {
         if (argInstance != null)

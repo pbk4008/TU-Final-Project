@@ -9,4 +9,5 @@ namespace enums
     public enum BOSSSKILL { FIRE, STUN, BLEEDING, SLOW, POISON, STONING, FREEZE }
     public enum GRADE_MON { BASE, MASIC, DEF, RARE, BOSS}
     public enum BATTLE_PROCESS { BEFORE, DURING , END}
+    public enum BATTLE_CLEAR { RUN, CLEAR,END}
 }
