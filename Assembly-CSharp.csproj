@@ -74,6 +74,7 @@
     <Compile Include="Assets\Script\pbk\structs.cs" />
     <Compile Include="Assets\Script\pbk\BattleManager.cs" />
     <Compile Include="Assets\Script\sjh\UI Scriots\Scr_DungeonBtn.cs" />
+    <Compile Include="Assets\Script\sjh\LobbyUI.cs" />
     <Compile Include="Assets\Script\pbk\System_Spawn.cs" />
     <Compile Include="Assets\Script\sjh\Singleton.cs" />
     <Compile Include="Assets\Script\pbk\System_LevelUp.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Assets\Script\sjh\UI Scriots\Scr_ButtonName.cs" />
     <Compile Include="Assets\Script\sjh\System\System_DataMgr.cs" />
     <Compile Include="Assets\Script\pbk\BtnManager.cs" />
-    <Compile Include="Assets\Script\sjh\LobbyUI.cs" />
     <None Include="Assets\Script\sjh\sjh.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/TiPiRu/Documents/TU-Final-Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

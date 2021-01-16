@@ -33,9 +33,4 @@ public class functions : MonoBehaviour
         argInstance = this;
         DontDestroyOnLoad(argInstance);
     }*/
-=======
-        //argInstance = this;
-        //DontDestroyOnLoad(argInstance);
-    }
->>>>>>> feature/QuestUpdate
 }

@@ -40,14 +40,8 @@ public class Player : Character
             Destroy(gameObject);
             return;
         }
-<<<<<<< HEAD
         m_Instance = this;
         DontDestroyOnLoad(m_Instance);
-        //functions.Singleton<Player>(m_Instance);
-=======
-       m_Instance = this;
-        DontDestroyOnLoad(m_Instance);
->>>>>>> feature/QuestUpdate
     }
 
     void Start()
