@@ -8,7 +8,7 @@ public class System_PlayerSkill : MonoBehaviour
 {
     Player m_Player; //플레이어 정보를 가져올 변수 
     Monster m_Monster; //몬스터 정보를 가져올 변수
-    GameObject[] DuengeonCvs = new GameObject[2]; //던전 씬에 있는 캔버스 2개
+    GameObject DuengeonCvs;  //던전 씬에 있는 캔버스 1개
     private string m_sButtonName; //버튼 이름
     private bool m_bOnClick; //버튼을 클릭했는가
     private int m_iturn; //현재 턴
@@ -20,18 +20,18 @@ public class System_PlayerSkill : MonoBehaviour
 
     private void Start()
     {
-        DuengeonCvs[0] = GameObject.Find("Cvs_Button"); //캔버스 지정
-        DuengeonCvs[1] = GameObject.Find("Cvs_LevelUpText"); //캔버스 지정
+        DuengeonCvs = GameObject.Find("TextCanvas"); //캔버스 지정
         m_iturn = 1; //전투가 일어나면 현재턴을 1로 함
-        m_Player = gameObject.GetComponent<Player>(); //플레이어 스크립트 가져오기
+        m_Player = GameObject.Find("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
     }
     private void Update()
     {
         if (bOnClick) //버튼을 클릭했으면
         {
+            Debug.Log(m_Player.getInfo().ILevel);
             switch (sButtonName) //버튼 이름에 따라 실행문 실행
             {
-                case "Btn_PlayerSkill": //플레이어 스킬 UI 띄우기
+                case "Skill": //플레이어 스킬 UI 띄우기
                     PlayerSkillSet(PLAYERSKILL.START);
                     break;
                 case "Btn_JamJam": //잼잼펀치
@@ -53,9 +53,9 @@ public class System_PlayerSkill : MonoBehaviour
                     PlayerSkillSet(PLAYERSKILL.END);
                     break;
                 case "Btn_SkillErrorExit":
-                    DuengeonCvs[1].transform.GetChild(4).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
-                    DuengeonCvs[1].transform.GetChild(5).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
-                    DuengeonCvs[1].transform.GetChild(6).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
+                    DuengeonCvs.transform.GetChild(8).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
+                    DuengeonCvs.transform.GetChild(9).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
+                    DuengeonCvs.transform.GetChild(10).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
                     break;
                 case "Btn_Turn": //턴 증가
                     m_iturn++;
@@ -76,15 +76,14 @@ public class System_PlayerSkill : MonoBehaviour
 
     void PlayerSkillSet(PLAYERSKILL ePlayerSkill) //스킬 셋팅
     {
-        if (m_iturn != 1) //현재 턴이 첫번째 턴이라면
+        System_Battle SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
+        if (SB.iRound != 1) //현재 턴이 첫번째 턴이라면
         {
             switch (ePlayerSkill)
             {
                 case PLAYERSKILL.START:
-                    for (int i = 11; i <= 16; i++)
-                        DuengeonCvs[0].transform.GetChild(i).gameObject.SetActive(true); //플레이어 스킬 UI 띄우기
-                    DuengeonCvs[1].transform.GetChild(2).gameObject.SetActive(true); //플레이어 스킬 UI 띄우기
-                    DuengeonCvs[1].transform.GetChild(3).gameObject.SetActive(true); //플레이어 스킬 UI 띄우기
+                    for(int i=0;i<8;i++)
+                        DuengeonCvs.transform.GetChild(i).gameObject.SetActive(true); //플레이어 스킬 UI 띄우기
                     break;
                 case PLAYERSKILL.JAMJAM: //잼잼펀치
                     if (m_Player.getInfo().ILevel >= 1 && m_Cooltime[0] == 0)
@@ -117,12 +116,8 @@ public class System_PlayerSkill : MonoBehaviour
                         SkillError(PLAYERSKILL.UCHE);
                     break;
                 case PLAYERSKILL.END: //플레이어 스킬 UI정리
-                    DuengeonCvs[0] = GameObject.Find("Cvs_Button"); //캔버스 지정
-                    for (int i = 11; i <= 16; i++)
-                        DuengeonCvs[0].transform.GetChild(i).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
-                    DuengeonCvs[1] = GameObject.Find("Cvs_LevelUpText"); //캔버스 지정
-                    DuengeonCvs[1].transform.GetChild(2).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
-                    DuengeonCvs[1].transform.GetChild(3).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
+                    for (int i = 0; i <= 10; i++)
+                        DuengeonCvs.transform.GetChild(i).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
                     solveBuff();
                     break;
             }
@@ -186,50 +181,50 @@ public class System_PlayerSkill : MonoBehaviour
 
     private void SkillError(PLAYERSKILL ePlayerSkill) //스킬 에러
     {
-        DuengeonCvs[1].transform.GetChild(4).gameObject.SetActive(true); //플레이어 스킬Error UI 띄우기
-        DuengeonCvs[1].transform.GetChild(5).gameObject.SetActive(true); //플레이어 스킬Error UI 띄우기
-        DuengeonCvs[1].transform.GetChild(6).gameObject.SetActive(true); //플레이어 스킬Error UI 띄우기
+        DuengeonCvs.transform.GetChild(8).gameObject.SetActive(true); //플레이어 스킬Error UI 띄우기
+        DuengeonCvs.transform.GetChild(9).gameObject.SetActive(true); //플레이어 스킬Error UI 띄우기
+        DuengeonCvs.transform.GetChild(10).gameObject.SetActive(true); //플레이어 스킬Error UI 띄우기
 
         switch(ePlayerSkill)
         {
             case PLAYERSKILL.START:
-                DuengeonCvs[1].transform.GetChild(5).GetComponent<Text>().text = "첫 번째 턴에는 스킬을 사용할 수 없습니다.";
+                DuengeonCvs.transform.GetChild(9).GetComponent<Text>().text = "첫 번째 턴에는 스킬을 사용할 수 없습니다.";
                 break;
             case PLAYERSKILL.JAMJAM:
                 if (m_Cooltime[0] != 0)
-                    DuengeonCvs[1].transform.GetChild(5).GetComponent<Text>().text = "현재 스킬 쿨타임 중입니다!\n"
+                    DuengeonCvs.transform.GetChild(9).GetComponent<Text>().text = "현재 스킬 쿨타임 중입니다!\n"
                         + "남은 쿨타임 : " + m_Cooltime[0];
                 break;
             case PLAYERSKILL.MAHA:
                 if (m_Cooltime[1] != 0)
-                    DuengeonCvs[1].transform.GetChild(5).GetComponent<Text>().text = "현재 스킬 쿨타임 중입니다!\n"
+                    DuengeonCvs.transform.GetChild(9).GetComponent<Text>().text = "현재 스킬 쿨타임 중입니다!\n"
                         + "남은 쿨타임 : " + m_Cooltime[1];
                 else if(m_Player.getInfo().ILevel < 5)
-                    DuengeonCvs[1].transform.GetChild(5).GetComponent<Text>().text = "레벨이 부족합니다!\n"
+                    DuengeonCvs.transform.GetChild(9).GetComponent<Text>().text = "레벨이 부족합니다!\n"
                         + "조건 : 플레이어 레벨 >= 5"; ;
                 break;
             case PLAYERSKILL.BUFF:
                 if (m_Cooltime[2] != 0)
-                    DuengeonCvs[1].transform.GetChild(5).GetComponent<Text>().text = "현재 스킬 쿨타임 중입니다!\n"
+                    DuengeonCvs.transform.GetChild(9).GetComponent<Text>().text = "현재 스킬 쿨타임 중입니다!\n"
                         + "남은 쿨타임 : " + m_Cooltime[2];
                 else if (m_Player.getInfo().ILevel < 15)
-                    DuengeonCvs[1].transform.GetChild(5).GetComponent<Text>().text = "레벨이 부족합니다!\n"
+                    DuengeonCvs.transform.GetChild(9).GetComponent<Text>().text = "레벨이 부족합니다!\n"
                         + "조건 : 플레이어 레벨 >= 15";
                 break;
             case PLAYERSKILL.DEBUFF:
                 if (m_Cooltime[3] != 0)
-                    DuengeonCvs[1].transform.GetChild(5).GetComponent<Text>().text = "현재 스킬 쿨타임 중입니다!\n"
+                    DuengeonCvs.transform.GetChild(9).GetComponent<Text>().text = "현재 스킬 쿨타임 중입니다!\n"
                         + "남은 쿨타임 : " + m_Cooltime[3];
                 else if (m_Player.getInfo().ILevel < 30)
-                    DuengeonCvs[1].transform.GetChild(5).GetComponent<Text>().text = "레벨이 부족합니다!\n"
+                    DuengeonCvs.transform.GetChild(9).GetComponent<Text>().text = "레벨이 부족합니다!\n"
                         + "조건 : 플레이어 레벨 >= 30";
                 break;
             case PLAYERSKILL.UCHE:
                 if (m_Cooltime[4] != 0)
-                    DuengeonCvs[1].transform.GetChild(5).GetComponent<Text>().text = "현재 스킬 쿨타임 중입니다!\n"
+                    DuengeonCvs.transform.GetChild(9).GetComponent<Text>().text = "현재 스킬 쿨타임 중입니다!\n"
                         + "남은 쿨타임 : " + m_Cooltime[4];
                 else if (m_Player.getInfo().ILevel < 50)
-                    DuengeonCvs[1].transform.GetChild(5).GetComponent<Text>().text = "레벨이 부족합니다!\n"
+                    DuengeonCvs.transform.GetChild(9).GetComponent<Text>().text = "레벨이 부족합니다!\n"
                         + "조건 : 플레이어 레벨 >= 50";
                 break;
         }

@@ -21,8 +21,8 @@ public class Scr_ButtonName : MonoBehaviour
                 obj_Dungeon.sOnClick = true; //버튼을 클릭했다는 정보를 넘겨줌
                 break;
             case "Duengeon":
-                m_PlayerLevelUp.sButtonName = this.gameObject.name; //레벨업 스크립트에 버튼 이름지정
-                m_PlayerLevelUp.bOnClick = true; //버튼을 클릭했다는 정보를 넘겨줌
+                //m_PlayerLevelUp.sButtonName = this.gameObject.name; //레벨업 스크립트에 버튼 이름지정
+                //m_PlayerLevelUp.bOnClick = true; //버튼을 클릭했다는 정보를 넘겨줌
                 m_PlayerSkill.sButtonName = this.gameObject.name; //스킬 스크립트에 버튼 이름지정
                 m_PlayerSkill.bOnClick = true; //버튼을 클릭했다는 정보를 넘겨줌
                 break;

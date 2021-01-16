@@ -62,8 +62,7 @@ public class System_Battle : MonoBehaviour
         m_BattleMgr = gameObject.GetComponent<BattleManager>();
         m_spSystem = GetComponent<System_Spawn>();
         m_Player = GameObject.Find("Player").GetComponent<Player>();
-        m_iRound = 1;
-        m_iRound = 0; 
+        m_iRound = 2; 
         m_iDmg = -1;//전투 시작 시 UI셋팅을 위한 -1
         m_eBattleProcess = BATTLE_PROCESS.BEFORE;
         m_MonFill = GameObject.Find("MonFill");
@@ -168,7 +167,7 @@ public class System_Battle : MonoBehaviour
             GM.PlusQuestMonster();
         else
             GM.PlusQuestBoss();
-        //아이템 얻으면
+        //아이템 얻게 되면 주석 풀기
         //GM.PlusQuestEtcItem();
         GM.RewardQuest();
         GM.SettingQuest();
@@ -266,9 +265,9 @@ public class System_Battle : MonoBehaviour
             m_iPlayerTurn = Random.Range(m_Player.getInfo().IAtkSpeed - 3, 10);
         else
             m_iPlayerTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
-        //m_iMonsterTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
+        m_iMonsterTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
         //m_iPlayerTurn = 0;
-        m_iMonsterTurn = 0;
+        //m_iMonsterTurn = 0;
         m_tPlayerSpeed.gameObject.SetActive(true);
         m_tMonSpeed.gameObject.SetActive(true);
     }

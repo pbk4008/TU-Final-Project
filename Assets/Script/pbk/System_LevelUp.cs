@@ -18,6 +18,7 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
     {
         m_Player = GetComponent<Player>();//has-a 관계로 인한 Player Object에 붙힘
     }
+
     public void CalculStat()//스텟 계산
     {
         m_Player.getInfo().setMaxHp(ref m_Player.getInfo(),m_Player.getStat().IPow * 3 + 9950);
