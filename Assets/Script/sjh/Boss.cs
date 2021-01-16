@@ -199,7 +199,7 @@ public class Boss : Monster
 
     private IEnumerator BossSkill() //보스 스킬
     {
-        System_Battle SB = GameObject.Find("Battle").GetComponent<System_Battle>();
+        System_Battle SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
         while (true)
         {
             switch(m_iFloor)

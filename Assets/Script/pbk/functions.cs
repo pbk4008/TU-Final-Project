@@ -26,10 +26,16 @@ public class functions : MonoBehaviour
     {
         if (argInstance != null)
         {
-            Destroy(gameObject);
+         //   Destroy(gameObject);
             return;
         }
+<<<<<<< HEAD
         argInstance = this;
         DontDestroyOnLoad(argInstance);
     }*/
+=======
+        //argInstance = this;
+        //DontDestroyOnLoad(argInstance);
+    }
+>>>>>>> feature/QuestUpdate
 }

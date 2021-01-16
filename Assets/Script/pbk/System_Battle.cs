@@ -163,6 +163,15 @@ public class System_Battle : MonoBehaviour
         BattleReset();
         Debug.Log(m_eBattleProcess);
         //퀘스트 완료 판단
+        Scr_DungeonBtn GM = GameObject.FindWithTag("GameMgr").GetComponent<Scr_DungeonBtn>();
+        if (m_Monster.EType != GRADE_MON.BOSS)
+            GM.PlusQuestMonster();
+        else
+            GM.PlusQuestBoss();
+        //아이템 얻으면
+        //GM.PlusQuestEtcItem();
+        GM.RewardQuest();
+        GM.SettingQuest();
         //맵으로 돌아기
     }
     private void BattleReset()
@@ -257,9 +266,9 @@ public class System_Battle : MonoBehaviour
             m_iPlayerTurn = Random.Range(m_Player.getInfo().IAtkSpeed - 3, 10);
         else
             m_iPlayerTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
-        m_iMonsterTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
+        //m_iMonsterTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
         //m_iPlayerTurn = 0;
-        //m_iMonsterTurn = 0;
+        m_iMonsterTurn = 0;
         m_tPlayerSpeed.gameObject.SetActive(true);
         m_tMonSpeed.gameObject.SetActive(true);
     }
