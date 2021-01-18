@@ -16,6 +16,10 @@ public class Monster : Character
     public GRADE_MON EType { get => m_eType; set => m_eType = value; }
     public Sprite SprMain { get => m_SprMain; set => m_SprMain = value; }
     public int IMonNum { get => m_iMonNum; set => m_iMonNum = value; }
+    public GameObject ObjItem { get => m_objItem; set => m_objItem = value; }
+
+    private GameObject m_objItem;
+    private EtcItem m_Item;
 
     // Start is called before the first frame update
     public void MonsterActive()
@@ -23,6 +27,7 @@ public class Monster : Character
         tr = GetComponent<Transform>();
         m_vfirstZone = gameObject.transform.position;
         StartCoroutine(this.FSM());
+        
     }
     // Update is called once per frame
     public void SetInfo(int argIndex)
@@ -38,12 +43,14 @@ public class Monster : Character
         m_Info.SName = sr.ReadLine();
         SetTypeStatus(sr.ReadLine());
         //아이템 이름
-        Debug.Log(m_SprMain);
+        m_objItem = GameObject.Find("Item");
+        m_Item = m_objItem.GetComponent<EtcItem>();
+        m_Item.ItemSetting(ITEM_TYPE.ETC, m_iMonNum);
         m_SprMain = Resources.Load<Sprite>("Monster/monster "+ argIndex);
-        Debug.Log(m_SprMain);
         m_sprRender = GetComponent<SpriteRenderer>();
         m_sprRender.sprite = m_SprMain;
         m_HitSprite = Resources.Load<Sprite>("Monster/monster " + argIndex + " Hit");
+        
     }
     private void SetTypeStatus(string argType)
     {

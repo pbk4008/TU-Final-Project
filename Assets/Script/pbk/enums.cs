@@ -10,4 +10,7 @@ namespace enums
     public enum GRADE_MON { BASE, MASIC, DEF, RARE, BOSS}
     public enum BATTLE_PROCESS { BEFORE, DURING , END}
     public enum BATTLE_CLEAR { RUN, CLEAR,END}
+    public enum ITEM_TYPE { ETC,EQUIP, USE  }
+    public enum EQUIP_TYPE {  USE,HEAD, BODY, FOOT}
+    public enum ITEM_GRADE { BASIC, NORMAL, SPECIAL, UNIQUE, LEGENDARY}
 }
