@@ -37,15 +37,24 @@ public class System_Battle : MonoBehaviour
     private bool m_bBattle;//배틀 시작 판단
     private bool m_bRunStage;
 
+    System_PlayerSkill m_SPB;
     [SerializeField]
     private Boss m_Boss;// 보스 정보 가져오기 - 손준호
     [SerializeField]
     private Text m_tBossSKill; // 보스 스킬 UI 정보 가져오기 - 손준호
+    [SerializeField]
+    private Text m_tMonDamage; //몬스터가 받는 대미지
+    [SerializeField]
+    private Text m_tPlayerDamage; //플레이어가 받는 대미지
+
     private int m_iSkillDmg; // 스킬 대미지 - 손준호
     private bool m_bBossSkillOn; // 보스 스킬 사용하기 - 손준호
+    private bool m_bPlayerSkillOn; // 보스 스킬 사용하기 - 손준호
+    private int m_iCDamage; //지속딜
 
     public int IDmg { get => m_iDmg; set => m_iDmg = value; }
     public bool bBossSkillOn { get => m_bBossSkillOn; set => m_bBossSkillOn = value; }
+    public bool bPlayerSkillOn { get => m_bPlayerSkillOn; set => m_bPlayerSkillOn = value; }
     public BATTLE_PROCESS EBattleProcess { get => m_eBattleProcess; set => m_eBattleProcess = value; }
     public bool BBattle { get => m_bBattle; set => m_bBattle = value; }
     public BATTLE_PROCESS eBattleProcess { get => m_eBattleProcess; set => m_eBattleProcess = value; }
@@ -56,6 +65,7 @@ public class System_Battle : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        m_SPB = GameObject.Find("System").GetComponent<System_PlayerSkill>();
         GameObject GM = GameObject.FindWithTag("GameMgr");
         m_iFloor = GM.GetComponent<Scr_DungeonBtn>().IFloor;
         m_iStage = GM.GetComponent<Scr_DungeonBtn>().IStage;
@@ -90,11 +100,18 @@ public class System_Battle : MonoBehaviour
             Debug.Log("몬스터 이름 : " + m_Monster.getInfo().SName);
             m_Monster.EType = enums.GRADE_MON.BOSS; //몬스터 타임을 보스로 변경 - 손준호
         }
+        m_tMonDamage.gameObject.SetActive(false);
+        m_tPlayerDamage.gameObject.SetActive(false);
         m_Boss.bMinusTime = true;
         m_Boss.bSkillOn = false;
         m_Monster.AnimTrigger = ANIMTRIGGER.IDLE;
         m_Player.AnimTrigger = ANIMTRIGGER.IDLE;
+<<<<<<< HEAD
         
+=======
+        System_PlayerSkill SPB = GameObject.Find("System").GetComponent<System_PlayerSkill>();
+        SPB.MinusPlayerSkill();
+>>>>>>> feature/PlayerSkillbutton
         //UISetting
         UISetting();
         if(!m_Monster.BLive||!m_Player.BLive)
@@ -107,12 +124,16 @@ public class System_Battle : MonoBehaviour
         m_tMonSpeed.text = m_iMonsterTurn.ToString();
         Vector3 PlayerSpeedpos = m_Player.VfirstZone;
         Vector3 MonSpeedpos = m_Monster.VfirstZone;
+        m_tMonDamage.text = m_tMonDamage.ToString();      //몬스터가 받는 대미지
+        m_tPlayerDamage.text = m_tPlayerDamage.ToString(); //플레이어가 받는 대미지
 
-        //공격속도 플레이어 및 몬스터 머리위에 띄우기(몬스터의 크기가 다르기 때문)
+    //공격속도 플레이어 및 몬스터 머리위에 띄우기(몬스터의 크기가 다르기 때문)
         PlayerSpeedpos.y += functions.CalculSpriteVerticalSize(m_Player.gameObject)/2 + 0.5f;
         MonSpeedpos.y += functions.CalculSpriteVerticalSize(m_Monster.gameObject)/2+0.5f;
         m_tPlayerSpeed.transform.position = PlayerSpeedpos;
         m_tMonSpeed.transform.position = MonSpeedpos;
+        m_tPlayerDamage.transform.position = PlayerSpeedpos;
+        m_tMonDamage.transform.position = MonSpeedpos;
         m_eBattleProcess = BATTLE_PROCESS.DURING;
     }
     private void Battle()//전투중
@@ -161,6 +182,12 @@ public class System_Battle : MonoBehaviour
         m_bBattle = false;
         m_BattleMgr.BRoundClear = true;
         BattleReset();
+<<<<<<< HEAD
+=======
+        //플레이어 버프 효과 해제
+        m_SPB.SkillReset();
+        Debug.Log(m_eBattleProcess);
+>>>>>>> feature/PlayerSkillbutton
         //퀘스트 완료 판단
         Scr_DungeonBtn GM = GameObject.FindWithTag("GameMgr").GetComponent<Scr_DungeonBtn>();
         if (m_Monster.EType != GRADE_MON.BOSS)
@@ -302,8 +329,9 @@ public class System_Battle : MonoBehaviour
 
         if (m_Player.GetDeEffect(0) || m_Player.GetDeEffect(1) || m_Player.GetDeEffect(2))
         {
-            int AtkDmg = m_Boss.GetSkillDmg(0) + m_Boss.GetSkillDmg(1) + m_Boss.GetSkillDmg(2);
-            m_Player.getInfo().ICurrentHp -= AtkDmg;
+            m_iCDamage = m_Boss.GetSkillDmg(0) + m_Boss.GetSkillDmg(1) + m_Boss.GetSkillDmg(2);
+            m_Player.getInfo().ICurrentHp -= m_iCDamage;
+            m_tPlayerDamage.text = m_iCDamage.ToString();
             Debug.Log("[지속딜] " + m_Boss.BossSkillUI(0) + "대미지 : " + m_Boss.GetSkillDmg(0) + m_Boss.BossSkillUI(1) + "대미지 : " + m_Boss.GetSkillDmg(1) + m_Boss.BossSkillUI(2) + "대미지 : " + m_Boss.GetSkillDmg(2));
         }
 
@@ -324,6 +352,7 @@ public class System_Battle : MonoBehaviour
         if (m_Monster.EType == GRADE_MON.BOSS && m_iFloor == 5 && iRound % 20 == 0)
             m_iDmg = Hitter.getInfo().IMaxHp;
         Hitter.getInfo().ICurrentHp -= m_iDmg;
+        TotalDmg();
         Debug.Log(Attacker + "일반 공격 대미지 : " + m_iDmg);
     }
 
@@ -331,19 +360,36 @@ public class System_Battle : MonoBehaviour
     {
         while (true)
         {
-            m_iSkillDmg = m_Boss.GetDmg(0) + m_Boss.GetDmg(1) + m_Boss.GetDmg(2); //스킬 대미지 = Boss에서 계산한 스킬 대미지
-            m_tBossSKill.text = m_Boss.BossSkillUI(0) + m_Boss.BossSkillUI(1) + m_Boss.BossSkillUI(2); //보스 스킬 텍스트 UI 이름 = 보스 스킬
-
-            if (m_bBossSkillOn) //보스 스킬이 사용되었다면
+            if (m_iPlayerTurn > m_iMonsterTurn)
             {
-                Hitter.getInfo().ICurrentHp -= m_iSkillDmg; //플레이어 체력을 깎음
-                Debug.Log("스킬 대미지 : " + m_iSkillDmg);
-                m_PlayerHp.size -= (float)m_iSkillDmg / m_Player.getInfo().IMaxHp; //체력바 계산
-
-                m_tBossSKill.gameObject.SetActive(true); //보스 스킬 UI 띄우기
-                m_bBossSkillOn = false; // 보스 스킬 사용할 수 있게 하기.
+                if (m_bPlayerSkillOn)
+                {
+                    m_iSkillDmg = 0;
+                    m_iSkillDmg = m_SPB.iDamage; //플레이어 스킬 대미지
+                    Debug.Log("플레이어 스킬 대미지 : " + m_iSkillDmg);
+                    m_Monster.getInfo().ICurrentHp -= m_iSkillDmg;
+                    m_MonHp.size -= (float)m_iSkillDmg / m_Monster.getInfo().IMaxHp; //체력바 계산
+                    m_bPlayerSkillOn = false;
+                    TotalDmg();
+                }
             }
+            else
+            {
+                m_iSkillDmg = 0;
+                m_iSkillDmg = m_Boss.GetDmg(0) + m_Boss.GetDmg(1) + m_Boss.GetDmg(2); //스킬 대미지 = Boss에서 계산한 스킬 대미지
+                m_tBossSKill.text = m_Boss.BossSkillUI(0) + m_Boss.BossSkillUI(1) + m_Boss.BossSkillUI(2); //보스 스킬 텍스트 UI 이름 = 보스 스킬
 
+                if (m_bBossSkillOn) //보스 스킬이 사용되었다면
+                {
+                    Hitter.getInfo().ICurrentHp -= m_iSkillDmg; //플레이어 체력을 깎음
+                    Debug.Log("스킬 대미지 : " + m_iSkillDmg);
+                    m_PlayerHp.size -= (float)m_iSkillDmg / m_Player.getInfo().IMaxHp; //체력바 계산
+
+                    m_tBossSKill.gameObject.SetActive(true); //보스 스킬 UI 띄우기
+                    m_bBossSkillOn = false; // 보스 스킬 사용할 수 있게 하기.
+                    TotalDmg();
+                }
+            }
             yield return new WaitForSeconds(0.1f); //0.1초마다 실행
         }
     }
@@ -378,6 +424,22 @@ public class System_Battle : MonoBehaviour
             m_Monster.gameObject.SetActive(false);
             BattleReset();
         }
+    }
 
+    private void TotalDmg()
+    {
+        if(m_iMonsterTurn>m_iPlayerTurn)
+        {
+            //플레이어가 맞는 대미지 계산
+            int totalDmg = m_iDmg + m_iSkillDmg + m_iCDamage;
+            m_tPlayerDamage.gameObject.SetActive(true);
+            m_tPlayerDamage.text = totalDmg.ToString();
+        }
+        else
+        {
+            int totalDmg = m_iDmg + m_iSkillDmg;
+            m_tMonDamage.gameObject.SetActive(true);
+            m_tMonDamage.text = totalDmg.ToString();
+        }
     }
 }

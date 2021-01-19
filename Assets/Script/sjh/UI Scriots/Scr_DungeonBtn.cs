@@ -7,8 +7,6 @@ using enums;
 
 public class Scr_DungeonBtn : MonoBehaviour
 {
-    private Canvas Cvs_UI;
-
     //----------------------던전 부분
     [SerializeField] private Button[] DungeonButton = new Button[21]; //버튼들
     [SerializeField] private Text[] T_DungeonText = new Text[10]; //텍스트들
@@ -79,6 +77,12 @@ public class Scr_DungeonBtn : MonoBehaviour
     private static Scr_DungeonBtn m_Instance;
     private LobbyUI m_LUI;
     private Scene m_Scene;
+    [SerializeField] private Sprite spr_Floor1;
+    [SerializeField] private Sprite spr_Floor2;
+    [SerializeField] private Sprite spr_Floor3;
+    [SerializeField] private Sprite spr_Floor4;
+    [SerializeField] private Sprite spr_Floor5;
+    [SerializeField] private Sprite spr_Floor6;
 
     private void Awake() //싱글톤 DontDestroy시 원래 씬으로 돌아왔을때 오브젝트 중복 피하기
     {
@@ -137,36 +141,42 @@ public class Scr_DungeonBtn : MonoBehaviour
                     case "Btn_DungeonFloor1":
                         m_iFloor = 0;
                         SetActive(0, 10, 15, 3, 9);
+                        SpriteChange(11, 15);
                         StageText();
                         m_iRound = 3;
                         break;
                     case "Btn_DungeonFloor2":
                         m_iFloor = 1;
                         SetActive(0, 10, 15, 3, 9);
+                        SpriteChange(11, 15);
                         StageText();
                         m_iRound = 5;
                         break;
                     case "Btn_DungeonFloor3":
                         m_iFloor = 2;
                         SetActive(0, 10, 17, 3, 9);
+                        SpriteChange(11, 17);
                         StageText();
                         m_iRound = 5;
                         break;
                     case "Btn_DungeonFloor4":
                         m_iFloor = 3;
                         SetActive(0, 10, 17, 3, 9);
+                        SpriteChange(11, 17);
                         StageText();
                         m_iRound = 7;
                         break;
                     case "Btn_DungeonFloor5":
                         m_iFloor = 4;
                         SetActive(0, 10, 20, 3, 9);
+                        SpriteChange(11, 20);
                         StageText();
                         m_iRound = 7;
                         break;
                     case "Btn_DungeonFloor6":
                         m_iFloor = 5;
                         SetActive(0, 10, 20, 3, 9);
+                        SpriteChange(11, 20);
                         StageText();
                         m_iRound = 10;
                         break;
@@ -353,6 +363,26 @@ public class Scr_DungeonBtn : MonoBehaviour
                 for (int i = iOffmin; i <= iOffmax; i++)
                     PlayerButton[i].gameObject.SetActive(false);
                 break;
+        }
+    }
+
+    private void SpriteChange(int iOnmin, int iOnmax)
+    {
+        for (int i = iOnmin; i <= iOnmax; i++)
+        {
+            Image Btn_Image = DungeonButton[i].gameObject.GetComponent<Image>();
+            if(m_iFloor == 0)
+                Btn_Image.sprite = spr_Floor1;
+            else if (m_iFloor == 1)
+                Btn_Image.sprite = spr_Floor2;
+            else if (m_iFloor == 2)
+                Btn_Image.sprite = spr_Floor3;
+            else if (m_iFloor == 3)
+                Btn_Image.sprite = spr_Floor4;
+            else if (m_iFloor == 4)
+                Btn_Image.sprite = spr_Floor5;
+            else if (m_iFloor == 5)
+                Btn_Image.sprite = spr_Floor6;
         }
     }
 

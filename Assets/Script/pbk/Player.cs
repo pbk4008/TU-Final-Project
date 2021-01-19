@@ -49,7 +49,7 @@ public class Player : Character
         m_bButtonClick = false;
         m_bLive = true;
         m_iRunCount = 0;
-        tagSetting("곰돌이", 1, 3, 3, 50, 1, 5, 1.1f);//플레이어 셋팅
+        tagSetting("곰돌이", 100, 3, 3, 50, 1, 5, 1.1f);//플레이어 셋팅
         statSetting();
         m_AnimTrigger = ANIMTRIGGER.IDLE;
         m_iMoney = 10000;
@@ -79,7 +79,7 @@ public class Player : Character
     }
     private void statSetting()
     {
-        m_Stat.IPow = 400;
+        m_Stat.IPow = 5;
         m_Stat.IDex = 5;
         m_Stat.IInt = 5;
         m_Stat.IStat = 3;
