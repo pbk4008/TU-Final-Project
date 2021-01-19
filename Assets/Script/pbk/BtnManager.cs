@@ -39,6 +39,15 @@ public class BtnManager : MonoBehaviour
             tmpCanvas.SetActive(false);
         }
     }
+    public void SkillBtn()
+    {
+        Canvas Cvs = GameObject.Find("BattleCanvas").GetComponent<Canvas>();
+        Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        m_Player.AnimTrigger = ANIMTRIGGER.ATTACK;
+        Cvs.gameObject.SetActive(false);
+        m_Player.BButtonClick = true;
+        attack();
+    }
     public void RunBtn()
     {
         run();
