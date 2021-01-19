@@ -32,6 +32,7 @@ public class BattleManager : MonoBehaviour
     {
         m_Player.SetActive(false);
         m_SpawnSystem.enabled = false;
+        m_Monster.GetComponent<Monster>().DestroyItem();
         m_BattleBegin.gameObject.SetActive(true);
         m_bRoundClear = false;
         StartCoroutine(BattleMgr());
@@ -39,7 +40,6 @@ public class BattleManager : MonoBehaviour
     IEnumerator BattleMgr()
     {
         yield return new WaitForSeconds(2.0f);
-        m_Monster.GetComponent<Monster>().DestroyItem();
         m_Player.SetActive(true);
         m_Player.GetComponent<Player>().PlayerActive();
         m_BattleBegin.gameObject.SetActive(false);

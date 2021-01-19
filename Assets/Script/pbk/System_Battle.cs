@@ -182,7 +182,8 @@ public class System_Battle : MonoBehaviour
     }
     public void UIInitialize()
     {
-        m_MonImg.sprite = Resources.Load<Sprite>("Monster/head/monster "+ m_Monster.IMonNum+" Head");
+        m_MonImg.sprite = Resources.Load<Sprite>("Monster/head/monster "+ m_Monster.IMonNum+" head");
+        m_MonImg.color = new Color(255, 255, 255, 255);
         m_MonHp.value = m_Monster.getInfo().ICurrentHp / m_Monster.getInfo().IMaxHp;
         m_PlayerHp.value = m_Player.getInfo().ICurrentHp / m_Player.getInfo().IMaxHp;
         m_PlayerExp.value = 1;
