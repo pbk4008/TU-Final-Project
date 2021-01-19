@@ -95,6 +95,7 @@ public class System_Battle : MonoBehaviour
         m_Boss.bSkillOn = false;
         m_Monster.AnimTrigger = ANIMTRIGGER.IDLE;
         m_Player.AnimTrigger = ANIMTRIGGER.IDLE;
+        
         //UISetting
         UISetting();
         if(!m_Monster.BLive||!m_Player.BLive)
@@ -154,8 +155,8 @@ public class System_Battle : MonoBehaviour
             m_Player.AnimTrigger = ANIMTRIGGER.WIN;
             //경험치 분배
             plusExp();
-            //레벨업 판단
-            m_Monster.ObjItem.GetComponent<SpriteRenderer>().enabled = true;
+            //아이템 생성
+            m_Monster.CreateItem();
             m_Monster.gameObject.SetActive(false);
         }
         m_bBattle = false;

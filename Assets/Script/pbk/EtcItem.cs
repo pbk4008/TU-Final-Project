@@ -6,6 +6,7 @@ public class EtcItem : Item
 {
     private int m_iNum;
     // Start is called before the first frame update
+    
     public void ItemSetting(ITEM_TYPE argType, int argNum)//기타아이템 셋팅
     {
         m_Code = new List<char>();

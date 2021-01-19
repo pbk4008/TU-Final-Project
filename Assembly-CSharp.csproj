@@ -65,6 +65,7 @@
      <Compile Include="Assets\Script\pbk\structs.cs" />
      <Compile Include="Assets\Script\pbk\BattleManager.cs" />
      <Compile Include="Assets\Script\sjh\UI Scriots\Scr_DungeonBtn.cs" />
+     <Compile Include="Assets\Script\pbk\EtcItem.cs" />
      <Compile Include="Assets\Script\pbk\System_Spawn.cs" />
      <Compile Include="Assets\Script\pbk\System_LevelUp.cs" />
      <Compile Include="Assets\Script\sjh\System\System_GameData.cs" />
@@ -75,7 +76,6 @@
      <Compile Include="Assets\Script\sjh\UI Scriots\Scr_ButtonName.cs" />
      <Compile Include="Assets\Script\sjh\System\System_DataMgr.cs" />
      <Compile Include="Assets\Script\pbk\BtnManager.cs" />
-     <Compile Include="Assets\Script\pbk\EtcItem.cs" />
      <None Include="Assets\Script\sjh\sjh.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/park byeong kyu/Desktop/개인포폴/포토폴리오/Unity2D/2DRPG/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
