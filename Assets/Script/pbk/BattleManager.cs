@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class BattleManager : MonoBehaviour
 {
     private GameObject m_Player;
+    [SerializeField]
+    private GameObject m_Monster;
     private System_Battle m_BattleSystem;
     private System_Spawn m_SpawnSystem;
     [SerializeField]
@@ -37,6 +39,7 @@ public class BattleManager : MonoBehaviour
     IEnumerator BattleMgr()
     {
         yield return new WaitForSeconds(2.0f);
+        m_Monster.GetComponent<Monster>().DestroyItem();
         m_Player.SetActive(true);
         m_Player.GetComponent<Player>().PlayerActive();
         m_BattleBegin.gameObject.SetActive(false);

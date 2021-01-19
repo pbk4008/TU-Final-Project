@@ -94,6 +94,7 @@ public class System_Battle : MonoBehaviour
         m_Boss.bSkillOn = false;
         m_Monster.AnimTrigger = ANIMTRIGGER.IDLE;
         m_Player.AnimTrigger = ANIMTRIGGER.IDLE;
+        
         //UISetting
         UISetting();
         if(!m_Monster.BLive||!m_Player.BLive)
@@ -113,7 +114,6 @@ public class System_Battle : MonoBehaviour
         m_tPlayerSpeed.transform.position = PlayerSpeedpos;
         m_tMonSpeed.transform.position = MonSpeedpos;
         m_eBattleProcess = BATTLE_PROCESS.DURING;
-        Debug.Log(m_Monster.getInfo().SName);
     }
     private void Battle()//전투중
     {
@@ -154,13 +154,13 @@ public class System_Battle : MonoBehaviour
             m_Player.AnimTrigger = ANIMTRIGGER.WIN;
             //경험치 분배
             plusExp();
-            //레벨업 판단
+            //아이템 생성
+            m_Monster.CreateItem();
             m_Monster.gameObject.SetActive(false);
         }
         m_bBattle = false;
         m_BattleMgr.BRoundClear = true;
         BattleReset();
-        Debug.Log(m_eBattleProcess);
         //퀘스트 완료 판단
         Scr_DungeonBtn GM = GameObject.FindWithTag("GameMgr").GetComponent<Scr_DungeonBtn>();
         if (m_Monster.EType != GRADE_MON.BOSS)
@@ -182,9 +182,7 @@ public class System_Battle : MonoBehaviour
     }
     public void UIInitialize()
     {
-        //m_MonImg.sprite = Resources.Load<Sprite>("Monster/monster "+ m_Monster.IMonNum+" Head");
-        m_MonImg.sprite = m_Monster.SprMain;
-        m_MonImg.color = new Color32(255, 255, 255, 255);
+        m_MonImg.sprite = Resources.Load<Sprite>("Monster/head/monster "+ m_Monster.IMonNum+" Head");
         m_MonHp.value = m_Monster.getInfo().ICurrentHp / m_Monster.getInfo().IMaxHp;
         m_PlayerHp.value = m_Player.getInfo().ICurrentHp / m_Player.getInfo().IMaxHp;
         m_PlayerExp.value = 1;

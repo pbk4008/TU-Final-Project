@@ -815,6 +815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Boss: {fileID: 2124987944}
+  m_objItem: {fileID: 5522003937186138370, guid: 6263e2f59c0b4bd45a5ae8948569deae, type: 3}
 --- !u!4 &305801583
 Transform:
   m_ObjectHideFlags: 0
@@ -1501,6 +1502,82 @@ MonoBehaviour:
   m_GameObject: {fileID: 613466591}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
+=======
+  m_Script: {fileID: 11500000, guid: fe403b294267e9b4db8d0379abdb244d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Monster: {fileID: 305801582}
+  m_MonHp: {fileID: 322070298}
+  m_PlayerHp: {fileID: 630861682}
+  m_PlayerExp: {fileID: 18401542}
+  m_MonImg: {fileID: 1083025881}
+  m_RoundCount: {fileID: 1883289094}
+  m_tPlayerSpeed: {fileID: 547663833}
+  m_tMonSpeed: {fileID: 1976149699}
+  m_BattleUI: {fileID: 744137733}
+  m_Boss: {fileID: 2124987944}
+  m_tBossSKill: {fileID: 2133873649}
+--- !u!114 &733915797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733915793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef0912a3a1b41f94e954823c0b8816aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Monster: {fileID: 305801581}
+  m_BattleBegin: {fileID: 1574500130}
+--- !u!1 &744137733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 744137737}
+  - component: {fileID: 744137736}
+  - component: {fileID: 744137735}
+  - component: {fileID: 744137734}
+  m_Layer: 5
+  m_Name: BattleCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &744137734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744137733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &744137735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744137733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+>>>>>>> feature/Battle
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -4714,6 +4791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Boss: {fileID: 2124987944}
+  m_objItem: {fileID: 0}
   m_SB: {fileID: 733915796}
   m_tBossSKill: {fileID: 2133873649}
 --- !u!212 &2124987945

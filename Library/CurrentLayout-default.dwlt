@@ -48,7 +48,11 @@ MonoBehaviour:
   m_MinSize: {x: 678, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 63
+=======
+  controlID: 113
+>>>>>>> feature/Battle
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -64,6 +68,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 906
     y: 0
     width: 371
@@ -71,6 +76,15 @@ MonoBehaviour:
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
+=======
+    x: 1628
+    y: 0
+    width: 276
+    height: 931
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 14}
+>>>>>>> feature/Battle
   m_Panes:
   - {fileID: 13}
   m_Selected: 0
@@ -92,8 +106,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 291
     height: 398
+=======
+    width: 309
+    height: 472
+>>>>>>> feature/Battle
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
@@ -117,9 +136,15 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 398
     width: 906
     height: 333
+=======
+    y: 472
+    width: 1628
+    height: 459
+>>>>>>> feature/Battle
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 12}
@@ -221,12 +246,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 906
     height: 731
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
   controlID: 16
+=======
+    width: 1628
+    height: 931
+  m_MinSize: {x: 403, y: 492}
+  m_MaxSize: {x: 10001, y: 14042}
+  vertical: 1
+  controlID: 114
+>>>>>>> feature/Battle
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -246,12 +280,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 906
     height: 398
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
   controlID: 17
+=======
+    width: 1628
+    height: 472
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
+  vertical: 0
+  controlID: 115
+>>>>>>> feature/Battle
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -267,12 +310,21 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 291
     y: 0
     width: 615
     height: 398
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+    x: 309
+    y: 0
+    width: 1319
+    height: 472
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+>>>>>>> feature/Battle
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 15}
@@ -299,10 +351,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 350
     y: 479
     width: 905
     height: 312
+=======
+    x: 8
+    y: 553
+    width: 1627
+    height: 438
+>>>>>>> feature/Battle
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -317,35 +376,41 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Prefab
     m_Globs: []
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Prefab
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\TiPiRu\Documents\TU-Final-Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 8e470000
     m_LastClickedID: 18318
     m_ExpandedIDs: 00000000b8400000ba400000bc400000be400000c0400000c2400000c4400000c6400000884d0000944d000000ca9a3b
+=======
+    m_SelectedIDs: fa3d0000
+    m_LastClickedID: 15866
+    m_ExpandedIDs: 00000000dc3d0000de3d0000e03d0000e23d0000e43d0000e63d0000e83d0000ea3d0000ec3d0000ee3d0000f03d000000ca9a3b
+>>>>>>> feature/Battle
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Scenes
+      m_OriginalName: Scenes
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 15870
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 0}
     m_SearchString: 
@@ -359,7 +424,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000b8400000ba400000bc400000be400000c0400000c2400000c4400000c6400000
+=======
+    m_ExpandedIDs: 00000000dc3d0000de3d0000e03d0000e23d0000e43d0000e63d0000e83d0000ea3d0000ec3d0000ee3d0000f03d0000
+>>>>>>> feature/Battle
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -414,8 +483,13 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
+<<<<<<< HEAD
   m_DirectoriesAreaWidth: 207
 --- !u!114 &13
+=======
+  m_DirectoriesAreaWidth: 239
+--- !u!114 &14
+>>>>>>> feature/Battle
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -435,10 +509,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1256
     y: 81
     width: 370
     height: 710
+=======
+    x: 1636
+    y: 81
+    width: 275
+    height: 910
+>>>>>>> feature/Battle
   m_ViewDataDictionary: {fileID: 0}
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
@@ -475,29 +556,38 @@ MonoBehaviour:
     serializedVersion: 2
     x: 350
     y: 81
+<<<<<<< HEAD
     width: 290
     height: 377
+=======
+    width: 308
+    height: 451
+>>>>>>> feature/Battle
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
+<<<<<<< HEAD
       m_ExpandedIDs: 7eddffff04deffff20dfffffa4dfffffb4e0ffffc0e3ffff3ee4ffffd8f7ffff6af8ffff9ef8ffff38faffff46faffff66faffff4afbfffff4ffffff504e00009c4e000068650000da66000026670000566a0000a26a0000
+=======
+      m_ExpandedIDs: 5ae9ffffd6e9ffff0aeaffff88eaffff06ebffffc0ebffff4ceeffff4ef1ffff60f1fffff8f1ffff72f2ffffd0f3ffffd8f4ffffe4f5fffffcf5ffff1cf9ffff86faffff5afbfffff4ffffff
+>>>>>>> feature/Battle
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Item(Clone)
+        m_OriginalName: Item(Clone)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -3616
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -527,10 +617,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 266
     y: 81
     width: 806
     height: 472
+=======
+    x: 317
+    y: 81
+    width: 1317
+    height: 451
+>>>>>>> feature/Battle
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
@@ -543,9 +640,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 1.5552086, y: 3.3937085, z: -109.91899}
     speed: 2
     m_Value: {x: 1.5552086, y: 3.3937085, z: -109.91899}
+=======
+    m_Target: {x: 0, y: 0, z: 0}
+    speed: 2
+    m_Value: {x: 0, y: 0, z: 0}
+>>>>>>> feature/Battle
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -596,16 +699,22 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 6.724766
     speed: 2
     m_Value: 6.724766
+=======
+    m_Target: 0.4634652
+    speed: 2
+    m_Value: 0.4634652
+>>>>>>> feature/Battle
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
   m_CameraSettings:
-    m_Speed: 1
-    m_SpeedNormalized: 0.5
+    m_Speed: 0.94052994
+    m_SpeedNormalized: 0.46999997
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -643,10 +752,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 641
     y: 81
     width: 613
     height: 377
+=======
+    x: 317
+    y: 81
+    width: 1317
+    height: 451
+>>>>>>> feature/Battle
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
   m_SerializedViewValues: []
@@ -690,16 +806,24 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
+<<<<<<< HEAD
       width: 613
       height: 356
     m_Scale: {x: 0.31927082, y: 0.31927085}
     m_Translation: {x: 306.5, y: 178}
+=======
+      width: 1317
+      height: 430
+    m_Scale: {x: 0.39814815, y: 0.39814815}
+    m_Translation: {x: 658.5, y: 215}
+>>>>>>> feature/Battle
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -960.00006
       y: -557.5204
       width: 1920.0001
@@ -707,6 +831,15 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 0.31927082
   m_LastWindowPixelSize: {x: 613, y: 377}
+=======
+      x: -1653.907
+      y: -540
+      width: 3307.814
+      height: 1080
+    m_MinimalGUI: 1
+  m_defaultScale: 0.39814815
+  m_LastWindowPixelSize: {x: 1317, y: 451}
+>>>>>>> feature/Battle
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -732,10 +865,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 350
     y: 479
     width: 905
     height: 312
+=======
+    x: 8
+    y: 553
+    width: 1627
+    height: 438
+>>>>>>> feature/Battle
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &18
 MonoBehaviour:
