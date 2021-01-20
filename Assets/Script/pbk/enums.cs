@@ -12,6 +12,6 @@ namespace enums
     public enum BATTLE_CLEAR { RUN, CLEAR,END}
     public enum QUEST_TYPE { MONSTER, BOSS, ITEM}
     public enum ITEM_TYPE { ETC,EQUIP, USE  }
-    public enum EQUIP_TYPE {  USE,HEAD, BODY, FOOT}
+    public enum EQUIP_TYPE {  USE, SWORD, KNUKLE, HEAD, BODY, FOOT}
     public enum ITEM_GRADE { BASIC, NORMAL, SPECIAL, UNIQUE, LEGENDARY}
 }

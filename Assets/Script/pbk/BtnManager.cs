@@ -9,6 +9,7 @@ public class BtnManager : MonoBehaviour
 {
     public static event BattleHandler attack;
     public static event BattleHandler run;
+    private Inventory m_Inventory;
     // Start is called before the first frame update
     public void GameStart()//게임시작 버튼 클릭
     {
@@ -44,5 +45,20 @@ public class BtnManager : MonoBehaviour
         run();
         GameObject tmpCanvas = gameObject.transform.parent.gameObject;
         tmpCanvas.SetActive(false);
+    }
+    public void WeaponBtn()
+    {
+        m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        m_Inventory.EInventoryType = ITEM_TYPE.EQUIP;
+    }
+    public void UsedBtn()
+    {
+        m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        m_Inventory.EInventoryType = ITEM_TYPE.USE;
+    }
+    public void EtcBtn()
+    {
+        m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        m_Inventory.EInventoryType = ITEM_TYPE.ETC;
     }
 }

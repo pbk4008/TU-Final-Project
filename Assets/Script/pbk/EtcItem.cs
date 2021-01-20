@@ -4,8 +4,9 @@ using UnityEngine;
 using enums;
 public class EtcItem : Item
 {
-    private int m_iNum;
     // Start is called before the first frame update
+    private int m_iCount=0;
+    public int ICount { get => m_iCount; set => m_iCount = value; }
     
     public void ItemSetting(ITEM_TYPE argType, int argNum)//기타아이템 셋팅
     {
@@ -13,9 +14,8 @@ public class EtcItem : Item
         m_Code.Add(char.Parse(((int)argType).ToString()));
         m_Code.Add('x');
         EtcSetting(argNum);
-        
+
         m_sprImg = Resources.Load<Sprite>("Item/Etc/etc " + m_iNum.ToString());
-        Debug.Log(m_sprImg);
         gameObject.GetComponent<SpriteRenderer>().sprite = m_sprImg;
     }
     private void EtcSetting(int argNum)
@@ -26,6 +26,8 @@ public class EtcItem : Item
         m_Code.Add(char.Parse(tmpTen.ToString()));
         m_Code.Add(char.Parse(tmpOne.ToString()));
     }
+    
+    
     // Update is called once per frame
     
 }
