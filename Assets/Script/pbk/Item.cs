@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using enums;
+using UnityEngine.UI;
 public class Item : MonoBehaviour
 {
     protected List<char> m_Code=null;
     protected Sprite m_sprImg;
+    protected int iCount;
     private ITEM_TYPE m_eType;
     private ITEM_GRADE m_eGrade;
     private EQUIP_TYPE m_eEquipType;
@@ -13,6 +15,7 @@ public class Item : MonoBehaviour
     public List<char> Code { get => m_Code; set => m_Code = value; }
     public int INum { get => m_iNum; set => m_iNum = value; }
     public Sprite SprImg { get => m_sprImg; set => m_sprImg = value; }
+    public int ICount { get => iCount; set => iCount = value; }
 
     // Start is called before the first frame update
 
@@ -43,7 +46,6 @@ public class Item : MonoBehaviour
     }
     public void ImageSetting()
     {
-        
         switch(m_eType)
         {
             case ITEM_TYPE.ETC:
@@ -56,5 +58,12 @@ public class Item : MonoBehaviour
                 m_sprImg = Resources.Load<Sprite>("Item/Use/use " + ((int)m_eEquipType).ToString() + ((int)m_eGrade).ToString());
                 break;
         }
+    }
+    public void CodeReset()
+    {
+        m_Code = null;
+        m_sprImg = null;
+        if (gameObject.GetComponent<Image>() != null)
+            gameObject.GetComponent<Image>().sprite = m_sprImg;
     }
 }
