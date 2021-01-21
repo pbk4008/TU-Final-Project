@@ -13,7 +13,7 @@ public class Debug_Item : MonoBehaviour
     {
         m_EtcItem = GetComponent<EtcItem>();
         m_EtcItem.ItemSetting(ITEM_TYPE.ETC, 0);
-        m_EtcItem.ICount = 60;
+        m_EtcItem.ICount = 1;
         Image argImage = GetComponent<Image>();
         argImage.sprite = GetComponent<SpriteRenderer>().sprite;
         m_argInven = GameObject.Find("Inventory").GetComponent<Inventory>();

@@ -5,8 +5,6 @@ using enums;
 public class EtcItem : Item
 {
     // Start is called before the first frame update
-    private int m_iCount=0;
-    public int ICount { get => m_iCount; set => m_iCount = value; }
     
     public void ItemSetting(ITEM_TYPE argType, int argNum)//기타아이템 셋팅
     {
