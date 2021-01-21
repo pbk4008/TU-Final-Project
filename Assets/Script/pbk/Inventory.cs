@@ -28,11 +28,16 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < 14; i++)
         {
-            GameObject tmpItem = Instantiate(m_objargItem);
-            m_EtcInventory.Add(tmpItem.GetComponent<EtcItem>());
+            GameObject tmpItem1 = Instantiate(m_objargItem);
+            GameObject tmpItem2 = Instantiate(m_objargItem);
+            GameObject tmpItem3 = Instantiate(m_objargItem);
+
+            m_EtcInventory.Add(tmpItem1.GetComponent<EtcItem>());
+            m_UseInventory.Add(tmpItem2.GetComponent<UseItem>());
+            m_WeaponInventory.Add(tmpItem3.GetComponent<WeaponItem>());
+
             InventoryCreate(i);
         }
-        
         StartCoroutine(PrintInven());
     }
     private void InventoryCreate(int argIndex)
@@ -58,6 +63,12 @@ public class Inventory : MonoBehaviour
 
         m_EtcInventory[argIndex].GetComponent<Transform>().position = pos;
         m_EtcInventory[argIndex].transform.parent = gameObject.transform;
+
+        m_UseInventory[argIndex].GetComponent<Transform>().position = pos;
+        m_UseInventory[argIndex].transform.parent = gameObject.transform;
+
+        m_WeaponInventory[argIndex].GetComponent<Transform>().position = pos;
+        m_WeaponInventory[argIndex].transform.parent = gameObject.transform;
     }
     public void AddItem(EtcItem argItem)
     {
@@ -123,6 +134,27 @@ public class Inventory : MonoBehaviour
     {
         while (true)
         {
+            for(int i=0; i<14; i++)
+            {
+                switch(m_eInventoryType)
+                {
+                    case ITEM_TYPE.ETC:
+                        m_EtcInventory[i].gameObject.SetActive(true);
+                        m_UseInventory[i].gameObject.SetActive(false);
+                        m_WeaponInventory[i].gameObject.SetActive(false);
+                        break;
+                    case ITEM_TYPE.USE:
+                        m_EtcInventory[i].gameObject.SetActive(false);
+                        m_UseInventory[i].gameObject.SetActive(true);
+                        m_WeaponInventory[i].gameObject.SetActive(false);
+                        break;
+                    case ITEM_TYPE.EQUIP:
+                        m_EtcInventory[i].gameObject.SetActive(false);
+                        m_UseInventory[i].gameObject.SetActive(false);
+                        m_WeaponInventory[i].gameObject.SetActive(true);
+                        break;
+                }
+            }
             foreach (EtcItem i in m_EtcInventory)
             {
                 if (i.Code == null)
