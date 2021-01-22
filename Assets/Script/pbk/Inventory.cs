@@ -219,9 +219,47 @@ public class Inventory : MonoBehaviour
                     }
                 }
                 break;
-            case '1':
+            case '1'://장비
+                for (int i = m_WeaponInventory.Count; i >= 0; i--)
+                {
+                    string invenItemCode = functions.CodetoString(m_WeaponInventory[index].Code);
+                    if (invenItemCode == null)
+                    {
+                        index--;
+                        continue;
+                    }
+                    else if (m_WeaponInventory[index].ICount - 1 == 0)
+                    {
+                        m_WeaponInventory[index].CodeReset();
+                        break;
+                    }
+                    else
+                    {
+                        m_WeaponInventory[index].ICount--;
+                        break;
+                    }
+                }
                 break;
-            case '2':
+            case '2'://소비
+                for(int i=m_UseInventory.Count; i>=0; i--)
+                {
+                    string invenItemCode = functions.CodetoString(m_UseInventory[index].Code);
+                    if (invenItemCode == null)
+                    {
+                        index--;
+                        continue;
+                    }
+                    else if (m_UseInventory[index].ICount - 1 == 0)
+                    {
+                        m_UseInventory[index].CodeReset();
+                        break;
+                    }
+                    else
+                    {
+                        m_UseInventory[index].ICount--;
+                        break;
+                    }
+                }
                 break;
         }
     }
