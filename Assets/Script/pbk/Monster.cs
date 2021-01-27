@@ -46,11 +46,18 @@ public class Monster : Character
         //아이템 이름
         m_Item = m_objItem.GetComponent<EtcItem>();
         m_Item.ItemSetting(ITEM_TYPE.ETC, m_iMonNum);
+        m_Item.ICount = 1;
         m_SprMain = Resources.Load<Sprite>("Monster/monster "+ argIndex);
         m_sprRender = GetComponent<SpriteRenderer>();
         m_sprRender.sprite = m_SprMain;
         m_HitSprite = Resources.Load<Sprite>("Monster/monster " + argIndex + " Hit");
         
+    }
+
+    public void AddItem()
+    {
+        Inventory Inven = GameObject.Find("InventoryUI").transform.GetChild(4).GetComponent<Inventory>();
+        Inven.AddItem(m_Item);
     }
     private void SetTypeStatus(string argType)
     {

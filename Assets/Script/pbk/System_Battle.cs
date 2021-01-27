@@ -59,6 +59,7 @@ public class System_Battle : MonoBehaviour
     public bool BBattle { get => m_bBattle; set => m_bBattle = value; }
     public BATTLE_PROCESS eBattleProcess { get => m_eBattleProcess; set => m_eBattleProcess = value; }
     public int iRound { get => m_iRound; set => m_iRound = value; }
+    public float pPlayerHpSize { get => m_PlayerHp.size; set => m_PlayerHp.size += value; }
 
     private GameObject m_MonFill, m_PlayerFill, m_ExpFill;//체력바 및 Exp바 채우기변수
 
@@ -188,7 +189,9 @@ public class System_Battle : MonoBehaviour
         else
             GM.PlusQuestBoss();
         //아이템 얻게 되면 주석 풀기
-        //GM.PlusQuestEtcItem();
+        //아이템 얻기
+        m_Monster.AddItem();
+        GM.PlusQuestEtcItem();
         GM.RewardQuest();
         GM.SettingQuest();
         //맵으로 돌아기
@@ -426,12 +429,16 @@ public class System_Battle : MonoBehaviour
             //플레이어가 맞는 대미지 계산
             int totalDmg = m_iDmg + m_iSkillDmg + m_iCDamage;
             m_tPlayerDamage.gameObject.SetActive(true);
+            FadeOut PlayerDamageUI = m_tPlayerDamage.GetComponent<FadeOut>();
+            PlayerDamageUI.reStartCoroutine();
             m_tPlayerDamage.text = totalDmg.ToString();
         }
         else
         {
             int totalDmg = m_iDmg + m_iSkillDmg;
             m_tMonDamage.gameObject.SetActive(true);
+            FadeOut MonDamageUI = m_tMonDamage.GetComponent<FadeOut>();
+            MonDamageUI.reStartCoroutine();
             m_tMonDamage.text = totalDmg.ToString();
         }
     }

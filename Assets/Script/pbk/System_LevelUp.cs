@@ -21,7 +21,7 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
 
     public void CalculStat()//스텟 계산
     {
-        m_Player.getInfo().setMaxHp(ref m_Player.getInfo(),m_Player.getStat().IPow * 3 + 9950);
+        m_Player.getInfo().setMaxHp(ref m_Player.getInfo(),m_Player.getStat().IPow * 3 + 300);
         m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp);
         m_Player.getInfo().setAtkSpeed(ref m_Player.getInfo(), m_Player.getStat().IDex / 15 + 1);
         if (m_Player.getInfo().IAtkSpeed >= 10)
