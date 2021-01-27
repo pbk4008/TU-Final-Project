@@ -4,6 +4,7 @@ using UnityEngine;
 using enums;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Inventory : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Inventory : MonoBehaviour
     private List<UseItem> m_UseInventory;
     private List<WeaponItem> m_WeaponInventory;
     private UseItem m_UseItem;
+    private Scene m_Scene;
 
     private GameObject m_removeItem;
     GraphicRaycaster raycaster;
@@ -26,7 +28,8 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_InvenUI = GameObject.Find("InventoryUI").GetComponent<Canvas>();
+        if(m_Scene.name == "Duengeon")
+            m_InvenUI = GameObject.Find("InventoryUI").GetComponent<Canvas>();
         raycaster = gameObject.transform.parent.GetComponent<GraphicRaycaster>();
         
         m_eInventoryType = ITEM_TYPE.ETC;
@@ -323,8 +326,11 @@ public class Inventory : MonoBehaviour
     void FixedUpdate()//캔버스 위에 있는 UI인식
     {
         //if (Input.GetMouseButtonDown(0))
-        if (Input.GetMouseButtonDown(0) && m_InvenUI.enabled)
+        if (Input.GetMouseButtonDown(0))
         {
+            if (m_Scene.name == "Duengeon")
+                if (!m_InvenUI.enabled)
+                    return;
             PointerEventData pointerData = new PointerEventData(EventSystem.current);
             List<RaycastResult> results = new List<RaycastResult>();
 

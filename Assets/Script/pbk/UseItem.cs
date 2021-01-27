@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using enums;
+using UnityEngine.SceneManagement;
 
 public class UseItem : Item
 {
     System_Battle m_SystemBattle;
     Player m_Player;
+    Scene m_Scene;
 
     void Start()
     {
-        m_SystemBattle = GameObject.Find("BattleManager").GetComponent<System_Battle>();
+        if (m_Scene.name == "Duengeon")
+            m_SystemBattle = GameObject.Find("BattleManager").GetComponent<System_Battle>();
         m_Player = GameObject.Find("Player").GetComponent<Player>();
     }
 
@@ -44,12 +47,11 @@ public class UseItem : Item
                     iHillsize = (int)(m_Player.getInfo().ICurrentHp * 0.60f);
                 break;
         }
-        Debug.Log(iHillsize);
+        Debug.Log("힐량 : " + iHillsize);
         m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().ICurrentHp + iHillsize);
         if(m_Player.getInfo().ICurrentHp > m_Player.getInfo().IMaxHp)
             m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp);
-        Debug.Log(m_SystemBattle.pPlayerHpSize);
-        m_SystemBattle.pPlayerHpSize = (float)iHillsize / m_Player.getInfo().IMaxHp;
-        Debug.Log(m_SystemBattle.pPlayerHpSize);
+        if (m_Scene.name == "Duengeon")
+            m_SystemBattle.pPlayerHpSize = (float)iHillsize / m_Player.getInfo().IMaxHp;
     }
 }
