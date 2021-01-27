@@ -12,12 +12,12 @@ public class Inventory : MonoBehaviour
     private GameObject m_objargItem;
     public ITEM_TYPE EInventoryType { get => m_eInventoryType; set => m_eInventoryType = value; }
     public List<EtcItem> ListEtcInventory { get => m_EtcInventory; set => m_EtcInventory = value; }
-
+    private Canvas m_InvenUI;
     public GameObject ObjargItem { get => m_objargItem; set => m_objargItem = value; }
     private List<EtcItem> m_EtcInventory;
     private List<UseItem> m_UseInventory;
     private List<WeaponItem> m_WeaponInventory;
-
+    private UseItem m_UseItem;
 
     private GameObject m_removeItem;
     GraphicRaycaster raycaster;
@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_InvenUI = GameObject.Find("InventoryUI").GetComponent<Canvas>();
         raycaster = gameObject.transform.parent.GetComponent<GraphicRaycaster>();
         
         m_eInventoryType = ITEM_TYPE.ETC;
@@ -64,9 +65,9 @@ public class Inventory : MonoBehaviour
         float xPos = H / 8-ItemH/2;
         float V = PannelV + ItemV;
         float yPos = V / 3 - ItemV / 2;
-        Vector3 pos = m_EtcInventory[argIndex].GetComponent<Transform>().position;
-        pos.x += xPos * (xIndex + 1);
-        pos.y -= yPos * (yIndex + 1);
+        Vector3 pos;
+        pos.x = xPos * (xIndex + 1);
+        pos.y = yPos * (yIndex + 1);
         pos.z = 1;
 
         m_EtcInventory[argIndex].GetComponent<Transform>().position = pos;
@@ -81,7 +82,7 @@ public class Inventory : MonoBehaviour
     public void AddItem(Item argItem)
     {
         string tmpCode = functions.CodetoString(argItem.Code);
-        int index = 0;
+        int index = 0; 
         switch (argItem.Code[0])
         {
             case '0'://기타
@@ -127,11 +128,10 @@ public class Inventory : MonoBehaviour
                     }
                 }
                 break;
-            case '1':
+            case '2':
                 foreach (UseItem i in m_UseInventory)
                 {
                     string argCode = functions.CodetoString(i.Code);
-
                     if (argCode == null)//아이템 없을 때
                     {
                         m_UseInventory[index].Code = argItem.Code;
@@ -170,7 +170,7 @@ public class Inventory : MonoBehaviour
                     }
                 }
                 break;
-            case '2':
+            case '1':
                 foreach (WeaponItem i in m_WeaponInventory)
                 {
                     string argCode = functions.CodetoString(i.Code);
@@ -249,15 +249,20 @@ public class Inventory : MonoBehaviour
                         index--;
                         continue;
                     }
-                    else if (m_UseInventory[index].ICount - 1 == 0)
+                    else if (tmpCode == invenItemCode)
                     {
-                        m_UseInventory[index].CodeReset();
-                        break;
-                    }
-                    else
-                    {
-                        m_UseInventory[index].ICount--;
-                        break;
+                        UseItem uItem = tmpItem.GetComponent<UseItem>();
+                        uItem.UsingItem(tmpCode[3]);
+                        if (m_UseInventory[index].ICount - 1 == 0)
+                        {
+                            m_UseInventory[index].CodeReset();
+                            break;
+                        }
+                        else
+                        {
+                            m_UseInventory[index].ICount--;
+                            break;
+                        }
                     }
                 }
                 break;
@@ -272,23 +277,32 @@ public class Inventory : MonoBehaviour
                 switch(m_eInventoryType)
                 {
                     case ITEM_TYPE.ETC:
-                        m_EtcInventory[i].gameObject.SetActive(true);
+                     m_EtcInventory[i].gameObject.SetActive(true);
                         m_UseInventory[i].gameObject.SetActive(false);
-                        m_WeaponInventory[i].gameObject.SetActive(false);
+                     m_WeaponInventory[i].gameObject.SetActive(false);
                         break;
                     case ITEM_TYPE.USE:
-                        m_EtcInventory[i].gameObject.SetActive(false);
+                       m_EtcInventory[i].gameObject.SetActive(false);
                         m_UseInventory[i].gameObject.SetActive(true);
                         m_WeaponInventory[i].gameObject.SetActive(false);
                         break;
                     case ITEM_TYPE.EQUIP:
-                        m_EtcInventory[i].gameObject.SetActive(false);
+                       m_EtcInventory[i].gameObject.SetActive(false);
                         m_UseInventory[i].gameObject.SetActive(false);
                         m_WeaponInventory[i].gameObject.SetActive(true);
                         break;
                 }
             }
             foreach (EtcItem i in m_EtcInventory)
+            {
+                if (i.Code == null)
+                    break;
+                i.CodeSolve();
+                i.ImageSetting();
+                i.gameObject.GetComponent<Image>().sprite = i.SprImg;
+                i.gameObject.GetComponentInChildren<Text>().text = i.ICount.ToString();
+            }
+            foreach (UseItem i in m_UseInventory)
             {
                 if (i.Code == null)
                     break;
@@ -305,19 +319,23 @@ public class Inventory : MonoBehaviour
     {
         
     }
+
     void FixedUpdate()//캔버스 위에 있는 UI인식
     {
-        if (Input.GetMouseButtonDown(0))
+        //if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && m_InvenUI.enabled)
         {
             PointerEventData pointerData = new PointerEventData(EventSystem.current);
             List<RaycastResult> results = new List<RaycastResult>();
 
             pointerData.position = Input.mousePosition;
             raycaster.Raycast(pointerData, results);
-
             m_removeItem = results[0].gameObject;
-            if(m_removeItem.GetComponent<Item>()!=null)
+            if (m_removeItem.GetComponent<Item>() != null)
+            {
+                Debug.Log(results[0].gameObject.GetComponent<Item>().Code);
                 RemoveItem(m_removeItem);
+            }
         }
     }
     // Update is called once per frame

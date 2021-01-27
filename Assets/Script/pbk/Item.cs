@@ -46,7 +46,7 @@ public class Item : MonoBehaviour
     }
     public void ImageSetting()
     {
-        switch(m_eType)
+        switch (m_eType)
         {
             case ITEM_TYPE.ETC:
                 m_sprImg = Resources.Load<Sprite>("Item/Etc/etc " + m_iNum.ToString());
