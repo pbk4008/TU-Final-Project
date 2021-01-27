@@ -49,6 +49,7 @@ public class BtnManager : MonoBehaviour
         m_Player.BButtonClick = true;
         attack();
     }
+
     public void RunBtn()
     {
         run();
