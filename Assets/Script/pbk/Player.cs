@@ -104,6 +104,15 @@ public class Player : Character
             yield return new WaitForSeconds(0.1f);
         }
     }
+    public void MoneySet(int argMoney)
+    { 
+        if (m_iMoney + argMoney < 0)
+        {
+            Debug.Log("돈이 없어 살 수 가 없습니다.");
+        }
+        else
+            m_iMoney += argMoney;
+    }
     //손준호 작업
     private static Player m_Instance;
     private Scene m_Scene;
