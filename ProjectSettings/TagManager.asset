@@ -9,6 +9,7 @@ TagManager:
   - Monster
   - Boss
   - BattleMgr
+  - ItemUI
   layers:
   - Default
   - TransparentFX

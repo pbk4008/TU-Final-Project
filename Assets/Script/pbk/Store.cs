@@ -48,7 +48,7 @@ public class Store : MonoBehaviour
             }
             m_Store[i].ImageSetting();
             m_Store[i].gameObject.GetComponent<Image>().sprite = m_Store[i].SprImg;
-            Debug.Log(m_Store[i].gameObject.name+" "+functions.CodetoString(m_Store[i].Code));
+            
            
         }
     }
@@ -83,7 +83,7 @@ public class Store : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+
         int tmpMoney = GameObject.FindWithTag("Player").GetComponent<Player>().IMoney;
         m_txtMoney.text = "돈 : " + tmpMoney.ToString();
         if (Input.GetMouseButton(0))
@@ -96,8 +96,16 @@ public class Store : MonoBehaviour
 
             m_SelectItem = results[0].gameObject;
 
+            if (m_SelectItem.tag != "ItemUI")
+            {
+                results.Clear();
+                return;
+            }
             if (m_SelectItem.GetComponent<Item>() != null)
+            {
+                results.Clear();
                 BuyItem(m_SelectItem.GetComponent<Item>());
+            }
         }
     }
     private void BuyItem(Item argItem)

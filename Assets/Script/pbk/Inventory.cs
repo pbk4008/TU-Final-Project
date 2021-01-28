@@ -347,6 +347,11 @@ public class Inventory : MonoBehaviour
             raycaster.Raycast(pointerData, results);
             m_removeItem = results[0].gameObject;
 
+            if(m_removeItem.tag!="ItemUI")
+            {
+                results.Clear();
+                return;
+            }
             switch(m_eInventoryType)
             {
                 case ITEM_TYPE.ETC:
@@ -388,6 +393,7 @@ public class Inventory : MonoBehaviour
             if (m_removeItem.GetComponent<Item>() != null)
             {
                 RemoveItem(m_removeItem.GetComponent<Item>());
+                results.Clear();
             }
         }
     }

@@ -45,7 +45,7 @@ public class Scr_DungeonBtn : MonoBehaviour
     private int[] m_iGoalCount = new int[3]; //퀘스트 목표 점수 배열
 
     //----------------------도박장 부분
-    [SerializeField] private Button[] GambleButton = new Button[7]; 
+    [SerializeField] private Button[] GambleButton = new Button[11]; 
     [SerializeField] private Player m_Player;
     [SerializeField] private Text T_GamblePlayerMoney;
     [SerializeField] private Text T_GambleReady;
@@ -54,6 +54,8 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private Image Img_GambleMenu; //도박장 이미지
     [SerializeField] private Image Img_GambleResult; //도박장 이미지
     [SerializeField] private InputField Input_GambleMoney;
+    [SerializeField] private Canvas Cvs_Store;
+    [SerializeField] private Canvas Cvs_Inventory;
 
     private string m_sPlayerSelect;
     private int m_iPlayerSelect;
@@ -223,8 +225,13 @@ public class Scr_DungeonBtn : MonoBehaviour
                         ActiveButton(1);
                         break;
                     case "Btn_GambleNPC": //도박장 시작
-                        SetActive(2, 1, 3, 0, 0);
+                        SetActive(2,7, 9, 0, 0);
                         Img_GambleEnter.gameObject.SetActive(true);
+                        ActiveButton(0);
+                        break;
+                    case "Btn_Gamble":
+                        SetActive(2, 1, 3, 0, 0);
+                        SetActive(2, 0, 0, 7, 9);
                         Input_GambleMoney.gameObject.SetActive(true);
                         T_GamblePlayerMoney.gameObject.SetActive(true);
                         T_GamblePlayerMoney.GetComponent<Text>().text = "소지금 : " + m_Player.IMoney.ToString();
@@ -232,11 +239,11 @@ public class Scr_DungeonBtn : MonoBehaviour
                         ActiveButton(0);
                         break;
                     case "Btn_ExitGamble":
+                        SetActive(2, 7, 9, 0, 0);
                         SetActive(2, 0, 0, 1, 3);
-                        Img_GambleEnter.gameObject.SetActive(false);
                         Input_GambleMoney.gameObject.SetActive(false);
                         T_GamblePlayerMoney.gameObject.SetActive(false);
-                        ActiveButton(1);
+                        ActiveButton(0);
                         break;
                     case "Btn_GambleRight":
                         SetActive(2, 4, 5, 1, 3);
@@ -263,6 +270,27 @@ public class Scr_DungeonBtn : MonoBehaviour
                         Img_GambleMenu.gameObject.SetActive(false);
                         T_GambleReady.gameObject.SetActive(false);
                         break;
+                    case "Btn_Store":
+                        SetActive(2, 0, 0, 7, 9);
+                        Img_GambleEnter.gameObject.SetActive(false);
+                        GambleButton[GambleButton.Length-1].gameObject.SetActive(true);
+                        Cvs_Inventory.gameObject.SetActive(true);
+                        Cvs_Store.gameObject.SetActive(true);             
+                        break;
+                    case "Btn_ExitStore":
+                        SetActive(2, 7, 9, 0, 0);
+                        GambleButton[GambleButton.Length - 1].gameObject.SetActive(false);
+                        Img_GambleEnter.gameObject.SetActive(true);
+                        Cvs_Inventory.gameObject.SetActive(false);
+                        Cvs_Store.gameObject.SetActive(false);
+                        break;
+                    case "Btn_ExitDarkStore":
+                        SetActive(2, 0, 0, 7,9);
+                        Img_GambleEnter.gameObject.SetActive(false);
+                        Input_GambleMoney.gameObject.SetActive(false);
+                        T_GamblePlayerMoney.gameObject.SetActive(false);
+                        ActiveButton(1);
+                        break;
                     case "Btn_GambleResult": //도박장 끝
                         SetActive(2, 0, 0, 6, 6);
                         Img_GambleEnter.gameObject.SetActive(false);
@@ -288,7 +316,12 @@ public class Scr_DungeonBtn : MonoBehaviour
                         break;
                     case "Btn_HouseReinforce":
                         break;
-                    case "Btn_HouseWereHouse":
+                    case "Btn_PlayerState":
+                        SetActive(4, 1, 1, 0, 0);
+                        Img_PlayerStat.gameObject.SetActive(true);
+                        T_PlayerUI.gameObject.SetActive(true);
+                        PrintPlayerInfo();
+                        ActiveButton(0);
                         break;
                     case "Btn_HouseMenuExit":
                         SetActive(3, 0, 0, 1, 4);
@@ -301,18 +334,11 @@ public class Scr_DungeonBtn : MonoBehaviour
                         T_HouseHeal.gameObject.SetActive(false);
                         ActiveButton(1);
                         break;
-                    case "Btn_PlayerUI":
-                        SetActive(4, 1, 1, 0, 0);
-                        Img_PlayerStat.gameObject.SetActive(true);
-                        T_PlayerUI.gameObject.SetActive(true);
-                        PrintPlayerInfo();
-                        ActiveButton(0);
-                        break;
                     case "Btn_PlayerUIExit":
                         SetActive(4, 0, 0, 1, 1);
                         Img_PlayerStat.gameObject.SetActive(false);
                         T_PlayerUI.gameObject.SetActive(false);
-                        ActiveButton(1);
+                        ActiveButton(0);
                         break;
                 }
             }
@@ -395,7 +421,6 @@ public class Scr_DungeonBtn : MonoBehaviour
                 QuestButton[0].gameObject.SetActive(false);
                 GambleButton[0].gameObject.SetActive(false);
                 HouseButton[0].gameObject.SetActive(false);
-                PlayerButton[0].gameObject.SetActive(false);
                 LoadButton.gameObject.SetActive(false);
                 break;
             case 1:
@@ -403,7 +428,6 @@ public class Scr_DungeonBtn : MonoBehaviour
                 QuestButton[0].gameObject.SetActive(true);
                 GambleButton[0].gameObject.SetActive(true);
                 HouseButton[0].gameObject.SetActive(true);
-                PlayerButton[0].gameObject.SetActive(true);
                 LoadButton.gameObject.SetActive(true);
                 break;
         }
