@@ -83,6 +83,7 @@
      <Compile Include="Assets\Script\sjh\System\System_DataMgr.cs" />
      <Compile Include="Assets\Script\sjh\FadeOut.cs" />
      <Compile Include="Assets\Script\pbk\BtnManager.cs" />
+     <Compile Include="Assets\Script\pbk\Equipment.cs" />
      <None Include="Assets\Script\sjh\sjh.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/park byeong kyu/Desktop/개인포폴/포토폴리오/Unity2D/2DRPG/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

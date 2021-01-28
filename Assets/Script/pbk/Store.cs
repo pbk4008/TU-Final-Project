@@ -14,6 +14,9 @@ public class Store : MonoBehaviour
     private Text m_txtMoney;
 
     GameObject m_SelectItem;
+
+    public Text TxtMoney { get => m_txtMoney; set => m_txtMoney = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +27,7 @@ public class Store : MonoBehaviour
     }
 
     // Update is called once per frame
-    void StoreSetting()
+    public void StoreSetting()
     {
         for (int i = 0; i < 5; i++)
         {
@@ -94,13 +97,11 @@ public class Store : MonoBehaviour
             pointerData.position = Input.mousePosition;
             raycaster.Raycast(pointerData, results);
 
+            if (results.Count == 0||results[0].gameObject.tag!="ItemUI")
+                return;
             m_SelectItem = results[0].gameObject;
 
-            if (m_SelectItem.tag != "ItemUI")
-            {
-                results.Clear();
-                return;
-            }
+            
             if (m_SelectItem.GetComponent<Item>() != null)
             {
                 results.Clear();

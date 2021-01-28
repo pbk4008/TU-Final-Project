@@ -67,7 +67,7 @@ public class Item : MonoBehaviour
     public void CodeReset()
     {
         m_Code = null;
-        m_sprImg = null;
+        m_sprImg = Resources.Load<Sprite>("Item/blank");
         if (gameObject.GetComponent<Image>() != null)
             gameObject.GetComponent<Image>().sprite = m_sprImg;
     }

@@ -51,6 +51,10 @@ public class Inventory : MonoBehaviour
             m_UseInventory.Add(tmpItem2.GetComponent<UseItem>());
             m_WeaponInventory.Add(tmpItem3.GetComponent<WeaponItem>());
 
+            m_EtcInventory[i].CodeReset();
+            m_UseInventory[i].CodeReset();
+            m_WeaponInventory[i].CodeReset();
+
             InventoryCreate(i);
         }
         StartCoroutine(PrintInven());
@@ -210,6 +214,15 @@ public class Inventory : MonoBehaviour
                 break;
         }
     }
+    public void SellItem(Item argItem)
+    {
+        RemoveItem(argItem);
+        Store tmpStore = GameObject.Find("Store").GetComponent<Store>();
+        Player tmpPlayer = GameObject.FindWithTag("Player").GetComponent<Player>();
+        tmpPlayer.MoneySet(argItem.ICost);
+        tmpStore.StoreSetting();
+        tmpStore.TxtMoney.text = "돈 : " + tmpPlayer.IMoney;
+    }
     public void RemoveItem(Item argItem)
     {
         string tmpCode = functions.CodetoString(argItem.Code);
@@ -229,7 +242,7 @@ public class Inventory : MonoBehaviour
                     }
                     else if (tmpCode == invenItemCode)
                     { 
-                        if (tmpEtcItem.ICount - 1 == 0)
+                        if (tmpEtcItem.ICount - 1 <= 0)
                         {
                             tmpEtcItem.CodeReset();
                             break;
@@ -247,19 +260,15 @@ public class Inventory : MonoBehaviour
                 {
                     WeaponItem tmpWeaponItem = m_WeaponInventory[index].GetComponent<WeaponItem>();
                     string invenItemCode = functions.CodetoString(tmpWeaponItem.Code);
+
                     if (invenItemCode == null)
                     {
                         index--;
                         continue;
                     }
-                    else if (tmpWeaponItem.ICount - 1 == 0)
+                    else if(tmpCode==invenItemCode)
                     {
                         tmpWeaponItem.CodeReset();
-                        break;
-                    }
-                    else
-                    {
-                        tmpWeaponItem.ICount--;
                         break;
                     }
                 }
@@ -290,11 +299,8 @@ public class Inventory : MonoBehaviour
                 }
                 break;
         }
-        Player tmpPlayer = GameObject.FindWithTag("Player").GetComponent<Player>();
-        tmpPlayer.MoneySet(argItem.ICost);
-        Debug.Log(argItem.ICost);
     }
-    private IEnumerator PrintInven()
+    public IEnumerator PrintInven()
     {
         while (true)
         {
@@ -345,13 +351,13 @@ public class Inventory : MonoBehaviour
 
             pointerData.position = Input.mousePosition;
             raycaster.Raycast(pointerData, results);
+
+           if (results.Count == 0||results[0].gameObject.tag!="ItemUI")
+                return;
+           
             m_removeItem = results[0].gameObject;
 
-            if(m_removeItem.tag!="ItemUI")
-            {
-                results.Clear();
-                return;
-            }
+            
             switch(m_eInventoryType)
             {
                 case ITEM_TYPE.ETC:
@@ -392,8 +398,7 @@ public class Inventory : MonoBehaviour
 
             if (m_removeItem.GetComponent<Item>() != null)
             {
-                RemoveItem(m_removeItem.GetComponent<Item>());
-                results.Clear();
+                SellItem(m_removeItem.GetComponent<Item>());
             }
         }
     }

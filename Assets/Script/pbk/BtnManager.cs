@@ -60,15 +60,18 @@ public class BtnManager : MonoBehaviour
     {
         m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         m_Inventory.EInventoryType = ITEM_TYPE.EQUIP;
+        StartCoroutine(m_Inventory.PrintInven());
     }
     public void UsedBtn()
     {
         m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         m_Inventory.EInventoryType = ITEM_TYPE.USE;
+        StartCoroutine(m_Inventory.PrintInven());
     }
     public void EtcBtn()
     {
         m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         m_Inventory.EInventoryType = ITEM_TYPE.ETC;
+        StartCoroutine(m_Inventory.PrintInven());
     }
 }
