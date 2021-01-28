@@ -74,19 +74,11 @@ public class Inventory : MonoBehaviour
         float xPos = H / 8-ItemH/2;
         float V = PannelV + ItemV;
         float yPos = V / 3 - ItemV / 2;
-<<<<<<< HEAD
-        Vector3 pos;
-        pos.x = xPos * (xIndex + 1);
-        pos.y = yPos * (yIndex + 1);
-        pos.z = 1;
-=======
         Vector3 pos = gameObject.GetComponent<RectTransform>().position;
 
         pos.x += xPos * (xIndex + 1)-500;
         pos.y -= yPos * (yIndex + 1)-130;
         pos.z += 1;
-
->>>>>>> feature/Inventory
 
         m_EtcInventory[argIndex].GetComponent<RectTransform>(). anchoredPosition= pos;
         m_EtcInventory[argIndex].transform.parent = gameObject.transform;
@@ -101,12 +93,7 @@ public class Inventory : MonoBehaviour
     public void AddItem(Item argItem)
     {
         string tmpCode = functions.CodetoString(argItem.Code);
-<<<<<<< HEAD
-        int index = 0; 
-=======
-        Debug.Log(tmpCode);
         int index = 0;
->>>>>>> feature/Inventory
         switch (argItem.Code[0])
         {
             case '0'://기타
@@ -156,17 +143,10 @@ public class Inventory : MonoBehaviour
                 }
                 break;
             case '2':
-<<<<<<< HEAD
-                foreach (UseItem i in m_UseInventory)
-                {
-                    string argCode = functions.CodetoString(i.Code);
-=======
                 for (;index<m_UseInventory.Count;)
                 {
                     UseItem tmpUseItem = m_UseInventory[index].GetComponent<UseItem>();
                     string argCode = functions.CodetoString(tmpUseItem.Code);
-                    
->>>>>>> feature/Inventory
                     if (argCode == null)//아이템 없을 때
                     {
 
@@ -209,11 +189,7 @@ public class Inventory : MonoBehaviour
                 }
                 break;
             case '1':
-<<<<<<< HEAD
-                foreach (WeaponItem i in m_WeaponInventory)
-=======
                 for (; index<m_WeaponInventory.Count;)
->>>>>>> feature/Inventory
                 {
                     WeaponItem tmpWeaponItem = m_WeaponInventory[index].GetComponent<WeaponItem>();
                     string argCode = functions.CodetoString(tmpWeaponItem.Code);
@@ -298,30 +274,16 @@ public class Inventory : MonoBehaviour
                         index--;
                         continue;
                     }
-<<<<<<< HEAD
-                    else if (tmpCode == invenItemCode)
-                    {
-                        UseItem uItem = tmpItem.GetComponent<UseItem>();
-                        uItem.UsingItem(tmpCode[3]);
-                        if (m_UseInventory[index].ICount - 1 == 0)
-                        {
-                            m_UseInventory[index].CodeReset();
-=======
                     else if (invenItemCode == tmpCode)
                     { 
                         if (tmpUseItem.ICount - 1 == 0)
                         {
                             tmpUseItem.CodeReset();
->>>>>>> feature/Inventory
                             break;
                         }
                         else
                         {
-<<<<<<< HEAD
-                            m_UseInventory[index].ICount--;
-=======
                             tmpUseItem.ICount--;
->>>>>>> feature/Inventory
                             break;
                         }
                     }
@@ -342,59 +304,27 @@ public class Inventory : MonoBehaviour
                 {
                     case ITEM_TYPE.ETC:
                      m_EtcInventory[i].gameObject.SetActive(true);
-                        m_UseInventory[i].gameObject.SetActive(false);
-<<<<<<< HEAD
+                     m_UseInventory[i].gameObject.SetActive(false);
                      m_WeaponInventory[i].gameObject.SetActive(false);
-=======
-                        m_WeaponInventory[i].gameObject.SetActive(false);
-                        m_EtcInventory[i].GetComponent<Image>().sprite = m_EtcInventory[i].GetComponent<EtcItem>().SprImg;
-                        m_EtcInventory[i].GetComponentInChildren<Text>().text = m_EtcInventory[i].GetComponent<EtcItem>().ICount.ToString();
-                        Debug.Log(functions.CodetoString(m_EtcInventory[i].GetComponent<EtcItem>().Code));
->>>>>>> feature/Inventory
-                        break;
+                     m_EtcInventory[i].GetComponent<Image>().sprite = m_EtcInventory[i].GetComponent<EtcItem>().SprImg;
+                     m_EtcInventory[i].GetComponentInChildren<Text>().text = m_EtcInventory[i].GetComponent<EtcItem>().ICount.ToString();
+                     break;
                     case ITEM_TYPE.USE:
                        m_EtcInventory[i].gameObject.SetActive(false);
-                        m_UseInventory[i].gameObject.SetActive(true);
-                        m_WeaponInventory[i].gameObject.SetActive(false);
-                        m_UseInventory[i].GetComponent<Image>().sprite = m_UseInventory[i].GetComponent<UseItem>().SprImg;
-                        m_UseInventory[i].GetComponentInChildren<Text>().text = m_UseInventory[i].GetComponent<UseItem>().ICount.ToString();
-                        //Debug.Log(functions.CodetoString(m_UseInventory[i].GetComponent<UseItem>().Code));
-
-
+                       m_UseInventory[i].gameObject.SetActive(true);
+                       m_WeaponInventory[i].gameObject.SetActive(false);
+                       m_UseInventory[i].GetComponent<Image>().sprite = m_UseInventory[i].GetComponent<UseItem>().SprImg;
+                       m_UseInventory[i].GetComponentInChildren<Text>().text = m_UseInventory[i].GetComponent<UseItem>().ICount.ToString();
                         break;
                     case ITEM_TYPE.EQUIP:
                        m_EtcInventory[i].gameObject.SetActive(false);
-                        m_UseInventory[i].gameObject.SetActive(false);
-                        m_WeaponInventory[i].gameObject.SetActive(true);
-                        m_WeaponInventory[i].GetComponent<Image>().sprite = m_WeaponInventory[i].GetComponent<WeaponItem>().SprImg;
-                        m_WeaponInventory[i].GetComponentInChildren<Text>().text = m_WeaponInventory[i].GetComponent<WeaponItem>().ICount.ToString();
-                        Debug.Log(functions.CodetoString(m_WeaponInventory[i].GetComponent<WeaponItem>().Code));
-                        break;
-                }
-                
+                       m_UseInventory[i].gameObject.SetActive(false);
+                       m_WeaponInventory[i].gameObject.SetActive(true);
+                       m_WeaponInventory[i].GetComponent<Image>().sprite = m_WeaponInventory[i].GetComponent<WeaponItem>().SprImg;
+                       m_WeaponInventory[i].GetComponentInChildren<Text>().text = m_WeaponInventory[i].GetComponent<WeaponItem>().ICount.ToString();
+                       break;
+                } 
             }
-<<<<<<< HEAD
-            foreach (EtcItem i in m_EtcInventory)
-            {
-                if (i.Code == null)
-                    break;
-                i.CodeSolve();
-                i.ImageSetting();
-                i.gameObject.GetComponent<Image>().sprite = i.SprImg;
-                i.gameObject.GetComponentInChildren<Text>().text = i.ICount.ToString();
-            }
-            foreach (UseItem i in m_UseInventory)
-            {
-                if (i.Code == null)
-                    break;
-                i.CodeSolve();
-                i.ImageSetting();
-                i.gameObject.GetComponent<Image>().sprite = i.SprImg;
-                i.gameObject.GetComponentInChildren<Text>().text = i.ICount.ToString();
-            }
-=======
-            
->>>>>>> feature/Inventory
             yield return new WaitForSeconds(0.1f);
         } 
     }
@@ -403,14 +333,8 @@ public class Inventory : MonoBehaviour
     {
         
     }
-<<<<<<< HEAD
-
-    void FixedUpdate()//캔버스 위에 있는 UI인식
-=======
     private void FixedUpdate()//캔버스 위에 있는 UI인식
->>>>>>> feature/Inventory
     {
-        //if (Input.GetMouseButtonDown(0))
         if (Input.GetMouseButtonDown(0))
         {
             if (m_Scene.name == "Duengeon")
@@ -422,12 +346,6 @@ public class Inventory : MonoBehaviour
             pointerData.position = Input.mousePosition;
             raycaster.Raycast(pointerData, results);
             m_removeItem = results[0].gameObject;
-<<<<<<< HEAD
-            if (m_removeItem.GetComponent<Item>() != null)
-            {
-                Debug.Log(results[0].gameObject.GetComponent<Item>().Code);
-                RemoveItem(m_removeItem);
-=======
 
             switch(m_eInventoryType)
             {
@@ -470,7 +388,6 @@ public class Inventory : MonoBehaviour
             if (m_removeItem.GetComponent<Item>() != null)
             {
                 RemoveItem(m_removeItem.GetComponent<Item>());
->>>>>>> feature/Inventory
             }
         }
     }

@@ -6,13 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class UseItem : Item
 {
-<<<<<<< HEAD
     System_Battle m_SystemBattle;
     Player m_Player;
     Scene m_Scene;
-
-=======
->>>>>>> feature/Inventory
     void Start()
     {
         if (m_Scene.name == "Duengeon")

@@ -21,7 +21,6 @@ public class Store : MonoBehaviour
         m_Store = new List<Item>();
         m_Store.AddRange(gameObject.GetComponentsInChildren<Item>());
         StoreSetting();
-        Debug.Log(m_Store.Count);
     }
 
     // Update is called once per frame
@@ -41,16 +40,20 @@ public class Store : MonoBehaviour
                 m_Store[i].ItemSetting(ITEM_TYPE.EQUIP, (EQUIP_TYPE)Random.RandomRange(1, 5), RandomGrade(0));
                 m_Store[i].ICount = 1;
             }
-
             m_Store[i].CodeSolve();
+            if (m_Store[i].EEquipType == EQUIP_TYPE.KNUKLE)
+            {
+                if (m_Store[i].EGrade == ITEM_GRADE.BASIC)
+                    m_Store[i].EGrade = ITEM_GRADE.NORMAL;
+            }
             m_Store[i].ImageSetting();
             m_Store[i].gameObject.GetComponent<Image>().sprite = m_Store[i].SprImg;
+            Debug.Log(m_Store[i].gameObject.name+" "+functions.CodetoString(m_Store[i].Code));
            
         }
     }
     ITEM_GRADE RandomGrade(int argType)//0이면 무기 확률, 1이면 물약확률
     {
-        
         int argRes = Random.RandomRange(0, 100);
         if (argType == 0)
         {
@@ -80,6 +83,7 @@ public class Store : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        
         int tmpMoney = GameObject.FindWithTag("Player").GetComponent<Player>().IMoney;
         m_txtMoney.text = "돈 : " + tmpMoney.ToString();
         if (Input.GetMouseButton(0))
@@ -92,7 +96,6 @@ public class Store : MonoBehaviour
 
             m_SelectItem = results[0].gameObject;
 
-         
             if (m_SelectItem.GetComponent<Item>() != null)
                 BuyItem(m_SelectItem.GetComponent<Item>());
         }
@@ -101,23 +104,20 @@ public class Store : MonoBehaviour
     {
         m_Inventory.AddItem(argItem);
         
-        string argCode = functions.CodetoString(argItem.Code);
         foreach(Item i in m_Store)
-        {
-            string tmpCode = functions.CodetoString(i.Code);
-            
-            if(tmpCode == argCode)
+        {   
+            if(argItem.gameObject == i.gameObject)
             {
                 Player player = GameObject.Find("Player").GetComponent<Player>();
                 player.MoneySet(-i.ICost);
                 i.ICount--;
                 if(i.ICount==0)
                     i.CodeReset();
+                break;
             }
         }
 
     }
-
     void Update()
     {
         
