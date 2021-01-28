@@ -17,17 +17,21 @@ public class functions : MonoBehaviour
     }
     public static float CalculSpriteHorizontalSize(GameObject argObj)
     {
-        if(argObj.GetComponent<SpriteRenderer>()!=null)
+        if (argObj.GetComponent<SpriteRenderer>() != null)
             return argObj.GetComponent<SpriteRenderer>().sprite.bounds.size.x * argObj.transform.localScale.x;
         else
-            return argObj.GetComponent<Image>().sprite.bounds.size.x * argObj.GetComponent<RectTransform>().localScale.x;
+        {
+            return argObj.GetComponent<Image>().sprite.bounds.size.x * argObj.GetComponent<RectTransform>().localScale.x*100;
+        }
     }
     public static float CalculSpriteVerticalSize(GameObject argObj)
     {
         if (argObj.GetComponent<SpriteRenderer>() != null)
             return argObj.GetComponent<SpriteRenderer>().sprite.bounds.size.y * argObj.transform.localScale.y;
         else
-            return argObj.GetComponent<Image>().sprite.bounds.size.y * argObj.GetComponent<RectTransform>().localScale.y;
+        {
+            return argObj.GetComponent<Image>().sprite.bounds.size.y * argObj.GetComponent<RectTransform>().localScale.y*100;
+        }
     }
     public static string CodetoString(List<char> argList)
     {
@@ -37,19 +41,10 @@ public class functions : MonoBehaviour
 
         for (int i = 0; i < argList.Count; i++)
         { 
+            
             tmpCode += argList[i];
         }
         return tmpCode;
     }
-    /*public static void Singleton<T>(T argInstance)
-    {
-        if (argInstance != null)
-        {
-         //   Destroy(gameObject);
-            return;
-        }
-<<<<<<< HEAD
-        argInstance = this;
-        DontDestroyOnLoad(argInstance);
-    }*/
+    
 }

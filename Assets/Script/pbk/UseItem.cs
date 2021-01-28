@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class UseItem : Item
 {
-
-  
     void Start()
     {
         
