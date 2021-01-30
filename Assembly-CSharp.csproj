@@ -87,10 +87,7 @@
     <Compile Include="Assets\Script\pbk\System_Battle.cs" />
     <Compile Include="Assets\Script\pbk\Item.cs" />
     <Compile Include="Assets\Script\pbk\Store.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\Script\pbk\Equipment.cs" />
-=======
->>>>>>> feature/itemMoney
     <Compile Include="Assets\Script\pbk\enums.cs" />
     <Compile Include="Assets\Script\sjh\UI Scriots\Scr_ButtonName.cs" />
     <Compile Include="Assets\Script\sjh\System\System_DataMgr.cs" />

@@ -32,6 +32,7 @@ public class Debug_Item : MonoBehaviour
 
     public void Useitemadd()
     {
+        m_argInven = GameObject.Find("Inventory").GetComponent<Inventory>();
         m_UseItem = GetComponent<UseItem>();
         m_UseItem.ItemSetting(ITEM_TYPE.USE, EQUIP_TYPE.USE, ITEM_GRADE.NORMAL);
         m_UseItem.ICount = 1;
