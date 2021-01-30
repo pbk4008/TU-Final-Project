@@ -35,7 +35,6 @@ public class Store : MonoBehaviour
             {
                 m_Store[i].ItemSetting(ITEM_TYPE.USE, EQUIP_TYPE.USE, RandomGrade(1));
                 m_Store[i].ICount = 1;
-                m_Store[i].ICost = 300;
             }
 
             else
@@ -51,8 +50,7 @@ public class Store : MonoBehaviour
             }
             m_Store[i].ImageSetting();
             m_Store[i].gameObject.GetComponent<Image>().sprite = m_Store[i].SprImg;
-            
-           
+            Debug.Log("판매 가격 : " + m_Store[i].ICost);
         }
     }
     ITEM_GRADE RandomGrade(int argType)//0이면 무기 확률, 1이면 물약확률

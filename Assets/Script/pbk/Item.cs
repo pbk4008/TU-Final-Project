@@ -48,6 +48,7 @@ public class Item : MonoBehaviour
             m_eEquipType = (EQUIP_TYPE)(int.Parse(m_Code[2].ToString()));
             m_eGrade = (ITEM_GRADE)(int.Parse(m_Code[3].ToString()));
         }
+        MoneySetting();
     }
     public void ImageSetting()
     {
@@ -70,5 +71,72 @@ public class Item : MonoBehaviour
         m_sprImg = Resources.Load<Sprite>("Item/blank");
         if (gameObject.GetComponent<Image>() != null)
             gameObject.GetComponent<Image>().sprite = m_sprImg;
+    }
+
+    private void MoneySetting()
+    {
+        switch (m_eType)
+        {
+            case ITEM_TYPE.ETC:
+                switch(m_iNum/5)
+                {
+                    case 0:
+                        iCost = 2;
+                        break;
+                    case 1:
+                        iCost = 3;
+                        break;
+                    case 2:
+                        iCost = 4;
+                        break;
+                    case 3:
+                        iCost = 5;
+                        break;
+                    case 4:
+                        iCost = 6;
+                        break;
+                    case 5:
+                        iCost = 7;
+                        break;
+                }
+                break;
+            case ITEM_TYPE.EQUIP:
+                switch (m_eGrade)
+                {
+                    case ITEM_GRADE.BASIC:
+                        iCost = 50;
+                        break;
+                    case ITEM_GRADE.NORMAL:
+                        iCost = 100;
+                        break;
+                    case ITEM_GRADE.SPECIAL:
+                        iCost = 300;
+                        break;
+                    case ITEM_GRADE.UNIQUE:
+                        iCost = 500;
+                        break;
+                    case ITEM_GRADE.LEGENDARY:
+                        iCost = 1000;
+                        break;
+                }
+                break;
+            case ITEM_TYPE.USE:
+                switch (m_eGrade)
+                {
+                    case ITEM_GRADE.NORMAL:
+                        iCost = 15;
+                        break;
+                    case ITEM_GRADE.SPECIAL:
+                        iCost = 35;
+                        break;
+                    case ITEM_GRADE.UNIQUE:
+                        iCost = 70;
+                        break;
+                    case ITEM_GRADE.LEGENDARY:
+                        iCost = 140;
+                        break;
+                }
+                break;
+        }
     }
 }
