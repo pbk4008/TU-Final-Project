@@ -23,6 +23,7 @@ public class Player : Character
     private bool m_bButtonClick;//버튼 클릭했는지 안했는지 판단
     private bool[] m_bDeeffect = new bool[3]; //지속딜 받기 - 손준호
     private bool m_bStun; //스턴 - 손준호
+    private GameObject m_Player;
    
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
     public float FExp { get => m_fExp; set => m_fExp = value; }

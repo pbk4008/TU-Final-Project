@@ -39,14 +39,6 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
         {
             switch (sButtonName) //버튼 이름에 따라 실행문 실행
             {
-                case "Button":
-                    Debug.Log("ㅎㅇ");
-                    m_Player.BLive = false;
-                    SceneManager.LoadScene(1);
-                    break;
-                case "Btn_LevelUp":
-                    m_Player.FExp = 121; //경험치 조정
-                    break;
                 case "Btn_Pow":
                     if(m_Player.getStat().m_iStat > 0)
                         LevelUp(1); //Pow 스텟 올리기
@@ -69,6 +61,7 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
             }
             bOnClick = false; //버튼 클릭 끝
         }
+
         if (m_Player.FExp >= 100) //경험치량이 100 이상이면
             LevelUp(0); // 레벨업 실행
     }
