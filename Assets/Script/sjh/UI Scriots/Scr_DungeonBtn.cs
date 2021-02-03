@@ -56,6 +56,7 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private InputField Input_GambleMoney;
     [SerializeField] private Canvas Cvs_Store;
     [SerializeField] private Canvas Cvs_Inventory;
+   
 
     private string m_sPlayerSelect;
     private int m_iPlayerSelect;
@@ -66,11 +67,15 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private Image Img_HouseMenu;
     [SerializeField] private Image Img_HouseHeal;
     [SerializeField] private Text T_HouseHeal;
+    [SerializeField] private Canvas Cvs_Create;
+    [SerializeField] private Canvas Cvs_EtcInven;
+    
 
     //---------------------플레이어UI 부분
     [SerializeField] private Button[] PlayerButton = new Button[2];
     [SerializeField] private Image Img_PlayerStat;
     [SerializeField] private Text T_PlayerUI;
+    [SerializeField] private Canvas Cvs_WeaponInven;
     GameObject PlayerMgr;
 
     //---------------------불러오기 부분
@@ -303,12 +308,12 @@ public class Scr_DungeonBtn : MonoBehaviour
                         ActiveButton(1);
                         break;
                     case "Btn_EnterHouse": //집 시작
-                        SetActive(3, 1, 4, 0, 0);
+                        SetActive(3, 1, 5, 0, 0);
                         Img_HouseMenu.gameObject.SetActive(true);
                         ActiveButton(0);
                         break;
                     case "Btn_HouseHeal":
-                        SetActive(3, 5, 5, 1, 4);
+                        SetActive(3, 6, 6, 1, 5);
                         Img_HouseMenu.gameObject.SetActive(false);
                         Img_HouseHeal.gameObject.SetActive(true);
                         T_HouseHeal.gameObject.SetActive(true);
@@ -316,17 +321,33 @@ public class Scr_DungeonBtn : MonoBehaviour
                         break;
                     case "Btn_HouseReinforce":
                         break;
+                    case "Btn_HouseCreate":
+                        SetActive(3, 0, 0, 1, 5);
+                        Img_HouseMenu.gameObject.SetActive(false);
+                        Cvs_Create.gameObject.SetActive(true);
+                        Cvs_EtcInven.gameObject.SetActive(true);
+                        StartCoroutine(Cvs_EtcInven.GetComponentInChildren<Inventory>().PrintInven());    
+                        ActiveButton(0);
+                        break;          
                     case "Btn_PlayerState":
-                        SetActive(4, 1, 1, 0, 0);
+                        SetActive(4, 1, 2, 0, 0);
                         Img_PlayerStat.gameObject.SetActive(true);
                         T_PlayerUI.gameObject.SetActive(true);
                         PrintPlayerInfo();
                         ActiveButton(0);
                         break;
                     case "Btn_HouseMenuExit":
-                        SetActive(3, 0, 0, 1, 4);
+                        SetActive(3, 0, 0, 1, 5);
                         Img_HouseMenu.gameObject.SetActive(false);
                         ActiveButton(1);
+                        break;
+                    case "Btn_CreateExit":
+                        SetActive(3, 1, 5, 0, 0);
+                        Img_HouseMenu.gameObject.SetActive(true);
+                        Cvs_Create.GetComponentInChildren<itemCreate>().BSelect = false;
+                        Cvs_Create.gameObject.SetActive(false);
+                        Cvs_EtcInven.gameObject.SetActive(false);
+                        ActiveButton(0);
                         break;
                     case "Btn_HouseHealExit": //집 끝
                         SetActive(3, 0, 0, 5, 5);
@@ -334,10 +355,26 @@ public class Scr_DungeonBtn : MonoBehaviour
                         T_HouseHeal.gameObject.SetActive(false);
                         ActiveButton(1);
                         break;
+                    case "Btn_Equip":
+                        Debug.Log("확인");
+                        SetActive(4, 0, 0, 1, 2);
+                        Img_HouseMenu.gameObject.SetActive(false);
+                        T_PlayerUI.gameObject.SetActive(false);
+                        Cvs_WeaponInven.gameObject.SetActive(true);
+                        ActiveButton(0);
+                        break;
                     case "Btn_PlayerUIExit":
-                        SetActive(4, 0, 0, 1, 1);
+                        SetActive(4, 0, 0, 1, 2);
+                        SetActive(3, 1, 5, 0, 0);
+                        Img_HouseMenu.gameObject.SetActive(true);
                         Img_PlayerStat.gameObject.SetActive(false);
                         T_PlayerUI.gameObject.SetActive(false);
+                        ActiveButton(0);
+                        break;
+                    case "Btn_ExitWeapon":
+                        SetActive(4, 1, 2, 0, 0);
+                        T_PlayerUI.gameObject.SetActive(true);
+                        Cvs_WeaponInven.gameObject.SetActive(false);
                         ActiveButton(0);
                         break;
                 }

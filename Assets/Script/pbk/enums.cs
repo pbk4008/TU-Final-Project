@@ -14,4 +14,5 @@ namespace enums
     public enum ITEM_TYPE { ETC,EQUIP, USE  }
     public enum EQUIP_TYPE {  USE, SWORD, KNUKLE, HEAD, BODY, FOOT}
     public enum ITEM_GRADE { BASIC, NORMAL, SPECIAL, UNIQUE, LEGENDARY, END}
+    public enum ETCITEM_TYPE { NOR, BOSS,END}
 }
