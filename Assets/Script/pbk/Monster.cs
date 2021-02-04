@@ -45,7 +45,7 @@ public class Monster : Character
         SetTypeStatus(sr.ReadLine());
         //아이템 이름
         m_Item = m_objItem.GetComponent<EtcItem>();
-        m_Item.ItemSetting(ITEM_TYPE.ETC, m_iMonNum);
+        m_Item.ItemSetting(ITEM_TYPE.ETC, m_iMonNum,false);
         m_Item.ICount = 1;
         m_SprMain = Resources.Load<Sprite>("Monster/monster "+ argIndex);
         m_sprRender = GetComponent<SpriteRenderer>();

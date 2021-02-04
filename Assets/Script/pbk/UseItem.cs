@@ -16,6 +16,7 @@ public class UseItem : Item
         m_Player = GameObject.Find("Player").GetComponent<Player>();
     }
 
+    
     public void UsingItem(char argGrade)
     {
         int iHillsize = 0;

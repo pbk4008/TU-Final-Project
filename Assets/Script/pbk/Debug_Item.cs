@@ -23,7 +23,7 @@ public class Debug_Item : MonoBehaviour
     {
         m_argInven = GameObject.Find("Inventory").GetComponent<Inventory>();
         m_EtcItem = GetComponent<EtcItem>();
-        m_EtcItem.ItemSetting(ITEM_TYPE.ETC, 0);
+        m_EtcItem.ItemSetting(ITEM_TYPE.ETC, 0,false);
         m_EtcItem.ICount = 1;
         m_argInven.AddItem(m_EtcItem);
         Image argImage = GetComponent<Image>();

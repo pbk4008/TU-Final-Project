@@ -36,7 +36,7 @@ public class Item : MonoBehaviour
         m_Code.Add(char.Parse(((int)argEquip).ToString()));
         m_Code.Add(char.Parse(((int)argGrade).ToString()));
     }
-    public void CodeSolve()
+    virtual public void CodeSolve()
     {
         m_eType = (ITEM_TYPE)(int.Parse(m_Code[0].ToString()));
         if (m_eType == ITEM_TYPE.ETC)
