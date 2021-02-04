@@ -121,4 +121,31 @@ public class BtnManager : MonoBehaviour
         Debug.Log(functions.CodetoString(m_Inventory.UseInventory[0].Code));
         
     }
+    public void ReinforceBtn()
+    {
+        m_Inventory = GameObject.Find("WeaponInven").GetComponent<Inventory>();
+        Equipment m_Equipment = GameObject.Find("Equipment").GetComponent<Equipment>();
+
+        WeaponItem InvenItem = m_Inventory.RemoveObject.GetComponent<WeaponItem>();
+        WeaponItem EquipItem = m_Equipment.ReinForceSelectObject.GetComponent<Item>() as WeaponItem;
+
+        
+        if(functions.CodetoString(InvenItem.Code)==functions.CodetoString(EquipItem.Code))
+        {
+            Debug.Log("코드 같음");
+            m_Inventory.RemoveItem(InvenItem, 1);
+            bool ReinforceRes=m_Equipment.ReinforcePercentage(EquipItem.EGrade, EquipItem.IReinforce);
+
+            if (ReinforceRes)
+                EquipItem.IReinforce++;
+            //강화 확률에 따라 강화
+        }
+        else
+            Debug.Log("코드 다름");
+        InvenItem.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        EquipItem.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+
+        
+        Debug.Log(EquipItem.IReinforce);
+    }
 }

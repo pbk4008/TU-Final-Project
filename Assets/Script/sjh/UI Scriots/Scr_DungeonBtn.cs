@@ -313,16 +313,23 @@ public class Scr_DungeonBtn : MonoBehaviour
                         ActiveButton(0);
                         break;
                     case "Btn_HouseHeal":
-                        SetActive(3, 6, 6, 1, 5);
+                        SetActive(3, 7, 7, 1, 5);
                         Img_HouseMenu.gameObject.SetActive(false);
                         Img_HouseHeal.gameObject.SetActive(true);
                         T_HouseHeal.gameObject.SetActive(true);
                         Heal();
                         break;
                     case "Btn_HouseReinforce":
+                        SetActive(3, 6, 6, 1, 5);
+                        Img_PlayerStat.gameObject.SetActive(true);
+                        Img_PlayerStat.enabled = false;
+                        Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck = true;
+                        Debug.Log(Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck);
+                        Cvs_WeaponInven.gameObject.SetActive(true);
+                        Cvs_WeaponInven.GetComponentInChildren<Inventory>().BReinforceCheck = true;
                         break;
                     case "Btn_HouseCreate":
-                        SetActive(3, 0, 0, 1, 5);
+                        SetActive(3, 0, 0, 1, 6);
                         Img_HouseMenu.gameObject.SetActive(false);
                         Cvs_Create.gameObject.SetActive(true);
                         Cvs_EtcInven.gameObject.SetActive(true);
@@ -331,18 +338,20 @@ public class Scr_DungeonBtn : MonoBehaviour
                         break;          
                     case "Btn_PlayerState":
                         SetActive(4, 1, 2, 0, 0);
+                        SetActive(3, 0, 0, 1, 6);
                         Img_PlayerStat.gameObject.SetActive(true);
+                        Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck = false;
                         T_PlayerUI.gameObject.SetActive(true);
                         PrintPlayerInfo();
                         ActiveButton(0);
                         break;
                     case "Btn_HouseMenuExit":
-                        SetActive(3, 0, 0, 1, 5);
+                        SetActive(3, 0, 0, 1, 6);
                         Img_HouseMenu.gameObject.SetActive(false);
                         ActiveButton(1);
                         break;
                     case "Btn_CreateExit":
-                        SetActive(3, 1, 5, 0, 0);
+                        SetActive(3, 1, 6, 0, 0);
                         Img_HouseMenu.gameObject.SetActive(true);
                         Cvs_Create.GetComponentInChildren<itemCreate>().BSelect = false;
                         Cvs_Create.gameObject.SetActive(false);
@@ -350,7 +359,7 @@ public class Scr_DungeonBtn : MonoBehaviour
                         ActiveButton(0);
                         break;
                     case "Btn_HouseHealExit": //집 끝
-                        SetActive(3, 0, 0, 5, 5);
+                        SetActive(3, 0, 0, 7, 7);
                         Img_HouseHeal.gameObject.SetActive(false);
                         T_HouseHeal.gameObject.SetActive(false);
                         ActiveButton(1);
@@ -361,20 +370,31 @@ public class Scr_DungeonBtn : MonoBehaviour
                         Img_HouseMenu.gameObject.SetActive(false);
                         T_PlayerUI.gameObject.SetActive(false);
                         Cvs_WeaponInven.gameObject.SetActive(true);
+                        Cvs_WeaponInven.GetComponentInChildren<Inventory>().BReinforceCheck = false;
                         ActiveButton(0);
                         break;
                     case "Btn_PlayerUIExit":
                         SetActive(4, 0, 0, 1, 2);
-                        SetActive(3, 1, 5, 0, 0);
+                        SetActive(3, 1, 6, 0, 0);
                         Img_HouseMenu.gameObject.SetActive(true);
                         Img_PlayerStat.gameObject.SetActive(false);
                         T_PlayerUI.gameObject.SetActive(false);
                         ActiveButton(0);
                         break;
                     case "Btn_ExitWeapon":
-                        SetActive(4, 1, 2, 0, 0);
-                        T_PlayerUI.gameObject.SetActive(true);
+                        if (Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck)
+                        {
+                            SetActive(3, 1, 6, 0, 0);
+                            Img_PlayerStat.gameObject.SetActive(false);
+
+                        }
+                        else
+                        {
+                            SetActive(4, 1, 2, 0, 0);
+                            T_PlayerUI.gameObject.SetActive(true);
+                        }
                         Cvs_WeaponInven.gameObject.SetActive(false);
+                        Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck = false;
                         ActiveButton(0);
                         break;
                 }
