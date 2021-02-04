@@ -15,7 +15,9 @@ public class BattleManager : MonoBehaviour
     private System_BattleBegin m_BattleBegin;
     private BATTLE_CLEAR m_eClear;//던전클리어
     private bool m_bRoundClear;
+    private bool m_bClear;
 
+    public bool bClear { get => m_bClear; }
     public bool BRoundClear { get => m_bRoundClear; set => m_bRoundClear = value; }
     public BATTLE_CLEAR EClear { get => m_eClear; set => m_eClear = value; }
     // Start is called before the first frame update
@@ -30,41 +32,56 @@ public class BattleManager : MonoBehaviour
     }
     private void BattleCreate()
     {
-        m_Player.SetActive(false);
-        m_SpawnSystem.enabled = false;
-        m_Monster.GetComponent<Monster>().DestroyItem();
-        m_BattleBegin.gameObject.SetActive(true);
-        m_bRoundClear = false;
-        StartCoroutine(BattleMgr());
+        m_bClear = m_BattleBegin.bClear;
+        if (m_Player.GetComponent<System_LevelUp>().bLevelUp)
+            StartCoroutine(BattleMgr());
+        else
+        {
+            m_Player.SetActive(false);
+            m_SpawnSystem.enabled = false;
+            m_Monster.GetComponent<Monster>().DestroyItem();
+            m_BattleBegin.gameObject.SetActive(true);
+            m_bRoundClear = false;
+            StartCoroutine(BattleMgr());
+        }
     }
     IEnumerator BattleMgr()
     {
-        yield return new WaitForSeconds(2.0f);
-        m_Player.SetActive(true);
-        m_Player.GetComponent<Player>().PlayerActive();
-        m_BattleBegin.gameObject.SetActive(false);
-        m_SpawnSystem.enabled = true;
-        m_SpawnSystem.MonsterSpawn();
-        m_BattleSystem.UIInitialize();
-        yield return new WaitForSeconds(2.0f);
-        m_BattleSystem.BBattle = true;
-        yield return new WaitUntil(() => m_bRoundClear);
-        yield return new WaitForSeconds(2.0f);
-        if (m_Player.GetComponent<Player>().IRunCount == 0)
+        if (m_Player.GetComponent<System_LevelUp>().bLevelUp)
         {
-            m_BattleBegin.moveCurrentRoundUI();
-            switch (m_eClear)
-            {
-                case BATTLE_CLEAR.RUN:
-                    SceneManager.LoadScene(1);
-                    break;
-                case BATTLE_CLEAR.CLEAR:
-                    SceneManager.LoadScene(1);
-                    break;
-                case BATTLE_CLEAR.END:
-                    break;
-            }
+            yield return new WaitForSeconds(2.0f);
+            BattleCreate();
         }
-        BattleCreate();
+        else
+        {
+            yield return new WaitForSeconds(2.0f);
+            m_Player.SetActive(true);
+            m_Player.GetComponent<Player>().PlayerActive();
+            m_BattleBegin.gameObject.SetActive(false);
+            m_SpawnSystem.enabled = true;
+            m_SpawnSystem.MonsterSpawn();
+            m_BattleSystem.UIInitialize();
+            yield return new WaitForSeconds(2.0f);
+            m_BattleSystem.BBattle = true;
+            yield return new WaitUntil(() => m_bRoundClear);
+            yield return new WaitForSeconds(2.0f);
+            if (m_Player.GetComponent<Player>().IRunCount == 0)
+            {
+                m_BattleBegin.moveCurrentRoundUI();
+                switch (m_eClear)
+                {
+                    case BATTLE_CLEAR.RUN:
+                        SceneManager.LoadScene(1);
+                        break;
+                    case BATTLE_CLEAR.CLEAR:
+                        if (!m_Player.GetComponent<System_LevelUp>().bLevelUp)
+                            SceneManager.LoadScene(1);
+                        break;
+                    case BATTLE_CLEAR.END:
+                        break;
+                }
+            }
+            BattleCreate();
+        }
     }
 }

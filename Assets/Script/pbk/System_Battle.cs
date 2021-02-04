@@ -301,7 +301,8 @@ public class System_Battle : MonoBehaviour
             switch(m_eBattleProcess)
             {
                 case BATTLE_PROCESS.BEFORE:
-                    BattleSetting();
+                    if (m_Player.LevelUp_System.bLevelUp != true)
+                        BattleSetting();
                     break;
                 case BATTLE_PROCESS.DURING:
                     Battle();
@@ -402,6 +403,12 @@ public class System_Battle : MonoBehaviour
             tmpExp *= 0.5f;
         m_Player.FExp += tmpExp;
         m_PlayerExp.size = m_Player.FExp / 100.0f;
+        if(m_Player.FExp >= 100)
+        {
+            System_LevelUp LvSys = m_Player.GetComponent<System_LevelUp>();
+            m_PlayerExp.size = m_Player.FExp - 100 / 100.0f;
+            LvSys.LevelUp();
+        }
     }
     private void Run()
     {

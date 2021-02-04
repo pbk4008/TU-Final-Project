@@ -33,10 +33,11 @@ public class System_PlayerSkill : MonoBehaviour
     {
         if (bOnClick) //버튼을 클릭했으면
         {
-            m_BM = GameObject.Find("System").GetComponent<BtnManager>();
-            m_Monster = GameObject.Find("Monster").GetComponent<Monster>();
-            m_Player = GameObject.Find("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
             m_SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
+            m_BM = GameObject.Find("System").GetComponent<BtnManager>();
+            if(m_SB.eBattleProcess == BATTLE_PROCESS.DURING)
+                m_Monster = GameObject.Find("Monster").GetComponent<Monster>();
+            m_Player = GameObject.Find("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
             Canvas Cvs_inven = GameObject.Find("InvenCanvas").GetComponent<Canvas>();
             switch (sButtonName) //버튼 이름에 따라 실행문 실행
             {
