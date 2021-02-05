@@ -33,17 +33,17 @@ public class System_PlayerSkill : MonoBehaviour
     {
         if (bOnClick) //버튼을 클릭했으면
         {
-            m_BM = GameObject.Find("System").GetComponent<BtnManager>();
-            m_Monster = GameObject.Find("Monster").GetComponent<Monster>();
-            m_Player = GameObject.Find("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
             m_SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
-            Canvas Cvs_inven = GameObject.Find("InventoryUI").GetComponent<Canvas>();
-            GameObject BattleUI = GameObject.Find("BattleCanvas");
+            m_BM = GameObject.Find("System").GetComponent<BtnManager>();
+            if(m_SB.eBattleProcess == BATTLE_PROCESS.DURING)
+                m_Monster = GameObject.Find("Monster").GetComponent<Monster>();
+            m_Player = GameObject.Find("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
+            Canvas Cvs_inven = GameObject.Find("InvenCanvas").GetComponent<Canvas>();
             switch (sButtonName) //버튼 이름에 따라 실행문 실행
             {
                 case "Bag":
-                    Debug.Log("ㅎㅇ");
                     Cvs_inven.enabled = true;
+                    DuengeonCvs.transform.GetChild(11).gameObject.SetActive(true); //플레이어 스킬 UI 띄우기
                     break;
                 case "Skill": //플레이어 스킬 UI 띄우기
                     PlayerSkillSet(PLAYERSKILL.START);
@@ -74,8 +74,9 @@ public class System_PlayerSkill : MonoBehaviour
                 case "Btn_LevelPlus": //플레이어 레벨 증가
                     m_Player.getInfo().setLevel(ref m_Player.getInfo(), m_Player.getInfo().ILevel + 10);
                     break;
-                case "Inventory_exit":
+                case "Btn_InvenExit":
                     Cvs_inven.enabled = false;
+                    DuengeonCvs.transform.GetChild(11).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
                     break;
             }
             bOnClick = false; //버튼 클릭 끝

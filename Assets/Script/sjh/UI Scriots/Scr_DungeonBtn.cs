@@ -279,14 +279,14 @@ public class Scr_DungeonBtn : MonoBehaviour
                         SetActive(2, 0, 0, 7, 9);
                         Img_GambleEnter.gameObject.SetActive(false);
                         GambleButton[GambleButton.Length-1].gameObject.SetActive(true);
-                        Cvs_Inventory.gameObject.SetActive(true);
+                        Cvs_Inventory.enabled = true;
                         Cvs_Store.gameObject.SetActive(true);             
                         break;
                     case "Btn_ExitStore":
                         SetActive(2, 7, 9, 0, 0);
                         GambleButton[GambleButton.Length - 1].gameObject.SetActive(false);
                         Img_GambleEnter.gameObject.SetActive(true);
-                        Cvs_Inventory.gameObject.SetActive(false);
+                        Cvs_Inventory.enabled = false;
                         Cvs_Store.gameObject.SetActive(false);
                         break;
                     case "Btn_ExitDarkStore":
@@ -403,9 +403,13 @@ public class Scr_DungeonBtn : MonoBehaviour
             m_Scene = SceneManager.GetActiveScene();
 
             if (m_Scene.name == "Lobby")
+            {
+                m_Player.gameObject.SetActive(true);
                 m_LUI.gameObject.SetActive(true);
+            }
             else
                 m_LUI.gameObject.SetActive(false);
+           
 
             yield return ftimer;
         }

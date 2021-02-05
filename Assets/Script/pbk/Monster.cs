@@ -56,7 +56,7 @@ public class Monster : Character
 
     public void AddItem()
     {
-        Inventory Inven = GameObject.Find("InventoryUI").transform.GetChild(4).GetComponent<Inventory>();
+        Inventory Inven = GameObject.Find("InvenCanvas").transform.GetChild(5).GetComponent<Inventory>();
         Inven.AddItem(m_Item);
     }
     private void SetTypeStatus(string argType)

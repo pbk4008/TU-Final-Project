@@ -8,6 +8,7 @@ public class System_BattleBegin : MonoBehaviour
 {
     private List<GameObject> m_RoundUI;
     private int m_iRound;
+    private bool m_bClear;
     private int m_iCurrentRound;
     [SerializeField]
     private GameObject m_ORoundUI;
@@ -16,11 +17,13 @@ public class System_BattleBegin : MonoBehaviour
     private BattleManager m_BattleMgr;
 
     public int IRound { get => m_iRound; set => m_iRound = value; }
+    public bool bClear { get => m_bClear; }
     public int ICurrentRound { get => m_iCurrentRound; set => m_iCurrentRound = value; }
 
     // Start is called before the first frame update
     void Start()
     {
+        m_bClear = false;
         GameObject GM = GameObject.FindWithTag("GameMgr");
         m_iRound = GM.GetComponent<Scr_DungeonBtn>().IRound;
         m_BattleMgr = GameObject.Find("BattleManager").GetComponent<BattleManager>();
@@ -34,8 +37,9 @@ public class System_BattleBegin : MonoBehaviour
     public void moveCurrentRoundUI()
     {
         m_iCurrentRound++;
-        if (m_iCurrentRound == m_iRound+1)
+        if (m_iCurrentRound >= m_iRound+1)
         {
+            m_bClear = true;
             m_BattleMgr.EClear = BATTLE_CLEAR.CLEAR;
             return;
         }

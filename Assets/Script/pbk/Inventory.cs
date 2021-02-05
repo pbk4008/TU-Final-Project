@@ -47,8 +47,6 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(m_Scene.name == "Duengeon")
-            m_InvenUI = GameObject.Find("InventoryUI").GetComponent<Canvas>();
         raycaster = gameObject.transform.parent.GetComponent<GraphicRaycaster>();
         if(gameObject.name == "EtcInven")
             m_Create = GameObject.Find("Create").GetComponent<itemCreate>();
@@ -283,7 +281,17 @@ public class Inventory : MonoBehaviour
     }
     public void SellItem(Item argItem)
     {
+<<<<<<< HEAD
         RemoveItem(argItem,1);
+=======
+        m_Scene = SceneManager.GetActiveScene(); //씬의 정보를 가져옴
+        if (m_Scene.name == "Duengeon")
+        {
+            RemoveItem(argItem);
+            return;
+        }
+        RemoveItem(argItem);
+>>>>>>> feature/weaponEffect
         Store tmpStore = GameObject.Find("Store").GetComponent<Store>();
         Player tmpPlayer = GameObject.FindWithTag("Player").GetComponent<Player>();
         tmpPlayer.MoneySet(argItem.ICost);
@@ -352,7 +360,8 @@ public class Inventory : MonoBehaviour
                         continue;
                     }
                     else if (invenItemCode == tmpCode)
-                    { 
+                    {
+                        tmpUseItem.UsingItem(argItem.Code[3]);
                         if (tmpUseItem.ICount - 1 == 0)
                         {
                             tmpUseItem.CodeReset();
@@ -474,9 +483,6 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (m_Scene.name == "Duengeon")
-                if (!m_InvenUI.enabled)
-                    return;
             PointerEventData pointerData = new PointerEventData(EventSystem.current);
             List<RaycastResult> results = new List<RaycastResult>();
 

@@ -11,14 +11,15 @@ public class UseItem : Item
     Scene m_Scene;
     void Start()
     {
-        if (m_Scene.name == "Duengeon")
-            m_SystemBattle = GameObject.Find("BattleManager").GetComponent<System_Battle>();
         m_Player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     
     public void UsingItem(char argGrade)
     {
+        m_Scene = SceneManager.GetActiveScene(); //씬의 정보를 가져옴
+        if (m_Scene.name == "Duengeon")
+            m_SystemBattle = GameObject.Find("BattleManager").GetComponent<System_Battle>();
         int iHillsize = 0;
         switch (argGrade)
         {
