@@ -5,19 +5,14 @@ using enums;
 
 public class WeaponItem : Item
 {
-<<<<<<< HEAD
     private int m_iReinforce;
-
+    Player m_Player;
     public int IReinforce { get => m_iReinforce; set => m_iReinforce = value; }
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update 
     void Start()
     {
         m_iReinforce = 0;
-=======
-    Player m_Player;
-    void Start()
-    {
         m_Player = GameObject.Find("Player").GetComponent<Player>();
     }
     public void EffectSetting(char argGrade, EQUIP_TYPE e_Type)//기타아이템 셋팅
@@ -98,7 +93,6 @@ public class WeaponItem : Item
         m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IDef + iWeaponDef);
         m_Player.getInfo().setAtk(ref m_Player.getInfo(), m_Player.getInfo().IAtk + iWeaponAtk);
         m_Player.getInfo().setMatk(ref m_Player.getInfo(), m_Player.getInfo().IMatk + iWeaponMatk);
->>>>>>> feature/weaponEffect
     }
 
     // Update is called once per frame

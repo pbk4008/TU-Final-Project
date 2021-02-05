@@ -281,17 +281,13 @@ public class Inventory : MonoBehaviour
     }
     public void SellItem(Item argItem)
     {
-<<<<<<< HEAD
         RemoveItem(argItem,1);
-=======
         m_Scene = SceneManager.GetActiveScene(); //씬의 정보를 가져옴
         if (m_Scene.name == "Duengeon")
         {
-            RemoveItem(argItem);
+            RemoveItem(argItem,1);
             return;
         }
-        RemoveItem(argItem);
->>>>>>> feature/weaponEffect
         Store tmpStore = GameObject.Find("Store").GetComponent<Store>();
         Player tmpPlayer = GameObject.FindWithTag("Player").GetComponent<Player>();
         tmpPlayer.MoneySet(argItem.ICost);

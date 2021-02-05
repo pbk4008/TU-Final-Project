@@ -25,7 +25,7 @@ public class Equipment : MonoBehaviour
         Debug.Log(rayCaster);
         m_EquipSlot = new List<Item>();
         m_EquipSlot.AddRange(gameObject.GetComponentsInChildren<Item>());
-        m_EquipSlot[0].ItemSetting(ITEM_TYPE.EQUIP,EQUIP_TYPE.HEAD,ITEM_GRADE.NORMAL);
+        m_EquipSlot[0].ItemSetting(ITEM_TYPE.EQUIP,EQUIP_TYPE.HEAD,ITEM_GRADE.BASIC);
         m_EquipSlot[1].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.BODY, ITEM_GRADE.BASIC);
         m_EquipSlot[2].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.FOOT, ITEM_GRADE.BASIC);
         m_EquipSlot[3].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.SWORD, ITEM_GRADE.BASIC);
@@ -41,12 +41,6 @@ public class Equipment : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-<<<<<<< HEAD
-=======
-         
-    }
     void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(0))
@@ -106,6 +100,5 @@ public class Equipment : MonoBehaviour
                 break;
         }
         return tmpRes;
->>>>>>> 71e9588d2fa5866f36794bb5d49a9b58afd4e541
     }
 }

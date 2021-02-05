@@ -401,7 +401,7 @@ public class System_Battle : MonoBehaviour
             tmpExp *= 0.1f;
         else if (Mathf.Abs(m_Monster.getInfo().ILevel - m_Player.getInfo().ILevel) > 5)
             tmpExp *= 0.5f;
-        m_Player.FExp += tmpExp;
+        m_Player.FExp += tmpExp+100;
         m_PlayerExp.size = m_Player.FExp / 100.0f;
         if(m_Player.FExp >= 100)
         {
