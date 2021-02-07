@@ -23,9 +23,13 @@ public class Equipment : MonoBehaviour
     {
         rayCaster = transform.parent.GetComponent<GraphicRaycaster>();
         Debug.Log(rayCaster);
+       
+    }
+    public void EquipSetting()
+    {
         m_EquipSlot = new List<Item>();
         m_EquipSlot.AddRange(gameObject.GetComponentsInChildren<Item>());
-        m_EquipSlot[0].ItemSetting(ITEM_TYPE.EQUIP,EQUIP_TYPE.HEAD,ITEM_GRADE.BASIC);
+        m_EquipSlot[0].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.HEAD, ITEM_GRADE.BASIC);
         m_EquipSlot[1].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.BODY, ITEM_GRADE.BASIC);
         m_EquipSlot[2].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.FOOT, ITEM_GRADE.BASIC);
         m_EquipSlot[3].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.SWORD, ITEM_GRADE.BASIC);
@@ -37,9 +41,18 @@ public class Equipment : MonoBehaviour
             i.ImageSetting();
             i.gameObject.GetComponent<Image>().sprite = i.SprImg;
         }
-        
     }
-
+    public void EquipPlusWeaponStat ()
+    {
+        
+        for(int i=0; i<m_EquipSlot.Count; i++)
+        {
+            WeaponItem tmpEquip = m_EquipSlot[i] as WeaponItem;
+            Debug.Log("확인");
+            tmpEquip.CodeSolve();
+            tmpEquip.EffectSetting();
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -65,7 +78,6 @@ public class Equipment : MonoBehaviour
                 Debug.Log("확인");
                 //Rainforce;
                 SelectEquipment(m_ReinForceSelectObject);
-
             }
         }
         

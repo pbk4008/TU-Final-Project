@@ -589,28 +589,33 @@ public class Inventory : MonoBehaviour
     }
     private void TradeItem(GameObject argItem)
     {
-        WeaponItem argWeapon = argItem.GetComponent<WeaponItem>();
-        WeaponItem tmpItem = new WeaponItem(); 
+        WeaponItem argWeapon = argItem.GetComponent<WeaponItem>();//바꾸는 아이템
+        WeaponItem tmpItem = new WeaponItem(); //장비창 아이템
         switch(argWeapon.EEquipType)
         {
-            case EQUIP_TYPE.HEAD:
+            case EQUIP_TYPE.HEAD:           
                 tmpItem.Code = m_Equipment.EquipSlot[0].Code;
+                tmpItem.ClearItem();
                 m_Equipment.EquipSlot[0].Code = argWeapon.Code;
                 break;
             case EQUIP_TYPE.BODY:
                 tmpItem.Code = m_Equipment.EquipSlot[1].Code;
+                tmpItem.ClearItem();
                 m_Equipment.EquipSlot[1].Code = argWeapon.Code;
                 break;
             case EQUIP_TYPE.FOOT:
                 tmpItem.Code = m_Equipment.EquipSlot[2].Code;
+                tmpItem.ClearItem();
                 m_Equipment.EquipSlot[2].Code = argWeapon.Code;
                 break;
             case EQUIP_TYPE.KNUKLE:
                 tmpItem.Code = m_Equipment.EquipSlot[3].Code;
+                tmpItem.ClearItem();
                 m_Equipment.EquipSlot[3].Code = argWeapon.Code;
                 break;
             case EQUIP_TYPE.SWORD:
                 tmpItem.Code = m_Equipment.EquipSlot[3].Code;
+                tmpItem.ClearItem();
                 m_Equipment.EquipSlot[3].Code = argWeapon.Code;
                 break;
         }
@@ -622,6 +627,7 @@ public class Inventory : MonoBehaviour
         }
         RemoveItem(argItem.GetComponent<WeaponItem>(), 1);
         AddItem(tmpItem);
+        tmpItem.EffectSetting();
     }
     private void ReinforceSelect(GameObject argObject)
     {

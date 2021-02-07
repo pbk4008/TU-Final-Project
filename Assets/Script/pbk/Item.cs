@@ -9,9 +9,9 @@ public class Item : MonoBehaviour
     protected Sprite m_sprImg;
     protected int iCount;
     protected int iCost;
-    private ITEM_TYPE m_eType;
-    private ITEM_GRADE m_eGrade;
-    private EQUIP_TYPE m_eEquipType;
+    protected ITEM_TYPE m_eType;
+    protected ITEM_GRADE m_eGrade;
+    protected EQUIP_TYPE m_eEquipType;
     protected int m_iNum;
     public List<char> Code { get => m_Code; set => m_Code = value; }
     public int INum { get => m_iNum; set => m_iNum = value; }

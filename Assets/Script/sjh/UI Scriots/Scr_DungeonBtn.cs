@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using enums;
+using enums;
 
 public class Scr_DungeonBtn : MonoBehaviour
 {
@@ -341,6 +342,8 @@ public class Scr_DungeonBtn : MonoBehaviour
                         SetActive(3, 0, 0, 1, 6);
                         Img_PlayerStat.gameObject.SetActive(true);
                         Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck = false;
+                        Img_PlayerStat.GetComponentInChildren<Equipment>().EquipSetting();
+                        Img_PlayerStat.GetComponentInChildren<Equipment>().EquipPlusWeaponStat();
                         T_PlayerUI.gameObject.SetActive(true);
                         PrintPlayerInfo();
                         ActiveButton(0);

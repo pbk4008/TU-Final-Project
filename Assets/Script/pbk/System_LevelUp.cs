@@ -39,7 +39,6 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
     }
     void Update()
     {
-        CalculStat(); //스텟 계산
         if (bOnClick) //버튼을 클릭했으면
         {
             switch (sButtonName) //버튼 이름에 따라 실행문 실행

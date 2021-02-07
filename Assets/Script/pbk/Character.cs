@@ -30,7 +30,7 @@ public class Character : MonoBehaviour
         m_Info.IMatk = argMatk;
         m_Info.IMaxHp = argMaxHp;
         m_Info.ICurrentHp = m_Info.IMaxHp;
-        m_Info.IAtkSpeed = m_Info.IAtkSpeed; 
+        m_Info.IAtkSpeed = argAtkSpeed; 
         m_Info.IDef = argDef;
         m_Info.FCri = 0.15f;
         m_Info.FCriDmg = argCriDmg;     
