@@ -27,13 +27,15 @@ public class Equipment : MonoBehaviour
     }
     public void EquipSetting()
     {
-        m_EquipSlot = new List<Item>();
-        m_EquipSlot.AddRange(gameObject.GetComponentsInChildren<Item>());
-        m_EquipSlot[0].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.HEAD, ITEM_GRADE.BASIC);
-        m_EquipSlot[1].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.BODY, ITEM_GRADE.BASIC);
-        m_EquipSlot[2].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.FOOT, ITEM_GRADE.BASIC);
-        m_EquipSlot[3].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.SWORD, ITEM_GRADE.BASIC);
-
+        if (m_EquipSlot == null)
+        {
+            m_EquipSlot = new List<Item>();
+            m_EquipSlot.AddRange(gameObject.GetComponentsInChildren<Item>());
+            m_EquipSlot[0].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.HEAD, ITEM_GRADE.BASIC);
+            m_EquipSlot[1].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.BODY, ITEM_GRADE.BASIC);
+            m_EquipSlot[2].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.FOOT, ITEM_GRADE.BASIC);
+            m_EquipSlot[3].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.SWORD, ITEM_GRADE.BASIC);
+        }
         Debug.Log(m_EquipSlot.Count);
         foreach (Item i in m_EquipSlot)
         {

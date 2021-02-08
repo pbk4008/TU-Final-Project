@@ -239,6 +239,8 @@ public class WeaponItem : Item
     }
     public void ClearItem()
     {
+        m_Player = GameObject.Find("Player").GetComponent<Player>();
+        
         m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IAtk - m_iPlusAtk);
         m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IMatk - m_iPlusMatk);
         m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IDef - m_iPlusDef);
