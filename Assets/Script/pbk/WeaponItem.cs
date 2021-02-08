@@ -32,7 +32,6 @@ public class WeaponItem : Item
     public void EffectSetting()//기타아이템 셋팅(by.박병규 함수 변경)
     {
         m_Player = GameObject.Find("Player").GetComponent<Player>();
-        System_LevelUp PL = GameObject.Find("Player").GetComponent<System_LevelUp>();
         int iWeaponAtk = 0, iWeaponMatk = 0, iWeaponDef = 0;
         switch (m_eEquipType)
         {
@@ -50,35 +49,24 @@ public class WeaponItem : Item
                     case ITEM_GRADE.SPECIAL: //검의 Special 등급
                         iWeaponAtk = 25+ m_iReinforce * 3;
                         iWeaponMatk = 20 + m_iReinforce * 3;
-                        m_iPlusDex = m_Player.getStat().IDex + 6 + m_iReinforce * 1;
-                        m_iPlusInt = m_Player.getStat().IInt + 6 + m_iReinforce * 1;
-                        m_iPlusPow = m_Player.getStat().IPow + 6 + m_iReinforce * 1;
-                        m_Player.getStat().setDex(ref m_Player.getStat(), m_iPlusDex);
-                        m_Player.getStat().setInt(ref m_Player.getStat(), m_iPlusInt);
-                        m_Player.getStat().setPow(ref m_Player.getStat(), m_iPlusPow);
+                        m_iPlusDex = 6 + m_iReinforce * 1;
+                        m_iPlusInt = 6 + m_iReinforce * 1;
+                        m_iPlusPow = 6 + m_iReinforce * 1;
                         break;
                     case ITEM_GRADE.UNIQUE:
                         iWeaponAtk = 37+m_iReinforce * 4;
                         iWeaponMatk = 32+m_iReinforce * 4;
-                        m_iPlusDex = m_Player.getStat().IDex + (int)(m_Player.getStat().IDex * 0.1) + (int)(m_iReinforce * 0.02f);
-                        m_iPlusInt = m_Player.getStat().IInt + (int)(m_Player.getStat().IInt * 0.1) + (int)(m_iReinforce * 0.02f);
-                        m_iPlusPow = m_Player.getStat().IPow + (int)(m_Player.getStat().IPow * 0.1) + (int)(m_iReinforce * 0.02f);
-
-                        m_Player.getStat().setDex(ref m_Player.getStat(), m_iPlusDex);
-                        m_Player.getStat().setInt(ref m_Player.getStat(), m_iPlusInt);
-                        m_Player.getStat().setPow(ref m_Player.getStat(), m_iPlusPow);
+                        m_iPlusDex = (int)(m_Player.getStat().IDex * 0.1) + (int)(m_iReinforce * 0.02f);
+                        m_iPlusInt = (int)(m_Player.getStat().IInt * 0.1) + (int)(m_iReinforce * 0.02f);
+                        m_iPlusPow = (int)(m_Player.getStat().IPow * 0.1) + (int)(m_iReinforce * 0.02f);                       
                         break;
                     case ITEM_GRADE.LEGENDARY:
                         iWeaponAtk = 48+m_iReinforce * 5;
                         iWeaponMatk = 43+m_iReinforce * 5;
 
-                        m_iPlusDex = m_Player.getStat().IDex + (int)(m_Player.getStat().IDex * 0.1) + (int)(m_iReinforce * 0.04f);
-                        m_iPlusInt = m_Player.getStat().IInt + (int)(m_Player.getStat().IInt * 0.1) + (int)(m_iReinforce * 0.04f);
-                        m_iPlusPow = m_Player.getStat().IPow + (int)(m_Player.getStat().IPow * 0.1) + (int)(m_iReinforce * 0.04f);
-
-                        m_Player.getStat().setDex(ref m_Player.getStat(), m_iPlusDex);
-                        m_Player.getStat().setInt(ref m_Player.getStat(), m_iPlusInt);
-                        m_Player.getStat().setPow(ref m_Player.getStat(), m_iPlusPow);
+                        m_iPlusDex =(int)(m_Player.getStat().IDex * 0.1) + (int)(m_iReinforce * 0.04f);
+                        m_iPlusInt =(int)(m_Player.getStat().IInt * 0.1) + (int)(m_iReinforce * 0.04f);
+                        m_iPlusPow =(int)(m_Player.getStat().IPow * 0.1) + (int)(m_iReinforce * 0.04f);                    
                         break;
                 }
                 break;
@@ -94,40 +82,29 @@ public class WeaponItem : Item
                         iWeaponMatk = 25+m_iReinforce * 3;
                         iWeaponDef = 5+ m_iReinforce * 1;
 
-                        m_iPlusDex = m_Player.getStat().IDex + (int)(m_Player.getStat().IDex + 3)+m_iReinforce * 1;
-                        m_iPlusInt = m_Player.getStat().IInt + (int)(m_Player.getStat().IInt + 3)+m_iReinforce *1;
-                        m_iPlusPow = m_Player.getStat().IPow + (int)(m_Player.getStat().IPow + 3) + m_iReinforce * 1;
+                        m_iPlusDex =(int)(m_Player.getStat().IDex + 3)+m_iReinforce * 1;
+                        m_iPlusInt =(int)(m_Player.getStat().IInt + 3)+m_iReinforce *1;
+                        m_iPlusPow =(int)(m_Player.getStat().IPow + 3) + m_iReinforce * 1;
 
-                        m_Player.getStat().setDex(ref m_Player.getStat(), m_iPlusDex);
-                        m_Player.getStat().setInt(ref m_Player.getStat(), m_iPlusInt);
-                        m_Player.getStat().setPow(ref m_Player.getStat(), m_iPlusPow);
                         break;
                     case ITEM_GRADE.UNIQUE:
                         iWeaponAtk = 32 + m_iReinforce * 4;
                         iWeaponMatk = 37 + m_iReinforce * 4;
                         iWeaponDef = 10 + m_iReinforce * 1;
 
-                        m_iPlusDex = m_Player.getStat().IDex + (int)(m_Player.getStat().IDex * 0.05) + (int)(m_iReinforce *0.02f);
-                        m_iPlusInt = m_Player.getStat().IInt + (int)(m_Player.getStat().IInt * 0.05) + (int)(m_iReinforce * 0.02f);
-                        m_iPlusPow = m_Player.getStat().IPow + (int)(m_Player.getStat().IPow * 0.05) + (int)(m_iReinforce * 0.02f);
+                        m_iPlusDex =(int)(m_Player.getStat().IDex * 0.05) + (int)(m_iReinforce *0.02f);
+                        m_iPlusInt =(int)(m_Player.getStat().IInt * 0.05) + (int)(m_iReinforce * 0.02f);
+                        m_iPlusPow =(int)(m_Player.getStat().IPow * 0.05) + (int)(m_iReinforce * 0.02f);
 
-                        m_Player.getStat().setDex(ref m_Player.getStat(), m_iPlusDex);
-                        m_Player.getStat().setInt(ref m_Player.getStat(),m_iPlusInt );
-                        m_Player.getStat().setPow(ref m_Player.getStat(),m_iPlusPow );
                         break;
                     case ITEM_GRADE.LEGENDARY:
                         iWeaponAtk = 43+m_iReinforce * 5;
                         iWeaponMatk = 48+m_iReinforce * 5;
                         iWeaponDef = 10 + m_iReinforce * 1;
+                        m_iPlusDex = (int)(m_Player.getStat().IDex * 0.05) + (int)(m_iReinforce * 0.04f);
+                        m_iPlusInt = (int)(m_Player.getStat().IInt * 0.05) + (int)(m_iReinforce * 0.04f);
+                        m_iPlusPow = (int)(m_Player.getStat().IPow * 0.05) + (int)(m_iReinforce * 0.04f);
 
-
-                        m_iPlusDex = m_Player.getStat().IDex + (int)(m_Player.getStat().IDex * 0.05) + (int)(m_iReinforce * 0.04f);
-                        m_iPlusInt = m_Player.getStat().IInt + (int)(m_Player.getStat().IInt * 0.05) + (int)(m_iReinforce * 0.04f);
-                        m_iPlusPow = m_Player.getStat().IPow + (int)(m_Player.getStat().IPow * 0.05) + (int)(m_iReinforce * 0.04f);
-
-                        m_Player.getStat().setDex(ref m_Player.getStat(), m_iPlusDex);
-                        m_Player.getStat().setInt(ref m_Player.getStat(), m_iPlusInt);
-                        m_Player.getStat().setPow(ref m_Player.getStat(), m_iPlusPow);
                         break;
                 }
                 break;
@@ -165,19 +142,17 @@ public class WeaponItem : Item
                         break;
                     case ITEM_GRADE.SPECIAL: //몸통의 Special 등급
                         iWeaponDef = 18+ m_iReinforce * 3;
-                        m_iPlusMaxHp = m_Player.getInfo().IMaxHp + 30 + m_iReinforce * 5;
-                        m_Player.getInfo().setMaxHp(ref m_Player.getInfo(), m_iPlusMaxHp);
-                       
+                        m_iPlusMaxHp = 30 + m_iReinforce * 5;
+          
                         break;
                     case ITEM_GRADE.UNIQUE:
                         iWeaponDef = 23 + m_iReinforce * 4;
-                        m_iPlusMaxHp = m_Player.getInfo().IMaxHp + (int)(m_Player.getInfo().IMaxHp * (0.05f + m_iReinforce * 0.02f));
-                        m_Player.getInfo().setMaxHp(ref m_Player.getInfo(), m_iPlusMaxHp);
+                        m_iPlusMaxHp =(int)(m_Player.getInfo().IMaxHp * (0.05f + m_iReinforce * 0.02f));           
                         break;
                     case ITEM_GRADE.LEGENDARY:
                         iWeaponDef = 29 + m_iReinforce * 5;
-                        m_iPlusMaxHp = m_Player.getInfo().IMaxHp + (int)(m_Player.getInfo().IMaxHp * (0.05f + m_iReinforce * 0.04f));
-                        m_Player.getInfo().setMaxHp(ref m_Player.getInfo(), m_iPlusMaxHp);
+                        m_iPlusMaxHp =(int)(m_Player.getInfo().IMaxHp * (0.05f + m_iReinforce * 0.04f));
+         
                         break;
                 }
                 break;
@@ -193,34 +168,22 @@ public class WeaponItem : Item
                     case ITEM_GRADE.SPECIAL: //머리의 Special 등급
                         iWeaponDef = 10 + m_iReinforce * 3;
 
-                        m_iPlusDex = m_Player.getStat().IInt + (int)(m_Player.getStat().IDex + 6) + m_iReinforce * 1;
-                        m_iPlusInt = m_Player.getStat().IInt + (int)(m_Player.getStat().IInt + 6) + m_iReinforce * 1;
-                        m_iPlusPow = m_Player.getStat().IPow + (int)(m_Player.getStat().IPow + 6) + m_iReinforce * 1;
-
-                        m_Player.getStat().setDex(ref m_Player.getStat(),  m_iPlusDex);
-                        m_Player.getStat().setInt(ref m_Player.getStat(),  m_iPlusInt);
-                        m_Player.getStat().setPow(ref m_Player.getStat(), m_iPlusPow);
+                        m_iPlusDex = (int)(m_Player.getStat().IDex + 6) + m_iReinforce * 1;
+                        m_iPlusInt = (int)(m_Player.getStat().IInt + 6) + m_iReinforce * 1;
+                        m_iPlusPow = (int)(m_Player.getStat().IPow + 6) + m_iReinforce * 1;                    
                         break;
                     case ITEM_GRADE.UNIQUE:
                         iWeaponDef = 16 + m_iReinforce * 4;
 
-                        m_iPlusDex = m_Player.getStat().IDex + (int)(m_Player.getStat().IDex * (0.1f + m_iReinforce * 0.02f));
-                        m_iPlusInt = m_Player.getStat().IInt + (int)(m_Player.getStat().IInt * (0.1f + m_iReinforce * 0.02f));
-                        m_iPlusPow = m_Player.getStat().IPow + (int)(m_Player.getStat().IPow * (0.1f + m_iReinforce * 0.02f));
-
-                        m_Player.getStat().setDex(ref m_Player.getStat(), m_iPlusDex);
-                        m_Player.getStat().setInt(ref m_Player.getStat(), m_iPlusInt);
-                        m_Player.getStat().setPow(ref m_Player.getStat(), m_iPlusPow);
+                        m_iPlusDex = (int)(m_Player.getStat().IDex * (0.1f + m_iReinforce * 0.02f));
+                        m_iPlusInt = (int)(m_Player.getStat().IInt * (0.1f + m_iReinforce * 0.02f));
+                        m_iPlusPow = (int)(m_Player.getStat().IPow * (0.1f + m_iReinforce * 0.02f));                    
                         break;
                     case ITEM_GRADE.LEGENDARY:
                         iWeaponDef = 20 + m_iReinforce * 5;
-                        m_iPlusDex = m_Player.getStat().IDex + (int)(m_Player.getStat().IDex * (0.1f + m_iReinforce * 0.04f));
-                        m_iPlusInt = m_Player.getStat().IInt + (int)(m_Player.getStat().IInt * (0.1f + m_iReinforce * 0.04f));
-                        m_iPlusPow = m_Player.getStat().IPow + (int)(m_Player.getStat().IPow * (0.1f + m_iReinforce * 0.04f));
-
-                        m_Player.getStat().setDex(ref m_Player.getStat(), m_iPlusDex);
-                        m_Player.getStat().setInt(ref m_Player.getStat(), m_iPlusInt);
-                        m_Player.getStat().setPow(ref m_Player.getStat(), m_iPlusPow);
+                        m_iPlusDex = (int)(m_Player.getStat().IDex * (0.1f + m_iReinforce * 0.04f));
+                        m_iPlusInt = (int)(m_Player.getStat().IInt * (0.1f + m_iReinforce * 0.04f));
+                        m_iPlusPow = (int)(m_Player.getStat().IPow * (0.1f + m_iReinforce * 0.04f));                       
                         break;
                 }
                 break;
@@ -230,19 +193,26 @@ public class WeaponItem : Item
         m_iPlusMatk = iWeaponMatk;
         m_iPlusDef = iWeaponDef;
 
-        Debug.Log("기공 : " + m_iPlusAtk);
-        m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IDef + iWeaponDef);
-        m_Player.getInfo().setAtk(ref m_Player.getInfo(), m_Player.getInfo().IAtk + iWeaponAtk);
-        m_Player.getInfo().setMatk(ref m_Player.getInfo(), m_Player.getInfo().IMatk + iWeaponMatk);
-
-        PL.CalculStat();
+        Debug.Log(m_iPlusDef);
+    }
+    public void PlusItem()
+    {
+        m_Player.getStat().setDex(ref m_Player.getStat(), m_Player.getStat().IDex+m_iPlusDex);
+        m_Player.getStat().setInt(ref m_Player.getStat(), m_Player.getStat().IInt+m_iPlusInt);
+        m_Player.getStat().setPow(ref m_Player.getStat(), m_Player.getStat().IPow+m_iPlusPow);
+        m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IDef + m_iPlusDef);
+        m_Player.getInfo().setAtk(ref m_Player.getInfo(), m_Player.getInfo().IAtk + m_iPlusAtk);
+        m_Player.getInfo().setMatk(ref m_Player.getInfo(), m_Player.getInfo().IMatk + m_iPlusMatk);
+        m_Player.getInfo().setMaxHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp+m_iPlusMaxHp);
+        m_Player.LevelUp_System.CalculStat();
     }
     public void ClearItem()
     {
         m_Player = GameObject.Find("Player").GetComponent<Player>();
-        
-        m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IAtk - m_iPlusAtk);
-        m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IMatk - m_iPlusMatk);
+
+        Debug.Log("빠지는 방어력 : "+m_iPlusDef);
+        m_Player.getInfo().setAtk(ref m_Player.getInfo(), m_Player.getInfo().IAtk - m_iPlusAtk);
+        m_Player.getInfo().setMatk(ref m_Player.getInfo(), m_Player.getInfo().IMatk - m_iPlusMatk);
         m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IDef - m_iPlusDef);
         m_Player.getStat().setDex(ref m_Player.getStat(), m_Player.getStat().IDex - m_iPlusDex);
         m_Player.getStat().setInt(ref m_Player.getStat(), m_Player.getStat().IInt - m_iPlusInt);

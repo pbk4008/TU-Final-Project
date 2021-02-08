@@ -23,7 +23,8 @@ public class Equipment : MonoBehaviour
     {
         rayCaster = transform.parent.GetComponent<GraphicRaycaster>();
         Debug.Log(rayCaster);
-       
+        EquipSetting();
+        EquipPlusWeaponStat();
     }
     public void EquipSetting()
     {
@@ -53,6 +54,7 @@ public class Equipment : MonoBehaviour
             Debug.Log("확인");
             tmpEquip.CodeSolve();
             tmpEquip.EffectSetting();
+            tmpEquip.PlusItem();
         }
     }
     // Update is called once per frame
