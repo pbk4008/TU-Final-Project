@@ -192,18 +192,10 @@ public class WeaponItem : Item
         m_iPlusAtk = iWeaponAtk;
         m_iPlusMatk = iWeaponMatk;
         m_iPlusDef = iWeaponDef;
-
-<<<<<<< HEAD
-        Debug.Log("기공 : " + m_iPlusAtk);
-        PL.CalculStat();
-        m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IDef + iWeaponDef);
-        m_Player.getInfo().setAtk(ref m_Player.getInfo(), m_Player.getInfo().IAtk + iWeaponAtk);
-        m_Player.getInfo().setMatk(ref m_Player.getInfo(), m_Player.getInfo().IMatk + iWeaponMatk);
-=======
-        Debug.Log(m_iPlusDef);
     }
     public void PlusItem()
     {
+        m_Player.LevelUp_System.CalculStat();
         m_Player.getStat().setDex(ref m_Player.getStat(), m_Player.getStat().IDex+m_iPlusDex);
         m_Player.getStat().setInt(ref m_Player.getStat(), m_Player.getStat().IInt+m_iPlusInt);
         m_Player.getStat().setPow(ref m_Player.getStat(), m_Player.getStat().IPow+m_iPlusPow);
@@ -211,8 +203,6 @@ public class WeaponItem : Item
         m_Player.getInfo().setAtk(ref m_Player.getInfo(), m_Player.getInfo().IAtk + m_iPlusAtk);
         m_Player.getInfo().setMatk(ref m_Player.getInfo(), m_Player.getInfo().IMatk + m_iPlusMatk);
         m_Player.getInfo().setMaxHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp+m_iPlusMaxHp);
-        m_Player.LevelUp_System.CalculStat();
->>>>>>> 2198666e61b7ebc74be3e278e8d9e46b7f5a772a
     }
     public void ClearItem()
     {
