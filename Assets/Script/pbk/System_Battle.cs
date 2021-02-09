@@ -6,6 +6,9 @@ using Delegats;
 using enums;
 public class System_Battle : MonoBehaviour
 {
+    public static event LegEffect Swordeffect;
+    public static event LegEffect Headeffect;
+    public static event LegEffect Bodyeffect;
     private Player m_Player;//플레이어 정보
     [SerializeField]
     private Monster m_Monster;//몬스터 정보
@@ -33,6 +36,7 @@ public class System_Battle : MonoBehaviour
     private int m_iDmg;
     private int m_iFloor;
     private int m_iStage;
+    private int m_itotalDmg;
     private BATTLE_PROCESS m_eBattleProcess;//배틀 처리 변수
     private bool m_bBattle;//배틀 시작 판단
     private bool m_bRunStage;
@@ -51,25 +55,41 @@ public class System_Battle : MonoBehaviour
     private bool m_bBossSkillOn; // 보스 스킬 사용하기 - 손준호
     private bool m_bPlayerSkillOn; // 보스 스킬 사용하기 - 손준호
     private int m_iCDamage; //지속딜
+    private bool m_bEffectOn;
 
     public int IDmg { get => m_iDmg; set => m_iDmg = value; }
     public bool bBossSkillOn { get => m_bBossSkillOn; set => m_bBossSkillOn = value; }
     public bool bPlayerSkillOn { get => m_bPlayerSkillOn; set => m_bPlayerSkillOn = value; }
+    public int ItotalDmg { get => m_itotalDmg; }
     public BATTLE_PROCESS EBattleProcess { get => m_eBattleProcess; set => m_eBattleProcess = value; }
     public bool BBattle { get => m_bBattle; set => m_bBattle = value; }
     public BATTLE_PROCESS eBattleProcess { get => m_eBattleProcess; set => m_eBattleProcess = value; }
     public int iRound { get => m_iRound; set => m_iRound = value; }
     public float pPlayerHpSize { get => m_PlayerHp.size; set => m_PlayerHp.size += value; }
+    public float pMonHpSize { get => m_MonHp.size; set => m_MonHp.size += value; }
+    public bool bEffectOn { get => m_bEffectOn; set => m_bEffectOn = value; }
 
     private GameObject m_MonFill, m_PlayerFill, m_ExpFill;//체력바 및 Exp바 채우기변수
 
     // Start is called before the first frame update
     public void Start()
     {
-        m_SPB = GameObject.Find("System").GetComponent<System_PlayerSkill>();
         GameObject GM = GameObject.FindWithTag("GameMgr");
         m_iFloor = GM.GetComponent<Scr_DungeonBtn>().IFloor;
         m_iStage = GM.GetComponent<Scr_DungeonBtn>().IStage;
+        if ((m_iFloor == 0 || m_iFloor == 1) && m_iStage != 4) //보스와 몬스터 구분하기 -  손준호
+            m_Monster.gameObject.SetActive(true);
+        else if ((m_iFloor == 2 || m_iFloor == 3) && m_iStage != 6)
+            m_Monster.gameObject.SetActive(true);
+        else if ((m_iFloor == 4 || m_iFloor == 5) && m_iStage != 9)
+            m_Monster.gameObject.SetActive(true);
+        else
+        {
+            m_Monster = m_Boss; //몬스터를 보스로 치환 - 손준호
+            Debug.Log("몬스터 이름 : " + m_Monster.getInfo().SName);
+            m_Monster.EType = enums.GRADE_MON.BOSS; //몬스터 타임을 보스로 변경 - 손준호
+        }
+        m_SPB = GameObject.Find("System").GetComponent<System_PlayerSkill>();
         m_BattleMgr = gameObject.GetComponent<BattleManager>();
         m_spSystem = GetComponent<System_Spawn>();
         m_Player = GameObject.Find("Player").GetComponent<Player>();
@@ -89,6 +109,7 @@ public class System_Battle : MonoBehaviour
     // Update is called once per frame
     private void BattleSetting()//전투 전
     {
+        m_bEffectOn = false;
         if ((m_iFloor == 0 || m_iFloor == 1) && m_iStage != 4) //보스와 몬스터 구분하기 -  손준호
             m_Monster.gameObject.SetActive(true);
         else if ((m_iFloor == 2 || m_iFloor == 3) && m_iStage != 6)
@@ -271,9 +292,15 @@ public class System_Battle : MonoBehaviour
 
                 if (m_PlayerHp.size <= 0)
                 {
-                    m_Player.BLive = false;
-                    m_PlayerFill.SetActive(false);
-                    m_eBattleProcess = BATTLE_PROCESS.END;
+                    m_PlayerHp.size = 0;
+                    Headeffect();
+
+                    if (m_PlayerHp.size <= 0)
+                    {
+                        m_Player.BLive = false;
+                        m_PlayerFill.SetActive(false);
+                        m_eBattleProcess = BATTLE_PROCESS.END;
+                    }
                 }
             }
         }
@@ -401,7 +428,7 @@ public class System_Battle : MonoBehaviour
             tmpExp *= 0.1f;
         else if (Mathf.Abs(m_Monster.getInfo().ILevel - m_Player.getInfo().ILevel) > 5)
             tmpExp *= 0.5f;
-        m_Player.FExp += tmpExp+100;
+        m_Player.FExp += tmpExp;
         m_PlayerExp.size = m_Player.FExp / 100.0f;
         if(m_Player.FExp >= 100)
         {
@@ -434,19 +461,21 @@ public class System_Battle : MonoBehaviour
         if(m_iMonsterTurn>m_iPlayerTurn)
         {
             //플레이어가 맞는 대미지 계산
-            int totalDmg = m_iDmg + m_iSkillDmg + m_iCDamage;
+            m_itotalDmg = m_iDmg + m_iSkillDmg + m_iCDamage;
             m_tPlayerDamage.gameObject.SetActive(true);
             FadeOut PlayerDamageUI = m_tPlayerDamage.GetComponent<FadeOut>();
             PlayerDamageUI.reStartCoroutine();
-            m_tPlayerDamage.text = totalDmg.ToString();
+            m_tPlayerDamage.text = m_itotalDmg.ToString();
+            Swordeffect();
+            Bodyeffect();
         }
         else
         {
-            int totalDmg = m_iDmg + m_iSkillDmg;
+            m_itotalDmg = m_iDmg + m_iSkillDmg;
             m_tMonDamage.gameObject.SetActive(true);
             FadeOut MonDamageUI = m_tMonDamage.GetComponent<FadeOut>();
             MonDamageUI.reStartCoroutine();
-            m_tMonDamage.text = totalDmg.ToString();
+            m_tMonDamage.text = m_itotalDmg.ToString();
         }
     }
 }

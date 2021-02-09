@@ -48,7 +48,4 @@ public class EtcItem : Item
         else if (Code[1] == 'x')
             m_iCreateScore = 1;
     }
-    
-    // Update is called once per frame
-    
 }

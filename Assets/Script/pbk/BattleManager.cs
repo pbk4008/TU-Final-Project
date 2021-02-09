@@ -65,17 +65,24 @@ public class BattleManager : MonoBehaviour
             m_BattleSystem.BBattle = true;
             yield return new WaitUntil(() => m_bRoundClear);
             yield return new WaitForSeconds(2.0f);
+            Scr_DungeonBtn GM = GameObject.FindWithTag("GameMgr").GetComponent<Scr_DungeonBtn>();
+            int iFloor = GM.IFloor;
+            int iStage = GM.IStage;
             if (m_Player.GetComponent<Player>().IRunCount == 0)
             {
                 m_BattleBegin.moveCurrentRoundUI();
                 switch (m_eClear)
                 {
                     case BATTLE_CLEAR.RUN:
+                        GM.setbStage(iFloor, iStage + 1, true);
                         SceneManager.LoadScene(1);
                         break;
                     case BATTLE_CLEAR.CLEAR:
                         if (!m_Player.GetComponent<System_LevelUp>().bLevelUp)
+                        {
+                            GM.setbStage(iFloor, iStage + 1, true);
                             SceneManager.LoadScene(1);
+                        }
                         break;
                     case BATTLE_CLEAR.END:
                         break;

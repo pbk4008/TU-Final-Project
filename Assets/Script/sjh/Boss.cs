@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using enums;
 using Structs;
+using Delegats;
 
 public class Boss : Monster
 {
+    public static event LegEffect Footeffect;
     private Player m_Player; //플레이어 정보
     private int m_iFloor; //던전 층
     private int m_iStage; //던전 스테이지
@@ -21,6 +23,7 @@ public class Boss : Monster
     private string[] m_sBossSkillName = new string[3]; //보스 스킬 이름
     private bool m_bSkillOn;//스킬 사용
     private bool m_bMinusTime; //쿨타임 지속시간 감소
+    private bool m_bLockSkill;
     [SerializeField]
     private System_Battle m_SB; //배틀 정보
     [SerializeField]
@@ -30,6 +33,7 @@ public class Boss : Monster
     public bool bMinusTime { get => m_bMinusTime; set => m_bMinusTime = value; }
     public int ilives { get => m_ilives; set => m_ilives = value; }
     public int iOverlapping { get => m_iOverlapping; set => m_iOverlapping = value; }
+    public bool bLockSkill { get => m_bLockSkill; set => m_bLockSkill = value; }
 
     // Start is called before the first frame update
     public void BossSpawn() //보스 생성
@@ -102,99 +106,104 @@ public class Boss : Monster
 
     public void ActiveBossSkill(BOSSSKILL eBossSkill) // 보스 스킬
     {
-        switch (eBossSkill) //스킬 이름에 따라
+        Footeffect();
+        if (!bLockSkill)
         {
-            case enums.BOSSSKILL.FIRE: //화염 데미지 10%
-                Debug.Log("화염 사용");
-                m_sBossSkillName[0] = "화염 ";
-                m_Player.SetDeEffect(0, true); //플레이어에게 지속 대미지를 넣음
-                m_iCooltime = 3;
-                m_iCurrentCooltime[0] = m_iCooltime; //현재 쿨타임 = 쿨타임
-                m_iDurationtime = 3; //지속시간 = 2턴 2 + 1을 해야함
-                m_iCurrentDurationtime[0] = m_iDurationtime; //현재 지속시간 = 지속시간
-                m_idamage[0] = (int)(m_Info.IAtk * 0.2f); //화염 대미지
-                m_iSkillDmg[0] = (int)(m_Info.IAtk * 0.2f);
-                break;
-            case enums.BOSSSKILL.STUN:
-                Debug.Log("스턴 사용");
-                m_sBossSkillName[0] = "스턴 ";
-                m_Player.SetDeEffect(0, true);
-                m_Player.bStun = true;
-                m_iCooltime = 3;
-                m_iCurrentCooltime[1] = m_iCooltime;
-                m_iDurationtime = 2; //지속시간 = 1턴
-                m_iCurrentDurationtime[1] = m_iDurationtime;
-                break;
-            case enums.BOSSSKILL.BLEEDING:
-                Debug.Log("흡혈 사용");
-                m_sBossSkillName[0] = "흡혈 " + m_iOverlapping + " ";
-                m_Player.SetDeEffect(0, true); //플레이어에게 지속 대미지를 넣음
-                m_iCooltime = 2;
-                m_iCurrentCooltime[2] = m_iCooltime;
-                m_iDurationtime = 4; //지속시간 = 3턴
-                m_iCurrentDurationtime[2] = m_iDurationtime;
-                m_idamage[0] = (int)(m_Info.IAtk * 0.2f); //지속시간
-                m_iSkillDmg[0] = (int)(m_Info.IAtk * 0.2f);
-                m_iOverlapping++; //중첩
-                if (m_iOverlapping > 1) //중첩이 1이 넘으면
-                {
-                    m_iOverlapping = 2; //중첩 2로 고정
-                    m_idamage[0] = (int)(m_Info.IAtk * 0.2f) * m_iOverlapping; //대미지
-                }
-                break;
-            case enums.BOSSSKILL.SLOW:
-                Debug.Log("슬로우 사용");
-                m_sBossSkillName[0] = "슬로우 ";
-                m_Player.SetDeEffect(0, true);
-                m_iCooltime = 3;
-                m_iCurrentCooltime[3] = m_iCooltime;
-                m_iDurationtime = 3; //지속시간 = 2턴
-                m_iCurrentDurationtime[3] = m_iDurationtime;
-                break;
-            case enums.BOSSSKILL.POISON:
-                m_iOverlapping++; //중첩
-                m_sBossSkillName[0] = "독" + m_iOverlapping + " ";
-                m_Player.SetDeEffect(0, true);
-                m_iCooltime = 2;
-                m_iCurrentCooltime[4] = m_iCooltime;
-                m_iDurationtime = 4; //지속시간 = 3턴
-                m_iCurrentDurationtime[4] = m_iDurationtime;
-                m_idamage[0] = (int)(m_Info.IAtk * 1);
-                m_iSkillDmg[0] = (int)(m_Info.IAtk * 1);
-                if (m_iOverlapping > 1) //중첩이 1이 넘으면
-                {
-                    if(m_iOverlapping > 2)
-                        m_iOverlapping = 3; //중첩 2로 고정
-                    m_idamage[0] = (int)(m_Info.IAtk * 1f) * m_iOverlapping; //대미지
-                }
-                Debug.Log("독 사용" + m_iOverlapping);
-                break;
-            case enums.BOSSSKILL.STONING:
-                Debug.Log("석화 사용");
-                m_sBossSkillName[1] = "석화 ";
-                m_Player.SetDeEffect(1, true);
-                m_Player.bStun = true;
-                m_iCooltime = 3;
-                m_iCurrentCooltime[5] = m_iCooltime;
-                m_iDurationtime = 3; //지속시간 = 2턴
-                m_iCurrentDurationtime[5] = m_iDurationtime;
-                m_idamage[1] = (int)(m_Info.IAtk * 1);
-                m_iSkillDmg[1] = (int)(m_Info.IAtk * 1);
-                break;
-            case enums.BOSSSKILL.FREEZE:
-                Debug.Log("빙결 사용");
-                m_sBossSkillName[2] = "빙결 ";
-                m_Player.SetDeEffect(2, true);
-                m_iCooltime = 5;
-                m_iCurrentCooltime[6] = m_iCooltime;
-                m_iDurationtime = 5; //지속시간 = 16턴
-                m_iCurrentDurationtime[6] = m_iDurationtime;
-                m_idamage[2] = (int)(m_Info.IAtk * 0.6f);
-                m_iSkillDmg[2] = (int)(m_Info.IAtk * 0.6f);
-                break;
-        }
+            switch (eBossSkill) //스킬 이름에 따라
+            {
+                case enums.BOSSSKILL.FIRE: //화염 데미지 10%
+                    Debug.Log("화염 사용");
+                    m_sBossSkillName[0] = "화염 ";
+                    m_Player.SetDeEffect(0, true); //플레이어에게 지속 대미지를 넣음
+                    m_iCooltime = 3;
+                    m_iCurrentCooltime[0] = m_iCooltime; //현재 쿨타임 = 쿨타임
+                    m_iDurationtime = 3; //지속시간 = 2턴 2 + 1을 해야함
+                    m_iCurrentDurationtime[0] = m_iDurationtime; //현재 지속시간 = 지속시간
+                    m_idamage[0] = (int)(m_Info.IAtk * 0.2f); //화염 대미지
+                    m_iSkillDmg[0] = (int)(m_Info.IAtk * 0.2f);
+                    break;
+                case enums.BOSSSKILL.STUN:
+                    Debug.Log("스턴 사용");
+                    m_sBossSkillName[0] = "스턴 ";
+                    m_Player.SetDeEffect(0, true);
+                    m_Player.bStun = true;
+                    m_iCooltime = 3;
+                    m_iCurrentCooltime[1] = m_iCooltime;
+                    m_iDurationtime = 2; //지속시간 = 1턴
+                    m_iCurrentDurationtime[1] = m_iDurationtime;
+                    break;
+                case enums.BOSSSKILL.BLEEDING:
+                    Debug.Log("흡혈 사용");
+                    m_sBossSkillName[0] = "흡혈 " + m_iOverlapping + " ";
+                    m_Player.SetDeEffect(0, true); //플레이어에게 지속 대미지를 넣음
+                    m_iCooltime = 2;
+                    m_iCurrentCooltime[2] = m_iCooltime;
+                    m_iDurationtime = 4; //지속시간 = 3턴
+                    m_iCurrentDurationtime[2] = m_iDurationtime;
+                    m_idamage[0] = (int)(m_Info.IAtk * 0.2f); //지속시간
+                    m_iSkillDmg[0] = (int)(m_Info.IAtk * 0.2f);
+                    m_iOverlapping++; //중첩
+                    if (m_iOverlapping > 1) //중첩이 1이 넘으면
+                    {
+                        m_iOverlapping = 2; //중첩 2로 고정
+                        m_idamage[0] = (int)(m_Info.IAtk * 0.2f) * m_iOverlapping; //대미지
+                    }
+                    break;
+                case enums.BOSSSKILL.SLOW:
+                    Debug.Log("슬로우 사용");
+                    m_sBossSkillName[0] = "슬로우 ";
+                    m_Player.SetDeEffect(0, true);
+                    m_iCooltime = 3;
+                    m_iCurrentCooltime[3] = m_iCooltime;
+                    m_iDurationtime = 3; //지속시간 = 2턴
+                    m_iCurrentDurationtime[3] = m_iDurationtime;
+                    break;
+                case enums.BOSSSKILL.POISON:
+                    m_iOverlapping++; //중첩
+                    m_sBossSkillName[0] = "독" + m_iOverlapping + " ";
+                    m_Player.SetDeEffect(0, true);
+                    m_iCooltime = 2;
+                    m_iCurrentCooltime[4] = m_iCooltime;
+                    m_iDurationtime = 4; //지속시간 = 3턴
+                    m_iCurrentDurationtime[4] = m_iDurationtime;
+                    m_idamage[0] = (int)(m_Info.IAtk * 1);
+                    m_iSkillDmg[0] = (int)(m_Info.IAtk * 1);
+                    if (m_iOverlapping > 1) //중첩이 1이 넘으면
+                    {
+                        if (m_iOverlapping > 2)
+                            m_iOverlapping = 3; //중첩 2로 고정
+                        m_idamage[0] = (int)(m_Info.IAtk * 1f) * m_iOverlapping; //대미지
+                    }
+                    Debug.Log("독 사용" + m_iOverlapping);
+                    break;
+                case enums.BOSSSKILL.STONING:
+                    Debug.Log("석화 사용");
+                    m_sBossSkillName[1] = "석화 ";
+                    m_Player.SetDeEffect(1, true);
+                    m_Player.bStun = true;
+                    m_iCooltime = 3;
+                    m_iCurrentCooltime[5] = m_iCooltime;
+                    m_iDurationtime = 3; //지속시간 = 2턴
+                    m_iCurrentDurationtime[5] = m_iDurationtime;
+                    m_idamage[1] = (int)(m_Info.IAtk * 1);
+                    m_iSkillDmg[1] = (int)(m_Info.IAtk * 1);
+                    break;
+                case enums.BOSSSKILL.FREEZE:
+                    Debug.Log("빙결 사용");
+                    m_sBossSkillName[2] = "빙결 ";
+                    m_Player.SetDeEffect(2, true);
+                    m_iCooltime = 5;
+                    m_iCurrentCooltime[6] = m_iCooltime;
+                    m_iDurationtime = 5; //지속시간 = 16턴
+                    m_iCurrentDurationtime[6] = m_iDurationtime;
+                    m_idamage[2] = (int)(m_Info.IAtk * 0.6f);
+                    m_iSkillDmg[2] = (int)(m_Info.IAtk * 0.6f);
+                    break;
+            }
 
-        m_SB.bBossSkillOn = true;
+            m_SB.bBossSkillOn = true;
+        }
+        bLockSkill = false;
     }
 
     private IEnumerator BossSkill() //보스 스킬
@@ -251,7 +260,6 @@ public class Boss : Monster
                     }
                     break;
                 case 4:
-                    //못숨2개
                     break;
                 case 5:
                     if (m_iCurrentCooltime[4] == 0 && m_bSkillOn && SB.iRound % 2 == 0)

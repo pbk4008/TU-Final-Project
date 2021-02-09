@@ -8,6 +8,7 @@ public class System_PlayerSkill : MonoBehaviour
 {
     Player m_Player; //플레이어 정보를 가져올 변수 
     Monster m_Monster; //몬스터 정보를 가져올 변수
+    Boss m_Boss;
     GameObject DuengeonCvs;  //던전 씬에 있는 캔버스 1개
     BtnManager m_BM;
     System_Battle m_SB;
@@ -18,13 +19,17 @@ public class System_PlayerSkill : MonoBehaviour
     private int m_iDamage; //데미지
     private bool m_bBuffOn;
     private bool m_bDeBuffOn;
-     
+    private int m_iFloor;
+    private int m_iStage;
     public string sButtonName { get => m_sButtonName; set => m_sButtonName = value; }
     public bool bOnClick { get => m_bOnClick; set => m_bOnClick = value; }
     public int iDamage { get => m_iDamage; set => m_iDamage = value; }
 
     private void Start()
     {
+        Scr_DungeonBtn GM = GameObject.FindWithTag("GameMgr").GetComponent<Scr_DungeonBtn>();
+        m_iFloor = GM.IFloor;
+        m_iStage = GM.IStage;
         DuengeonCvs = GameObject.Find("TextCanvas"); //캔버스 지정
         m_iturn = 1; //전투가 일어나면 현재턴을 1로 함
         m_Player = GameObject.Find("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
@@ -35,8 +40,19 @@ public class System_PlayerSkill : MonoBehaviour
         {
             m_SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
             m_BM = GameObject.Find("System").GetComponent<BtnManager>();
-            if(m_SB.eBattleProcess == BATTLE_PROCESS.DURING)
-                m_Monster = GameObject.Find("Monster").GetComponent<Monster>();
+            if (m_SB.eBattleProcess == BATTLE_PROCESS.DURING)
+            {
+                if ((m_iFloor == 0 || m_iFloor == 1) && m_iStage != 4) //보스와 몬스터 구분하기 -  손준호
+                    m_Monster = GameObject.Find("Monster").GetComponent<Monster>();
+                else if ((m_iFloor == 2 || m_iFloor == 3) && m_iStage != 6)
+                    m_Monster = GameObject.Find("Monster").GetComponent<Monster>();
+                else if ((m_iFloor == 4 || m_iFloor == 5) && m_iStage != 9)
+                    m_Monster = GameObject.Find("Monster").GetComponent<Monster>();
+                else
+                {
+                    m_Boss = GameObject.Find("Boss").GetComponent<Boss>();
+                }
+            }
             m_Player = GameObject.Find("Player").GetComponent<Player>(); //플레이어 스크립트 가져오기
             Canvas Cvs_inven = GameObject.Find("InvenCanvas").GetComponent<Canvas>();
             switch (sButtonName) //버튼 이름에 따라 실행문 실행
@@ -269,6 +285,7 @@ public class System_PlayerSkill : MonoBehaviour
             if (m_Cooltime[i] < 0)
                 m_Cooltime[i] = 0;
         }
+        Debug.Log("쿨타임 : " + m_Cooltime[2]);
     }
 
     private void UnActiveUI()

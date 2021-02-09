@@ -27,6 +27,7 @@ public class Scr_DungeonBtn : MonoBehaviour
     public int IFloor { get => m_iFloor; set => m_iFloor = value; }//Floor변수 가져오기(by.pbk)
     public int IStage { get => m_iStage; set => m_iStage = value; }//Stage변수 가져오기(by.pbk)
     public int IRound { get => m_iRound; set => m_iRound = value; }
+    public void setbStage(int argFloor, int argStage,bool argBool) { m_bStage[argFloor][argStage] = argBool; }
 
     //----------------------퀘스트 부분
     [SerializeField] private Button[] QuestButton = new Button[5];   //퀘스트 표지판 UI

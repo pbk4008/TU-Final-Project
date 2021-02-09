@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using enums;
+using Delegats;
 
 public class WeaponItem : Item
 {
@@ -27,7 +28,6 @@ public class WeaponItem : Item
         m_iPlusPow=0;
         m_iPlusDex=0;
         m_iPlusInt=0;
-        
     }
     public void EffectSetting()//기타아이템 셋팅(by.박병규 함수 변경)
     {
@@ -231,11 +231,10 @@ public class WeaponItem : Item
         m_iPlusDef = iWeaponDef;
 
         Debug.Log("기공 : " + m_iPlusAtk);
+        PL.CalculStat();
         m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IDef + iWeaponDef);
         m_Player.getInfo().setAtk(ref m_Player.getInfo(), m_Player.getInfo().IAtk + iWeaponAtk);
         m_Player.getInfo().setMatk(ref m_Player.getInfo(), m_Player.getInfo().IMatk + iWeaponMatk);
-
-        PL.CalculStat();
     }
     public void ClearItem()
     {
@@ -249,10 +248,5 @@ public class WeaponItem : Item
 
         System_LevelUp PL = GameObject.Find("Player").GetComponent<System_LevelUp>();
         PL.CalculStat();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

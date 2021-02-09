@@ -26,7 +26,7 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
 
     public void CalculStat()//스텟 계산
     {
-        m_Player.getInfo().setMaxHp(ref m_Player.getInfo(),m_Player.getStat().IPow * 3 + 300);
+        m_Player.getInfo().setMaxHp(ref m_Player.getInfo(),m_Player.getStat().IPow * 3 + 100);
         m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp);
         m_Player.getInfo().setAtkSpeed(ref m_Player.getInfo(), m_Player.getStat().IDex / 15 + 1);
         if (m_Player.getInfo().IAtkSpeed >= 10)
@@ -59,8 +59,14 @@ public class System_LevelUp : MonoBehaviour//LevelUp 및 스텟 관련 클래스
                     m_Player.getStat().setStat(ref m_Player.getStat(), 3); //스텟 초기화
                     m_bLevelUp = false;
                     BattleManager SBB = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-                    if(SBB.bClear)
+                    Scr_DungeonBtn GM = GameObject.FindWithTag("GameMgr").GetComponent<Scr_DungeonBtn>();
+                    int iFloor = GM.IFloor;
+                    int iStage = GM.IStage;
+                    if (SBB.bClear)
+                    {
                         SceneManager.LoadScene(1);
+                        GM.setbStage(iFloor, iStage + 1, true);
+                    }
 
                     for (int i = 12; i <= 17; i++)
                         LevelUpMgr.transform.GetChild(i).gameObject.SetActive(false); // 레벨업에 쓴 UI들 비활성화

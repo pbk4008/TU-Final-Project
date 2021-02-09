@@ -11,6 +11,7 @@ public class Equipment : MonoBehaviour
     private List<GameObject> m_ReinForceSelect;
     private bool m_bReinforceCheck;
     private GameObject m_ReinForceSelectObject;
+    private bool m_blive;
 
 
     public List<Item> EquipSlot { get => m_EquipSlot; set => m_EquipSlot = value; }
@@ -27,6 +28,11 @@ public class Equipment : MonoBehaviour
     }
     public void EquipSetting()
     {
+        System_Battle.Swordeffect += WeaponEffect;
+        BtnManager.Knuckleeffect += kunckleEffect;
+        System_Battle.Headeffect += HeadEffect;
+        System_Battle.Bodyeffect += BodyEffect;
+        Boss.Footeffect += FootEffect;
         m_EquipSlot = new List<Item>();
         m_EquipSlot.AddRange(gameObject.GetComponentsInChildren<Item>());
         m_EquipSlot[0].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.HEAD, ITEM_GRADE.BASIC);
@@ -112,5 +118,115 @@ public class Equipment : MonoBehaviour
                 break;
         }
         return tmpRes;
+    }
+
+    private void WeaponEffect()
+    {
+        System_Battle SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
+        Player PL = GameObject.Find("Player").GetComponent<Player>();
+        switch (m_EquipSlot[3].EEquipType)
+            {
+                case EQUIP_TYPE.SWORD:
+                    switch (m_EquipSlot[3].EGrade)
+                    {
+                        case ITEM_GRADE.LEGENDARY:
+                            Debug.Log("무기(검)효과 발동");
+                            int iDmg = (int)(SB.ItotalDmg * 0.2f);
+                            Debug.Log("흡수 한 데미지 : " + iDmg);
+                            SB.pPlayerHpSize = SB.pPlayerHpSize = (float)iDmg / PL.getInfo().IMaxHp;
+                            if(SB.pPlayerHpSize > 1)
+                            {
+                                iDmg = PL.getInfo().IMaxHp - (int)SB.pPlayerHpSize* PL.getInfo().IMaxHp;
+                                SB.pPlayerHpSize = SB.pPlayerHpSize = -(float)iDmg / PL.getInfo().IMaxHp;
+                             }
+                            break;
+                    }
+                    break;
+        }
+    }
+
+    private void kunckleEffect()
+    {
+        System_PlayerSkill PS = GameObject.Find("System").GetComponent<System_PlayerSkill>();
+        switch (m_EquipSlot[3].EEquipType)
+        {
+            case EQUIP_TYPE.KNUKLE:
+                switch (m_EquipSlot[3].EGrade)
+                {
+                    case ITEM_GRADE.LEGENDARY:
+                        Debug.Log("무기(너클)효과 발동");
+                        if (functions.Percentage(20))
+                            PS.MinusPlayerSkill();
+                        break;
+                }
+                break;
+        }
+    }
+
+    private void HeadEffect()
+    {
+        if (!m_blive)
+        {
+            System_Battle SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
+            switch (m_EquipSlot[0].EEquipType)
+            {
+                case EQUIP_TYPE.HEAD:
+                    switch (m_EquipSlot[0].EGrade)
+                    {
+                        case ITEM_GRADE.LEGENDARY:
+                            Debug.Log("모자 효과 발동");
+                            SB.pPlayerHpSize = SB.pPlayerHpSize = 1;
+                            Debug.Log("- 부 활 -");
+                            break;
+                    }
+                    break;
+            }
+            m_blive = true;
+        }
+    }
+
+    private void BodyEffect()
+    {
+        System_Battle SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
+
+        switch (m_EquipSlot[1].EEquipType)
+        {
+            case EQUIP_TYPE.BODY:
+                switch (m_EquipSlot[1].EGrade)
+                {
+                    case ITEM_GRADE.LEGENDARY:
+                        Debug.Log("옷 효과 발동");
+                        int iDmg = (int)(SB.ItotalDmg * 0.5f);
+                        Debug.Log("가갑 데미지 : " + iDmg);
+                        if (!GameObject.Find("Boss").gameObject.activeSelf)
+                        {
+                            Monster Mon = GameObject.Find("Monster").GetComponent<Monster>();
+                            SB.pMonHpSize = SB.pMonHpSize = -(float)iDmg / Mon.getInfo().IMaxHp;
+                        }
+                        break;
+                }
+                break;
+        }
+    }
+
+    private void FootEffect()
+    {
+        Boss Bos = GameObject.Find("Boss").GetComponent<Boss>();
+        switch (m_EquipSlot[2].EEquipType)
+        {
+            case EQUIP_TYPE.FOOT:
+                switch (m_EquipSlot[2].EGrade)
+                {
+                    case ITEM_GRADE.LEGENDARY:
+                        if (functions.Percentage(30))
+                        {
+                            Debug.Log("신발 효과 발동");
+                            Bos.bLockSkill = true;
+                            Debug.Log("스킬 봉인");
+                        }
+                        break;
+                }
+                break;
+        }
     }
 }

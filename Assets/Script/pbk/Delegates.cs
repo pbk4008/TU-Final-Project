@@ -5,4 +5,5 @@ using enums;
 namespace Delegats
 {
     public delegate void BattleHandler();
+    public delegate void LegEffect();
 }

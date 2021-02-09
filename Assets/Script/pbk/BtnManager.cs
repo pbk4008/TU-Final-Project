@@ -7,6 +7,7 @@ using Delegats;
 
 public class BtnManager : MonoBehaviour
 {
+    public static event LegEffect Knuckleeffect;
     public static event BattleHandler attack;
     public static event BattleHandler run;
     private Inventory m_Inventory;
@@ -25,6 +26,7 @@ public class BtnManager : MonoBehaviour
         System_Battle SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
         if (!m_Player.bStun)
         {
+            Knuckleeffect();
             m_Player.AnimTrigger = ANIMTRIGGER.ATTACK;
             m_Player.BButtonClick = true;
             attack();
