@@ -24,10 +24,12 @@ public class Equipment : MonoBehaviour
     {
         rayCaster = transform.parent.GetComponent<GraphicRaycaster>();
         Debug.Log(rayCaster);
-       
+        EquipSetting();
+        EquipPlusWeaponStat();
     }
     public void EquipSetting()
     {
+<<<<<<< HEAD
         System_Battle.Swordeffect += WeaponEffect;
         BtnManager.Knuckleeffect += kunckleEffect;
         System_Battle.Headeffect += HeadEffect;
@@ -40,6 +42,17 @@ public class Equipment : MonoBehaviour
         m_EquipSlot[2].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.FOOT, ITEM_GRADE.BASIC);
         m_EquipSlot[3].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.SWORD, ITEM_GRADE.BASIC);
 
+=======
+        if (m_EquipSlot == null)
+        {
+            m_EquipSlot = new List<Item>();
+            m_EquipSlot.AddRange(gameObject.GetComponentsInChildren<Item>());
+            m_EquipSlot[0].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.HEAD, ITEM_GRADE.BASIC);
+            m_EquipSlot[1].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.BODY, ITEM_GRADE.BASIC);
+            m_EquipSlot[2].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.FOOT, ITEM_GRADE.BASIC);
+            m_EquipSlot[3].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.SWORD, ITEM_GRADE.BASIC);
+        }
+>>>>>>> 2198666e61b7ebc74be3e278e8d9e46b7f5a772a
         Debug.Log(m_EquipSlot.Count);
         foreach (Item i in m_EquipSlot)
         {
@@ -57,6 +70,7 @@ public class Equipment : MonoBehaviour
             Debug.Log("확인");
             tmpEquip.CodeSolve();
             tmpEquip.EffectSetting();
+            tmpEquip.PlusItem();
         }
     }
     // Update is called once per frame
