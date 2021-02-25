@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using enums;
-using enums;
 
 public class Scr_DungeonBtn : MonoBehaviour
 {
@@ -86,6 +85,7 @@ public class Scr_DungeonBtn : MonoBehaviour
     private static Scr_DungeonBtn m_Instance;
     private LobbyUI m_LUI;
     private Scene m_Scene;
+    private Inventory m_Inven;
     [SerializeField] private Sprite spr_Floor1;
     [SerializeField] private Sprite spr_Floor2;
     [SerializeField] private Sprite spr_Floor3;
@@ -103,12 +103,15 @@ public class Scr_DungeonBtn : MonoBehaviour
         m_Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-
+    
     private void Start()
     {
         m_LUI = GameObject.Find("Cvs_UI").GetComponent<LobbyUI>();
         StartCoroutine(ButtonCoroutine());
         m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        m_Inven = Cvs_EtcInven.gameObject.GetComponent<Inventory>();
+        Img_PlayerStat.gameObject.SetActive(false);
+        
         //던전 스테이지 막기
         m_bStage[0] = new bool[] { true, false, false, false, true };
         m_bStage[1] = new bool[] { false, false, false, false, true };
@@ -118,6 +121,7 @@ public class Scr_DungeonBtn : MonoBehaviour
         m_bStage[5] = new bool[] { false, false, false, false, false, false, false, false, false, true };
 
         //퀘스트
+        
         for (int i = 0; i < 3; i++)
         {
             m_bLockQuest[i] = true; //참으로 바꿈 (처음엔 퀘스트 선택안하면 돌아감)
@@ -335,7 +339,7 @@ public class Scr_DungeonBtn : MonoBehaviour
                         Img_HouseMenu.gameObject.SetActive(false);
                         Cvs_Create.gameObject.SetActive(true);
                         Cvs_EtcInven.gameObject.SetActive(true);
-                        StartCoroutine(Cvs_EtcInven.GetComponentInChildren<Inventory>().PrintInven());    
+                        StartCoroutine(Cvs_EtcInven.GetComponentInChildren<Inventory>().PrintInven());
                         ActiveButton(0);
                         break;          
                     case "Btn_PlayerState":

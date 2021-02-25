@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Title.unity
+    path: Assets/Scenes/Title1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: 13f8e2d67baf1bf41be38870811c837f
+    path: Assets/Scenes/Lobby1.unity
+    guid: 039d3c213b1397f4790021dba0f3b188
   - enabled: 1
-    path: Assets/Scenes/Duengeon.unity
-    guid: a2a8cc93a21bc9c4cb5a1a8f18c26792
+    path: Assets/Scenes/Duengeon1.unity
+    guid: 16be867895a8fbd408c5e0c69965d5f2
+  - enabled: 1
+    path: Assets/Scenes/GameOver1.unity
+    guid: ffcb69980e820474eb7ba60dd420d7ef
   m_configObjects: {}

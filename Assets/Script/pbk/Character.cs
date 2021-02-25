@@ -72,6 +72,10 @@ public class Character : MonoBehaviour
                 m_Animator.SetBool("Anim_Idle", true);
                 m_Animator.SetBool("Anim_Win", true);
                 break;
+            case ANIMTRIGGER.VICTORY:
+                m_Animator.SetBool("Anim_Idle", true);
+                m_Animator.SetBool("Anim_Win", true);
+                break;
         }
         yield return null;
     }

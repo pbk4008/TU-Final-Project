@@ -59,7 +59,6 @@ public class itemCreate : MonoBehaviour
             Item tmpItem = results[0].gameObject.GetComponent<Item>();
             m_SelectObject = tmpItem.gameObject;
 
-            Debug.Log(tmpItem.gameObject.name);
             tmpItem.CodeSolve();
 
             switch(tmpItem.EGrade)

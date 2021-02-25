@@ -24,10 +24,12 @@ public class BtnManager : MonoBehaviour
     {
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
         System_Battle SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
+        
         if (!m_Player.bStun)
         {
             Knuckleeffect();
             m_Player.AnimTrigger = ANIMTRIGGER.ATTACK;
+            m_Player.BSoundCheck = true;
             m_Player.BButtonClick = true;
             attack();
             GameObject tmpCanvas = gameObject.transform.parent.gameObject;
@@ -125,29 +127,35 @@ public class BtnManager : MonoBehaviour
     }
     public void ReinforceBtn()
     {
+        Sound tmpSound=new Sound();
         m_Inventory = GameObject.Find("WeaponInven").GetComponent<Inventory>();
         Equipment m_Equipment = GameObject.Find("Equipment").GetComponent<Equipment>();
 
-        WeaponItem InvenItem = m_Inventory.RemoveObject.GetComponent<WeaponItem>();
-        WeaponItem EquipItem = m_Equipment.ReinForceSelectObject.GetComponent<Item>() as WeaponItem;
-
-        
-        if(functions.CodetoString(InvenItem.Code)==functions.CodetoString(EquipItem.Code))
-        {
+       WeaponItem InvenItem = m_Inventory.RemoveObject.GetComponent<WeaponItem>();
+       WeaponItem EquipItem = m_Equipment.ReinForceSelectObject.GetComponent<Item>() as WeaponItem;
+       //
+       //
+       if(functions.CodetoString(InvenItem.Code)==functions.CodetoString(EquipItem.Code))
+       {
             Debug.Log("코드 같음");
             m_Inventory.RemoveItem(InvenItem, 1);
             bool ReinforceRes=m_Equipment.ReinforcePercentage(EquipItem.EGrade, EquipItem.IReinforce);
-
+            //
             if (ReinforceRes)
+            {
+                tmpSound.SoundSetting(gameObject,SoundMgr.GetAudio(SOUND_TYPE.REIN_SUC));
                 EquipItem.IReinforce++;
-            //강화 확률에 따라 강화
-        }
-        else
-            Debug.Log("코드 다름");
-        InvenItem.gameObject.transform.GetChild(1).gameObject.SetActive(false);
-        EquipItem.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            }
+            else
+               tmpSound.SoundSetting(gameObject,SoundMgr.GetAudio(SOUND_TYPE.REIN_FAIL));
+           
+           ////강화 확률에 따라 강화
+       }
+       else
+           Debug.Log("코드 다름");
+       InvenItem.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+       EquipItem.gameObject.transform.GetChild(1).gameObject.SetActive(false);
 
-        
-        Debug.Log(EquipItem.IReinforce);
+       Debug.Log(EquipItem.IReinforce);
     }
 }

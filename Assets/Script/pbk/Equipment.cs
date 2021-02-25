@@ -24,8 +24,6 @@ public class Equipment : MonoBehaviour
     {
         rayCaster = transform.parent.GetComponent<GraphicRaycaster>();
         Debug.Log(rayCaster);
-        EquipSetting();
-        EquipPlusWeaponStat();
     }
     public void EquipSetting()
     {
@@ -44,7 +42,6 @@ public class Equipment : MonoBehaviour
             m_EquipSlot[3].ItemSetting(ITEM_TYPE.EQUIP, EQUIP_TYPE.SWORD, ITEM_GRADE.BASIC);
         }
 
-        Debug.Log(m_EquipSlot.Count);
         foreach (Item i in m_EquipSlot)
         {
             i.CodeSolve();
@@ -54,11 +51,9 @@ public class Equipment : MonoBehaviour
     }
     public void EquipPlusWeaponStat ()
     {
-        
         for(int i=0; i<m_EquipSlot.Count; i++)
         {
             WeaponItem tmpEquip = m_EquipSlot[i] as WeaponItem;
-            Debug.Log("확인");
             tmpEquip.CodeSolve();
             tmpEquip.EffectSetting();
             tmpEquip.PlusItem();

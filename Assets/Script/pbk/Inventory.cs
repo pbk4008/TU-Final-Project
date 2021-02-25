@@ -92,7 +92,6 @@ public class Inventory : MonoBehaviour
         int yIndex = argIndex / 4;
         float PannelH, PannelV, ItemH, ItemV;
 
-
         PannelH = functions.CalculSpriteHorizontalSize(gameObject);
         PannelV = functions.CalculSpriteVerticalSize(gameObject);
         ItemH = functions.CalculSpriteHorizontalSize(m_objargItem);
@@ -281,6 +280,8 @@ public class Inventory : MonoBehaviour
     }
     public void SellItem(Item argItem)
     {
+        Sound sound = new Sound();
+        sound.SoundSetting(gameObject, SoundMgr.GetAudio(SOUND_TYPE.SELL));
         RemoveItem(argItem,1);
         m_Scene = SceneManager.GetActiveScene(); //씬의 정보를 가져옴
         if (m_Scene.name == "Duengeon")
@@ -306,6 +307,7 @@ public class Inventory : MonoBehaviour
                 {
                     EtcItem tmpEtcItem = m_EtcInventory[index].GetComponent<EtcItem>();
                     string invenItemCode = functions.CodetoString(tmpEtcItem.Code);
+                    
                     if (invenItemCode == null)
                     {
                         index--;
@@ -332,12 +334,12 @@ public class Inventory : MonoBehaviour
                 {
                     WeaponItem tmpWeaponItem = m_WeaponInventory[index].GetComponent<WeaponItem>();
                     string invenItemCode = functions.CodetoString(tmpWeaponItem.Code);
-
-                    if (invenItemCode == null)
+                    if (invenItemCode == null||tmpCode!= invenItemCode)
                     {
                         index--;
                         continue;
                     }
+   
                     else if(tmpCode==invenItemCode)
                     {
                         tmpWeaponItem.CodeReset();
@@ -375,11 +377,13 @@ public class Inventory : MonoBehaviour
     }
     public IEnumerator PrintInven()
     {
-        GameObject CreateBtn = GameObject.Find("CreateBtn");
+        GameObject CreateBtn=null;
         while (true)
         {
             if (gameObject.name == "EtcInven")
             {
+                if (CreateBtn == null)
+                    CreateBtn = GameObject.Find("CreateBtn");
                 if (m_Create.BSelect == true)
                 {
                     for (int i = 0; i < 14; i++)
@@ -402,9 +406,9 @@ public class Inventory : MonoBehaviour
                     {
                         m_EtcInventory[i].gameObject.SetActive(false);
                     }
-                    
                     m_tSelectTxt.gameObject.SetActive(true);
                     m_tCountTxt.gameObject.SetActive(false);
+                    CreateBtn.SetActive(false);
                 }
             }
             else if(gameObject.name == "WeaponInven")
@@ -575,8 +579,7 @@ public class Inventory : MonoBehaviour
         {
             argItem.GetComponent<EtcItem>().BSelect = true;
             argItem.gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            m_SelectItemList.Add(argItem);
-            
+            m_SelectItemList.Add(argItem); 
         }
     }
     public void ResetSelect()
@@ -653,5 +656,6 @@ public class Inventory : MonoBehaviour
         else if (!argObject.transform.GetChild(1).gameObject.active)
             argObject.transform.GetChild(1).gameObject.SetActive(true);
     }
+
     // Update is called once per frame
 }

@@ -87,7 +87,7 @@ public class System_Battle : MonoBehaviour
         {
             m_Monster = m_Boss; //몬스터를 보스로 치환 - 손준호
             Debug.Log("몬스터 이름 : " + m_Monster.getInfo().SName);
-            m_Monster.EType = enums.GRADE_MON.BOSS; //몬스터 타임을 보스로 변경 - 손준호
+            m_Monster.EType = GRADE_MON.BOSS; //몬스터 타임을 보스로 변경 - 손준호
         }
         m_SPB = GameObject.Find("System").GetComponent<System_PlayerSkill>();
         m_BattleMgr = gameObject.GetComponent<BattleManager>();
@@ -185,12 +185,15 @@ public class System_Battle : MonoBehaviour
         //플레이어가 죽었는지 혹은 몬스터가 죽었는지 판단
         if (!m_Player.BLive)//플레이어 죽음
         {
+            m_Player.BSoundCheck = true;
             m_Player.AnimTrigger = ANIMTRIGGER.DIE;
+            m_BattleMgr.EClear = BATTLE_CLEAR.DIE;
         }
         if (!m_Monster.BLive)//몬스터 죽음
         {
             m_Monster.AnimTrigger = ANIMTRIGGER.DIE;
             m_Player.AnimTrigger = ANIMTRIGGER.WIN;
+            m_Player.BSoundCheck = true;
             //경험치 분배
             plusExp();
             //아이템 생성
