@@ -112,5 +112,4 @@ public class System_BattleBegin : MonoBehaviour
         }
         argTr.position = argPosition;
     }
-    
 }

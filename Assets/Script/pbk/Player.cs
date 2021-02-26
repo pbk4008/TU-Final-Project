@@ -150,6 +150,15 @@ public class Player : Character
         else
             m_iMoney += argMoney;
     }
+    public void ResetPlayer()
+    {
+        m_bButtonClick = false;
+        m_bSoundCheck = false;
+        m_bLive = true;
+        m_iRunCount = 0;
+        m_Info.ICurrentHp = m_Info.IMaxHp;
+        m_AnimTrigger = ANIMTRIGGER.IDLE;
+    }
     //손준호 작업
     private static Player m_Instance;
     private Scene m_Scene;

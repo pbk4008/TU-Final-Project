@@ -68,6 +68,11 @@ public class BattleManager : MonoBehaviour
             Scr_DungeonBtn GM = GameObject.FindWithTag("GameMgr").GetComponent<Scr_DungeonBtn>();
             int iFloor = GM.IFloor;
             int iStage = GM.IStage;
+            if (m_BattleSystem.BRunStage)
+            {
+                m_BattleBegin.ICurrentRound--;
+                m_BattleSystem.BRunStage = false;
+            }
             m_BattleBegin.moveCurrentRoundUI();
             switch (m_eClear)
             {
@@ -77,9 +82,11 @@ public class BattleManager : MonoBehaviour
                 case BATTLE_CLEAR.CLEAR://클리어
                     if (!m_Player.GetComponent<System_LevelUp>().bLevelUp)
                     {
+                        m_Player.GetComponent<Player>().IRunCount = 0;
                         AudioSource source = Camera.main.GetComponent<AudioSource>();
                         Debug.Log(source);
-                        source.clip = SoundMgr.GetBgm(BGM_TYPE.VICTORY) ;
+                        source.clip = SoundMgr.GetBgm(BGM_TYPE.VICTORY);
+                        source.loop = false;
                         source.Play();
                         yield return new WaitForSeconds(source.clip.length);
                         GM.setbStage(iFloor, iStage + 1, true);
@@ -88,12 +95,14 @@ public class BattleManager : MonoBehaviour
                     break;
                 case BATTLE_CLEAR.DIE:
                     yield return new WaitForSeconds(m_Player.GetComponent<AudioSource>().clip.length);
+                    m_Player.GetComponent<Player>().ResetPlayer();
+                    m_Player.SetActive(false);
                     SceneManager.LoadScene(3);
                     break;
                 case BATTLE_CLEAR.END:
+                    BattleCreate();
                     break;
             }
-            BattleCreate();
         }
     }
 }

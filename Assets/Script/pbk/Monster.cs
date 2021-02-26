@@ -43,15 +43,22 @@ public class Monster : Character
         }
         m_Info.SName = sr.ReadLine();
         SetTypeStatus(sr.ReadLine());
-        //아이템 이름
-        m_Item = m_objItem.GetComponent<EtcItem>();
-        m_Item.ItemSetting(ITEM_TYPE.ETC, m_iMonNum,false);
-        m_Item.ICount = 1;
+        
+        
         m_SprMain = Resources.Load<Sprite>("Monster/monster "+ argIndex);
         m_sprRender = GetComponent<SpriteRenderer>();
         m_sprRender.sprite = m_SprMain;
         m_HitSprite = Resources.Load<Sprite>("Monster/monster " + argIndex + " Hit");
-        
+
+        //아이템 셋팅
+        m_Item = m_objItem.GetComponent<EtcItem>();
+        m_Item.ItemSetting(ITEM_TYPE.ETC, argIndex, false);
+        m_Item.ICount = 1;
+        m_Item.CodeSolve();
+        m_Item.ImageSetting();
+        m_Item.GetComponent<SpriteRenderer>().sprite = m_Item.SprImg;
+        Debug.Log(m_Item.SprImg);
+
     }
 
     public void AddItem()

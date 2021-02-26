@@ -12,12 +12,10 @@ public class SoundMgr : MonoBehaviour
         m_EffectSoundList = new List<AudioClip>();
         m_BGMList = new List<AudioClip>();
         AudioClip audio;
-        Debug.Log((int)SOUND_TYPE.END);
         for (int i = 0; i < (int)SOUND_TYPE.END; i++)
         {
             audio = Resources.Load<AudioClip>("AudioClip/audio " + i);
             m_EffectSoundList.Add(audio);
-            Debug.Log(m_EffectSoundList[i]);
         }
         for(int j=0; j<(int)BGM_TYPE.END; j++)
         {

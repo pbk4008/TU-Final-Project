@@ -68,6 +68,7 @@ public class System_Battle : MonoBehaviour
     public float pPlayerHpSize { get => m_PlayerHp.size; set => m_PlayerHp.size += value; }
     public float pMonHpSize { get => m_MonHp.size; set => m_MonHp.size += value; }
     public bool bEffectOn { get => m_bEffectOn; set => m_bEffectOn = value; }
+    public bool BRunStage { get => m_bRunStage; set => m_bRunStage = value; }
 
     private GameObject m_MonFill, m_PlayerFill, m_ExpFill;//체력바 및 Exp바 채우기변수
 
@@ -103,6 +104,7 @@ public class System_Battle : MonoBehaviour
         BtnManager.run += Run;
         m_bBossSkillOn = false; //보스 스킬 사용하기 - 손준호
         m_bBattle = false;
+        m_bRunStage = false;
         StartCoroutine(BattleProcess());
         StartCoroutine(CalculSkillDmg(m_Player)); //스킬 대미지 계산하는 코루틴 시작 
     }
@@ -205,7 +207,6 @@ public class System_Battle : MonoBehaviour
         BattleReset();
         //플레이어 버프 효과 해제
         m_SPB.SkillReset();
-        Debug.Log(m_eBattleProcess);
         //퀘스트 완료 판단
         Scr_DungeonBtn GM = GameObject.FindWithTag("GameMgr").GetComponent<Scr_DungeonBtn>();
         if (m_Monster.EType != GRADE_MON.BOSS)
@@ -226,13 +227,14 @@ public class System_Battle : MonoBehaviour
         m_RoundCount.text = m_iRound.ToString();
         m_eBattleProcess = BATTLE_PROCESS.BEFORE;
         m_iDmg = -1;
+        m_Player.bStun = false;
     }
     public void UIInitialize()
     {
         m_MonImg.sprite = Resources.Load<Sprite>("Monster/head/monster "+ m_Monster.IMonNum+" head");
         m_MonImg.color = new Color(255, 255, 255, 255);
-        m_MonHp.value = m_Monster.getInfo().ICurrentHp / m_Monster.getInfo().IMaxHp;
-        m_PlayerHp.value = m_Player.getInfo().ICurrentHp / m_Player.getInfo().IMaxHp;
+        m_MonHp.value = 1;
+        m_PlayerHp.value = 1;
         m_PlayerExp.value = 1;
 
         m_MonFill.SetActive(true);
@@ -248,8 +250,9 @@ public class System_Battle : MonoBehaviour
             m_ExpFill.SetActive(false);
             m_PlayerExp.size = 0;
         }
-        m_MonHp.size = m_MonHp.value;
-        m_PlayerHp.size = m_PlayerHp.value;
+        m_MonHp.size = (float)m_Monster.getInfo().ICurrentHp/(float)m_Monster.getInfo().IMaxHp;
+        m_PlayerHp.size = (float)m_Player.getInfo().ICurrentHp / (float)m_Player.getInfo().IMaxHp;
+
     }
     private void UISetting()
     {
@@ -261,7 +264,7 @@ public class System_Battle : MonoBehaviour
             if (m_iMonsterTurn < m_iPlayerTurn)//플레이어가 공격시
             {
                 if (!m_Player.bStun)
-                    m_MonHp.size -= (float)m_iDmg / m_Monster.getInfo().IMaxHp;
+                    m_MonHp.size -= (float)m_iDmg / (float)m_Monster.getInfo().IMaxHp;
                 if (m_MonHp.size <= 0)
                 {
                     if (m_Monster.EType != GRADE_MON.BOSS)
@@ -291,7 +294,7 @@ public class System_Battle : MonoBehaviour
             }
             else if (m_iMonsterTurn > m_iPlayerTurn)// 몬스터가 공격시
             {
-                m_PlayerHp.size -= (float)m_iDmg / m_Player.getInfo().IMaxHp;
+                m_PlayerHp.size -= (float)m_iDmg / (float)m_Player.getInfo().IMaxHp;
 
                 if (m_PlayerHp.size <= 0)
                 {
@@ -442,6 +445,7 @@ public class System_Battle : MonoBehaviour
     }
     private void Run()
     {
+        m_bRunStage = true;
         bool Runres=functions.Percentage(100);
         if(Runres)
         {
@@ -465,6 +469,8 @@ public class System_Battle : MonoBehaviour
         {
             //플레이어가 맞는 대미지 계산
             m_itotalDmg = m_iDmg + m_iSkillDmg + m_iCDamage;
+            if (m_itotalDmg <= 0)
+                m_itotalDmg = 0;
             m_tPlayerDamage.gameObject.SetActive(true);
             FadeOut PlayerDamageUI = m_tPlayerDamage.GetComponent<FadeOut>();
             PlayerDamageUI.reStartCoroutine();

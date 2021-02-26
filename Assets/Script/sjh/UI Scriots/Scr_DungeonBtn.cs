@@ -599,7 +599,6 @@ public class Scr_DungeonBtn : MonoBehaviour
         {
             if (m_eQuestType[i] == QUEST_TYPE.MONSTER && m_bLockQuest[i] == false)
                 m_iCurrentMonsterCount[i]++;
-            Debug.Log(m_iCurrentMonsterCount[i]);
         }
     }
     public void PlusQuestBoss()

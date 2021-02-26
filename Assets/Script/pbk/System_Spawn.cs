@@ -111,7 +111,7 @@ public class System_Spawn : MonoBehaviour
                 break;
         }
         Debug.Log(m_MonNum);
-        m_Monster.SetInfo(0);
+        m_Monster.SetInfo(m_MonNum);
         m_Monster.MonsterActive();
     }
 }
