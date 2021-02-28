@@ -7,7 +7,10 @@ public class SceneMove : MonoBehaviour
 {
     public void GameStart()
     {
-        SceneManager.LoadScene(1);
+        if(null != GameObject.Find("Obj_UIMgr"))
+            GameObject.Find("Obj_UIMgr").GetComponent<System_DataMgr>().Load();
+        else
+            SceneManager.LoadScene(1);
     }
     public void GameEnd()
     {

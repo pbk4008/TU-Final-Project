@@ -62,17 +62,18 @@ public class Inventory : MonoBehaviour
         m_objargItem.GetComponent<RectTransform>().localScale = new Vector3(1.3f, 1.3f, 1);
         for (int i = 0; i < 14; i++)
         {
+            GameObject tmpItem3 = Instantiate(m_objargItem);
             GameObject tmpItem1 = Instantiate(m_objargItem);
             GameObject tmpItem2 = Instantiate(m_objargItem);
-            GameObject tmpItem3 = Instantiate(m_objargItem);
+
+            m_WeaponInventory.Add(tmpItem3.GetComponent<WeaponItem>());
 
             m_EtcInventory.Add(tmpItem1.GetComponent<EtcItem>());
             m_UseInventory.Add(tmpItem2.GetComponent<UseItem>());
-            m_WeaponInventory.Add(tmpItem3.GetComponent<WeaponItem>());
 
+            m_WeaponInventory[i].CodeReset();
             m_EtcInventory[i].CodeReset();
             m_UseInventory[i].CodeReset();
-            m_WeaponInventory[i].CodeReset();
         }
         for (int i = 0; i < 14; i++)
         {
@@ -82,7 +83,7 @@ public class Inventory : MonoBehaviour
                 InventoryCreate(i);
         }
         DebugAddItem();
-        DebugAddItem();
+        //DebugAddItem();
         StartCoroutine(PrintInven());
     }
     private void EtcCreateInvenCreate(int argIndex)
@@ -557,6 +558,7 @@ public class Inventory : MonoBehaviour
     }
     public void DebugAddItem()
     {
+        Debug.Log("ㅎㅇ");
         WeaponItem tmpItem = m_objargItem.GetComponent<WeaponItem>();
         tmpItem.ItemSetting(ITEM_TYPE.EQUIP,EQUIP_TYPE.HEAD,ITEM_GRADE.NORMAL);
         

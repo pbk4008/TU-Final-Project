@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO; // 파일 입출력
 using System.Runtime.Serialization.Formatters.Binary; //바이너리 파일 포멧
 using DataInfo;
+using UnityEngine.SceneManagement;
 
 public class System_DataMgr : MonoBehaviour
 {
@@ -40,11 +41,11 @@ public class System_DataMgr : MonoBehaviour
             file.Close();
 
             //죽었으니 저장 후에  플레이어 스텟 초기화
-            m_Player.getInfo().setLevel(ref m_Player.getInfo(), 1);
+            /*m_Player.getInfo().setLevel(ref m_Player.getInfo(), 1);
             m_Player.getStat().setPow(ref m_Player.getStat(), 5);
             m_Player.getStat().setInt(ref m_Player.getStat(), 5);
             m_Player.getStat().setDex(ref m_Player.getStat(), 5);
-            m_Player.IMoney = 10000;
+            m_Player.IMoney = 10000;*/
             //m_Player.BLive = true;
         }
     }
@@ -52,6 +53,11 @@ public class System_DataMgr : MonoBehaviour
     public GameData Load() //불러오기
     {
         dataPath = Application.persistentDataPath + "/gameData.dat";
+        
+        SceneManager.LoadScene(1);
+        GameData data = new GameData();
+        return data;
+        /*
         if (File.Exists(dataPath))
         {
             //파일이 존재할 경우 데이터 불러오기
@@ -75,11 +81,6 @@ public class System_DataMgr : MonoBehaviour
             GameData data = new GameData();
 
             return data;
-        }
-    }
-
-    public void Click_ON()
-    {
-        Load(); //불러오기
+        }*/
     }
 }
