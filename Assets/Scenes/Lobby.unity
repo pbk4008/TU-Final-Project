@@ -1781,6 +1781,7 @@ MonoBehaviour:
   Img_PlayerStat: {fileID: 39483935}
   T_PlayerUI: {fileID: 542516669}
   Cvs_WeaponInven: {fileID: 1374030856}
+  m_Inventory: {fileID: 811487134}
   LoadButton: {fileID: 1234460009}
   spr_Floor1: {fileID: 21300000, guid: d80762dbbef0c814887fe694d2b7d054, type: 3}
   spr_Floor2: {fileID: 21300000, guid: a04ab22370cc9004ea8e5a5b39a99d7f, type: 3}
@@ -14825,7 +14826,6 @@ GameObject:
   - component: {fileID: 1698180142}
   - component: {fileID: 1698180145}
   - component: {fileID: 1698180144}
-  - component: {fileID: 1698180143}
   m_Layer: 5
   m_Name: WeaponInven
   m_TagString: Untagged
@@ -14853,21 +14853,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1698180143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698180141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09cf32b28feb5cf4d8e3d6f6cce80a56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_objargItem: {fileID: 2163470253270845059, guid: ff78f64418219934390207370c9e3c82, type: 3}
-  m_tCountTxt: {fileID: 0}
-  m_tSelectTxt: {fileID: 0}
 --- !u!114 &1698180144
 MonoBehaviour:
   m_ObjectHideFlags: 0

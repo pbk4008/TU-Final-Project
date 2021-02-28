@@ -43,7 +43,8 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Text m_tSelectTxt;
 
-
+    private WINVEN_TYPE m_WInvenType; //장비 인벤 타입 (손준호
+    public WINVEN_TYPE WinvenType { get => m_WInvenType; set => m_WInvenType = value; }
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +55,7 @@ public class Inventory : MonoBehaviour
             m_Equipment = GameObject.Find("Equipment").GetComponent<Equipment>();
         
         m_eInventoryType = ITEM_TYPE.ETC;
-
+        m_WInvenType = WINVEN_TYPE.NONE;
         m_EtcInventory = new List<EtcItem>();
         m_UseInventory = new List<UseItem>();
         m_WeaponInventory = new List<WeaponItem>();
@@ -83,12 +84,11 @@ public class Inventory : MonoBehaviour
                 InventoryCreate(i);
         }
         DebugAddItem();
-        //DebugAddItem();
+        DebugAddItem();
         StartCoroutine(PrintInven());
     }
-    private void EtcCreateInvenCreate(int argIndex)
+    public void EtcCreateInvenCreate(int argIndex)
     {
-        
         int xIndex = argIndex % 4;
         int yIndex = argIndex / 4;
         float PannelH, PannelV, ItemH, ItemV;
@@ -113,13 +113,16 @@ public class Inventory : MonoBehaviour
             m_EtcInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
             m_EtcInventory[argIndex].transform.parent = gameObject.transform;
         }
-        else if(gameObject.name == "WeaponInven")
+        else if(gameObject.name == "WeaponInven" || m_WInvenType == WINVEN_TYPE.TRADE || m_WInvenType == WINVEN_TYPE.REINFORCE)
         {
+            pos.x -= xPos * (xIndex * 8) + 1340;
+            pos.y += yPos * (yIndex * 8) - 200;
+            pos.z += 1;
             m_WeaponInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
             m_WeaponInventory[argIndex].transform.parent = gameObject.transform;
         }
     }
-    private void InventoryCreate(int argIndex)
+    public void InventoryCreate(int argIndex)
     { 
         int xIndex = argIndex % 7;
         int yIndex = argIndex / 7;
@@ -142,15 +145,24 @@ public class Inventory : MonoBehaviour
         pos.x += xPos * (xIndex + 1)-500;
         pos.y -= yPos * (yIndex + 1)-130;
         pos.z += 1;
+        if (m_WInvenType == WINVEN_TYPE.NONE)
+        {
+            m_EtcInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
+            m_EtcInventory[argIndex].transform.parent = gameObject.transform;
 
-        m_EtcInventory[argIndex].GetComponent<RectTransform>(). anchoredPosition= pos;
-        m_EtcInventory[argIndex].transform.parent = gameObject.transform;
-     
-        m_UseInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
-        m_UseInventory[argIndex].transform.parent = gameObject.transform;
+            m_UseInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
+            m_UseInventory[argIndex].transform.parent = gameObject.transform;
 
-        m_WeaponInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
-        m_WeaponInventory[argIndex].transform.parent = gameObject.transform;
+            m_WeaponInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
+            m_WeaponInventory[argIndex].transform.parent = gameObject.transform;
+        }
+        else
+        {
+            pos.x -= 990;
+            pos.y -= 270;
+           m_WeaponInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
+            m_WeaponInventory[argIndex].transform.parent = gameObject.transform;
+        }
     }
     public void AddItem(Item argItem)
     {
@@ -540,7 +552,7 @@ public class Inventory : MonoBehaviour
                     SelectItem(m_RemoveObject);
                 }
             }
-            else if(gameObject.name == "WeaponInven")
+            else if(m_WInvenType == WINVEN_TYPE.TRADE || m_WInvenType == WINVEN_TYPE.REINFORCE)
             {
                 if (m_bReinforceCheck)
                 {
@@ -558,7 +570,6 @@ public class Inventory : MonoBehaviour
     }
     public void DebugAddItem()
     {
-        Debug.Log("ㅎㅇ");
         WeaponItem tmpItem = m_objargItem.GetComponent<WeaponItem>();
         tmpItem.ItemSetting(ITEM_TYPE.EQUIP,EQUIP_TYPE.HEAD,ITEM_GRADE.NORMAL);
         
@@ -594,7 +605,8 @@ public class Inventory : MonoBehaviour
     }
     private void TradeItem(GameObject argItem)
     {
-        
+        if (gameObject.name == "WeaponInven"||m_WInvenType == WINVEN_TYPE.TRADE)
+            m_Equipment = GameObject.Find("Equipment").GetComponent<Equipment>();
         WeaponItem argWeapon = argItem.GetComponent<WeaponItem>();//바꾸는 아이템
         WeaponItem tmpItem = new WeaponItem(); //장비창 아이템
         switch(argWeapon.EEquipType)

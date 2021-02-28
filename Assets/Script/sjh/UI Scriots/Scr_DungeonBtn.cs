@@ -77,6 +77,7 @@ public class Scr_DungeonBtn : MonoBehaviour
     [SerializeField] private Image Img_PlayerStat;
     [SerializeField] private Text T_PlayerUI;
     [SerializeField] private Canvas Cvs_WeaponInven;
+    [SerializeField] private Inventory m_Inventory;
     GameObject PlayerMgr;
 
     //---------------------불러오기 부분
@@ -110,6 +111,7 @@ public class Scr_DungeonBtn : MonoBehaviour
         StartCoroutine(ButtonCoroutine());
         m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
         m_Inven = Cvs_EtcInven.gameObject.GetComponent<Inventory>();
+        m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         Img_PlayerStat.gameObject.SetActive(false);
         
         //던전 스테이지 막기
@@ -332,7 +334,18 @@ public class Scr_DungeonBtn : MonoBehaviour
                         Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck = true;
                         Debug.Log(Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck);
                         Cvs_WeaponInven.gameObject.SetActive(true);
-                        Cvs_WeaponInven.GetComponentInChildren<Inventory>().BReinforceCheck = true;
+                        m_Inventory.WinvenType = WINVEN_TYPE.REINFORCE;
+                        m_Inventory.EInventoryType = ITEM_TYPE.EQUIP;
+                        Cvs_Inventory.transform.GetChild(0).gameObject.SetActive(false);
+                        Cvs_Inventory.transform.GetChild(1).gameObject.SetActive(false);
+                        Cvs_Inventory.transform.GetChild(2).gameObject.SetActive(false);
+                        Cvs_Inventory.transform.GetChild(3).gameObject.SetActive(false);
+                        Cvs_Inventory.transform.GetChild(4).gameObject.SetActive(false);
+                        Cvs_Inventory.transform.GetChild(6).gameObject.SetActive(false);
+                        Cvs_Inventory.enabled = true;
+                        for (int i = 0; i < 14; i++)
+                            m_Inventory.EtcCreateInvenCreate(i);
+                        m_Inventory.BReinforceCheck = true;
                         break;
                     case "Btn_HouseCreate":
                         SetActive(3, 0, 0, 1, 6);
@@ -354,6 +367,7 @@ public class Scr_DungeonBtn : MonoBehaviour
                     case "Btn_HouseMenuExit":
                         SetActive(3, 0, 0, 1, 6);
                         Img_HouseMenu.gameObject.SetActive(false);
+                        m_Inventory.WinvenType = WINVEN_TYPE.NONE;
                         ActiveButton(1);
                         break;
                     case "Btn_CreateExit":
@@ -372,11 +386,23 @@ public class Scr_DungeonBtn : MonoBehaviour
                         break;
                     case "Btn_Equip":
                         Debug.Log("확인");
+                        m_Inventory.EInventoryType = ITEM_TYPE.EQUIP;
+                        m_Inventory.WinvenType = WINVEN_TYPE.TRADE;
+                        for (int i = 0; i < 14; i++)
+                            m_Inventory.EtcCreateInvenCreate(i);
+                        StartCoroutine(m_Inventory.PrintInven());
+                        Cvs_Inventory.transform.GetChild(0).gameObject.SetActive(false);
+                        Cvs_Inventory.transform.GetChild(1).gameObject.SetActive(false);
+                        Cvs_Inventory.transform.GetChild(2).gameObject.SetActive(false);
+                        Cvs_Inventory.transform.GetChild(3).gameObject.SetActive(false);
+                        Cvs_Inventory.transform.GetChild(4).gameObject.SetActive(false);
+                        Cvs_Inventory.transform.GetChild(6).gameObject.SetActive(false);
+                        Cvs_Inventory.enabled = true;
                         SetActive(4, 0, 0, 1, 2);
                         Img_HouseMenu.gameObject.SetActive(false);
                         T_PlayerUI.gameObject.SetActive(false);
                         Cvs_WeaponInven.gameObject.SetActive(true);
-                        Cvs_WeaponInven.GetComponentInChildren<Inventory>().BReinforceCheck = false;
+                        m_Inventory.BReinforceCheck = false;
                         ActiveButton(0);
                         break;
                     case "Btn_PlayerUIExit":
@@ -386,6 +412,7 @@ public class Scr_DungeonBtn : MonoBehaviour
                         Img_PlayerStat.gameObject.SetActive(false);
                         T_PlayerUI.gameObject.SetActive(false);
                         ActiveButton(0);
+                        m_Inventory.WinvenType = WINVEN_TYPE.NONE;
                         break;
                     case "Btn_ExitWeapon":
                         if (Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck)
@@ -400,6 +427,15 @@ public class Scr_DungeonBtn : MonoBehaviour
                             T_PlayerUI.gameObject.SetActive(true);
                         }
                         Cvs_WeaponInven.gameObject.SetActive(false);
+                        Cvs_Inventory.enabled = false;
+                        Cvs_Inventory.transform.GetChild(0).gameObject.SetActive(true);
+                        Cvs_Inventory.transform.GetChild(1).gameObject.SetActive(true);
+                        Cvs_Inventory.transform.GetChild(2).gameObject.SetActive(true);
+                        Cvs_Inventory.transform.GetChild(3).gameObject.SetActive(true);
+                        Cvs_Inventory.transform.GetChild(4).gameObject.SetActive(true);
+                        Cvs_Inventory.transform.GetChild(6).gameObject.SetActive(true);
+                        for (int i = 0; i < 14; i++)
+                            m_Inventory.InventoryCreate(i);
                         Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck = false;
                         ActiveButton(0);
                         break;
@@ -651,7 +687,6 @@ public class Scr_DungeonBtn : MonoBehaviour
                         {
                             case "Normal":
                                 m_Player.IMoney += 50;
-
                                 break;
                             case "Special":
                                 m_Player.IMoney += 100;
