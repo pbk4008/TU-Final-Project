@@ -82,6 +82,9 @@ public class Player : Character
             case "Lobby":
                 m_sprRender.enabled = false;
                 break;
+            case "Title":
+                m_sprRender.enabled = false;
+                break;
             case "Duengeon":
                 m_sprRender.enabled = true;
                 break;

@@ -53,7 +53,7 @@ public class System_DataMgr : MonoBehaviour
     public GameData Load() //불러오기
     {
         dataPath = Application.persistentDataPath + "/gameData.dat";
-        
+
         SceneManager.LoadScene(1);
         GameData data = new GameData();
         return data;
@@ -83,4 +83,5 @@ public class System_DataMgr : MonoBehaviour
             return data;
         }*/
     }
+
 }

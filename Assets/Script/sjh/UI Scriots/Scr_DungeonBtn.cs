@@ -443,7 +443,6 @@ public class Scr_DungeonBtn : MonoBehaviour
             }
             sOnClick = false;
             m_Scene = SceneManager.GetActiveScene();
-
             if (m_Scene.name == "Lobby")
             {
                 m_Player.gameObject.SetActive(true);
@@ -451,6 +450,12 @@ public class Scr_DungeonBtn : MonoBehaviour
             }
             else
                 m_LUI.gameObject.SetActive(false);
+
+            if(m_Scene.name == "Title")
+            {
+                m_Player.gameObject.SetActive(true);
+                m_LUI.gameObject.SetActive(true);
+            }
            
 
             yield return ftimer;
@@ -515,7 +520,7 @@ public class Scr_DungeonBtn : MonoBehaviour
         }
     }
 
-    private void ActiveButton(int Active)
+    public void ActiveButton(int Active)
     {
         switch(Active)
         {
@@ -524,14 +529,12 @@ public class Scr_DungeonBtn : MonoBehaviour
                 QuestButton[0].gameObject.SetActive(false);
                 GambleButton[0].gameObject.SetActive(false);
                 HouseButton[0].gameObject.SetActive(false);
-                LoadButton.gameObject.SetActive(false);
                 break;
             case 1:
                 DungeonButton[0].gameObject.SetActive(true);
                 QuestButton[0].gameObject.SetActive(true);
                 GambleButton[0].gameObject.SetActive(true);
                 HouseButton[0].gameObject.SetActive(true);
-                LoadButton.gameObject.SetActive(true);
                 break;
         }
     }

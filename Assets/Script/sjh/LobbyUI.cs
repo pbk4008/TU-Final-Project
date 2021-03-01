@@ -25,13 +25,27 @@ public class LobbyUI : MonoBehaviour
         StartCoroutine(SceneCheck());
     }
 
+    public void CoroutineOn()
+    {
+        StartCoroutine(SceneCheck());
+    }
+
     IEnumerator SceneCheck()//스킬 대미지 계산 - 손준호
     {
         while (true)
         {
             m_Scene = SceneManager.GetActiveScene();
             if (m_Scene.name == "Lobby")
+            {
+                GetComponent<Canvas>().enabled = true;
                 gameObject.SetActive(true);
+                transform.GetChild(61).gameObject.SetActive(true);
+            }
+            else if (m_Scene.name == "Title")
+            {
+                GetComponent<Canvas>().enabled = false;
+                transform.GetChild(61).gameObject.SetActive(false);
+            }
             else
                 gameObject.SetActive(false);
 

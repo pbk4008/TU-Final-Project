@@ -319,9 +319,9 @@ public class System_Battle : MonoBehaviour
         else if (m_Boss.BossSkillUI(0) == "빙결")
             m_iPlayerTurn = Random.Range(m_Player.getInfo().IAtkSpeed - 3, 10);
         else
-            m_iPlayerTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
+            //m_iPlayerTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
         m_iMonsterTurn = Random.Range(m_Player.getInfo().IAtkSpeed, 10);
-        //m_iPlayerTurn = 0;
+        m_iPlayerTurn = 0;
         //m_iMonsterTurn = 0;
         m_tPlayerSpeed.gameObject.SetActive(true);
         m_tMonSpeed.gameObject.SetActive(true);
