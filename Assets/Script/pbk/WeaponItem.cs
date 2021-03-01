@@ -191,7 +191,7 @@ public class WeaponItem : Item
 
         m_iPlusAtk = iWeaponAtk;
         m_iPlusMatk = iWeaponMatk;
-        m_iPlusDef -= iWeaponDef;
+        m_iPlusDef = iWeaponDef;
     }
     public void PlusItem()
     {

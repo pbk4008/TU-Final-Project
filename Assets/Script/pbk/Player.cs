@@ -84,6 +84,8 @@ public class Player : Character
                 break;
             case "Title":
                 m_sprRender.enabled = false;
+                m_bLive = true;
+                getInfo().setCurrentHp(ref getInfo(), getInfo().IMaxHp);
                 break;
             case "Duengeon":
                 m_sprRender.enabled = true;
