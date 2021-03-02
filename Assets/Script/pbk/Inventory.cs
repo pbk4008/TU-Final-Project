@@ -47,6 +47,8 @@ public class Inventory : MonoBehaviour
     private bool m_EtcInven_Create;
     public WINVEN_TYPE WinvenType { get => m_WInvenType; set => m_WInvenType = value; }
     public bool EtcInven_Create { get => m_EtcInven_Create; set => m_EtcInven_Create = value; }
+    private int m_TotalEtcItemCount;
+    public int TotalEtcItemCount { get => m_TotalEtcItemCount; set => m_TotalEtcItemCount = value; }
     // Start is called before the first frame update
     void Start()
     {
@@ -651,6 +653,16 @@ public class Inventory : MonoBehaviour
             argObject.SetActive(false);
         else if (!argObject.transform.GetChild(1).gameObject.active)
             argObject.transform.GetChild(1).gameObject.SetActive(true);
+    }
+
+    public int TotalEtcItemCountCal()
+    {
+        m_TotalEtcItemCount = 0;
+        for (int i =0;i<14;i++)
+        {
+            m_TotalEtcItemCount += m_EtcInventory[i].GetComponent<EtcItem>().ICount;
+        }
+        return m_TotalEtcItemCount;
     }
 
     // Update is called once per frame

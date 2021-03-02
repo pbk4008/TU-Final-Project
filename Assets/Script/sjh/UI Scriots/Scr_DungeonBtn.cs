@@ -44,7 +44,7 @@ public class Scr_DungeonBtn : MonoBehaviour
     private int[] m_iCurrentEtcItemCount = new int[3];  //퀘스트 받고 나서의 플레이어의 현재 모은 기타아이템 값
     private int[] m_iQuest = new int[3];        //퀘스트 종류 배열
     private int[] m_iGoalCount = new int[3]; //퀘스트 목표 점수 배열
-
+    
     //----------------------도박장 부분
     [SerializeField] private Button[] GambleButton = new Button[11]; 
     [SerializeField] private Player m_Player;
@@ -620,8 +620,6 @@ public class Scr_DungeonBtn : MonoBehaviour
                             m_iGoalCount[i] = 3;
                         else if (m_iGrade[i] == "Epic")
                             m_iGoalCount[i] = 5;
-                        T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade[i] + "]" + "보스 몬스터 " + m_iGoalCount[i] + "마리 잡아오기\n" //퀘스트 목표 텍스트
-                            + "진행도 : ( " + m_iCurrentBossCount[i] + " / " + m_iGoalCount[i] + ")";
                         break;
                     case 2: // 2 = 일반 몬스터
                         m_eQuestType[i] = QUEST_TYPE.MONSTER;
@@ -631,8 +629,6 @@ public class Scr_DungeonBtn : MonoBehaviour
                             m_iGoalCount[i] = 2;
                         else if (m_iGrade[i] == "Epic")
                             m_iGoalCount[i] = 2;
-                        T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade[i] + "]" + "일반 몬스터 " + m_iGoalCount[i] + "마리 잡아오기\n" //퀘스트 목표 텍스트
-                            + "진행도 : ( " + m_iCurrentMonsterCount[i] + " / " + m_iGoalCount[i] + ")";
                         break;
                     case 3: // 3 = 기타 아이템
                         m_eQuestType[i] = QUEST_TYPE.ITEM;
@@ -642,12 +638,11 @@ public class Scr_DungeonBtn : MonoBehaviour
                             m_iGoalCount[i] = 50;
                         else if (m_iGrade[i] == "Epic")
                             m_iGoalCount[i] = 100;
-                        T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade[i] + "]" + "기타 아이템 " + m_iGoalCount[i] + "개 모아오기\n" //퀘스트 목표 텍스트
-                            + "진행도 : ( " + m_iCurrentEtcItemCount[i] + " / " + m_iGoalCount[i] + ")";
                         break;
                 }
             }
         }
+        PrintQuest();
     }
     public void PlusQuestMonster()
     {
@@ -669,8 +664,30 @@ public class Scr_DungeonBtn : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            if(m_eQuestType[i] == QUEST_TYPE.ITEM && m_bLockQuest[i] == false)
-                m_iCurrentEtcItemCount[i]++;
+            if (m_eQuestType[i] == QUEST_TYPE.ITEM && m_bLockQuest[i] == false)
+                m_iCurrentEtcItemCount[i] = GameObject.Find("Inventory").GetComponent<Inventory>().TotalEtcItemCountCal();
+        }
+    }
+
+    public void PrintQuest()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            switch (m_iQuest[i]) //퀘스트 종류에 따라
+            {
+                case 1: // 1 = 보스 몬스터
+                    T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade[i] + "]" + "보스 몬스터 " + m_iGoalCount[i] + "마리 잡아오기\n" //퀘스트 목표 텍스트
+                        + "진행도 : ( " + m_iCurrentBossCount[i] + " / " + m_iGoalCount[i] + ")";
+                    break;
+                case 2: // 2 = 일반 몬스터
+                    T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade[i] + "]" + "일반 몬스터 " + m_iGoalCount[i] + "마리 잡아오기\n" //퀘스트 목표 텍스트
+                        + "진행도 : ( " + m_iCurrentMonsterCount[i] + " / " + m_iGoalCount[i] + ")";
+                    break;
+                case 3: // 3 = 기타 아이템
+                    T_QuestText[i].GetComponent<Text>().text = "[" + m_iGrade[i] + "]" + "기타 아이템 " + m_iGoalCount[i] + "개 모아오기\n" //퀘스트 목표 텍스트
+                        + "진행도 : ( " + m_iCurrentEtcItemCount[i] + " / " + m_iGoalCount[i] + ")";
+                    break;
+            }
         }
     }
     public void RewardQuest()
