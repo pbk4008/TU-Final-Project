@@ -293,15 +293,12 @@ public class Inventory : MonoBehaviour
     }
     public void SellItem(Item argItem)
     {
-        Sound sound = new Sound();
-        sound.SoundSetting(gameObject, SoundMgr.GetAudio(SOUND_TYPE.SELL));
-        RemoveItem(argItem,1);
-        m_Scene = SceneManager.GetActiveScene(); //씬의 정보를 가져옴
-        if (m_Scene.name == "Duengeon")
+        if (functions.CodetoString(argItem.Code) != null)
         {
-            RemoveItem(argItem,1);
-            return;
+            Sound sound = new Sound();
+            sound.SoundSetting(gameObject, SoundMgr.GetAudio(SOUND_TYPE.SELL));
         }
+        RemoveItem(argItem,1);
         Store tmpStore = GameObject.Find("Store").GetComponent<Store>();
         Player tmpPlayer = GameObject.FindWithTag("Player").GetComponent<Player>();
         tmpPlayer.MoneySet(argItem.ICost);
@@ -372,7 +369,6 @@ public class Inventory : MonoBehaviour
                     }
                     else if (invenItemCode == tmpCode)
                     {
-                        tmpUseItem.UsingItem(argItem.Code[3]);
                         if (tmpUseItem.ICount - 1 == 0)
                         {
                             tmpUseItem.CodeReset();
@@ -470,6 +466,18 @@ public class Inventory : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         } 
     }
+    private void UseItem(GameObject argObject)
+    {
+        Debug.Log("물약사용");
+        Sound sound = new Sound();
+        Debug.Log(SoundMgr.GetAudio(SOUND_TYPE.POTION));
+        sound.SoundSetting(gameObject, SoundMgr.GetAudio(SOUND_TYPE.POTION));
+        UseItem argItem = argObject.GetComponent<UseItem>();
+        argItem.UsingItem(argItem.Code[3]);
+        RemoveItem(argItem, 1);
+        gameObject.transform.parent.GetComponent<Canvas>().enabled=false;
+        GameObject.Find("BattleManager").GetComponent<System_Battle>().EBattleProcess = BATTLE_PROCESS.BEFORE;
+    }
     public void SelectRemoveitem(GameObject argItem, int argCount)
     {
         int tmpCount = 0;
@@ -508,7 +516,6 @@ public class Inventory : MonoBehaviour
                 return;
 
             m_RemoveObject = results[0].gameObject;
-            Debug.Log(m_RemoveObject.name);
             switch(m_eInventoryType)
             {
                 case ITEM_TYPE.ETC:
@@ -563,8 +570,20 @@ public class Inventory : MonoBehaviour
             }
             else
             {
+               
                 if (m_RemoveObject.GetComponent<Item>() != null)
-                    SellItem(m_RemoveObject.GetComponent<Item>());
+                {
+                    Scene tmpScene = SceneManager.GetActiveScene();
+                    if (tmpScene.name != "Duengeon")
+                        SellItem(m_RemoveObject.GetComponent<Item>());
+                    else
+                    {
+                        if (m_RemoveObject.GetComponent<Item>().Code[0] =='2')
+                        {
+                            UseItem(m_RemoveObject);
+                        }
+                    }
+                }
             }
         }
     }

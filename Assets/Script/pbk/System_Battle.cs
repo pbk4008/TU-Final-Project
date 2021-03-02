@@ -40,6 +40,8 @@ public class System_Battle : MonoBehaviour
     private BATTLE_PROCESS m_eBattleProcess;//배틀 처리 변수
     private bool m_bBattle;//배틀 시작 판단
     private bool m_bRunStage;
+    private bool m_bBattleUIAbleCheck;//BattleButton캔버스 켜졌는지 안켜졌는지 체크
+
 
     System_PlayerSkill m_SPB;
     [SerializeField]
@@ -105,6 +107,7 @@ public class System_Battle : MonoBehaviour
         m_bBossSkillOn = false; //보스 스킬 사용하기 - 손준호
         m_bBattle = false;
         m_bRunStage = false;
+        m_bBattleUIAbleCheck = false;
         StartCoroutine(BattleProcess());
         StartCoroutine(CalculSkillDmg(m_Player)); //스킬 대미지 계산하는 코루틴 시작 
     }
@@ -158,6 +161,7 @@ public class System_Battle : MonoBehaviour
     }
     private void Battle()//전투중
     {
+        Debug.Log(m_bBattleUIAbleCheck);
         for (int i = 0; i < 3; i++)
             m_Boss.SetDmg(i, 0);
         m_RoundCount.text = m_iRound.ToString();
@@ -165,7 +169,13 @@ public class System_Battle : MonoBehaviour
         m_tMonSpeed.gameObject.SetActive(false);
         //공격
         if (m_iMonsterTurn < m_iPlayerTurn)//플레이어 공격
-            m_BattleUI.SetActive(true);
+        {
+            if (!m_bBattleUIAbleCheck)
+            {
+                m_BattleUI.SetActive(true);
+                m_bBattleUIAbleCheck = true;
+            }
+        }
         else if (m_iMonsterTurn > m_iPlayerTurn)//몬스터 공격
         {
             m_Player.AnimTrigger = ANIMTRIGGER.HIT;
@@ -180,7 +190,10 @@ public class System_Battle : MonoBehaviour
             AttackToHit();
         }
         else//공격속도 같을 시
+        {
             m_eBattleProcess = BATTLE_PROCESS.BEFORE;
+
+        }
     }
     private void BattleAfter()//전투 후
     {
@@ -256,6 +269,7 @@ public class System_Battle : MonoBehaviour
     }
     private void UISetting()
     {
+        Debug.Log("데미지 : " + m_iDmg);
         //체력바 셋팅
         if (m_iDmg == -1)
             UIInitialize();
@@ -310,6 +324,7 @@ public class System_Battle : MonoBehaviour
                 }
             }
         }
+        m_iDmg = -1;
         m_iRound++;
     }
     private void TurnSelect()//턴 속도 랜덤 표시
@@ -335,7 +350,10 @@ public class System_Battle : MonoBehaviour
             {
                 case BATTLE_PROCESS.BEFORE:
                     if (m_Player.LevelUp_System.bLevelUp != true)
+                    {
+                        m_bBattleUIAbleCheck = false;
                         BattleSetting();
+                    }
                     break;
                 case BATTLE_PROCESS.DURING:
                     Battle();
@@ -364,7 +382,7 @@ public class System_Battle : MonoBehaviour
             m_tPlayerDamage.text = m_iCDamage.ToString();
             Debug.Log("[지속딜] " + m_Boss.BossSkillUI(0) + "대미지 : " + m_Boss.GetSkillDmg(0) + m_Boss.BossSkillUI(1) + "대미지 : " + m_Boss.GetSkillDmg(1) + m_Boss.BossSkillUI(2) + "대미지 : " + m_Boss.GetSkillDmg(2));
         }
-
+        
         m_eBattleProcess = BATTLE_PROCESS.BEFORE;
     }
     private void CalculDmg(Character Attacker, Character Hitter)
@@ -486,5 +504,10 @@ public class System_Battle : MonoBehaviour
             MonDamageUI.reStartCoroutine();
             m_tMonDamage.text = m_itotalDmg.ToString();
         }
+    }
+    public void DisableEvent()
+    {
+        BtnManager.attack -= AttackToHit;
+        BtnManager.run -= Run;
     }
 }
