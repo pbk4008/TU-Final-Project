@@ -641,6 +641,8 @@ public class Scr_DungeonBtn : MonoBehaviour
                         break;
                 }
             }
+            if (m_eQuestType[i] == QUEST_TYPE.ITEM && m_bLockQuest[i] == false)
+                m_iCurrentEtcItemCount[i] = GameObject.Find("Inventory").GetComponent<Inventory>().TotalEtcItemCountCal();
         }
         PrintQuest();
     }

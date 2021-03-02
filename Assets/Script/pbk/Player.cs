@@ -25,6 +25,7 @@ public class Player : Character
     private bool[] m_bDeeffect = new bool[3]; //지속딜 받기 - 손준호
     private bool m_bStun; //스턴 - 손준호
     private GameObject m_Player;
+    private bool m_stopSound;
       
     public int IMoney { get => m_iMoney; set => m_iMoney = value; }
     public float FExp { get => m_fExp; set => m_fExp = value; }
@@ -81,8 +82,15 @@ public class Player : Character
         {
             case "Lobby":
                 m_sprRender.enabled = false;
+                m_stopSound = false;
                 break;
             case "Title":
+                if (!m_stopSound)
+                {
+                    Sound sound = new Sound();
+                    sound.SoundSetting(gameObject, null);
+                    m_stopSound = true;
+                }
                 m_sprRender.enabled = false;
                 m_bLive = true;
                 getInfo().setCurrentHp(ref getInfo(), getInfo().IMaxHp);
@@ -128,7 +136,6 @@ public class Player : Character
                         sound.SoundSetting(gameObject, SoundMgr.GetAudio(SOUND_TYPE.DIE));
                         m_bSoundCheck = false;
                     }
-                        
                     break;
                 case ANIMTRIGGER.HIT:
                     break;
@@ -142,6 +149,7 @@ public class Player : Character
                     break;
 
             }
+
             StartCoroutine(base.FSM());
             yield return new WaitForSeconds(0.1f);
         }

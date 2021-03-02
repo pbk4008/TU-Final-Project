@@ -16,6 +16,7 @@ public class BattleManager : MonoBehaviour
     private BATTLE_CLEAR m_eClear;//던전클리어
     private bool m_bRoundClear;
     private bool m_bClear;
+    private Scene m_Scene;
 
     public bool bClear { get => m_bClear; }
     public bool BRoundClear { get => m_bRoundClear; set => m_bRoundClear = value; }
@@ -47,6 +48,7 @@ public class BattleManager : MonoBehaviour
     }
     IEnumerator BattleMgr()
     {
+        m_Scene = SceneManager.GetActiveScene();
         if (m_Player.GetComponent<System_LevelUp>().bLevelUp)
         {
             yield return new WaitForSeconds(2.0f);
