@@ -15,6 +15,16 @@ public class functions : MonoBehaviour
             res = false;
         return res;
     }
+    public static bool CriticalPercentage()
+    {
+        bool res;
+        int randomNum = Random.Range(1, 21);
+        if (randomNum <= 3)
+            res = true;
+        else
+            res = false;
+        return res;
+    }
     public static float CalculSpriteHorizontalSize(GameObject argObj)
     {
         if (argObj.GetComponent<SpriteRenderer>() != null)

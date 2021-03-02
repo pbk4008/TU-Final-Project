@@ -23,7 +23,6 @@ public class Equipment : MonoBehaviour
     void Start()
     {
         rayCaster = transform.parent.GetComponent<GraphicRaycaster>();
-        Debug.Log(rayCaster);
     }
     public void EquipSetting()
     {
@@ -47,8 +46,6 @@ public class Equipment : MonoBehaviour
             i.CodeSolve();
             i.ImageSetting();
             i.gameObject.GetComponent<Image>().sprite = i.SprImg;
-            Debug.Log(functions.CodetoString(i.Code));
-            Debug.Log(i.SprImg);
         }
     }
     public void EquipPlusWeaponStat ()
@@ -67,7 +64,6 @@ public class Equipment : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             
-            Debug.Log(m_bReinforceCheck);
             PointerEventData pointerData = new PointerEventData(EventSystem.current);
             List<RaycastResult> results = new List<RaycastResult>();
 
@@ -83,7 +79,6 @@ public class Equipment : MonoBehaviour
 
             if (m_bReinforceCheck)
             {
-                Debug.Log("확인");
                 //Rainforce;
                 SelectEquipment(m_ReinForceSelectObject);
             }
@@ -92,7 +87,6 @@ public class Equipment : MonoBehaviour
     }
     private void SelectEquipment(GameObject argObject)
     {
-        Debug.Log(argObject.name);
         if(argObject.name == "Image")
             argObject.SetActive(false);
         else if (!argObject.transform.GetChild(1).gameObject.active)
@@ -132,9 +126,7 @@ public class Equipment : MonoBehaviour
                     switch (m_EquipSlot[3].EGrade)
                     {
                         case ITEM_GRADE.LEGENDARY:
-                            Debug.Log("무기(검)효과 발동");
                             int iDmg = (int)(SB.ItotalDmg * 0.2f);
-                            Debug.Log("흡수 한 데미지 : " + iDmg);
                             SB.pPlayerHpSize = SB.pPlayerHpSize = (float)iDmg / PL.getInfo().IMaxHp;
                             if(SB.pPlayerHpSize > 1)
                             {
@@ -156,7 +148,6 @@ public class Equipment : MonoBehaviour
                 switch (m_EquipSlot[3].EGrade)
                 {
                     case ITEM_GRADE.LEGENDARY:
-                        Debug.Log("무기(너클)효과 발동");
                         if (functions.Percentage(20))
                             PS.MinusPlayerSkill();
                         break;
@@ -176,9 +167,7 @@ public class Equipment : MonoBehaviour
                     switch (m_EquipSlot[0].EGrade)
                     {
                         case ITEM_GRADE.LEGENDARY:
-                            Debug.Log("모자 효과 발동");
                             SB.pPlayerHpSize = SB.pPlayerHpSize = 1;
-                            Debug.Log("- 부 활 -");
                             break;
                     }
                     break;
@@ -197,9 +186,7 @@ public class Equipment : MonoBehaviour
                 switch (m_EquipSlot[1].EGrade)
                 {
                     case ITEM_GRADE.LEGENDARY:
-                        Debug.Log("옷 효과 발동");
                         int iDmg = (int)(SB.ItotalDmg * 0.5f);
-                        Debug.Log("가갑 데미지 : " + iDmg);
                         if (!GameObject.Find("Boss").gameObject.activeSelf)
                         {
                             Monster Mon = GameObject.Find("Monster").GetComponent<Monster>();
@@ -222,9 +209,7 @@ public class Equipment : MonoBehaviour
                     case ITEM_GRADE.LEGENDARY:
                         if (functions.Percentage(30))
                         {
-                            Debug.Log("신발 효과 발동");
                             Bos.bLockSkill = true;
-                            Debug.Log("스킬 봉인");
                         }
                         break;
                 }

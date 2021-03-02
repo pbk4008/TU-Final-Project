@@ -57,7 +57,6 @@ public class Monster : Character
         m_Item.CodeSolve();
         m_Item.ImageSetting();
         m_Item.GetComponent<SpriteRenderer>().sprite = m_Item.SprImg;
-        Debug.Log(m_Item.SprImg);
 
     }
 

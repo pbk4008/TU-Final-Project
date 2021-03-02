@@ -86,7 +86,6 @@ public class BattleManager : MonoBehaviour
                     {
                         m_Player.GetComponent<Player>().IRunCount = 0;
                         AudioSource source = Camera.main.GetComponent<AudioSource>();
-                        Debug.Log(source);
                         source.clip = SoundMgr.GetBgm(BGM_TYPE.VICTORY);
                         source.loop = false;
                         source.Play();

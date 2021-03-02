@@ -23,7 +23,6 @@ public class Sound : MonoBehaviour
         //사운드 가져오기
         sound.clip = clip;
         sound.PlayOneShot(sound.clip);
-        Debug.Log("소리출력!!");
     }
     // Update is called once per frame
     void Update()

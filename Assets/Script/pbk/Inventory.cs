@@ -231,7 +231,6 @@ public class Inventory : MonoBehaviour
                 {
                     UseItem tmpUseItem = m_UseInventory[index].GetComponent<UseItem>();
                     string argCode = functions.CodetoString(tmpUseItem.Code);
-                    Debug.Log("확인");
                     if (argCode == null)//아이템 없을 때
                     {
                         tmpUseItem.Code = argItem.Code;
@@ -313,7 +312,6 @@ public class Inventory : MonoBehaviour
     public void RemoveItem(Item argItem,int argCount)
     {
         string tmpCode = functions.CodetoString(argItem.Code);
-        Debug.Log(tmpCode);
         int index = 13;
         switch(argItem.Code[0])
         {
@@ -427,9 +425,7 @@ public class Inventory : MonoBehaviour
     }
     private void UseItem(GameObject argObject)
     {
-        Debug.Log("물약사용");
         Sound sound = new Sound();
-        Debug.Log(SoundMgr.GetAudio(SOUND_TYPE.POTION));
         sound.SoundSetting(gameObject, SoundMgr.GetAudio(SOUND_TYPE.POTION));
         UseItem argItem = argObject.GetComponent<UseItem>();
         argItem.UsingItem(argItem.Code[3]);
@@ -443,24 +439,19 @@ public class Inventory : MonoBehaviour
         {
             if(i.BSelect)
             {
-                Debug.Log("인벤창갯수 : "+i.ICount);
-                Debug.Log(argCount);
                 if(i.ICount>argCount)
                 {
-                    Debug.Log("!");
                     i.ICount -= argCount;
                     break;
                 }
                 else if(i.ICount==argCount)
                 {
-                    Debug.Log("!!");
                     i.CodeReset();
                     i.ICount = 0;
                     break;
                 }
                 else
                 {
-                    Debug.Log("!!!");
                     argCount -= i.ICount;
                     i.CodeReset();
                     i.ICount = 0;
@@ -653,10 +644,8 @@ public class Inventory : MonoBehaviour
             i.gameObject.GetComponent<Image>().sprite = i.SprImg;
         }
         Player argPlayer = GameObject.Find("Player").GetComponent<Player>();
-        Debug.Log(argPlayer.getInfo().IDef);
         argWeapon.EffectSetting();
         argWeapon.PlusItem();
-        Debug.Log(argPlayer.getInfo().IDef);
 
         RemoveItem(argItem.GetComponent<WeaponItem>(), 1);
         AddItem(tmpItem);

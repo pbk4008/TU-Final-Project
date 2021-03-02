@@ -48,7 +48,6 @@ public class UseItem : Item
                     iHillsize = (int)(m_Player.getInfo().ICurrentHp * 0.60f);
                 break;
         }
-        Debug.Log("힐량 : " + iHillsize);
         m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().ICurrentHp + iHillsize);
         if (m_Player.getInfo().ICurrentHp > m_Player.getInfo().IMaxHp)
             m_Player.getInfo().setCurrentHp(ref m_Player.getInfo(), m_Player.getInfo().IMaxHp);

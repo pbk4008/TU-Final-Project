@@ -401,7 +401,6 @@ public class Scr_DungeonBtn : MonoBehaviour
                         ActiveButton(1);
                         break;
                     case "Btn_Equip":
-                        Debug.Log("확인");
                         m_Inventory.EInventoryType = ITEM_TYPE.EQUIP;
                         m_Inventory.WinvenType = WINVEN_TYPE.TRADE;
                         for (int i = 0; i < 14; i++)
@@ -588,8 +587,6 @@ public class Scr_DungeonBtn : MonoBehaviour
             ActiveButton(1);
             SceneManager.LoadScene("Duengeon"); //Scene2로 이동한다.
         }
-        else
-            Debug.Log("잠겨있음");
     }
 
     //퀘스트 스크립트
@@ -721,7 +718,6 @@ public class Scr_DungeonBtn : MonoBehaviour
                 case QUEST_TYPE.MONSTER:
                     if (m_iCurrentMonsterCount[i] >= m_iGoalCount[i])
                     {
-                        Debug.Log(m_Player.IMoney);
                         switch (m_iGrade[i])
                         {
                             case "Normal":
@@ -734,8 +730,6 @@ public class Scr_DungeonBtn : MonoBehaviour
                                 m_Player.IMoney += 500;
                                 break;
                         }
-                        Debug.Log(m_Player.IMoney);
-                        Debug.Log("보상 받음");
                         m_iCurrentMonsterCount[i] = 0;
                         m_bLockQuest[i] = true;
                         T_QuestSelect[i].GetComponent<Text>().text = "수락";

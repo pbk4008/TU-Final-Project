@@ -208,7 +208,6 @@ public class WeaponItem : Item
     {
         m_Player = GameObject.Find("Player").GetComponent<Player>();
 
-        Debug.Log("빠지는 방어력 : "+m_iPlusDef);
         m_Player.getInfo().setAtk(ref m_Player.getInfo(), m_Player.getInfo().IAtk - m_iPlusAtk);
         m_Player.getInfo().setMatk(ref m_Player.getInfo(), m_Player.getInfo().IMatk - m_iPlusMatk);
         m_Player.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IDef - m_iPlusDef);

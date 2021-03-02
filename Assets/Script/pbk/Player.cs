@@ -158,7 +158,7 @@ public class Player : Character
     { 
         if (m_iMoney + argMoney < 0)
         {
-            Debug.Log("돈이 없어 살 수 가 없습니다.");
+
         }
         else
             m_iMoney += argMoney;

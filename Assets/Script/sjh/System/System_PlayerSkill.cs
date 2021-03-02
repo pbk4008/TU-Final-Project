@@ -160,7 +160,6 @@ public class System_PlayerSkill : MonoBehaviour
         UnActiveUI();
         m_SB.bPlayerSkillOn = true;
         m_Cooltime[0] = 2; //1턴 쿨타임;
-        Debug.Log("잼잼펀치 사용");
         m_iDamage = (int)(m_Player.getInfo().IAtk * 0.8f); //데미지
         PlayerSkillSet(PLAYERSKILL.END);
     }
@@ -170,7 +169,6 @@ public class System_PlayerSkill : MonoBehaviour
         UnActiveUI();
         m_SB.bPlayerSkillOn = true;
         m_Cooltime[1] = 3; //2턴 쿨타임
-        Debug.Log("마하펀치 사용");
         m_iDamage = (int)(m_Player.getInfo().IAtk * 2.40f); //데미지
         PlayerSkillSet(PLAYERSKILL.END);
     }
@@ -182,7 +180,6 @@ public class System_PlayerSkill : MonoBehaviour
         m_SB.bPlayerSkillOn = true;
         m_Cooltime[2] = 5; //4턴 쿨타임
         m_DuringTime[0] = 3;//2턴 지속시간
-        Debug.Log("버프 사용");
         m_Player.transform.GetChild(0).gameObject.SetActive(true);
         m_Player.getStat().setPow(ref m_Player.getStat(), m_Player.getStat().IPow + 30); // Pow 30증가
         m_Player.getStat().setInt(ref m_Player.getStat(), m_Player.getStat().IInt + 30); // Int 30증가
@@ -197,7 +194,6 @@ public class System_PlayerSkill : MonoBehaviour
         m_SB.bPlayerSkillOn = true;
         m_Cooltime[3] = 7;//6턴 쿨타임
         m_DuringTime[1] = 5;//4턴 지속시간
-        Debug.Log("디버프 사용");
         m_Monster.getInfo().setAtk(ref m_Monster.getInfo(), (int)(m_Monster.getInfo().IAtk * 0.6f));
         m_Monster.transform.GetChild(0).gameObject.SetActive(true);
         m_Monster.getInfo().setMatk(ref m_Monster.getInfo(), (int)(m_Monster.getInfo().IMatk * 0.6f));
@@ -210,7 +206,6 @@ public class System_PlayerSkill : MonoBehaviour
         UnActiveUI();
         m_SB.bPlayerSkillOn = true;
         m_Cooltime[4] = 11; //10턴 쿨타임
-        Debug.Log("우최펀치 사용");
         m_iDamage = (int)(m_Monster.getInfo().IMatk * 0.4f); //데미지
         PlayerSkillSet(PLAYERSKILL.END);
     }
@@ -267,7 +262,6 @@ public class System_PlayerSkill : MonoBehaviour
 
     public void MinusPlayerSkill()
     {
-        Debug.Log("쿨타임 감소");
         for (int i = 0; i < m_Cooltime.Length; i++)
         {
             m_Cooltime[i]--; //쿨타임 감소
@@ -299,7 +293,6 @@ public class System_PlayerSkill : MonoBehaviour
                     }
                 }
             }
-            Debug.Log("지속시간 : " + m_DuringTime[i]);
         }
     }
 

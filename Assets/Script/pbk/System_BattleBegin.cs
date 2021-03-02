@@ -43,7 +43,6 @@ public class System_BattleBegin : MonoBehaviour
             m_BattleMgr.EClear = BATTLE_CLEAR.CLEAR;
             return;
         }
-        Debug.Log(m_iCurrentRound);
         m_OCurrentRoundUI.transform.position = m_RoundUI[m_iCurrentRound-1].transform.position;
     }
     private void InstantiateRoundUI()

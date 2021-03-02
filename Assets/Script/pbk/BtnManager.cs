@@ -30,7 +30,6 @@ public class BtnManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("스턴 중에는 공격할 수 없습니다");
             SB.eBattleProcess = BATTLE_PROCESS.BEFORE;
             m_Player.BButtonClick = true;
             GameObject tmpCanvas = gameObject.transform.parent.gameObject;
@@ -86,12 +85,10 @@ public class BtnManager : MonoBehaviour
             {
                 if (tmpItem.ICreateScore == 5)//보스 아이템
                 {
-                    Debug.Log(1);
                     m_Inventory.SelectRemoveitem(i, tmpScore / 5 + 1);
                 }
                 else if (tmpItem.ICreateScore == 1)//노말 아이템
                 {
-                    Debug.Log(2);
                     m_Inventory.SelectRemoveitem(i, tmpScore);
                 }
                 break;
@@ -105,7 +102,6 @@ public class BtnManager : MonoBehaviour
                 }
                 else if(tmpItem.ICreateScore==1)//노말 아이템
                 {
-                    Debug.Log(3);
                     m_Inventory.SelectRemoveitem(i, tmpItem.ICount);
                     tmpScore -= tmpItem.ICount;
                 }
@@ -139,7 +135,6 @@ public class BtnManager : MonoBehaviour
        //
        if(functions.CodetoString(InvenItem.Code)==functions.CodetoString(EquipItem.Code))
        {
-            Debug.Log("코드 같음");
             m_Inventory.RemoveItem(InvenItem, 1);
             bool ReinforceRes=m_Equipment.ReinforcePercentage(EquipItem.EGrade, EquipItem.IReinforce);
             //
@@ -154,10 +149,8 @@ public class BtnManager : MonoBehaviour
            ////강화 확률에 따라 강화
        }
        else
-           Debug.Log("코드 다름");
        InvenItem.gameObject.transform.GetChild(1).gameObject.SetActive(false);
        EquipItem.gameObject.transform.GetChild(1).gameObject.SetActive(false);
 
-       Debug.Log(EquipItem.IReinforce);
     }
 }

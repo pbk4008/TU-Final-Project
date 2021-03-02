@@ -112,7 +112,6 @@ public class Boss : Monster
             switch (eBossSkill) //스킬 이름에 따라
             {
                 case enums.BOSSSKILL.FIRE: //화염 데미지 10%
-                    Debug.Log("화염 사용");
                     m_sBossSkillName[0] = "화염 ";
                     m_Player.SetDeEffect(0, true); //플레이어에게 지속 대미지를 넣음
                     m_iCooltime = 3;
@@ -123,7 +122,6 @@ public class Boss : Monster
                     m_iSkillDmg[0] = (int)(m_Info.IAtk * 0.2f);
                     break;
                 case enums.BOSSSKILL.STUN:
-                    Debug.Log("스턴 사용");
                     m_sBossSkillName[0] = "스턴 ";
                     m_Player.SetDeEffect(0, true);
                     m_Player.bStun = true;
@@ -133,7 +131,6 @@ public class Boss : Monster
                     m_iCurrentDurationtime[1] = m_iDurationtime;
                     break;
                 case enums.BOSSSKILL.BLEEDING:
-                    Debug.Log("흡혈 사용");
                     m_sBossSkillName[0] = "흡혈 " + m_iOverlapping + " ";
                     m_Player.SetDeEffect(0, true); //플레이어에게 지속 대미지를 넣음
                     m_iCooltime = 2;
@@ -150,7 +147,6 @@ public class Boss : Monster
                     }
                     break;
                 case enums.BOSSSKILL.SLOW:
-                    Debug.Log("슬로우 사용");
                     m_sBossSkillName[0] = "슬로우 ";
                     m_Player.SetDeEffect(0, true);
                     m_iCooltime = 3;
@@ -174,10 +170,8 @@ public class Boss : Monster
                             m_iOverlapping = 3; //중첩 2로 고정
                         m_idamage[0] = (int)(m_Info.IAtk * 1f) * m_iOverlapping; //대미지
                     }
-                    Debug.Log("독 사용" + m_iOverlapping);
                     break;
                 case enums.BOSSSKILL.STONING:
-                    Debug.Log("석화 사용");
                     m_sBossSkillName[1] = "석화 ";
                     m_Player.SetDeEffect(1, true);
                     m_Player.bStun = true;
@@ -189,7 +183,6 @@ public class Boss : Monster
                     m_iSkillDmg[1] = (int)(m_Info.IAtk * 1);
                     break;
                 case enums.BOSSSKILL.FREEZE:
-                    Debug.Log("빙결 사용");
                     m_sBossSkillName[2] = "빙결 ";
                     m_Player.SetDeEffect(2, true);
                     m_iCooltime = 5;
