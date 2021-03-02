@@ -1,29 +1,21 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - BattleManager
-    - Boss
     - BtnManager
     - Equipment
     - EtcItem
-    - FadeOut
     - InvenUI
     - Inventory
     - Item
     - LobbyUI
-    - Monster
     - Player
     - SceneMove
     - Scr_ButtonName
     - Scr_DungeonBtn
     - SoundMgr
     - Store
-    - System_Battle
-    - System_BattleBegin
     - System_DataMgr
     - System_LevelUp
-    - System_PlayerSkill
-    - System_Spawn
     - UseItem
     - WeaponItem
     - itemCreate
@@ -49,96 +41,8 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.InputField
-    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/Duengeon.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 74
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 82
-      Script: {instanceID: 0}
-    - Class: 83
-      Script: {instanceID: 0}
-    - Class: 91
-      Script: {instanceID: 0}
-    - Class: 95
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 11818}
-    - Class: 114
-      Script: {instanceID: 11874}
-    - Class: 114
-      Script: {instanceID: 11948}
-    - Class: 114
-      Script: {instanceID: 12078}
-    - Class: 114
-      Script: {instanceID: 12134}
-    - Class: 114
-      Script: {instanceID: 12138}
-    - Class: 114
-      Script: {instanceID: 12184}
-    - Class: 114
-      Script: {instanceID: 12190}
-    - Class: 114
-      Script: {instanceID: 12608}
-    - Class: 114
-      Script: {instanceID: 12766}
-    - Class: 114
-      Script: {instanceID: 12880}
-    - Class: 114
-      Script: {instanceID: 12912}
-    - Class: 114
-      Script: {instanceID: 12960}
-    - Class: 114
-      Script: {instanceID: 13428}
-    - Class: 114
-      Script: {instanceID: 13686}
-    - Class: 114
-      Script: {instanceID: 13812}
-    - Class: 114
-      Script: {instanceID: 14498}
-    - Class: 114
-      Script: {instanceID: 14652}
-    - Class: 114
-      Script: {instanceID: 15004}
-    - Class: 114
-      Script: {instanceID: 15076}
-    - Class: 114
-      Script: {instanceID: 15140}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 212
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
     Assets/Scenes/GameOver.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -237,8 +141,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12912}
     - Class: 114
       Script: {instanceID: 12960}
-    - Class: 114
-      Script: {instanceID: 13428}
     - Class: 114
       Script: {instanceID: 13672}
     - Class: 114
@@ -693,7 +595,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: f92b6e937a122f11ec1fb6bdd9dcf784
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: System_PlayerSkill
@@ -831,7 +733,7 @@ ScriptsOnlyBuild:
     className: Equipment
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: ae29b7a62bc892c3c83f79b8eceb9038
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: itemCreate
@@ -1001,6 +903,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Title.unity
   - Assets/Scenes/Lobby.unity
-  - Assets/Scenes/Duengeon.unity
   - Assets/Scenes/GameOver.unity
-  playerPath: "C:/Users/park byeong kyu/Desktop/\uAC1C\uAC1C\uBE44/2DRPG.exe"
+  playerPath: "D:/\uC720\uB2C8\uD2F0\uBE4C\uB4DC/2DRPG.exe"

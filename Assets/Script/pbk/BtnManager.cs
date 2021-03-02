@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using enums;
 using Delegats;
+using UnityEngine.UI;
 
 public class BtnManager : MonoBehaviour
 {
@@ -123,14 +124,18 @@ public class BtnManager : MonoBehaviour
     }
     public void ItemUseBtn()
     {
+        Player PL = GameObject.Find("Player").GetComponent<Player>();
         GameObject Inventory = GameObject.Find("InvenCanvas");
+        Inventory.GetComponentInChildren<Inventory>().EInventoryType = ITEM_TYPE.USE;
+        Inventory.transform.GetChild(6).GetComponent<Text>().text = PL.IMoney.ToString();
+        Inventory.transform.GetChild(2).gameObject.SetActive(false);
         Inventory.GetComponent<Canvas>().enabled = true;
-        gameObject.transform.parent.gameObject.SetActive(false);
+        GameObject.Find("TextCanvas").transform.GetChild(11).gameObject.SetActive(true);
     }
     public void ReinforceBtn()
     {
         Sound tmpSound=new Sound();
-        m_Inventory = GameObject.Find("WeaponInven").GetComponent<Inventory>();
+        m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         Equipment m_Equipment = GameObject.Find("Equipment").GetComponent<Equipment>();
 
        WeaponItem InvenItem = m_Inventory.RemoveObject.GetComponent<WeaponItem>();

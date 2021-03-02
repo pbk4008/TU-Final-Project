@@ -6,6 +6,7 @@ using enums;
 
 public class System_PlayerSkill : MonoBehaviour
 {
+    [SerializeField] Canvas Cvs_BattleCanvas; 
     Player m_Player; //플레이어 정보를 가져올 변수 
     Monster m_Monster; //몬스터 정보를 가져올 변수
     Boss m_Boss;
@@ -36,7 +37,7 @@ public class System_PlayerSkill : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(bOnClick);
+        //Debug.Log(bOnClick);
         if (bOnClick) //버튼을 클릭했으면
         {
             m_SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
@@ -93,7 +94,8 @@ public class System_PlayerSkill : MonoBehaviour
                     break;
                 case "Btn_InvenExit":
                     Cvs_inven.enabled = false;
-                    DuengeonCvs.transform.GetChild(11).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
+                    DuengeonCvs.transform.GetChild(11).gameObject.SetActive(false);
+                    Cvs_BattleCanvas.enabled = true;
                     break;
             }
             bOnClick = false; //버튼 클릭 끝
@@ -224,9 +226,9 @@ public class System_PlayerSkill : MonoBehaviour
         else if (m_DuringTime[1] == 0 && m_bDeBuffOn)
         {
             m_bDeBuffOn = false;
-            m_Monster.getInfo().setAtk(ref m_Player.getInfo(), m_Player.getInfo().IAtk * 5 / 3);
-            m_Monster.getInfo().setMatk(ref m_Player.getInfo(), m_Player.getInfo().IAtk * 5 / 3);
-            m_Monster.getInfo().setDef(ref m_Player.getInfo(), m_Player.getInfo().IAtk * 5 / 3);
+            m_Monster.getInfo().setAtk(ref m_Monster.getInfo(), m_Monster.getInfo().IAtk * 5 / 3);
+            m_Monster.getInfo().setMatk(ref m_Monster.getInfo(), m_Monster.getInfo().IAtk * 5 / 3);
+            m_Monster.getInfo().setDef(ref m_Monster.getInfo(), m_Monster.getInfo().IAtk * 5 / 3);
         }
     }
 

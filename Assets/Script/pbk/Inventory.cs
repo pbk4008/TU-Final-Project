@@ -51,9 +51,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         raycaster = gameObject.transform.parent.GetComponent<GraphicRaycaster>();
-        if (gameObject.name == "WeaponInven")
-            m_Equipment = GameObject.Find("Equipment").GetComponent<Equipment>();
-        
+            
         m_eInventoryType = ITEM_TYPE.ETC;
         m_WInvenType = WINVEN_TYPE.NONE;
         m_EtcInventory = new List<EtcItem>();
@@ -523,8 +521,11 @@ public class Inventory : MonoBehaviour
             }
             else if(m_WInvenType == WINVEN_TYPE.TRADE || m_WInvenType == WINVEN_TYPE.REINFORCE)
             {
+                m_Equipment = GameObject.Find("Equipment").GetComponent<Equipment>();
+
                 if (m_bReinforceCheck)
                 {
+
                     ReinforceSelect(m_RemoveObject);
                 }
                 else

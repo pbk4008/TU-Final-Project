@@ -4650,7 +4650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 700, y: 75}
+  m_AnchoredPosition: {x: 700, y: 150}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1587789765
@@ -6087,6 +6087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e113977eb0b80e4bb98c7269d1fce49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cvs_BattleCanvas: {fileID: 744137736}
 --- !u!1 &2044999083
 GameObject:
   m_ObjectHideFlags: 0
