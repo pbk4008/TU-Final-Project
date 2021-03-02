@@ -82,7 +82,6 @@ public class Inventory : MonoBehaviour
                 InventoryCreate(i);
         }
         DebugAddItem();
-        DebugAddItem();
         StartCoroutine(PrintInven());
     }
     public void EtcCreateInvenCreate(int argIndex)
@@ -321,7 +320,6 @@ public class Inventory : MonoBehaviour
                 {
                     EtcItem tmpEtcItem = m_EtcInventory[index].GetComponent<EtcItem>();
                     string invenItemCode = functions.CodetoString(tmpEtcItem.Code);
-                    
                     if (invenItemCode == null)
                     {
                         index--;
@@ -333,7 +331,7 @@ public class Inventory : MonoBehaviour
                         {
                             argCount=-tmpEtcItem.ICount;
                             tmpEtcItem.CodeReset();
-                            continue;
+                            break;
                         }
                         else
                         {
@@ -439,20 +437,31 @@ public class Inventory : MonoBehaviour
     }
     public void SelectRemoveitem(GameObject argItem, int argCount)
     {
-        int tmpCount = 0;
         foreach(EtcItem i in m_EtcInventory)
         {
             if(i.BSelect)
             {
+                Debug.Log("인벤창갯수 : "+i.ICount);
+                Debug.Log(argCount);
                 if(i.ICount>argCount)
                 {
+                    Debug.Log("!");
                     i.ICount -= argCount;
+                    break;
+                }
+                else if(i.ICount==argCount)
+                {
+                    Debug.Log("!!");
+                    i.CodeReset();
+                    i.ICount = 0;
                     break;
                 }
                 else
                 {
-                    tmpCount = argCount - i.ICount;
+                    Debug.Log("!!!");
+                    argCount -= i.ICount;
                     i.CodeReset();
+                    i.ICount = 0;
                     continue;
                 }
                     
@@ -552,15 +561,21 @@ public class Inventory : MonoBehaviour
     }
     public void DebugAddItem()
     {
-        WeaponItem tmpItem = m_objargItem.GetComponent<WeaponItem>();
-        tmpItem.ItemSetting(ITEM_TYPE.EQUIP,EQUIP_TYPE.HEAD,ITEM_GRADE.NORMAL);
         
-        tmpItem.CodeSolve();
-        
-        tmpItem.ImageSetting();
-        
-        tmpItem.ICount = 1;
-        AddItem(tmpItem);
+        EtcItem etc1 = m_objargItem.GetComponent<EtcItem>();
+        etc1.ItemSetting(ITEM_TYPE.ETC, 0, false);
+        etc1.ICount = 3;
+        AddItem(etc1);
+
+        EtcItem etc2 = m_objargItem.GetComponent<EtcItem>();
+        etc2.ItemSetting(ITEM_TYPE.ETC, 1, false);
+        etc2.ICount = 4;
+        AddItem(etc2);
+
+        EtcItem etc3 = m_objargItem.GetComponent<EtcItem>();
+        etc3.ItemSetting(ITEM_TYPE.ETC, 2, false);
+        etc3.ICount = 5;
+        AddItem(etc3);
     }
     private void SelectItem(GameObject argItem)
     {

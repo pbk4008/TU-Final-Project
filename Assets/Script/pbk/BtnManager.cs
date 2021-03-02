@@ -39,12 +39,7 @@ public class BtnManager : MonoBehaviour
     }
     public void SkillBtn()
     {
-        /*Canvas Cvs = GameObject.Find("BattleCanvas").GetComponent<Canvas>();
-        Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        m_Player.AnimTrigger = ANIMTRIGGER.ATTACK;
-        Cvs.gameObject.SetActive(false);
-        m_Player.BButtonClick = true;
-        attack();*/
+        
         System_PlayerSkill PlayerSkill = GameObject.Find("System").GetComponent<System_PlayerSkill>();
         PlayerSkill.bOnClick = true;
         PlayerSkill.sButtonName = gameObject.name;
@@ -87,40 +82,40 @@ public class BtnManager : MonoBehaviour
         {
             EtcItem tmpItem = i.GetComponent<EtcItem>();
             tmpItem.CodeSolve();
-            if (tmpScore <= tmpItem.ICount * tmpItem.ICreateScore)
+            if (tmpScore <= tmpItem.ICount * tmpItem.ICreateScore)//기타아이템의 토탈 점수가 높을때
             {
-                if (tmpItem.ICreateScore == 5)
+                if (tmpItem.ICreateScore == 5)//보스 아이템
                 {
                     Debug.Log(1);
                     m_Inventory.SelectRemoveitem(i, tmpScore / 5 + 1);
                 }
-                else if (tmpItem.ICreateScore == 1)
+                else if (tmpItem.ICreateScore == 1)//노말 아이템
                 {
                     Debug.Log(2);
                     m_Inventory.SelectRemoveitem(i, tmpScore);
                 }
                 break;
             }
-            else if(tmpScore>tmpItem.ICount*tmpItem.ICreateScore)
+            else if(tmpScore>tmpItem.ICount*tmpItem.ICreateScore)//기타아이템의 토탈 점수가 낮을때
             {
-                if(tmpItem.ICreateScore==5)
+                if(tmpItem.ICreateScore==5)//보스 아이템
                 {
-                    m_Inventory.SelectRemoveitem(i, i.GetComponent<Item>().ICount);
+                    m_Inventory.SelectRemoveitem(i, tmpItem.ICount);
                     tmpScore -= tmpItem.ICount*tmpItem.ICreateScore;
                 }
-                else if(tmpItem.ICreateScore==1)
+                else if(tmpItem.ICreateScore==1)//노말 아이템
                 {
-                    m_Inventory.SelectRemoveitem(i, i.GetComponent<Item>().ICount);
+                    Debug.Log(3);
+                    m_Inventory.SelectRemoveitem(i, tmpItem.ICount);
                     tmpScore -= tmpItem.ICount;
                 }
                 continue;
             }
         }
         m_Inventory.ResetSelect();
-        
-        m_Inventory.AddItem(create.SelectObject.GetComponent<Item>());
-        Debug.Log(functions.CodetoString(m_Inventory.UseInventory[0].Code));
-        
+        Item resItem = create.SelectObject.GetComponent<Item>();
+        resItem.ICount = 1;
+        m_Inventory.AddItem(resItem);
     }
     public void ItemUseBtn()
     {

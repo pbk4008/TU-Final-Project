@@ -80,7 +80,8 @@ public class System_PlayerSkill : MonoBehaviour
                     PlayerSkillSet(PLAYERSKILL.UCHE);
                     break;
                 case "Btn_PlayerSkillEnd": //플레이어 스킬 정리
-                    PlayerSkillSet(PLAYERSKILL.END);
+                    for (int i = 0; i <= 10; i++)
+                        DuengeonCvs.transform.GetChild(i).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
                     break;
                 case "Btn_SkillErrorExit":
                     DuengeonCvs.transform.GetChild(8).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
@@ -182,6 +183,7 @@ public class System_PlayerSkill : MonoBehaviour
         m_Cooltime[2] = 5; //4턴 쿨타임
         m_DuringTime[0] = 3;//2턴 지속시간
         Debug.Log("버프 사용");
+        m_Player.transform.GetChild(0).gameObject.SetActive(true);
         m_Player.getStat().setPow(ref m_Player.getStat(), m_Player.getStat().IPow + 30); // Pow 30증가
         m_Player.getStat().setInt(ref m_Player.getStat(), m_Player.getStat().IInt + 30); // Int 30증가
         m_Player.getStat().setDex(ref m_Player.getStat(), m_Player.getStat().IDex + 30); // Dex 30증가
@@ -197,6 +199,7 @@ public class System_PlayerSkill : MonoBehaviour
         m_DuringTime[1] = 5;//4턴 지속시간
         Debug.Log("디버프 사용");
         m_Monster.getInfo().setAtk(ref m_Monster.getInfo(), (int)(m_Monster.getInfo().IAtk * 0.6f));
+        m_Monster.transform.GetChild(0).gameObject.SetActive(true);
         m_Monster.getInfo().setMatk(ref m_Monster.getInfo(), (int)(m_Monster.getInfo().IMatk * 0.6f));
         m_Monster.getInfo().setDef(ref m_Monster.getInfo(), (int)(m_Monster.getInfo().IDef * 0.6f));
         PlayerSkillSet(PLAYERSKILL.END);
@@ -284,6 +287,7 @@ public class System_PlayerSkill : MonoBehaviour
                         m_Player.getStat().setPow(ref m_Player.getStat(), m_Player.getStat().IPow - 30); // Pow 30빼기
                         m_Player.getStat().setInt(ref m_Player.getStat(), m_Player.getStat().IInt - 30); // Int 30빼기
                         m_Player.getStat().setDex(ref m_Player.getStat(), m_Player.getStat().IDex - 30); // Dex 30빼기
+                        m_Player.transform.GetChild(0).gameObject.SetActive(false);
                     }
                     else if (i == 1)
                     {
@@ -291,6 +295,7 @@ public class System_PlayerSkill : MonoBehaviour
                         m_Monster.getInfo().setAtk(ref m_Monster.getInfo(), (int)(m_Monster.getInfo().IAtk / 0.6f));
                         m_Monster.getInfo().setMatk(ref m_Monster.getInfo(), (int)(m_Monster.getInfo().IMatk / 0.6f));
                         m_Monster.getInfo().setDef(ref m_Monster.getInfo(), (int)(m_Monster.getInfo().IDef / 0.6f));
+                        m_Monster.transform.GetChild(0).gameObject.SetActive(false);
                     }
                 }
             }
