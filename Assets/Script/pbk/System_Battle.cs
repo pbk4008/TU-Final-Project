@@ -462,6 +462,7 @@ public class System_Battle : MonoBehaviour
             if (m_Player.IRunCount == 3)
             {
                 m_Player.IRunCount = 0;
+                m_BattleMgr.BRoundClear = true;
                 m_BattleMgr.EClear = BATTLE_CLEAR.RUN;
                 return;
             }

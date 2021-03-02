@@ -98,6 +98,7 @@ public class BattleManager : MonoBehaviour
                 case BATTLE_CLEAR.DIE:
                     yield return new WaitForSeconds(m_Player.GetComponent<AudioSource>().clip.length);
                     m_Player.GetComponent<Player>().ResetPlayer();
+                    m_BattleSystem.DisableEvent();
                     m_Player.SetActive(false);
                     SceneManager.LoadScene(3);
                     break;

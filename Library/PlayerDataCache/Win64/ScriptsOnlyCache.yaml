@@ -1,21 +1,29 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BattleManager
+    - Boss
     - BtnManager
     - Equipment
     - EtcItem
+    - FadeOut
     - InvenUI
     - Inventory
     - Item
     - LobbyUI
+    - Monster
     - Player
     - SceneMove
     - Scr_ButtonName
     - Scr_DungeonBtn
     - SoundMgr
     - Store
+    - System_Battle
+    - System_BattleBegin
     - System_DataMgr
     - System_LevelUp
+    - System_PlayerSkill
+    - System_Spawn
     - UseItem
     - WeaponItem
     - itemCreate
@@ -41,8 +49,96 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.InputField
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
   sceneClasses:
+    Assets/Scenes/Duengeon.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11828}
+    - Class: 114
+      Script: {instanceID: 11884}
+    - Class: 114
+      Script: {instanceID: 11958}
+    - Class: 114
+      Script: {instanceID: 12088}
+    - Class: 114
+      Script: {instanceID: 12144}
+    - Class: 114
+      Script: {instanceID: 12148}
+    - Class: 114
+      Script: {instanceID: 12194}
+    - Class: 114
+      Script: {instanceID: 12200}
+    - Class: 114
+      Script: {instanceID: 12618}
+    - Class: 114
+      Script: {instanceID: 12776}
+    - Class: 114
+      Script: {instanceID: 12890}
+    - Class: 114
+      Script: {instanceID: 12922}
+    - Class: 114
+      Script: {instanceID: 12970}
+    - Class: 114
+      Script: {instanceID: 13438}
+    - Class: 114
+      Script: {instanceID: 13696}
+    - Class: 114
+      Script: {instanceID: 13822}
+    - Class: 114
+      Script: {instanceID: 14508}
+    - Class: 114
+      Script: {instanceID: 14662}
+    - Class: 114
+      Script: {instanceID: 15014}
+    - Class: 114
+      Script: {instanceID: 15086}
+    - Class: 114
+      Script: {instanceID: 15150}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/GameOver.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -65,17 +161,17 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11818}
+      Script: {instanceID: 11828}
     - Class: 114
-      Script: {instanceID: 12134}
+      Script: {instanceID: 12144}
     - Class: 114
-      Script: {instanceID: 12912}
+      Script: {instanceID: 12922}
     - Class: 114
-      Script: {instanceID: 13194}
+      Script: {instanceID: 13204}
     - Class: 114
-      Script: {instanceID: 14498}
+      Script: {instanceID: 14508}
     - Class: 114
-      Script: {instanceID: 15140}
+      Script: {instanceID: 15150}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -118,55 +214,55 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11818}
+      Script: {instanceID: 11828}
     - Class: 114
-      Script: {instanceID: 11948}
+      Script: {instanceID: 11958}
     - Class: 114
-      Script: {instanceID: 12122}
+      Script: {instanceID: 12132}
     - Class: 114
-      Script: {instanceID: 12134}
+      Script: {instanceID: 12144}
     - Class: 114
-      Script: {instanceID: 12190}
+      Script: {instanceID: 12200}
     - Class: 114
-      Script: {instanceID: 12388}
+      Script: {instanceID: 12398}
     - Class: 114
-      Script: {instanceID: 12680}
+      Script: {instanceID: 12690}
     - Class: 114
-      Script: {instanceID: 12760}
+      Script: {instanceID: 12770}
     - Class: 114
-      Script: {instanceID: 12766}
+      Script: {instanceID: 12776}
     - Class: 114
-      Script: {instanceID: 12806}
+      Script: {instanceID: 12816}
     - Class: 114
-      Script: {instanceID: 12912}
+      Script: {instanceID: 12922}
     - Class: 114
-      Script: {instanceID: 12960}
+      Script: {instanceID: 12970}
     - Class: 114
-      Script: {instanceID: 13672}
+      Script: {instanceID: 13682}
     - Class: 114
-      Script: {instanceID: 13686}
+      Script: {instanceID: 13696}
     - Class: 114
-      Script: {instanceID: 13998}
+      Script: {instanceID: 14008}
     - Class: 114
-      Script: {instanceID: 14162}
+      Script: {instanceID: 14172}
     - Class: 114
-      Script: {instanceID: 14246}
+      Script: {instanceID: 14256}
     - Class: 114
-      Script: {instanceID: 14320}
+      Script: {instanceID: 14330}
     - Class: 114
-      Script: {instanceID: 14376}
+      Script: {instanceID: 14386}
     - Class: 114
-      Script: {instanceID: 14498}
+      Script: {instanceID: 14508}
     - Class: 114
-      Script: {instanceID: 14652}
+      Script: {instanceID: 14662}
     - Class: 114
-      Script: {instanceID: 14700}
+      Script: {instanceID: 14710}
     - Class: 114
-      Script: {instanceID: 14704}
+      Script: {instanceID: 14714}
     - Class: 114
-      Script: {instanceID: 15076}
+      Script: {instanceID: 15086}
     - Class: 114
-      Script: {instanceID: 15140}
+      Script: {instanceID: 15150}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -207,19 +303,19 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11818}
+      Script: {instanceID: 11828}
     - Class: 114
-      Script: {instanceID: 12134}
+      Script: {instanceID: 12144}
     - Class: 114
-      Script: {instanceID: 12912}
+      Script: {instanceID: 12922}
     - Class: 114
-      Script: {instanceID: 13194}
+      Script: {instanceID: 13204}
     - Class: 114
-      Script: {instanceID: 13686}
+      Script: {instanceID: 13696}
     - Class: 114
-      Script: {instanceID: 14498}
+      Script: {instanceID: 14508}
     - Class: 114
-      Script: {instanceID: 15140}
+      Script: {instanceID: 15150}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -903,5 +999,6 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Title.unity
   - Assets/Scenes/Lobby.unity
+  - Assets/Scenes/Duengeon.unity
   - Assets/Scenes/GameOver.unity
-  playerPath: "D:/\uC720\uB2C8\uD2F0\uBE4C\uB4DC/2DRPG.exe"
+  playerPath: "C:/Users/park byeong kyu/Desktop/\uAC1C\uAC1C\uBE44/2DRPG.exe"

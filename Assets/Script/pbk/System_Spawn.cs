@@ -33,7 +33,7 @@ public class System_Spawn : MonoBehaviour
             case 0://층에 따라 몬스터 Num설정
                 if (m_iStage != 4)
                 {
-                    m_MonNum = Random.RandomRange(0, 4);
+                    m_MonNum = Random.RandomRange(0, 5);
                     //레벨
                     m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(1, 10));
                     m_Monster.setStatus(5, 10, 1.1f, 1);
@@ -47,7 +47,7 @@ public class System_Spawn : MonoBehaviour
             case 1:
                 if (m_iStage != 4)
                 {
-                    m_MonNum = Random.RandomRange(5, 9);
+                    m_MonNum = Random.RandomRange(6, 10);
                     m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(11, 20));
                     m_Monster.setStatus(15, 30, 1.2f, 3);
                 }
@@ -60,7 +60,7 @@ public class System_Spawn : MonoBehaviour
             case 2:
                 if (m_iStage != 6)
                 {
-                    m_MonNum = Random.RandomRange(10, 14);
+                    m_MonNum = Random.RandomRange(11, 15);
                     m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(21, 30));
                     m_Monster.setStatus(5, 10, 1.1f, 1);
                 }
@@ -73,7 +73,7 @@ public class System_Spawn : MonoBehaviour
             case 3:
                 if (m_iStage != 6)
                 {
-                    m_MonNum = Random.RandomRange(15, 19);
+                    m_MonNum = Random.RandomRange(16, 20);
                     m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(31, 40));
                     m_Monster.setStatus(45, 90, 1.4f, 5);
                 }
@@ -86,7 +86,7 @@ public class System_Spawn : MonoBehaviour
             case 4:
                 if (m_iStage != 9)
                 {
-                    m_MonNum = Random.RandomRange(20, 24);
+                    m_MonNum = Random.RandomRange(21, 25);
                     m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(41, 50));
                     m_Monster.setStatus(60, 120, 1.5f, 5);
                 }
@@ -99,7 +99,7 @@ public class System_Spawn : MonoBehaviour
             case 5:
                 if (m_iStage != 9)
                 {
-                    m_MonNum = Random.RandomRange(25, 29);
+                    m_MonNum = Random.RandomRange(26, 30);
                     m_Monster.getInfo().setLevel(ref m_Monster.getInfo(), Random.RandomRange(51, 70));
                     m_Monster.setStatus(75, 150, 1.6f, 7);
                 }
