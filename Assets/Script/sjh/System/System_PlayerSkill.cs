@@ -37,10 +37,6 @@ public class System_PlayerSkill : MonoBehaviour
     }
     private void Update()
     {
-<<<<<<< HEAD
-        //Debug.Log(bOnClick);
-=======
->>>>>>> Debug
         if (bOnClick) //버튼을 클릭했으면
         {
             m_SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
@@ -215,28 +211,6 @@ public class System_PlayerSkill : MonoBehaviour
         m_iDamage = (int)(m_Monster.getInfo().IMatk * 0.4f); //데미지
         PlayerSkillSet(PLAYERSKILL.END);
     }
-<<<<<<< HEAD
-
-    private void solveBuff() //버프 해제
-    {
-        if (m_DuringTime[0] == 0 && m_bBuffOn)
-        {
-            m_bBuffOn = false;
-            m_Player.getStat().setPow(ref m_Player.getStat(), m_Player.getStat().IPow - 30); // Pow 30빼기
-            m_Player.getStat().setInt(ref m_Player.getStat(), m_Player.getStat().IInt - 30); // Int 30빼기
-            m_Player.getStat().setDex(ref m_Player.getStat(), m_Player.getStat().IDex - 30); // Dex 30빼기
-        }
-        else if (m_DuringTime[1] == 0 && m_bDeBuffOn)
-        {
-            m_bDeBuffOn = false;
-            m_Monster.getInfo().setAtk(ref m_Monster.getInfo(), m_Monster.getInfo().IAtk * 5 / 3);
-            m_Monster.getInfo().setMatk(ref m_Monster.getInfo(), m_Monster.getInfo().IAtk * 5 / 3);
-            m_Monster.getInfo().setDef(ref m_Monster.getInfo(), m_Monster.getInfo().IAtk * 5 / 3);
-        }
-    }
-
-=======
->>>>>>> Debug
     private void SkillError(PLAYERSKILL ePlayerSkill) //스킬 에러
     {
         DuengeonCvs.transform.GetChild(8).gameObject.SetActive(true); //플레이어 스킬Error UI 띄우기
