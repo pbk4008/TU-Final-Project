@@ -4538,6 +4538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2edf9ccbc17f2ad4f86dd232fec28729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cvs_EtcInven: {fileID: 310677939}
+  Cvs_Inventory: {fileID: 406071842}
 --- !u!1 &467688078
 GameObject:
   m_ObjectHideFlags: 0

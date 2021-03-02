@@ -352,7 +352,13 @@ public class Scr_DungeonBtn : MonoBehaviour
                         Img_HouseMenu.gameObject.SetActive(false);
                         Cvs_Create.gameObject.SetActive(true);
                         Cvs_EtcInven.gameObject.SetActive(true);
-                        StartCoroutine(Cvs_EtcInven.GetComponentInChildren<Inventory>().PrintInven());
+                        Cvs_EtcInven.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
+                        Cvs_EtcInven.transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(false);
+                        Cvs_EtcInven.transform.GetChild(1).gameObject.SetActive(false);
+                        m_Inventory.EInventoryType = ITEM_TYPE.ETC;
+                        m_Inventory.EtcInven_Create = true;
+                        for (int i = 0; i < 14; i++)
+                            m_Inventory.EtcCreateInvenCreate(i);
                         ActiveButton(0);
                         break;          
                     case "Btn_PlayerState":
@@ -376,6 +382,17 @@ public class Scr_DungeonBtn : MonoBehaviour
                         Cvs_Create.GetComponentInChildren<itemCreate>().BSelect = false;
                         Cvs_Create.gameObject.SetActive(false);
                         Cvs_EtcInven.gameObject.SetActive(false);
+                        Cvs_Inventory.enabled = false;
+                        Cvs_Inventory.transform.GetChild(0).gameObject.SetActive(true);
+                        Cvs_Inventory.transform.GetChild(1).gameObject.SetActive(true);
+                        Cvs_Inventory.transform.GetChild(2).gameObject.SetActive(true);
+                        Cvs_Inventory.transform.GetChild(3).gameObject.SetActive(true);
+                        Cvs_Inventory.transform.GetChild(4).gameObject.SetActive(true);
+                        Cvs_Inventory.transform.GetChild(6).gameObject.SetActive(true);
+
+                        for (int i = 0; i < 14; i++)
+                            m_Inventory.InventoryCreate(i);
+                        m_Inventory.EtcInven_Create = false;
                         ActiveButton(0);
                         break;
                     case "Btn_HouseHealExit": //집 끝
@@ -412,6 +429,7 @@ public class Scr_DungeonBtn : MonoBehaviour
                         Img_PlayerStat.gameObject.SetActive(false);
                         T_PlayerUI.gameObject.SetActive(false);
                         ActiveButton(0);
+                        m_Inventory.EtcInven_Create = false;
                         m_Inventory.WinvenType = WINVEN_TYPE.NONE;
                         break;
                     case "Btn_ExitWeapon":
@@ -419,7 +437,6 @@ public class Scr_DungeonBtn : MonoBehaviour
                         {
                             SetActive(3, 1, 6, 0, 0);
                             Img_PlayerStat.gameObject.SetActive(false);
-
                         }
                         else
                         {

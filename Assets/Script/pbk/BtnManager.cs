@@ -73,7 +73,7 @@ public class BtnManager : MonoBehaviour
     }
     public void CreateBtn()
     {
-        m_Inventory = GameObject.Find("EtcInven").GetComponent<Inventory>();
+        m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         itemCreate create= GameObject.Find("Create").GetComponent<itemCreate>();
         int tmpScore = create.INeedCount;
         if (m_Inventory.SelectItemList.Count == 0)
