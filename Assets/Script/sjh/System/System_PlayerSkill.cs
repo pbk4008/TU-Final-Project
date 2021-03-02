@@ -10,12 +10,12 @@ public class System_PlayerSkill : MonoBehaviour
     Monster m_Monster; //몬스터 정보를 가져올 변수
     Boss m_Boss;
     GameObject DuengeonCvs;  //던전 씬에 있는 캔버스 1개
-    BtnManager m_BM;
     System_Battle m_SB;
     private string m_sButtonName; //버튼 이름
     private bool m_bOnClick; //버튼을 클릭했는가
     private int m_iturn; //현재 턴
     private int[] m_Cooltime = new int[5]; //쿨타임
+    private int[] m_DuringTime = new int[2];//버프지속,디버프지속 시간(by.pbk)
     private int m_iDamage; //데미지
     private bool m_bBuffOn;
     private bool m_bDeBuffOn;
@@ -36,10 +36,10 @@ public class System_PlayerSkill : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(bOnClick);
         if (bOnClick) //버튼을 클릭했으면
         {
             m_SB = GameObject.Find("BattleManager").GetComponent<System_Battle>();
-            m_BM = GameObject.Find("System").GetComponent<BtnManager>();
             if (m_SB.eBattleProcess == BATTLE_PROCESS.DURING)
             {
                 if ((m_iFloor == 0 || m_iFloor == 1) && m_iStage != 4) //보스와 몬스터 구분하기 -  손준호
@@ -86,6 +86,7 @@ public class System_PlayerSkill : MonoBehaviour
                     DuengeonCvs.transform.GetChild(8).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
                     DuengeonCvs.transform.GetChild(9).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
                     DuengeonCvs.transform.GetChild(10).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
+                    m_SB.BattleUI.SetActive(true);
                     break;
                 case "Btn_LevelPlus": //플레이어 레벨 증가
                     m_Player.getInfo().setLevel(ref m_Player.getInfo(), m_Player.getInfo().ILevel + 10);
@@ -144,6 +145,7 @@ public class System_PlayerSkill : MonoBehaviour
                 case PLAYERSKILL.END: //플레이어 스킬 UI정리
                     for (int i = 0; i <= 10; i++)
                         DuengeonCvs.transform.GetChild(i).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
+                    m_SB.eBattleProcess = BATTLE_PROCESS.BEFORE;
                     break;
             }
         }
@@ -178,6 +180,7 @@ public class System_PlayerSkill : MonoBehaviour
         m_bBuffOn = true;
         m_SB.bPlayerSkillOn = true;
         m_Cooltime[2] = 5; //4턴 쿨타임
+        m_DuringTime[0] = 3;//2턴 지속시간
         Debug.Log("버프 사용");
         m_Player.getStat().setPow(ref m_Player.getStat(), m_Player.getStat().IPow + 30); // Pow 30증가
         m_Player.getStat().setInt(ref m_Player.getStat(), m_Player.getStat().IInt + 30); // Int 30증가
@@ -191,6 +194,7 @@ public class System_PlayerSkill : MonoBehaviour
         m_bDeBuffOn = true;
         m_SB.bPlayerSkillOn = true;
         m_Cooltime[3] = 7;//6턴 쿨타임
+        m_DuringTime[1] = 5;//4턴 지속시간
         Debug.Log("디버프 사용");
         m_Monster.getInfo().setAtk(ref m_Monster.getInfo(), (int)(m_Monster.getInfo().IAtk * 0.6f));
         m_Monster.getInfo().setMatk(ref m_Monster.getInfo(), (int)(m_Monster.getInfo().IMatk * 0.6f));
@@ -210,14 +214,14 @@ public class System_PlayerSkill : MonoBehaviour
 
     private void solveBuff() //버프 해제
     {
-        if (m_Cooltime[2] == 0 && m_bBuffOn)
+        if (m_DuringTime[0] == 0 && m_bBuffOn)
         {
             m_bBuffOn = false;
             m_Player.getStat().setPow(ref m_Player.getStat(), m_Player.getStat().IPow - 30); // Pow 30빼기
             m_Player.getStat().setInt(ref m_Player.getStat(), m_Player.getStat().IInt - 30); // Int 30빼기
             m_Player.getStat().setDex(ref m_Player.getStat(), m_Player.getStat().IDex - 30); // Dex 30빼기
         }
-        else if (m_Cooltime[3] == 0 && m_bDeBuffOn)
+        else if (m_DuringTime[1] == 0 && m_bDeBuffOn)
         {
             m_bDeBuffOn = false;
             m_Monster.getInfo().setAtk(ref m_Player.getInfo(), m_Player.getInfo().IAtk * 5 / 3);
@@ -285,12 +289,22 @@ public class System_PlayerSkill : MonoBehaviour
             if (m_Cooltime[i] < 0)
                 m_Cooltime[i] = 0;
         }
-        Debug.Log("쿨타임 : " + m_Cooltime[2]);
+        for (int i=0; i < m_DuringTime.Length; i++)
+        {
+            if(m_DuringTime[i]!=0)
+            {
+                m_DuringTime[i]--;
+                if (m_DuringTime[i] == 0)
+                {
+                    if (i == 0) m_bBuffOn = false;
+                    else if (i == 1) m_bDeBuffOn = false;
+                }
+            }
+        }
     }
 
     private void UnActiveUI()
     {
-        m_BM.SkillBtn();
         for (int i = 0; i < 8; i++)
             DuengeonCvs.transform.GetChild(i).gameObject.SetActive(false); //플레이어 스킬 UI 띄우기
     }
@@ -300,7 +314,10 @@ public class System_PlayerSkill : MonoBehaviour
         {
             m_Cooltime[i] = 0;
         }
-
+        for(int j = 0; j<m_DuringTime.Length; j++)
+        {
+            m_DuringTime[j] = 0;
+        }
         if(m_bBuffOn)
         {
             m_bBuffOn = false;

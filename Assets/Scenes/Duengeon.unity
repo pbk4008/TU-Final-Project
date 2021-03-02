@@ -3319,7 +3319,7 @@ GameObject:
   - component: {fileID: 1009076804}
   - component: {fileID: 1009076803}
   - component: {fileID: 1009076802}
-  - component: {fileID: 1009076805}
+  - component: {fileID: 1009076801}
   m_Layer: 5
   m_Name: Skill
   m_TagString: Untagged
@@ -3346,6 +3346,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0.53, y: -0.81}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1009076801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009076799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ddf10fed323414a9cc7900365d7d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1009076802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3389,9 +3401,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1009076805}
-        m_TargetAssemblyTypeName: Scr_ButtonName, Assembly-CSharp
-        m_MethodName: Set_ButtonName
+      - m_Target: {fileID: 1009076801}
+        m_TargetAssemblyTypeName: BtnManager, Assembly-CSharp
+        m_MethodName: SkillBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3439,20 +3451,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009076799}
   m_CullTransparentMesh: 0
---- !u!114 &1009076805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1009076799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec105d0df79f61c4cbc1bcf71e7b59c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj_Dungeon: {fileID: 0}
-  m_PlayerSkill: {fileID: 2037638445}
 --- !u!1 &1030669979
 GameObject:
   m_ObjectHideFlags: 0
@@ -5736,7 +5734,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 0
 --- !u!222 &1883289095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6056,7 +6054,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2037638444}
   - component: {fileID: 2037638445}
-  - component: {fileID: 2037638443}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -6064,18 +6061,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2037638443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037638442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3ddf10fed323414a9cc7900365d7d5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2037638444
 Transform:
   m_ObjectHideFlags: 0

@@ -71,6 +71,7 @@ public class System_Battle : MonoBehaviour
     public float pMonHpSize { get => m_MonHp.size; set => m_MonHp.size += value; }
     public bool bEffectOn { get => m_bEffectOn; set => m_bEffectOn = value; }
     public bool BRunStage { get => m_bRunStage; set => m_bRunStage = value; }
+    public GameObject BattleUI { get => m_BattleUI; set => m_BattleUI = value; }
 
     private GameObject m_MonFill, m_PlayerFill, m_ExpFill;//체력바 및 Exp바 채우기변수
 
@@ -96,7 +97,7 @@ public class System_Battle : MonoBehaviour
         m_BattleMgr = gameObject.GetComponent<BattleManager>();
         m_spSystem = GetComponent<System_Spawn>();
         m_Player = GameObject.Find("Player").GetComponent<Player>();
-        m_iRound = 2; 
+        m_iRound = 1; 
         m_iDmg = -1;//전투 시작 시 UI셋팅을 위한 -1
         m_eBattleProcess = BATTLE_PROCESS.BEFORE;
         m_MonFill = GameObject.Find("MonFill");
@@ -161,15 +162,15 @@ public class System_Battle : MonoBehaviour
     }
     private void Battle()//전투중
     {
-        Debug.Log(m_bBattleUIAbleCheck);
         for (int i = 0; i < 3; i++)
             m_Boss.SetDmg(i, 0);
-        m_RoundCount.text = m_iRound.ToString();
         m_tPlayerSpeed.gameObject.SetActive(false);
         m_tMonSpeed.gameObject.SetActive(false);
         //공격
+        Debug.Log("힘 : " + m_Player.getStat().IPow);
         if (m_iMonsterTurn < m_iPlayerTurn)//플레이어 공격
         {
+            
             if (!m_bBattleUIAbleCheck)
             {
                 m_BattleUI.SetActive(true);
@@ -324,6 +325,7 @@ public class System_Battle : MonoBehaviour
                 }
             }
         }
+        m_RoundCount.text = m_iRound.ToString();
         m_iDmg = -1;
         m_iRound++;
     }
@@ -415,8 +417,6 @@ public class System_Battle : MonoBehaviour
                     m_iSkillDmg = 0;
                     m_iSkillDmg = m_SPB.iDamage; //플레이어 스킬 대미지
                     Debug.Log("플레이어 스킬 대미지 : " + m_iSkillDmg);
-                    m_Monster.getInfo().ICurrentHp -= m_iSkillDmg;
-                    m_MonHp.size -= (float)m_iSkillDmg / m_Monster.getInfo().IMaxHp; //체력바 계산
                     m_bPlayerSkillOn = false;
                     TotalDmg();
                 }
@@ -499,6 +499,8 @@ public class System_Battle : MonoBehaviour
         else
         {
             m_itotalDmg = m_iDmg + m_iSkillDmg;
+            if (m_itotalDmg <= 0)
+                m_itotalDmg = 0;
             m_tMonDamage.gameObject.SetActive(true);
             FadeOut MonDamageUI = m_tMonDamage.GetComponent<FadeOut>();
             MonDamageUI.reStartCoroutine();

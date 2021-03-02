@@ -25,7 +25,6 @@ public class BtnManager : MonoBehaviour
             m_Player.BButtonClick = true;
             attack();
             GameObject tmpCanvas = gameObject.transform.parent.gameObject;
-            Debug.Log(attack);
             tmpCanvas.SetActive(false);
         }
         else
@@ -39,12 +38,16 @@ public class BtnManager : MonoBehaviour
     }
     public void SkillBtn()
     {
-        Canvas Cvs = GameObject.Find("BattleCanvas").GetComponent<Canvas>();
+        /*Canvas Cvs = GameObject.Find("BattleCanvas").GetComponent<Canvas>();
         Player m_Player = GameObject.FindWithTag("Player").GetComponent<Player>();
         m_Player.AnimTrigger = ANIMTRIGGER.ATTACK;
         Cvs.gameObject.SetActive(false);
         m_Player.BButtonClick = true;
-        attack();
+        attack();*/
+        System_PlayerSkill PlayerSkill = GameObject.Find("System").GetComponent<System_PlayerSkill>();
+        PlayerSkill.bOnClick = true;
+        PlayerSkill.sButtonName = gameObject.name;
+        gameObject.transform.parent.gameObject.SetActive(false);
     }
 
     public void RunBtn()

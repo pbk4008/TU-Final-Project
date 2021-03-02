@@ -332,7 +332,6 @@ public class Scr_DungeonBtn : MonoBehaviour
                         Img_PlayerStat.gameObject.SetActive(true);
                         Img_PlayerStat.enabled = false;
                         Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck = true;
-                        Debug.Log(Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck);
                         Cvs_WeaponInven.gameObject.SetActive(true);
                         m_Inventory.WinvenType = WINVEN_TYPE.REINFORCE;
                         m_Inventory.EInventoryType = ITEM_TYPE.EQUIP;
@@ -398,7 +397,7 @@ public class Scr_DungeonBtn : MonoBehaviour
                         Cvs_Inventory.transform.GetChild(4).gameObject.SetActive(false);
                         Cvs_Inventory.transform.GetChild(6).gameObject.SetActive(false);
                         Cvs_Inventory.enabled = true;
-                        SetActive(4, 0, 0, 1, 2);
+                        SetActive(4, 0, 0, 0, 2);
                         Img_HouseMenu.gameObject.SetActive(false);
                         T_PlayerUI.gameObject.SetActive(false);
                         Cvs_WeaponInven.gameObject.SetActive(true);
@@ -406,7 +405,7 @@ public class Scr_DungeonBtn : MonoBehaviour
                         ActiveButton(0);
                         break;
                     case "Btn_PlayerUIExit":
-                        SetActive(4, 0, 0, 1, 2);
+                        SetActive(4, 0, 0, 0, 2);
                         SetActive(3, 1, 6, 0, 0);
                         Img_HouseMenu.gameObject.SetActive(true);
                         Img_PlayerStat.gameObject.SetActive(false);
@@ -415,16 +414,16 @@ public class Scr_DungeonBtn : MonoBehaviour
                         m_Inventory.WinvenType = WINVEN_TYPE.NONE;
                         break;
                     case "Btn_ExitWeapon":
-                        if (Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck)
+                        if (Img_PlayerStat.GetComponentInChildren<Equipment>().BReinforceCheck)//강화
                         {
                             SetActive(3, 1, 6, 0, 0);
                             Img_PlayerStat.gameObject.SetActive(false);
-
                         }
                         else
                         {
                             SetActive(4, 1, 2, 0, 0);
                             T_PlayerUI.gameObject.SetActive(true);
+                            Img_HouseMenu.gameObject.SetActive(true);
                         }
                         Cvs_WeaponInven.gameObject.SetActive(false);
                         Cvs_Inventory.enabled = false;

@@ -585,7 +585,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 6188452295c37bf96d20d1ca0f299ff2
+      Hash: 4f2b949d93bdd953861869f9d0422d3d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Scr_DungeonBtn
@@ -1003,4 +1003,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Duengeon.unity
   - Assets/Scenes/GameOver.unity
-  playerPath: C:/Users/park byeong kyu/Desktop/2DRPG.exe
+  playerPath: "C:/Users/park byeong kyu/Desktop/\uAC1C\uAC1C\uBE44/2DRPG.exe"
