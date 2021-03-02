@@ -135,7 +135,7 @@ public class System_Battle : MonoBehaviour
         m_Monster.AnimTrigger = ANIMTRIGGER.IDLE;
         m_Player.AnimTrigger = ANIMTRIGGER.IDLE;
         System_PlayerSkill SPB = GameObject.Find("System").GetComponent<System_PlayerSkill>();
-        SPB.MinusPlayerSkill();
+        
         //UISetting
         UISetting();
         if(!m_Monster.BLive||!m_Player.BLive)
@@ -219,8 +219,6 @@ public class System_Battle : MonoBehaviour
         m_bBattle = false;
         m_BattleMgr.BRoundClear = true;
         BattleReset();
-        //플레이어 버프 효과 해제
-        m_SPB.SkillReset();
         //퀘스트 완료 판단
         Scr_DungeonBtn GM = GameObject.FindWithTag("GameMgr").GetComponent<Scr_DungeonBtn>();
         if (m_Monster.EType != GRADE_MON.BOSS)
@@ -242,6 +240,7 @@ public class System_Battle : MonoBehaviour
         m_eBattleProcess = BATTLE_PROCESS.BEFORE;
         m_iDmg = -1;
         m_Player.bStun = false;
+        m_SPB.SkillReset();
     }
     public void UIInitialize()
     {
@@ -355,6 +354,7 @@ public class System_Battle : MonoBehaviour
                     {
                         m_bBattleUIAbleCheck = false;
                         BattleSetting();
+                        m_SPB.MinusPlayerSkill();
                     }
                     break;
                 case BATTLE_PROCESS.DURING:

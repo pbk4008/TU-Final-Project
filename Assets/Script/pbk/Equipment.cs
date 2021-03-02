@@ -47,6 +47,8 @@ public class Equipment : MonoBehaviour
             i.CodeSolve();
             i.ImageSetting();
             i.gameObject.GetComponent<Image>().sprite = i.SprImg;
+            Debug.Log(functions.CodetoString(i.Code));
+            Debug.Log(i.SprImg);
         }
     }
     public void EquipPlusWeaponStat ()

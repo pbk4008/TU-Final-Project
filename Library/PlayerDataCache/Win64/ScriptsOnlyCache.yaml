@@ -238,8 +238,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12960}
     - Class: 114
-      Script: {instanceID: 13428}
-    - Class: 114
       Script: {instanceID: 13672}
     - Class: 114
       Script: {instanceID: 13686}
@@ -831,7 +829,7 @@ ScriptsOnlyBuild:
     className: Equipment
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: ae29b7a62bc892c3c83f79b8eceb9038
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: itemCreate
