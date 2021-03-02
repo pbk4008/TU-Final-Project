@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 039d3c213b1397f4790021dba0f3b188
   - enabled: 1
-    path: Assets/Scenes/Duengeon1.unity
+    path: Assets/Scenes/Duengeon.unity
     guid: 3eea6967fa83f53449876598fd768ff6
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
