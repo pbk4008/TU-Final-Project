@@ -15,6 +15,7 @@ public class SoundMgr : MonoBehaviour
         for (int i = 0; i < (int)SOUND_TYPE.END; i++)
         {
             audio = Resources.Load<AudioClip>("AudioClip/audio " + i);
+            Debug.Log(audio);
             m_EffectSoundList.Add(audio);
         }
         for(int j=0; j<(int)BGM_TYPE.END; j++)

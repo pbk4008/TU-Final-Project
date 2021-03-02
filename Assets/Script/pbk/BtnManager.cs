@@ -25,6 +25,7 @@ public class BtnManager : MonoBehaviour
             m_Player.BButtonClick = true;
             attack();
             GameObject tmpCanvas = gameObject.transform.parent.gameObject;
+            Debug.Log(attack);
             tmpCanvas.SetActive(false);
         }
         else
@@ -116,6 +117,12 @@ public class BtnManager : MonoBehaviour
         m_Inventory.AddItem(create.SelectObject.GetComponent<Item>());
         Debug.Log(functions.CodetoString(m_Inventory.UseInventory[0].Code));
         
+    }
+    public void ItemUseBtn()
+    {
+        GameObject Inventory = GameObject.Find("InvenCanvas");
+        Inventory.GetComponent<Canvas>().enabled = true;
+        gameObject.transform.parent.gameObject.SetActive(false);
     }
     public void ReinforceBtn()
     {

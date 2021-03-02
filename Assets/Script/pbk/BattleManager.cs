@@ -89,6 +89,7 @@ public class BattleManager : MonoBehaviour
                         source.loop = false;
                         source.Play();
                         yield return new WaitForSeconds(source.clip.length);
+                        m_BattleSystem.DisableEvent();
                         GM.setbStage(iFloor, iStage + 1, true);
                         SceneManager.LoadScene(1);
                     }
