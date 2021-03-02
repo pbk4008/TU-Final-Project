@@ -44,13 +44,13 @@ public class Inventory : MonoBehaviour
     private Text m_tSelectTxt;
 
     private WINVEN_TYPE m_WInvenType; //장비 인벤 타입 (손준호
+    private bool m_EtcInven_Create;
     public WINVEN_TYPE WinvenType { get => m_WInvenType; set => m_WInvenType = value; }
+    public bool EtcInven_Create { get => m_EtcInven_Create; set => m_EtcInven_Create = value; }
     // Start is called before the first frame update
     void Start()
     {
         raycaster = gameObject.transform.parent.GetComponent<GraphicRaycaster>();
-        if(gameObject.name == "EtcInven")
-            m_Create = GameObject.Find("Create").GetComponent<itemCreate>();
         if (gameObject.name == "WeaponInven")
             m_Equipment = GameObject.Find("Equipment").GetComponent<Equipment>();
         
@@ -108,12 +108,15 @@ public class Inventory : MonoBehaviour
         pos.y -= yPos * (yIndex + 1)-320;
         pos.z += 1;
 
-        if (gameObject.name == "EtcInven")
+        if (m_EtcInven_Create)
         {
+            pos.x -= xPos * (xIndex * 8) + 340;
+            pos.y += yPos * (yIndex * 8) - 200;
+            pos.z += 1;
             m_EtcInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
             m_EtcInventory[argIndex].transform.parent = gameObject.transform;
         }
-        else if(gameObject.name == "WeaponInven" || m_WInvenType == WINVEN_TYPE.TRADE || m_WInvenType == WINVEN_TYPE.REINFORCE)
+        else if(m_WInvenType == WINVEN_TYPE.TRADE || m_WInvenType == WINVEN_TYPE.REINFORCE)
         {
             pos.x -= xPos * (xIndex * 8) + 1340;
             pos.y += yPos * (yIndex * 8) - 200;
@@ -145,7 +148,7 @@ public class Inventory : MonoBehaviour
         pos.x += xPos * (xIndex + 1)-500;
         pos.y -= yPos * (yIndex + 1)-130;
         pos.z += 1;
-        if (m_WInvenType == WINVEN_TYPE.NONE)
+        if (m_WInvenType == WINVEN_TYPE.NONE &&  !m_EtcInven_Create)
         {
             m_EtcInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
             m_EtcInventory[argIndex].transform.parent = gameObject.transform;
@@ -160,8 +163,11 @@ public class Inventory : MonoBehaviour
         {
             pos.x -= 990;
             pos.y -= 270;
-           m_WeaponInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
+            m_WeaponInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
             m_WeaponInventory[argIndex].transform.parent = gameObject.transform;
+
+            m_EtcInventory[argIndex].GetComponent<RectTransform>().anchoredPosition = pos;
+            m_EtcInventory[argIndex].transform.parent = gameObject.transform;
         }
     }
     public void AddItem(Item argItem)
@@ -386,53 +392,8 @@ public class Inventory : MonoBehaviour
     }
     public IEnumerator PrintInven()
     {
-        GameObject CreateBtn=null;
         while (true)
         {
-            if (gameObject.name == "EtcInven")
-            {
-                if (CreateBtn == null)
-                    CreateBtn = GameObject.Find("CreateBtn");
-                if (m_Create.BSelect == true)
-                {
-                    for (int i = 0; i < 14; i++)
-                    {
-                        m_EtcInventory[i].gameObject.SetActive(true);
-                        m_EtcInventory[i].GetComponent<Image>().sprite = m_EtcInventory[i].GetComponent<EtcItem>().SprImg;
-                        m_EtcInventory[i].GetComponentInChildren<Text>().text = m_EtcInventory[i].GetComponent<EtcItem>().ICount.ToString();
-                        m_UseInventory[i].gameObject.SetActive(false);
-                        m_WeaponInventory[i].gameObject.SetActive(false);
-                    }
-                    m_tSelectTxt.gameObject.SetActive(false);
-                    m_tCountTxt.gameObject.SetActive(true);
-                    m_tCountTxt.text = "필요 점수 : " + m_Create.INeedCount.ToString() + 
-                        "\n일반 : 개당 1점     보스 : 개당 5점";
-                    CreateBtn.SetActive(true);
-                }
-                else
-                {
-                    for (int i = 0; i < 14; i++)
-                    {
-                        m_EtcInventory[i].gameObject.SetActive(false);
-                    }
-                    m_tSelectTxt.gameObject.SetActive(true);
-                    m_tCountTxt.gameObject.SetActive(false);
-                    CreateBtn.SetActive(false);
-                }
-            }
-            else if(gameObject.name == "WeaponInven")
-            {
-                m_eInventoryType = ITEM_TYPE.EQUIP;
-                for (int i = 0; i < 14; i++)
-                {
-                    m_WeaponInventory[i].gameObject.SetActive(true);
-                    m_WeaponInventory[i].GetComponent<Image>().sprite = m_WeaponInventory[i].GetComponent<WeaponItem>().SprImg;
-                    m_WeaponInventory[i].GetComponentInChildren<Text>().text = m_WeaponInventory[i].GetComponent<WeaponItem>().ICount.ToString();
-                    m_UseInventory[i].gameObject.SetActive(false);
-                    m_EtcInventory[i].gameObject.SetActive(false);
-                }
-            }
-            else
             {
                 for (int i = 0; i < 14; i++)
                 {
@@ -552,8 +513,9 @@ public class Inventory : MonoBehaviour
                     }
                     break;
             }
-            if (gameObject.name == "EtcInven")
+            if (m_EtcInven_Create)
             {
+                m_Create = GameObject.Find("Create").GetComponent<itemCreate>();
                 if (m_Create.BSelect)
                 {
                     SelectItem(m_RemoveObject);

@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 
 public class itemCreate : MonoBehaviour
 {
+    private Inventory m_Inventory;
+    [SerializeField] private Canvas Cvs_EtcInven;
+    [SerializeField] private Canvas Cvs_Inventory;
     private List<Item> m_Create;
     private GraphicRaycaster raycaster;
     private GameObject m_SelectObject;
@@ -19,6 +22,7 @@ public class itemCreate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         m_iNeedCount = 0;
         raycaster = gameObject.transform.parent.GetComponent<GraphicRaycaster>();
         m_bSelect = false;
@@ -76,7 +80,20 @@ public class itemCreate : MonoBehaviour
                     m_iNeedCount = 50;
                     break;
             }
+            Cvs_Inventory.transform.GetChild(0).gameObject.SetActive(false);
+            Cvs_Inventory.transform.GetChild(1).gameObject.SetActive(false);
+            Cvs_Inventory.transform.GetChild(2).gameObject.SetActive(false);
+            Cvs_Inventory.transform.GetChild(3).gameObject.SetActive(false);
+            Cvs_Inventory.transform.GetChild(4).gameObject.SetActive(false);
+            Cvs_Inventory.transform.GetChild(6).gameObject.SetActive(false);
+            Cvs_Inventory.enabled = true;
+            Cvs_EtcInven.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
+            Cvs_EtcInven.transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(true);
+            Cvs_EtcInven.transform.GetChild(1).gameObject.SetActive(true);
+
             m_bSelect = true;
+            Cvs_EtcInven.transform.GetChild(0).transform.GetChild(2).GetComponent<Text>().text = "필요 점수 : " + m_iNeedCount.ToString() +
+    "\n일반 : 개당 1점     보스 : 개당 5점";
         }
     }
 }
